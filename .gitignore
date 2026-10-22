@@ -1,0 +1,22 @@
+# build output
+build/
+dist/
+
+# Godot
+.godot/
+godot/.godot/
+*.import
+
+# .NET / C#
+bin/
+obj/
+*.user
+
+# Python/tools
+__pycache__/
+*.pyc
+
+# OS / editor
+.DS_Store
+*.swp
+*.log
