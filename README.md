@@ -87,6 +87,12 @@ BAYE_LIB=libs/balance1.8G1.lib bash tools/run_smoke.sh
 - **上游源码保持原样**：本地修改一律放 `native/patches/`，构建时复制到 `build/src` 再打补丁。
 - **不要在引擎线程调用 Godot API**：帧和 UI 请求通过互斥队列交给主线程。
 
+## 与新工程的关系
+
+新工程在 `rewrite` 分支（clean-room 精神续作，只有设计文档）。本分支只保留 iBaye P0 参考，不再继续 UI 改造。
+
+旧的 iBaye UI 方案已归档到 [docs/reference/ui-plan-ibaye.md](docs/reference/ui-plan-ibaye.md)，仅作历史/视觉参考，不作为新工程实现依据。
+
 ## 下一步
 
 1. 写 GDExtension 包装层：把 `baye_smoke` 里的线程/消息/帧回调封装成 `BayeEngine` 节点。
