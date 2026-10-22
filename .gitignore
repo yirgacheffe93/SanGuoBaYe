@@ -1,0 +1,12 @@
+node_modules/
+.electron-cache/
+.eb-cache/
+.npm-cache/
+dist/
+build/icon.iconset/
+.smoke-userdata*/
+.smoke-shot*.png
+.trace*/
+probe.html
+.DS_Store
+*.log
