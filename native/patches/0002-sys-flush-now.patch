@@ -1,0 +1,15 @@
+--- a/platform/common/sys.c	2026-10-22 23:12:18
++++ b/platform/common/sys.c	2026-10-22 23:39:26
+@@ -357,6 +357,12 @@
+         _lcd_fluch_cb(outbuf);
+         isLcdDirty = 0;
+     }
++}
++
++FAR void SysFlushLcdNow(void)
++{
++    isLcdDirty = 1;
++    timed_flush_lcd();
+ }
+ 
+ FAR void logLcd()

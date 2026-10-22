@@ -1,0 +1,15 @@
+--- a/platform/common/gui.c	2026-10-22 23:12:18
++++ b/platform/common/gui.c	2026-10-22 23:39:26
+@@ -144,8 +144,12 @@
+     return 1;
+ }
+ 
++static void (*_msg_wait_cb)(void);
++void GuiSetMsgWaitCallback(void (*cb)(void)) { _msg_wait_cb = cb; }
++
+ U8 GuiGetMsg(PtrMsg pMsg)
+ {
++    if (_msg_wait_cb) _msg_wait_cb();
+     return msg_queue_get(&msg_queue, pMsg);
+ }
+ 

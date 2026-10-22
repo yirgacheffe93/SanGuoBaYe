@@ -1,0 +1,11 @@
+--- a/comIn.c
++++ b/comIn.c
+@@ -67,7 +67,7 @@
+     DataBankSwitch(4,1,EXTMEM_BNKNUM);			/*将当前的第4个页面切换成内存-增加可用的内存空间*/
+ 
+     {
+-        U8 path[64];
++        U8 path[512];
+         sprintf((char*)path, "%s/font.bin", (char*)g_fontDir);
+         /*文件指针初始化*/
+         g_FontFp12 = gam_fopen(path,'r');

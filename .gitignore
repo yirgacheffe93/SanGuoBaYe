@@ -1,12 +1,8 @@
-node_modules/
-.electron-cache/
-.eb-cache/
-.npm-cache/
-dist/
-build/icon.iconset/
-.smoke-userdata*/
-.smoke-shot*.png
-.trace*/
-probe.html
+# 原生构建与 Godot 生成物
+build/
+godot/.godot/
+godot/bin/
+*.o
+*.dSYM/
 .DS_Store
-*.log
+__pycache__/
