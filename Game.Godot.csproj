@@ -1,0 +1,17 @@
+<Project Sdk="Godot.NET.Sdk/4.7.2">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Game.Godot</RootNamespace>
+    <AssemblyName>Game.Godot</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="src/Game.Godot/**/*.cs" />
+    <ProjectReference Include="src/Game.Application/Game.Application.csproj" />
+    <ProjectReference Include="src/Game.Infrastructure/Game.Infrastructure.csproj" />
+    <ProjectReference Include="src/Game.Domain/Game.Domain.csproj" />
+  </ItemGroup>
+</Project>

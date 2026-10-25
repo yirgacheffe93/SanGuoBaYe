@@ -159,9 +159,16 @@ iBaye 是步步高 A600 引擎的跨平台 C 移植，包含《三国霸业》�
 
 ---
 
-## 后续选型说明（ADR-0003 尚未完成）
+## ADR-0008：采用 Godot 4.7.2 + C#/.NET 8
 
-当前先验证 Godot + C#、独立 .NET Domain/Application；详见 `04-tech-selection.md`。这不是已完成的选型结果，也没有实际 spike 数据。若采用 GDScript，必须新增 ADR 明确将“无 Godot 环境规则测试”改为“Godot headless”，并同步修改文档，不能静默放宽门禁。最终选型另开 ADR，保留 ADR-0003 原提议。
+- 状态：已接受；完成 ADR-0003 的提议
+- 日期：2026-10-24
+- 背景：R0 需要验证复杂规则的可维护性、无 Godot 规则测试、最小 UI、确定性存读档和 macOS 导出。实际环境与数据见 `09-r0-s1-spike.md`。
+- 决策：使用 Godot `4.7.2` .NET 版与 .NET SDK `8.0.426`。Domain/Application 保持纯 .NET；Infrastructure 负责 JSON/文件；Godot 只负责 UI、输入与后续音频。不默认混用 GDScript。
+- 验证：16 项测试通过；规则测试由普通 `dotnet test` 执行。编辑器与独立 macOS universal 应用均跑通开发、取消、回合、存读档及读档一致性冒烟，导出包包含 arm64。
+- 后果：规则层可独立测试和重构；需要维护 .NET SDK、Godot .NET 版本和导出模板的兼容组合。当前未签名、公证的 Spike 包约 320 MB，不代表现行发行包优化结果。
+- 备选：GDScript 需将独立 .NET 测试门禁改为 Godot headless；Unity 与自研初始评估不占优。C# 已通过全部硬约束，本次不重复实现 GDScript 对照。
+- 复审条件：目标平台导出受阻、复杂 UI 迭代明显低效、团队维护成本超出预期，或许可证/平台要求变化时重新评估；版本升级先单独做兼容验证。
 
 ## 模板
 

@@ -6,7 +6,7 @@
 
 ## 状态
 
-**预制作 / 架构设计阶段。** 本分支目前只有设计文档，没有游戏代码或新 UI 实现。技术栈待定，优先 spike 验证 Godot + C# 与独立 .NET 规则库（见 `docs/04-tech-selection.md`）。
+**预制作 R0，技术栈 Spike 与低保真双风格界面已完成。** 当前有可点击战略地图、城池/道路/旗号、深色墨色与浅色纸本切换，以及真实开发/取消/回合/存读档流程和 16 项自动化测试；尚不是 R1 可玩原型，G0 仍未通过。技术实测见 `docs/09-r0-s1-spike.md`，界面样片见 `docs/10-r0-ui-samples.md`。
 
 先交付 3–5 城、2 势力、8–12 武将、15–30 分钟的小原型（R1），包含真实可操作的最小 UI；试玩通过后再扩为 20 城/60 武将、2–3 小时的 MVP（R2）。
 
@@ -46,17 +46,30 @@ git worktree add ../SanGuoBaYe-godot godot
 | [docs/06-decisions.md](docs/06-decisions.md) | 架构决策记录（ADR） |
 | [docs/07-turn-rules.md](docs/07-turn-rules.md) | 原型回合合同、资源/占用/退款、冲突、胜负与验收 |
 | [docs/08-ui-design.md](docs/08-ui-design.md) | 地图布局、下令反馈、任务/回合报告、视觉建议与 UI 验收 |
-| [docs/provenance.md](docs/provenance.md) | 内容与资产来源记录模板 |
+| [docs/09-r0-s1-spike.md](docs/09-r0-s1-spike.md) | R0-S1 工具版本、实测数据、验证结果与限制 |
+| [docs/10-r0-ui-samples.md](docs/10-r0-ui-samples.md) | R0-S2 低保真地图、深色/浅色样片与可读性检查 |
+| [docs/provenance.md](docs/provenance.md) | 内容与资产来源记录 |
+
+## 构建与验证
+
+本地工具链位于 `.tools/`（不入库），版本见 Spike 记录。macOS 上执行：
+
+```bash
+scripts/verify.sh        # 构建、16 项测试、Godot UI 冒烟
+scripts/export-macos.sh # 导出并运行独立 macOS 应用冒烟
+scripts/capture-ui.sh   # 重新生成深色、浅色和对比样片
+```
+
+Godot 编辑器打开根目录 `project.godot`；正常运行可点击地图或城池列表，切换主题，并试用开发、取消、回合和存读档界面。
 
 ## 下一步
 
-R0 还没结束。正式工程开始前需要完成（允许有限 spike 和线框验证）：
+R0 还没结束。正式 R1 前需要完成：
 
-1. 优先 C# 技术栈 spike，记录具体工具版本、纯 .NET 测试、macOS 导出与 UI 迭代结果；必要时才对照 GDScript。
-2. 原型具体内容清单、初始局面、费用收益参数和自动战斗公式。
-3. 数据 schema 草案（角色/城市/剧本/事件），校验原型内容。
-4. 纸面模拟至少 5 回合，验证扣费、取消、战斗与结局。
-5. UI 低保真流程和深色/浅色两份风格样片，比较可读性；来源模板已建，实际素材授权逐项补齐。
+1. 原型具体内容清单、初始局面、费用收益参数和自动战斗公式。
+2. 数据 schema 草案（角色/城市/剧本/事件），校验原型内容。
+3. 纸面模拟至少 5 回合，验证扣费、取消、战斗与结局。
+4. 名称/商标初查，以及正式字体与后续外部素材授权记录。
 
 ## 注意
 

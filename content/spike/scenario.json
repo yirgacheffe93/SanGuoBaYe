@@ -1,0 +1,49 @@
+{
+  "contentVersion": "spike-1",
+  "seed": 123456789,
+  "factionId": "faction.player",
+  "rules": {
+    "developmentCost": 100,
+    "levelCap": 5,
+    "agricultureIncome": 20,
+    "commerceIncome": 15
+  },
+  "cities": [
+    {
+      "id": "city.anling",
+      "name": "安陵",
+      "factionId": "faction.player",
+      "gold": 300,
+      "food": 500,
+      "agriculture": 1,
+      "commerce": 1,
+      "troops": 1000,
+      "connections": ["city.beiping"]
+    },
+    {
+      "id": "city.beiping",
+      "name": "北平",
+      "factionId": "faction.player",
+      "gold": 80,
+      "food": 400,
+      "agriculture": 1,
+      "commerce": 1,
+      "troops": 800,
+      "connections": ["city.anling"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "char.shenyan",
+      "name": "沈砚",
+      "factionId": "faction.player",
+      "cityId": "city.anling"
+    },
+    {
+      "id": "char.luqing",
+      "name": "陆青",
+      "factionId": "faction.player",
+      "cityId": "city.beiping"
+    }
+  ]
+}

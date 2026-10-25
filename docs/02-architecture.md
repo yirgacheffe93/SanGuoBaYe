@@ -1,6 +1,6 @@
 # 02 · 架构设计（草案）
 
-> 目标：定义规则与界面分离的骨架。当前优先验证 Godot + C#、独立 .NET 规则库；选型仍需 spike 验收。回合细则见 `07-turn-rules.md`，UI 见 `08-ui-design.md`。
+> 目标：定义规则与界面分离的骨架。R0-S1 已验证 Godot + C#、独立 .NET 规则库，最终选型见 ADR-0008。回合细则见 `07-turn-rules.md`，UI 见 `08-ui-design.md`。
 
 ## 1. 架构目标
 
@@ -38,7 +38,7 @@
 
 代码依赖：Presentation → Application → Domain；内容加载/存储适配器实现 Application 定义的接口，将外部数据转换为领域定义。Content 文件是输入数据，不是 Domain 必须依赖的运行时模块。
 
-优先验证的工程划分：`Game.Domain`（纯 .NET）、`Game.Application`（纯 .NET）、`Game.Infrastructure`（JSON/文件存储）、`Game.Godot`（UI/适配）、`Game.Tests`。前三者不引用 Godot 类型；UI 通过应用层查询只读 ViewModel，不访问可变 World。若改选 GDScript，必须修订“脱离 Godot 运行”的要求，详见 `04-tech-selection.md`。
+当前工程划分：`Game.Domain`（纯 .NET）、`Game.Application`（纯 .NET）、`Game.Infrastructure`（JSON/文件存储）、`Game.Godot`（UI/适配）、`Game.Tests`。前三者不引用 Godot 类型；UI 通过应用层查询只读 ViewModel，不访问可变 World。R0-S1 已按此边界实现并验证。
 
 ## 3. 领域模型
 
