@@ -7,6 +7,12 @@ public static class MainCommandCatalog
     public const int SearchOrderId = 3;
     public const int GovernOrderId = 4;
     public const int InspectOrderId = 5;
+    public const int RecruitOrderId = 6;
+    public const int ExecuteOrderId = 7;
+    public const int ExileOrderId = 8;
+    public const int ConscriptOrderId = 24;
+    public const int DistributeOrderId = 25;
+    public const int PlunderOrderId = 26;
     public const int RewardOrderId = 9;
     public const int ConfiscateOrderId = 10;
     public const int TradeOrderId = 11;
@@ -23,6 +29,12 @@ public static class MainCommandCatalog
         SearchOrderId => "搜寻",
         GovernOrderId => "治理",
         InspectOrderId => "出巡",
+        RecruitOrderId => "招降",
+        ExecuteOrderId => "处斩",
+        ExileOrderId => "流放",
+        ConscriptOrderId => "征兵",
+        DistributeOrderId => "分配",
+        PlunderOrderId => "掠夺",
         RewardOrderId => "赏赐",
         ConfiscateOrderId => "没收",
         TradeOrderId => "交易",
@@ -36,7 +48,9 @@ public static class MainCommandCatalog
     {
         ReclaimOrderId or CommerceOrderId or InspectOrderId => (50, 8),
         SearchOrderId => (0, 8),
-        GovernOrderId or RewardOrderId or ConfiscateOrderId => (0, 0),
+        GovernOrderId or RewardOrderId or ConfiscateOrderId or ExecuteOrderId or ExileOrderId or DistributeOrderId => (0, 0),
+        RecruitOrderId => (0, 15),
+        ConscriptOrderId or PlunderOrderId => (0, 12),
         TradeOrderId => (0, 12),
         BanquetOrderId => (100, 0),
         TransportOrderId or MoveOrderId => (0, 8),
@@ -46,8 +60,8 @@ public static class MainCommandCatalog
     public static bool RequiresQueue(int commandId) => commandId switch
     {
         ReclaimOrderId or CommerceOrderId or SearchOrderId or GovernOrderId or InspectOrderId or
-            TradeOrderId or TransportOrderId or MoveOrderId => true,
-        RewardOrderId or ConfiscateOrderId or BanquetOrderId => false,
+            RecruitOrderId or ConscriptOrderId or PlunderOrderId or TradeOrderId or TransportOrderId or MoveOrderId => true,
+        RewardOrderId or ConfiscateOrderId or BanquetOrderId or ExecuteOrderId or ExileOrderId or DistributeOrderId => false,
         _ => throw new ArgumentOutOfRangeException(nameof(commandId))
     };
 }

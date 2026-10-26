@@ -23,7 +23,7 @@ public sealed class MainToolDiscoveryTests : IDisposable
         var before = session.World.RandomState;
         session.ExecuteOrders();
         Assert.Equal(ExpectedSpecialSearchState(before), session.World.RandomState);
-        Assert.Contains(session.World.Reports, report => report.Message.Contains("无收获"));
+        Assert.Contains(session.World.Reports, report => report.Message.Contains("没有未发现道具"));
         Assert.True(city.ToolEntries[0].Discovered);
     }
 
@@ -75,7 +75,7 @@ public sealed class MainToolDiscoveryTests : IDisposable
         session.World.RandomState = 43;
         session.ExecuteOrders();
         Assert.False(City(session).ToolEntries[0].Discovered);
-        Assert.Contains(session.World.Reports, report => report.Message.Contains("无收获"));
+        Assert.Contains(session.World.Reports, report => report.Message.Contains("伯乐条件不符合"));
     }
 
     [Fact]

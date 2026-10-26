@@ -24,6 +24,7 @@ public sealed record MainPersonView(
     string Name,
     string CityId,
     string Belong,
+    Game.Domain.MainPersonStatus Status,
     int Level,
     int Force,
     int Iq,

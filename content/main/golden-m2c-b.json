@@ -1,0 +1,67 @@
+{
+  "kind": "main-m2c-b-golden",
+  "source": "生产 baye.wasm 实际命令/受控场景与同源 C，main@eba4a77",
+  "conscript": {
+    "commandId": 24,
+    "quantity": 1000,
+    "moneyBefore": 1000,
+    "moneyAfter": 900,
+    "food": 234,
+    "population": 12345,
+    "mothballArmsBefore": 100,
+    "mothballArmsAfter": 1100,
+    "thewBefore": 80,
+    "thewAfter": 68,
+    "note": "接受时生效，月末只归队；不扣人口"
+  },
+  "distribute": {
+    "commandId": 25,
+    "personArmsBefore": 200,
+    "personArmsAfter": 700,
+    "reserveBefore": 500,
+    "reserveAfter": 0,
+    "queued": false
+  },
+  "plunder": {
+    "commandId": 26,
+    "iqPlusForce": 150,
+    "moneyBefore": 2000,
+    "moneyAfter": 2300,
+    "foodBefore": 1000,
+    "foodAfter": 1750,
+    "devotionBefore": 81,
+    "devotionAfter": 40,
+    "farmingBefore": 101,
+    "farmingAfter": 50,
+    "commerceBefore": 201,
+    "commerceAfter": 100,
+    "thewBefore": 80,
+    "thewAfter": 68
+  },
+  "recruit": [
+    { "seed": 4, "actorIq": 80, "targetIq": 50, "character": 0, "devotionBefore": 70, "result": "firstGateFailure", "devotionAfter": 70, "finalRngState": 3731259426 },
+    { "seed": 20, "actorIq": 80, "targetIq": 50, "character": 0, "devotionBefore": 50, "result": "secondGateFailure", "devotionAfter": 45, "finalRngState": 2966873603 },
+    { "seed": 3, "actorIq": 80, "targetIq": 50, "character": 0, "devotionBefore": 50, "result": "success", "devotionAfter": 48, "finalRngState": 679304702 },
+    { "seed": 5, "actorIq": 80, "targetIq": 50, "character": 0, "devotionBefore": 20, "result": "success", "devotionAfter": 51, "finalRngState": 695785320 }
+  ],
+  "execute": {
+    "commandId": 7,
+    "seed": 11,
+    "equipment": [1, 2],
+    "cityToolsAfter": [32768, 32769],
+    "finalRngState": 3548745448
+  },
+  "exile": {
+    "commandId": 8,
+    "seed": 11,
+    "destinationCityIndex": 2,
+    "belongAfter": 0,
+    "finalRngState": 3548745448
+  },
+  "uncovered": [
+    "特殊装备、低体力、U16 和队列满边界",
+    "原生寻路",
+    "年度人物/道具出现与被处斩人物重现",
+    "完整 ComputerTactic"
+  ]
+}

@@ -22,6 +22,15 @@ public static class MainOrderExecutor
                 case MainCommandCatalog.MoveOrderId:
                     messages.Add(ResolveMove(world, order));
                     break;
+                case MainCommandCatalog.PlunderOrderId:
+                    var city = world.Cities.Single(city => city.Id == order.CityId);
+                    messages.Add(MainMilitaryRules.Plunder(city, world.Persons.Single(person => person.Id == order.PersonId)));
+                    ReturnPerson(world, order, order.CityId);
+                    break;
+                case MainCommandCatalog.RecruitOrderId:
+                    messages.Add(MainDispositionRules.Recruit(world, order));
+                    ReturnPerson(world, order, order.CityId);
+                    break;
                 default:
                     ReturnPerson(world, order, order.CityId);
                     break;

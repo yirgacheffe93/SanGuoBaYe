@@ -41,6 +41,7 @@ internal static class MainContentMapper
         var persons = document.Persons.Select(item => new MainPerson
         {
             Id = item.Id, SourceIndex = item.Index, Name = item.Name,
+            Status = item.Raw.Belong == 0xffff ? MainPersonStatus.Captive : item.Raw.Belong == 0 ? MainPersonStatus.Free : MainPersonStatus.Active,
             OldBelong = item.OldOwnerPersonId ?? "", Belong = item.OwnerPersonId ?? "",
             Level = item.Raw.Level, Force = item.Raw.Force, Iq = item.Raw.IQ, Devotion = item.Raw.Devotion,
             Character = item.Raw.Character, Experience = item.Raw.Experience, Thew = item.Raw.Thew,

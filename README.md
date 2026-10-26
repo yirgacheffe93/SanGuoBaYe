@@ -4,9 +4,9 @@
 
 ## 状态
 
-**Main-M2C-A 已完成。**
+**Main-M2C-B 已完成。**
 
-全部时期和真实君主可进入，支持五项内政、完整月度、人物/道具搜寻，以及赏赐、没收、宴请、交易、移动、输送。70 项测试通过，六命令 golden、动态目标 UI 和独立 macOS 应用验收已完成，见 `docs/21-main-m2c-a.md`；原生寻路、完整 M2C/M2/M3 尚未完成。
+全部时期和真实君主可进入，支持五项内政、完整月度、人物/道具搜寻，以及赏赐、没收、宴请、交易、移动、输送、招降、处斩、流放、征兵、分配和掠夺。81 项测试通过，军备与人员处置 golden、目标 UI 和独立 macOS 应用验收已完成，见 `docs/23-main-m2c-b.md`；原生寻路、完整 M2/M3 尚未完成。
 
 现有 Godot 分层工程、双主题地图、规则测试、快照存档和 macOS 导出链继续复用。R0 的虚构内容与自动战斗仅保留为历史技术验证，不再限制 main 的属性范围和战术战斗目标。
 
@@ -48,6 +48,8 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 | [docs/17-main-m2b.md](docs/17-main-m2b.md) | Main-M2B 完整月度、搜寻与 SetGoods 修复 |
 | [docs/20-setgoods-diagnosis-result.md](docs/20-setgoods-diagnosis-result.md) | U8/U16 诊断证据与修复验收 |
 | [docs/21-main-m2c-a.md](docs/21-main-m2c-a.md) | Main-M2C-A 人员与物资六命令 |
+| [docs/22-search-diagnostics.md](docs/22-search-diagnostics.md) | 搜寻候选、伯乐与失败原因诊断 |
+| [docs/23-main-m2c-b.md](docs/23-main-m2c-b.md) | Main-M2C-B 军备与人员处置 |
 | [docs/provenance.md](docs/provenance.md) | 实际内容与资产来源记录 |
 
 ## 构建与验证
@@ -55,7 +57,7 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 本地工具链位于 `.tools/`（不入库）。macOS 上执行：
 
 ```bash
-scripts/verify.sh        # 导入校验、70 项测试、R0 回归、Main-M2B UI 冒烟
+scripts/verify.sh        # 导入校验、81 项测试、R0 回归、Main-M2B UI 冒烟
 scripts/export-macos.sh # 导出并运行独立 macOS 应用冒烟
 scripts/capture-ui.sh   # 重新生成深色、浅色和对比样片
 ```
@@ -64,7 +66,7 @@ Godot 编辑器打开根目录 `project.godot`。main 内容导入命令见 `too
 
 ## 下一步
 
-进入 Main-M2C-B：招降、处斩、流放及征兵、分配、掠夺等军备命令；补原生寻路和特殊装备边界，并继续年度人物/道具出现验证。
+补原生寻路、特殊装备和年度人物/道具出现边界，随后完成 M2 剩余对敌策略与完整 AI，再进入 M3 出征与独立战术战斗。
 
 ## 注意
 

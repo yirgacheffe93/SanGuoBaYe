@@ -11,6 +11,7 @@ public partial class MainCityDetailPanel : PanelContainer
     private OptionButton commandOptions = null!;
     private OptionButton toolOptions = null!;
     private OptionButton targetCityOptions = null!;
+    private OptionButton targetPersonOptions = null!;
     private HBoxContainer tradeControls = null!;
     private OptionButton tradeDirectionOptions = null!;
     private SpinBox tradeQuantity = null!;
@@ -18,6 +19,7 @@ public partial class MainCityDetailPanel : PanelContainer
     private SpinBox transportFood = null!;
     private SpinBox transportMoney = null!;
     private SpinBox transportArms = null!;
+    private SpinBox commandQuantity = null!;
     private Button commandButton = null!;
 
     public event Action<string>? PersonSelected;
@@ -26,11 +28,22 @@ public partial class MainCityDetailPanel : PanelContainer
     public int SelectedCommandId => commandOptions.GetSelectedId();
     public string? SelectedToolId => SelectedCommandId == MainCommandCatalog.RewardOrderId ? SelectedMetadata(toolOptions) : null;
     public string? SelectedTargetCityId => SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId ? SelectedMetadata(targetCityOptions) : null;
+    public string? SelectedTargetPersonId => SelectedCommandId == MainCommandCatalog.RecruitOrderId ? SelectedMetadata(targetPersonOptions) : null;
     public MainTradeDirection TradeDirection => tradeDirectionOptions.Selected == 1 ? MainTradeDirection.Sell : MainTradeDirection.Buy;
-    public int TradeQuantity => SelectedCommandId == MainCommandCatalog.TradeOrderId ? (int)tradeQuantity.Value : 0;
+    public int Quantity => SelectedCommandId switch
+    {
+        MainCommandCatalog.TradeOrderId => (int)tradeQuantity.Value,
+        MainCommandCatalog.ConscriptOrderId => (int)commandQuantity.Value,
+        _ => 0
+    };
     public int TransportFood => SelectedCommandId == MainCommandCatalog.TransportOrderId ? (int)transportFood.Value : 0;
     public int TransportMoney => SelectedCommandId == MainCommandCatalog.TransportOrderId ? (int)transportMoney.Value : 0;
-    public int TransportArms => SelectedCommandId == MainCommandCatalog.TransportOrderId ? (int)transportArms.Value : 0;
+    public int Arms => SelectedCommandId switch
+    {
+        MainCommandCatalog.TransportOrderId => (int)transportArms.Value,
+        MainCommandCatalog.DistributeOrderId => (int)commandQuantity.Value,
+        _ => 0
+    };
 
     public override void _Ready()
     {
@@ -48,7 +61,7 @@ public partial class MainCityDetailPanel : PanelContainer
         personDetails.AddThemeFontSizeOverride("font_size", 14);
         content.AddChild(personDetails);
         commandOptions = new OptionButton();
-        foreach (var commandId in new[] { 1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14 })
+        foreach (var commandId in new[] { 1, 2, 3, 4, 5, 6, 7, 8, 24, 25, 26, 9, 10, 11, 12, 13, 14 })
             commandOptions.AddItem(MainCommandCatalog.Name(commandId), commandId);
         commandOptions.ItemSelected += _ => OnCommandInputChanged();
         content.AddChild(commandOptions);
@@ -58,6 +71,9 @@ public partial class MainCityDetailPanel : PanelContainer
         targetCityOptions = new OptionButton();
         targetCityOptions.ItemSelected += _ => CommandSelectionChanged?.Invoke();
         content.AddChild(targetCityOptions);
+        targetPersonOptions = new OptionButton();
+        targetPersonOptions.ItemSelected += _ => CommandSelectionChanged?.Invoke();
+        content.AddChild(targetPersonOptions);
         tradeControls = new HBoxContainer();
         tradeDirectionOptions = new OptionButton { SizeFlagsHorizontal = SizeFlags.ExpandFill };
         tradeDirectionOptions.AddItem("买入粮食 · 5金/粮");
@@ -75,6 +91,8 @@ public partial class MainCityDetailPanel : PanelContainer
         transportControls.AddChild(transportMoney);
         transportControls.AddChild(transportArms);
         content.AddChild(transportControls);
+        commandQuantity = QuantityControl(0);
+        content.AddChild(commandQuantity);
         commandButton = new Button();
         commandButton.Pressed += () => CommandConfirmed?.Invoke();
         content.AddChild(commandButton);
@@ -106,9 +124,15 @@ public partial class MainCityDetailPanel : PanelContainer
             targetCityOptions.AddItem($"目标 {target.Name}");
             targetCityOptions.SetItemMetadata(targetCityOptions.ItemCount - 1, target.Id);
         }
+        targetPersonOptions.Clear();
+        foreach (var target in persons.Where(person => person.Status == Game.Domain.MainPersonStatus.Captive))
+        {
+            targetPersonOptions.AddItem($"招降 {target.Name}");
+            targetPersonOptions.SetItemMetadata(targetPersonOptions.ItemCount - 1, target.Id);
+        }
     }
 
-    public void SetPerson(MainPersonView? person, MainCommandPreview preview, string toolName)
+    public void SetPerson(MainPersonView? person, MainCommandPreview preview, string toolName, string? searchHint = null)
     {
         UpdateCommandControls();
         if (person is null)
@@ -118,7 +142,7 @@ public partial class MainCityDetailPanel : PanelContainer
             return;
         }
         var returnsAtMonthEnd = MainCommandCatalog.RequiresQueue(preview.CommandId) ? "；月末归队" : "";
-        personDetails.Text = $"{person.Name} · 等级 {person.Level}  兵力 {person.Arms}\n忠诚 {person.Devotion}  道具 {toolName}\n{(preview.Available ? $"接受：金 {preview.MoneyAfter + preview.MoneyCost} → {preview.MoneyAfter}，体力 {preview.ThewAfter}{returnsAtMonthEnd}" : preview.Message)}";
+        personDetails.Text = $"{person.Name} · 等级 {person.Level}  兵力 {person.Arms}\n忠诚 {person.Devotion}  道具 {toolName}\n{(preview.Available ? $"接受：金 {preview.MoneyAfter + preview.MoneyCost} → {preview.MoneyAfter}，体力 {preview.ThewAfter}{returnsAtMonthEnd}" : preview.Message)}{(searchHint is null ? "" : $"\n{searchHint}")}";
         commandButton.Text = $"{MainGameSession.CommandName(preview.CommandId)} · {preview.MoneyCost} 金 · {preview.ThewCost} 体力";
         commandButton.Disabled = !preview.Available;
     }
@@ -131,6 +155,8 @@ public partial class MainCityDetailPanel : PanelContainer
         transportMoney.Value = money;
         transportArms.Value = arms;
     }
+
+    public void SetCommandQuantity(int quantity) => commandQuantity.Value = quantity;
 
     private SpinBox QuantityControl(double value, string prefix = "数量 ")
     {
@@ -149,8 +175,11 @@ public partial class MainCityDetailPanel : PanelContainer
     {
         toolOptions.Visible = SelectedCommandId == MainCommandCatalog.RewardOrderId;
         targetCityOptions.Visible = SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId;
+        targetPersonOptions.Visible = SelectedCommandId == MainCommandCatalog.RecruitOrderId;
         tradeControls.Visible = SelectedCommandId == MainCommandCatalog.TradeOrderId;
         transportControls.Visible = SelectedCommandId == MainCommandCatalog.TransportOrderId;
+        commandQuantity.Visible = SelectedCommandId is MainCommandCatalog.ConscriptOrderId or MainCommandCatalog.DistributeOrderId;
+        commandQuantity.Prefix = SelectedCommandId == MainCommandCatalog.DistributeOrderId ? "新兵力 " : "数量 ";
     }
 
     private static string? SelectedMetadata(OptionButton options) =>

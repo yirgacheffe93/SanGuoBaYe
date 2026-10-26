@@ -63,9 +63,12 @@ public sealed class MainCity
     public List<string> Connections { get; set; } = [];
 }
 
+public enum MainPersonStatus { Active, Free, Captive, Executed }
+
 public sealed class MainPerson
 {
     public string Id { get; set; } = "";
+    public MainPersonStatus Status { get; set; } = MainPersonStatus.Active;
     public int SourceIndex { get; set; }
     public string Name { get; set; } = "";
     public string OldBelong { get; set; } = "";

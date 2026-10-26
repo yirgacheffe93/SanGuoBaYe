@@ -22,10 +22,22 @@ public static class MainCommandService
     {
         var commandId = request.CommandId;
         var (moneyCost, thewCost) = MainCommandCatalog.Costs(commandId);
+        if (commandId == MainCommandCatalog.ConscriptOrderId) moneyCost = request.Quantity / 10;
         var city = world.Cities.FirstOrDefault(item => item.Id == request.CityId);
         var person = world.Persons.FirstOrDefault(item => item.Id == request.PersonId);
         if (city is null || person is null) return Preview(false, "not_found", "城市或武将不存在。");
-        if (city.Belong != world.PlayerRulerId || person.Belong != world.PlayerRulerId || person.CityId != city.Id)
+        if (commandId == MainCommandCatalog.ExecuteOrderId && person.Status != MainPersonStatus.Captive)
+            return Preview(false, "invalid_target", "处斩目标必须是本城俘虏。");
+        if (commandId == MainCommandCatalog.ExileOrderId && person.Status == MainPersonStatus.Executed)
+            return Preview(false, "invalid_target", "该人物不可流放。");
+        if (commandId == MainCommandCatalog.RecruitOrderId)
+        {
+            var target = world.Persons.FirstOrDefault(item => item.Id == request.TargetPersonId);
+            if (target is null || target.Status != MainPersonStatus.Captive || target.CityId != city.Id)
+                return Preview(false, "invalid_target", "招降目标必须是本城俘虏。");
+        }
+        if (commandId != MainCommandCatalog.ExecuteOrderId && commandId != MainCommandCatalog.ExileOrderId &&
+            (city.Belong != world.PlayerRulerId || person.Belong != world.PlayerRulerId || person.CityId != city.Id))
             return Preview(false, "invalid_target", "只能选择我方城中的己方武将。");
         if (person.OrderId is not null) return Preview(false, "person_busy", $"{person.Name} 已有命令。");
         if (person.Thew < thewCost) return Preview(false, "thew_low", $"体力不足，需要 {thewCost}。");
@@ -69,6 +81,19 @@ public static class MainCommandService
             if (city.Food < request.Food || city.Money < request.Money || city.MothballArms < request.Arms)
                 return Preview(false, "resource_low", "输送数量超过当前库存。");
         }
+        if (commandId == MainCommandCatalog.ConscriptOrderId)
+        {
+            var maximum = Math.Min(city.PeopleDevotion * 20, Math.Min(city.Money * 10, 65534));
+            if (request.Quantity < 0 || request.Quantity > maximum)
+                return Preview(false, "invalid_quantity", $"征兵数量超过上限 {maximum}。");
+        }
+        if (commandId == MainCommandCatalog.DistributeOrderId)
+        {
+            var maximum = Math.Min(person.Level * 100 + person.Force * 10 + person.Iq * 10,
+                person.Arms + city.MothballArms);
+            if (request.Arms < 0 || request.Arms > maximum)
+                return Preview(false, "invalid_quantity", $"分配兵力超过上限 {maximum}。");
+        }
         return Preview(true, "ok", "可执行");
 
         MainCommandPreview Preview(bool available, string code, string message) => new(
@@ -95,6 +120,12 @@ public static class MainCommandService
         var person = world.Persons.Single(item => item.Id == request.PersonId);
         var commandId = request.CommandId;
         var (moneyCost, thewCost) = MainCommandCatalog.Costs(commandId);
+        if (commandId == MainCommandCatalog.ExecuteOrderId)
+            return new MainCommandResult(true, "accepted", MainDispositionRules.Execute(world, content, city, person));
+        if (commandId == MainCommandCatalog.ExileOrderId)
+            return new MainCommandResult(true, "accepted", MainDispositionRules.Exile(world, city, person));
+        if (commandId == MainCommandCatalog.RecruitOrderId)
+            return CreateQueuedOrder(world, request, moneyCost, thewCost, "招降将在月末判定。");
         if (commandId == MainCommandCatalog.RewardOrderId)
         {
             var specialEffect = MainPersonnelRules.Reward(world, content, city, person, request.ToolId!);
@@ -105,11 +136,21 @@ public static class MainCommandService
             var specialEffect = MainPersonnelRules.Confiscate(world, content, city, person);
             return new MainCommandResult(true, "accepted", specialEffect);
         }
+        if (commandId == MainCommandCatalog.DistributeOrderId)
+            return new MainCommandResult(true, "accepted", MainMilitaryRules.Distribute(city, person, request.Arms));
         if (commandId == MainCommandCatalog.BanquetOrderId)
         {
             city.Money -= moneyCost;
             return new MainCommandResult(true, "accepted", MainPersonnelRules.Banquet(world, city, person));
         }
+        if (commandId == MainCommandCatalog.ConscriptOrderId)
+        {
+            moneyCost = request.Quantity / 10;
+            var conscriptEffect = MainMilitaryRules.Conscript(city, person, request.Quantity);
+            return CreateQueuedOrder(world, request, moneyCost, thewCost, conscriptEffect);
+        }
+        if (commandId == MainCommandCatalog.PlunderOrderId)
+            return CreateQueuedOrder(world, request, moneyCost, thewCost, "掠夺将在月末结算。");
 
         string effect;
         if (commandId == MainCommandCatalog.TradeOrderId)
@@ -142,10 +183,17 @@ public static class MainCommandService
         {
             effect = MainInternalRules.ApplyImmediateEffect(world, commandId, city, person);
         }
+        return CreateQueuedOrder(world, request, moneyCost, thewCost, effect);
+    }
+
+    private static MainCommandResult CreateQueuedOrder(MainWorld world, MainCommandRequest request, int moneyCost, int thewCost, string effect)
+    {
+        var city = world.Cities.Single(item => item.Id == request.CityId);
+        var person = world.Persons.Single(item => item.Id == request.PersonId);
         var order = new MainOrder
         {
-            Id = $"main.order.{world.NextSequence++}", OrderId = commandId, CityId = request.CityId, PersonId = request.PersonId,
-            ObjectId = request.TargetCityId ?? "", Food = request.Food, Money = request.Money, Arms = request.Arms,
+            Id = $"main.order.{world.NextSequence++}", OrderId = request.CommandId, CityId = request.CityId, PersonId = request.PersonId,
+            ObjectId = request.TargetPersonId ?? request.TargetCityId ?? "", Food = request.Food, Money = request.Money, Arms = request.Arms,
             Consume = thewCost, TimeCount = 0
         };
         city.Money -= moneyCost;

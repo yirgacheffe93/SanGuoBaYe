@@ -56,6 +56,13 @@ public sealed class MainGameSession
 
     public MainGameView GetView() => MainViewFactory.Create(World);
 
+    public MainSearchDiagnostics GetSearchDiagnostics(string cityId, string personId)
+    {
+        var city = World.Cities.Single(city => city.Id == cityId);
+        var person = World.Persons.Single(person => person.Id == personId);
+        return MainSearchRules.Describe(World, Content, city, person);
+    }
+
     public string GetToolName(string toolId) => string.IsNullOrEmpty(toolId) ? "无" :
         Content.Tools.FirstOrDefault(tool => tool.Id == toolId)?.Name ?? toolId;
 

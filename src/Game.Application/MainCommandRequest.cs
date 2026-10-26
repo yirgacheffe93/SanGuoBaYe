@@ -12,4 +12,5 @@ public sealed record MainCommandRequest(
     int Quantity = 0,
     int Food = 0,
     int Money = 0,
-    int Arms = 0);
+    int Arms = 0,
+    string? TargetPersonId = null);

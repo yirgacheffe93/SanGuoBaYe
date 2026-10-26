@@ -15,7 +15,7 @@ public static class MainViewFactory
             city.Population, city.PopulationLimit, city.Money, city.Food, city.MothballArms,
             city.ToolEntries.Where(entry => entry.Discovered).Select(entry => entry.ToolId).ToList())).ToList(),
         world.Persons.Where(person => person.Name.Length > 0).OrderBy(person => person.SourceIndex).Select(person => new MainPersonView(
-            person.Id, person.Name, person.CityId, person.Belong, person.Level, person.Force, person.Iq, person.Devotion,
+            person.Id, person.Name, person.CityId, person.Belong, person.Status, person.Level, person.Force, person.Iq, person.Devotion,
             person.Thew, person.Arms, person.Tool1Id, person.Tool2Id, person.OrderId is not null)).ToList(),
         world.Orders.OrderBy(order => order.Id, StringComparer.Ordinal).Select(order => new MainOrderView(
             order.Id, order.OrderId, order.CityId, world.Cities.Single(city => city.Id == order.CityId).Name,

@@ -182,7 +182,10 @@ public partial class Main : Control
     {
         var person = currentView.Persons.FirstOrDefault(item => item.Id == selectedPersonId);
         var preview = session.PreviewCommand(CreateCommandRequest(person?.Id ?? ""));
-        detailPanel.SetPerson(person, preview, person is null ? "" : session.GetToolName(person.Tool1Id));
+        var hint = detailPanel.SelectedCommandId == MainCommandCatalog.SearchOrderId && person is not null
+            ? session.GetSearchDiagnostics(selectedCityId, person.Id).Message
+            : null;
+        detailPanel.SetPerson(person, preview, person is null ? "" : session.GetToolName(person.Tool1Id), hint);
     }
 
     private void OnCommand()
@@ -195,7 +198,8 @@ public partial class Main : Control
     private MainCommandRequest CreateCommandRequest(string personId) => new(
         detailPanel.SelectedCommandId, selectedCityId, personId,
         detailPanel.SelectedTargetCityId, detailPanel.SelectedToolId, detailPanel.TradeDirection,
-        detailPanel.TradeQuantity, detailPanel.TransportFood, detailPanel.TransportMoney, detailPanel.TransportArms);
+        detailPanel.Quantity, detailPanel.TransportFood, detailPanel.TransportMoney, detailPanel.Arms,
+        detailPanel.SelectedTargetPersonId);
 
     private void OnEndMonth(bool runAi = true)
     {
@@ -281,7 +285,7 @@ public partial class Main : Control
             var banquetPerson = session.World.Persons.Single(person => person.Id == "person-016");
             banquetPerson.Thew = 40;
             var banquetMoney = banquetCity.Money;
-            detailPanel.SelectCommand(8);
+            detailPanel.SelectCommand(14);
             Refresh();
             selectedPersonId = "person-016";
             RefreshPerson();
@@ -294,7 +298,7 @@ public partial class Main : Control
             var transportFood = transportCity.Food;
             var transportMoney = transportCity.Money;
             var transportArms = transportCity.MothballArms;
-            detailPanel.SelectCommand(9);
+            detailPanel.SelectCommand(15);
             detailPanel.SetTransportAmounts(1, 2, 0);
             Refresh();
             selectedPersonId = transportPersonId;
@@ -306,7 +310,62 @@ public partial class Main : Control
                 transportOrder.Food != 1 || transportOrder.Money != 2 || transportOrder.Arms != 0 ||
                 transportCity.Food != transportFood - 1 || transportCity.Money != transportMoney - 2 || transportCity.MothballArms != transportArms)
                 throw new InvalidOperationException("输送请求或即时扣减失败。");
-            GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=11 hash={expected}");
+
+            StartGame(1, "person-013");
+            map.ActivateCity("city-005");
+            selectedPersonId = "person-089";
+            var conscriptCity = session.World.Cities.Single(item => item.Id == "city-005");
+            var conscriptPerson = session.World.Persons.Single(item => item.Id == "person-089");
+            conscriptCity.PeopleDevotion = 50;
+            conscriptCity.Money = 1000;
+            conscriptCity.MothballArms = 100;
+            conscriptPerson.Thew = 80;
+            var conscriptPopulation = conscriptCity.Population;
+            detailPanel.SelectCommand(8);
+            detailPanel.SetCommandQuantity(1000);
+            Refresh();
+            OnCommand();
+            var conscriptOrder = currentView.Orders.Single();
+            if (conscriptCity.Population != conscriptPopulation || conscriptCity.MothballArms != 1100 || conscriptCity.Money != 900 ||
+                conscriptOrder.OrderId != MainCommandCatalog.ConscriptOrderId || conscriptOrder.PersonName != conscriptPerson.Name)
+                throw new InvalidOperationException("征兵人口、后备兵、金钱或报告队列不符合预期。");
+
+            StartGame(1, "person-013");
+            map.ActivateCity("city-005");
+            selectedPersonId = "person-172";
+            var executeTarget = session.World.Persons.Single(item => item.Id == selectedPersonId);
+            var executeCity = session.World.Cities.Single(item => item.Id == selectedCityId);
+            executeTarget.Status = MainPersonStatus.Captive;
+            executeTarget.Tool1Id = "tool-000";
+            executeTarget.Tool2Id = "tool-001";
+            var executeOrderCount = session.World.Orders.Count;
+            detailPanel.SelectCommand(6);
+            Refresh();
+            OnCommand();
+            if (executeTarget.Status != MainPersonStatus.Executed || executeTarget.Tool1Id != "tool-000" || executeTarget.Tool2Id != "tool-001" ||
+                executeTarget.OrderId is not null || session.World.Orders.Count != executeOrderCount ||
+                !executeCity.ToolEntries.Any(entry => entry.ToolId == "tool-000" && entry.Discovered) ||
+                !executeCity.ToolEntries.Any(entry => entry.ToolId == "tool-001" && entry.Discovered))
+                throw new InvalidOperationException("处斩状态、装备或即时命令队列不符合预期。");
+
+            StartGame(1, "person-013");
+            map.ActivateCity("city-005");
+            selectedPersonId = "person-172";
+            var exileTarget = session.World.Persons.Single(item => item.Id == selectedPersonId);
+            exileTarget.Status = MainPersonStatus.Captive;
+            exileTarget.Tool1Id = "tool-000";
+            exileTarget.Tool2Id = "tool-001";
+            var exileOrderCount = session.World.Orders.Count;
+            detailPanel.SelectCommand(7);
+            Refresh();
+            OnCommand();
+            if (exileTarget.Status != MainPersonStatus.Free || exileTarget.Belong != "" || exileTarget.CityId == "city-005" ||
+                exileTarget.Tool1Id != "tool-000" || exileTarget.Tool2Id != "tool-001" || exileTarget.OrderId is not null ||
+                session.World.Orders.Count != exileOrderCount || !session.World.Cities.Single(item => item.Id == exileTarget.CityId).PersonIds.Contains(exileTarget.Id))
+                throw new InvalidOperationException("流放状态、装备或即时命令队列不符合预期。");
+
+            GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=17 hash={expected}");
+            GD.Print("MAIN_M2C_SMOKE_OK conscript=1000 execute+exile=equipment-preserved");
             GetTree().Quit(0);
         }
         catch (Exception error)

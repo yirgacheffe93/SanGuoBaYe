@@ -2,8 +2,23 @@ using Game.Domain;
 
 namespace Game.Application;
 
+public sealed record MainSearchDiagnostics(int PersonCandidates, int ToolCandidates, string Message);
+
 public static class MainSearchRules
 {
+    public static MainSearchDiagnostics Describe(MainWorld world, MainContent content, MainCity city, MainPerson person)
+    {
+        var personCandidates = city.PersonIds.Count(id => world.Persons.Single(candidate => candidate.Id == id).Status == MainPersonStatus.Free);
+        var toolCandidates = city.ToolEntries.Count(entry => !entry.Discovered);
+        var period = content.Periods.Single(period => period.Period == world.Period);
+        var hasBoleMatch = city.ToolEntries.Where(entry => !entry.Discovered).Any(entry =>
+            period.ToolConditions[content.Tools.Single(tool => tool.Id == entry.ToolId).SourceIndex].Bole is 0 || period.ToolConditions[content.Tools.Single(tool => tool.Id == entry.ToolId).SourceIndex].Bole - 1 == person.SourceIndex);
+        var message = personCandidates == 0 && toolCandidates == 0 ? "本城没有可搜寻人物或道具"
+            : !hasBoleMatch && toolCandidates > 0 ? "本城道具均不符合当前人物的伯乐条件"
+            : $"在野人物 {personCandidates} 人，未发现道具 {toolCandidates} 件";
+        return new MainSearchDiagnostics(personCandidates, toolCandidates, message);
+    }
+
     public static string Execute(MainWorld world, MainContent content, MainOrder order)
     {
         var person = world.Persons.Single(item => item.Id == order.PersonId);
@@ -43,8 +58,8 @@ public static class MainSearchRules
     private static string ExecutePersonSearch(MainWorld world, MainContent content, MainCity city, MainPerson person)
     {
         var candidates = city.PersonIds.Select(id => world.Persons.Single(person => person.Id == id))
-            .Where(candidate => candidate.Belong.Length == 0).ToList();
-        if (candidates.Count == 0) return $"{city.Name}：{person.Name}搜寻无收获。";
+            .Where(candidate => candidate.Status == MainPersonStatus.Free).ToList();
+        if (candidates.Count == 0) return $"{city.Name}：本城没有可招揽的在野人物。";
         var candidate = candidates[MainRandom.Next(world, candidates.Count)];
         var period = content.Periods.Single(period => period.Period == world.Period);
         var condition = period.PersonConditions[candidate.SourceIndex];
@@ -64,12 +79,12 @@ public static class MainSearchRules
     private static string ExecuteToolSearch(MainWorld world, MainContent content, MainCity city, MainPerson person)
     {
         var candidates = city.ToolEntries.Where(entry => !entry.Discovered).ToList();
-        if (candidates.Count == 0) return $"{city.Name}：{person.Name}搜寻无收获。";
+        if (candidates.Count == 0) return $"{city.Name}：本城没有未发现道具。";
         var entry = candidates[MainRandom.Next(world, candidates.Count)];
         var period = content.Periods.Single(period => period.Period == world.Period);
         var condition = period.ToolConditions[content.Tools.Single(tool => tool.Id == entry.ToolId).SourceIndex];
         if (condition.Bole != 0 && condition.Bole - 1 != person.SourceIndex)
-            return $"{city.Name}：{person.Name}搜寻无收获。";
+            return $"{city.Name}：{person.Name}的伯乐条件不符合，未能发现道具。";
         var tool = content.Tools.Single(tool => tool.Id == entry.ToolId);
         if (!MarkFirstUndiscovered(city, tool.Id))
             throw new InvalidOperationException("发现道具后未找到可提交的队列项。");

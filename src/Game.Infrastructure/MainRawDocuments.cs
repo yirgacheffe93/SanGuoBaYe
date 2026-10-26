@@ -70,6 +70,7 @@ internal sealed class PersonDocument
 
 internal sealed class RawPerson
 {
+    public int Belong { get; set; }
     public int Level { get; set; }
     public int Force { get; set; }
     public int IQ { get; set; }
