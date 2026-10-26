@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sanguobaye.local/schema/scenario.schema.json",
+  "title": "R0 prototype scenario",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contentVersion", "rulesVersion", "seed", "factionId", "factions", "rules", "cities", "roads", "characters", "events"],
+  "properties": {
+    "contentVersion": { "type": "string", "minLength": 1 },
+    "rulesVersion": { "type": "string", "minLength": 1 },
+    "seed": { "type": "integer", "minimum": 1 },
+    "factionId": { "$ref": "#/$defs/id" },
+    "factions": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "$ref": "#/$defs/faction" } },
+    "rules": { "$ref": "#/$defs/rules" },
+    "cities": { "type": "array", "minItems": 3, "maxItems": 5, "items": { "$ref": "#/$defs/city" } },
+    "roads": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/road" } },
+    "characters": { "type": "array", "minItems": 8, "maxItems": 12, "items": { "$ref": "#/$defs/character" } },
+    "events": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "$ref": "#/$defs/event" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*\\.[a-z0-9_]+$" },
+    "stat": { "type": "integer", "minimum": 1, "maximum": 100 },
+    "nonNegative": { "type": "integer", "minimum": 0 },
+    "faction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxTurns", "developmentCost", "levelCap", "agricultureIncome", "commerceIncome", "upkeepFoodPer1000Troops", "recruitGoldPer100Troops", "recruitFoodPer100Troops", "envoyCost", "starvationLossPercent", "truceBaseScore", "truceStrengthWeight", "truceRelationWeight", "truceAcceptScore", "battleDamageDivisor", "battleMinRoll", "battleMaxRoll", "battleMaxRounds", "battleMinDamage"],
+      "properties": {
+        "maxTurns": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "developmentCost": { "$ref": "#/$defs/nonNegative" },
+        "levelCap": { "type": "integer", "minimum": 1, "maximum": 20 },
+        "agricultureIncome": { "$ref": "#/$defs/nonNegative" },
+        "commerceIncome": { "$ref": "#/$defs/nonNegative" },
+        "upkeepFoodPer1000Troops": { "$ref": "#/$defs/nonNegative" },
+        "recruitGoldPer100Troops": { "$ref": "#/$defs/nonNegative" },
+        "recruitFoodPer100Troops": { "$ref": "#/$defs/nonNegative" },
+        "envoyCost": { "$ref": "#/$defs/nonNegative" },
+        "starvationLossPercent": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "truceBaseScore": { "$ref": "#/$defs/nonNegative" },
+        "truceStrengthWeight": { "$ref": "#/$defs/nonNegative" },
+        "truceRelationWeight": { "$ref": "#/$defs/nonNegative" },
+        "truceAcceptScore": { "$ref": "#/$defs/nonNegative" },
+        "battleDamageDivisor": { "type": "integer", "minimum": 1 },
+        "battleMinRoll": { "$ref": "#/$defs/nonNegative" },
+        "battleMaxRoll": { "$ref": "#/$defs/nonNegative" },
+        "battleMaxRounds": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "battleMinDamage": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "city": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "factionId", "gold", "food", "population", "agriculture", "commerce", "defense", "troops", "connections"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 },
+        "factionId": { "$ref": "#/$defs/id" },
+        "gold": { "$ref": "#/$defs/nonNegative" },
+        "food": { "$ref": "#/$defs/nonNegative" },
+        "population": { "$ref": "#/$defs/nonNegative" },
+        "agriculture": { "type": "integer", "minimum": 0, "maximum": 20 },
+        "commerce": { "type": "integer", "minimum": 0, "maximum": 20 },
+        "defense": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "troops": { "$ref": "#/$defs/nonNegative" },
+        "connections": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } }
+      }
+    },
+    "road": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fromCityId", "toCityId", "distance"],
+      "properties": {
+        "fromCityId": { "$ref": "#/$defs/id" },
+        "toCityId": { "$ref": "#/$defs/id" },
+        "distance": { "type": "integer", "minimum": 1, "maximum": 12 }
+      }
+    },
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "factionId", "cityId", "leadership", "war", "intellect", "politics", "charm"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 },
+        "factionId": { "$ref": "#/$defs/id" },
+        "cityId": { "$ref": "#/$defs/id" },
+        "leadership": { "$ref": "#/$defs/stat" },
+        "war": { "$ref": "#/$defs/stat" },
+        "intellect": { "$ref": "#/$defs/stat" },
+        "politics": { "$ref": "#/$defs/stat" },
+        "charm": { "$ref": "#/$defs/stat" }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "triggerTurn", "textKey", "text"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "triggerTurn": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "textKey": { "type": "string", "minLength": 1 },
+        "text": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

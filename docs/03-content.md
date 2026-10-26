@@ -1,5 +1,7 @@
 # 03 · 内容策略：精神续作与 clean-room
 
+> 历史 R0 文档。ADR-0009 已决定按 main/SGBY 导入内容并后置合规工作；本文 clean-room 约束仅用于理解当时决策，现行内容来源见 `provenance.md` 和 `13-main-m1.md`。
+
 ## 1. 定位
 
 新游戏是**精神续作（spiritual successor）**，不是复刻：

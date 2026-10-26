@@ -7,26 +7,31 @@ namespace Game.Godot;
 
 public partial class Main : Control
 {
-    private GameSession session = null!;
-    private string selectedCityId = "city.anling";
+    private MainContent content = null!;
+    private MainGameSession session = null!;
+    private MainGameView currentView = null!;
+    private MainStartScreen startScreen = null!;
+    private Control gameRoot = null!;
+    private string selectedCityId = "city-005";
+    private string selectedPersonId = "person-089";
     private UiThemeMode themeMode = UiThemeMode.Dark;
     private UiPalette palette = UiThemes.Get(UiThemeMode.Dark);
     private PanelContainer background = null!;
-    private StrategicMap map = null!;
+    private MainStrategicMap map = null!;
     private Label title = null!;
     private Label summary = null!;
-    private Label details = null!;
+    private Label cityDetails = null!;
+    private Label personDetails = null!;
     private Label feedback = null!;
     private Button themeButton = null!;
-    private Button developButton = null!;
+    private Button commandButton = null!;
+    private OptionButton commandOptions = null!;
     private ItemList cityList = null!;
+    private ItemList personList = null!;
     private ItemList orderList = null!;
-    private OptionButton characterOptions = null!;
-    private OptionButton trackOptions = null!;
     private TextEdit report = null!;
-    private Button endTurnButton = null!;
-    private Button cancelButton = null!;
-    private string SavePath => ProjectSettings.GlobalizePath("user://spike-save.json");
+    private Button endMonthButton = null!;
+    private string SavePath => ProjectSettings.GlobalizePath("user://main-m2a-save.json");
 
     public override void _Ready()
     {
@@ -34,16 +39,21 @@ public partial class Main : Control
         BuildInterface();
         try
         {
-            session = new GameSession(ContentLoader.Load(global::Godot.FileAccess.GetFileAsString("res://content/spike/scenario.json")));
-            Refresh();
+            content = MainContentLoader.LoadJson(
+                global::Godot.FileAccess.GetFileAsString("res://content/main/content.json"),
+                global::Godot.FileAccess.GetFileAsString("res://content/main/scenarios.json"),
+                global::Godot.FileAccess.GetFileAsString("res://content/main/content.schema.json"),
+                global::Godot.FileAccess.GetFileAsString("res://content/main/scenarios.schema.json"));
         }
         catch (Exception error)
         {
             feedback.Text = error.Message;
             GD.PushError(error);
         }
+        startScreen.Configure(content.Periods);
+        startScreen.StartRequested += StartGame;
         var arguments = OS.GetCmdlineUserArgs();
-        if (arguments.Contains("--spike-smoke")) CallDeferred(nameof(RunSmoke));
+        if (arguments.Contains("--spike-smoke") || arguments.Contains("--main-smoke")) CallDeferred(nameof(RunSmoke));
         else if (arguments.Contains("--capture-ui")) CallDeferred(nameof(RunCapture));
     }
 
@@ -52,25 +62,25 @@ public partial class Main : Control
         background = new PanelContainer();
         background.SetAnchorsAndOffsetsPreset(LayoutPreset.FullRect);
         AddChild(background);
+        gameRoot = new VBoxContainer();
+        gameRoot.AddThemeConstantOverride("separation", 8);
         var margin = new MarginContainer();
         margin.AddThemeConstantOverride("margin_left", 12);
         margin.AddThemeConstantOverride("margin_top", 10);
         margin.AddThemeConstantOverride("margin_right", 12);
         margin.AddThemeConstantOverride("margin_bottom", 10);
         background.AddChild(margin);
-        var page = new VBoxContainer();
-        page.AddThemeConstantOverride("separation", 8);
-        margin.AddChild(page);
+        margin.AddChild(gameRoot);
+        gameRoot.Hide();
 
         var topPanel = new PanelContainer();
-        page.AddChild(topPanel);
+        gameRoot.AddChild(topPanel);
         var top = new HBoxContainer();
         topPanel.AddChild(top);
         title = new Label();
         title.AddThemeFontSizeOverride("font_size", 21);
         top.AddChild(title);
-        var spacer = new Control { SizeFlagsHorizontal = SizeFlags.ExpandFill };
-        top.AddChild(spacer);
+        top.AddChild(new Control { SizeFlagsHorizontal = SizeFlags.ExpandFill });
         summary = new Label();
         summary.AddThemeFontSizeOverride("font_size", 17);
         top.AddChild(summary);
@@ -78,22 +88,21 @@ public partial class Main : Control
         themeButton.Pressed += OnThemeToggle;
         top.AddChild(themeButton);
 
-        var columns = new HSplitContainer { SizeFlagsVertical = SizeFlags.ExpandFill, SplitOffsets = [210] };
-        page.AddChild(columns);
-        var leftPanel = new PanelContainer { CustomMinimumSize = new Vector2(205, 350) };
+        var columns = new HSplitContainer { SizeFlagsVertical = SizeFlags.ExpandFill, SplitOffsets = [205] };
+        gameRoot.AddChild(columns);
+        var leftPanel = new PanelContainer { CustomMinimumSize = new Vector2(200, 350) };
         columns.AddChild(leftPanel);
         var left = new VBoxContainer();
         leftPanel.AddChild(left);
-        left.AddChild(new Label { Text = "城池与军情" });
-        cityList = new ItemList { SizeFlagsVertical = SizeFlags.ExpandFill, CustomMinimumSize = new Vector2(180, 210) };
+        left.AddChild(new Label { Text = "三十八城 · 我方标红" });
+        cityList = new ItemList { SizeFlagsVertical = SizeFlags.ExpandFill, CustomMinimumSize = new Vector2(180, 350) };
         cityList.ItemSelected += index => SelectCity(session.GetView().Cities[(int)index].Id);
         left.AddChild(cityList);
-        var legend = new Label { Text = "◎ 选中  令 任务\n点击地图或列表定位", AutowrapMode = TextServer.AutowrapMode.WordSmart };
-        left.AddChild(legend);
+        left.AddChild(new Label { Text = "点击地图或列表定位\n令 表示城内有待执行命令" });
 
-        map = new StrategicMap
+        map = new MainStrategicMap
         {
-            CustomMinimumSize = new Vector2(430, 350),
+            CustomMinimumSize = new Vector2(420, 350),
             SizeFlagsHorizontal = SizeFlags.ExpandFill,
             SizeFlagsVertical = SizeFlags.ExpandFill,
             Palette = palette
@@ -101,47 +110,47 @@ public partial class Main : Control
         map.CitySelected += SelectCity;
         columns.AddChild(map);
 
-        var rightPanel = new PanelContainer { CustomMinimumSize = new Vector2(305, 350) };
+        var rightPanel = new PanelContainer { CustomMinimumSize = new Vector2(325, 350) };
         columns.AddChild(rightPanel);
         var right = new VBoxContainer();
-        right.AddThemeConstantOverride("separation", 7);
+        right.AddThemeConstantOverride("separation", 6);
         rightPanel.AddChild(right);
-        details = new Label { SizeFlagsVertical = SizeFlags.ExpandFill, AutowrapMode = TextServer.AutowrapMode.WordSmart };
-        details.AddThemeFontSizeOverride("font_size", 16);
-        right.AddChild(details);
-        right.AddChild(new Label { Text = "执行武将" });
-        characterOptions = new OptionButton();
-        characterOptions.ItemSelected += _ => UpdatePreview();
-        right.AddChild(characterOptions);
-        trackOptions = new OptionButton();
-        trackOptions.AddItem("开发农业", (int)DevelopmentTrack.Agriculture);
-        trackOptions.AddItem("开发商业", (int)DevelopmentTrack.Commerce);
-        trackOptions.ItemSelected += _ => UpdatePreview();
-        right.AddChild(trackOptions);
-        developButton = new Button();
-        developButton.Pressed += OnDevelop;
-        right.AddChild(developButton);
+        cityDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart };
+        cityDetails.AddThemeFontSizeOverride("font_size", 15);
+        right.AddChild(cityDetails);
+        right.AddChild(new Label { Text = "城内武将" });
+        personList = new ItemList { CustomMinimumSize = new Vector2(280, 92), SizeFlagsVertical = SizeFlags.ExpandFill };
+        personList.ItemSelected += index =>
+        {
+            selectedPersonId = CityPersons()[(int)index].Id;
+            RefreshPerson();
+        };
+        right.AddChild(personList);
+        personDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart };
+        personDetails.AddThemeFontSizeOverride("font_size", 14);
+        right.AddChild(personDetails);
+        commandOptions = new OptionButton();
+        for (var commandId = 1; commandId <= 5; commandId++) commandOptions.AddItem(MainGameSession.CommandName(commandId), commandId);
+        commandOptions.ItemSelected += _ => RefreshPerson();
+        right.AddChild(commandOptions);
+        commandButton = new Button();
+        commandButton.Pressed += OnCommand;
+        right.AddChild(commandButton);
 
-        var lower = new HSplitContainer { CustomMinimumSize = new Vector2(0, 150) };
-        page.AddChild(lower);
-        var orderPanel = new PanelContainer { CustomMinimumSize = new Vector2(510, 145) };
+        var lower = new HSplitContainer { CustomMinimumSize = new Vector2(0, 145) };
+        gameRoot.AddChild(lower);
+        var orderPanel = new PanelContainer { CustomMinimumSize = new Vector2(510, 140) };
         lower.AddChild(orderPanel);
-        var orders = new HBoxContainer();
+        var orders = new VBoxContainer();
         orderPanel.AddChild(orders);
-        var orderText = new VBoxContainer { SizeFlagsHorizontal = SizeFlags.ExpandFill };
-        orders.AddChild(orderText);
-        orderText.AddChild(new Label { Text = "待执行任务" });
-        orderList = new ItemList { SizeFlagsVertical = SizeFlags.ExpandFill, CustomMinimumSize = new Vector2(390, 85) };
-        orderList.ItemSelected += _ => UpdateCancelButton();
-        orderText.AddChild(orderList);
-        cancelButton = new Button { Text = "取消\n退款", SizeFlagsVertical = SizeFlags.ExpandFill };
-        cancelButton.Pressed += OnCancel;
-        orders.AddChild(cancelButton);
-        report = new TextEdit { Editable = false, CustomMinimumSize = new Vector2(360, 145), Text = "回合报告" };
+        orders.AddChild(new Label { Text = "武将命令队列 · 接受后月末归队，不可取消" });
+        orderList = new ItemList { SizeFlagsVertical = SizeFlags.ExpandFill, CustomMinimumSize = new Vector2(390, 82) };
+        orders.AddChild(orderList);
+        report = new TextEdit { Editable = false, CustomMinimumSize = new Vector2(360, 140), Text = "月度报告" };
         lower.AddChild(report);
 
         var actions = new HBoxContainer();
-        page.AddChild(actions);
+        gameRoot.AddChild(actions);
         feedback = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, SizeFlagsHorizontal = SizeFlags.ExpandFill };
         actions.AddChild(feedback);
         var save = new Button { Text = "存档" };
@@ -150,10 +159,23 @@ public partial class Main : Control
         var load = new Button { Text = "读档" };
         load.Pressed += OnLoad;
         actions.AddChild(load);
-        endTurnButton = new Button { Text = "结束回合  →" };
-        endTurnButton.Pressed += OnEndTurn;
-        actions.AddChild(endTurnButton);
+        endMonthButton = new Button { Text = "策略结束  →" };
+        endMonthButton.Pressed += OnEndMonth;
+        actions.AddChild(endMonthButton);
+
+        startScreen = new MainStartScreen();
+        AddChild(startScreen);
         ApplyTheme();
+    }
+
+    private void StartGame(int period, string rulerId)
+    {
+        session = MainContentLoader.CreateSession(content, period, rulerId);
+        selectedCityId = session.GetView().Cities.First(city => city.Belong == rulerId).Id;
+        selectedPersonId = session.GetView().Persons.FirstOrDefault(person => person.CityId == selectedCityId && person.Belong == rulerId)?.Id ?? "";
+        startScreen.Hide();
+        gameRoot.Show();
+        Refresh();
     }
 
     private void ApplyTheme()
@@ -179,126 +201,132 @@ public partial class Main : Control
     private void SelectCity(string cityId)
     {
         selectedCityId = cityId;
+        selectedPersonId = "";
         Refresh();
     }
 
     private void Refresh()
     {
-        var view = session.GetView();
-        var selectedIndex = Math.Max(0, view.Cities.ToList().FindIndex(c => c.Id == selectedCityId));
-        selectedCityId = view.Cities[selectedIndex].Id;
-        var city = view.Cities[selectedIndex];
-        title.Text = "山河志 · 战略桌面";
-        developButton.Text = $"确认开发 · {view.DevelopmentCost} 金 · 1 回合";
-        summary.Text = $"我方势力  |  第 {view.Turn} 回合  |  总金 {view.Cities.Sum(c => c.Gold)}  总粮 {view.Cities.Sum(c => c.Food)}  ";
+        currentView = session.GetView();
+        var view = currentView;
+        selectedCityId = view.Cities.FirstOrDefault(city => city.Id == selectedCityId)?.Id ?? "city-005";
+        var city = view.Cities.Single(city => city.Id == selectedCityId);
+        title.Text = "三国霸业 · 战略地图";
+        summary.Text = $"{PersonName(view.PlayerRulerId)}  |  {view.Year} 年 {view.Month} 月  |  38 城  ";
         cityList.Clear();
         foreach (var item in view.Cities)
         {
-            var busy = view.Orders.Any(o => o.CityId == item.Id) ? "  令" : "";
-            cityList.AddItem($"{item.Name} · 金 {item.Gold}{busy}");
+            var mine = item.Belong == view.PlayerRulerId ? "我" : "·";
+            var order = view.Orders.Any(order => order.CityId == item.Id) ? " 令" : "";
+            cityList.AddItem($"{mine} {item.Name}{order}");
         }
-        cityList.Select(selectedIndex);
-        map.SetView(view, selectedCityId);
-        var characterCount = view.Characters.Count(c => c.CityId == city.Id && !c.IsBusy);
-        details.Text = $"{city.Name} · 我方城池\n当地金  {city.Gold}\n当地粮  {city.Food}\n守军  {city.Troops}\n农业  {city.Agriculture} 级    商业  {city.Commerce} 级\n空闲武将  {characterCount} 人\n开发投入 {view.DevelopmentCost} 金，本回合结算。\n本回合排队中可取消并全额退款。";
-        characterOptions.Clear();
-        foreach (var character in CharactersForSelectedCity())
-            characterOptions.AddItem(character.IsBusy ? $"{character.Name}（忙碌）" : character.Name);
-        if (characterOptions.ItemCount > 0) characterOptions.Select(0);
-        UpdatePreview();
+        cityList.Select(view.Cities.ToList().FindIndex(item => item.Id == city.Id));
+        map.SetView(view, city.Id);
+        cityDetails.Text = $"{city.Name} · {(city.Belong == view.PlayerRulerId ? "我方" : PersonName(city.Belong))}\n金 {city.Money}  粮 {city.Food}  后备兵 {city.MothballArms}\n农业 {city.Farming}/{city.FarmingLimit}\n商业 {city.Commerce}/{city.CommerceLimit}\n民忠 {city.PeopleDevotion}  防灾 {city.AvoidCalamity} · {CityState(city.State)}\n人口 {city.Population}/{city.PopulationLimit}";
+        personList.Clear();
+        var persons = CityPersons();
+        if (persons.Count > 0 && persons.All(person => person.Id != selectedPersonId)) selectedPersonId = persons[0].Id;
+        foreach (var person in persons)
+            personList.AddItem($"{person.Name} · 武 {person.Force} 智 {person.Iq} 体 {person.Thew}{(person.IsBusy ? " · 忙碌" : "")}");
+        var selectedIndex = Math.Max(0, persons.ToList().FindIndex(person => person.Id == selectedPersonId));
+        if (persons.Count > 0) personList.Select(selectedIndex);
+        RefreshPerson();
         orderList.Clear();
         foreach (var order in view.Orders)
-            orderList.AddItem($"{order.CityName} · {order.CharacterName} · {(order.Track == DevelopmentTrack.Agriculture ? "农业" : "商业")} · 剩 {order.RemainingTurns} 回合");
-        UpdateCancelButton();
-        report.Text = view.Reports.Count == 0 ? "回合报告\n\n尚无记录。结束回合后，这里会显示开发与资源变化。" :
-            "回合报告\n\n" + string.Join("\n", view.Reports.Select(r => $"第 {r.Turn} 回合 · {r.Message}"));
+            orderList.AddItem($"{order.CityName} · {order.PersonName} · {MainGameSession.CommandName(order.OrderId)} · 待月末");
+        report.Text = view.Reports.Count == 0 ? "月度报告\n\n安排内政命令后点击“策略结束”，查看搜寻与月度结果。" :
+            "月度报告\n\n" + string.Join("\n", view.Reports.Select(entry => entry.Message));
     }
 
-    private void UpdatePreview()
+    private void RefreshPerson()
     {
-        if (characterOptions.ItemCount == 0 || characterOptions.Selected < 0) return;
-        var character = CharactersForSelectedCity()[characterOptions.Selected];
-        var preview = session.PreviewDevelopment(selectedCityId, character.Id, SelectedTrack());
-        feedback.Text = preview.Available
-            ? $"预计：当地金 {preview.GoldAfter + preview.Cost} → {preview.GoldAfter}，第 {preview.CompletionTurn} 回合结算；可取消退款。"
-            : $"当前不可执行：{preview.Message}";
+        var person = currentView.Persons.FirstOrDefault(item => item.Id == selectedPersonId);
+        if (person is null)
+        {
+            personDetails.Text = "此城没有可安排的己方武将。";
+            commandButton.Disabled = true;
+            return;
+        }
+        var commandId = SelectedCommandId();
+        var preview = session.PreviewCommand(commandId, selectedCityId, person.Id);
+        personDetails.Text = $"{person.Name} · 等级 {person.Level}  兵力 {person.Arms}\n忠诚 {person.Devotion}  道具 {session.GetToolName(person.Tool1Id)}\n{(preview.Available ? $"接受：金 {preview.MoneyAfter + preview.MoneyCost} → {preview.MoneyAfter}，体力 {preview.ThewAfter}；月末归队" : preview.Message)}";
+        commandButton.Text = $"{MainGameSession.CommandName(commandId)} · {preview.MoneyCost} 金 · {preview.ThewCost} 体力";
+        commandButton.Disabled = !preview.Available;
     }
 
-    private void OnDevelop()
+    private void OnCommand()
     {
-        var characters = CharactersForSelectedCity();
-        if (characters.Count == 0) { feedback.Text = "该城没有武将。"; return; }
-        var result = session.IssueDevelopment(selectedCityId, characters[characterOptions.Selected].Id, SelectedTrack());
+        var result = session.IssueCommand(SelectedCommandId(), selectedCityId, selectedPersonId);
         Refresh();
         feedback.Text = result.Message;
     }
 
-    private void OnCancel()
+    private void OnEndMonth()
     {
-        if (orderList.GetSelectedItems().Length == 0) { feedback.Text = "请先选择任务。"; return; }
-        var result = session.CancelOrder(session.GetView().Orders[orderList.GetSelectedItems()[0]].Id);
+        endMonthButton.Disabled = true;
+        try { session.EndMonth(); }
+        finally { endMonthButton.Disabled = false; }
         Refresh();
-        feedback.Text = result.Message;
-    }
-
-    private void OnEndTurn()
-    {
-        endTurnButton.Disabled = true;
-        try { session.EndTurn(); }
-        finally { endTurnButton.Disabled = false; }
-        Refresh();
+        feedback.Text = "月度结算完成。";
     }
 
     private void OnSave()
     {
-        try { SaveService.Save(session, SavePath); feedback.Text = "已保存当前局面。"; }
+        try { MainSaveService.Save(session, SavePath); feedback.Text = "已保存当前局面。"; }
         catch (Exception error) { feedback.Text = $"存档失败：{error.Message}"; }
     }
 
     private void OnLoad()
     {
-        try { session = SaveService.Load(SavePath); Refresh(); feedback.Text = "读档成功，地图与面板已同步。"; }
+        try { session = MainSaveService.Load(SavePath, content); Refresh(); feedback.Text = "读档成功，地图与命令已恢复。"; }
         catch (Exception error) { feedback.Text = $"读档失败：{error.Message}"; }
     }
 
-    private void UpdateCancelButton() => cancelButton.Disabled = orderList.GetSelectedItems().Length == 0;
-    private DevelopmentTrack SelectedTrack() => (DevelopmentTrack)trackOptions.GetSelectedId();
-    private List<CharacterView> CharactersForSelectedCity() => session.GetView().Characters.Where(c => c.CityId == selectedCityId).ToList();
+    private int SelectedCommandId() => commandOptions.GetSelectedId();
+    private List<MainPersonView> CityPersons() => currentView.Persons.Where(person => person.CityId == selectedCityId).ToList();
+    private string PersonName(string id) => currentView.Persons.FirstOrDefault(person => person.Id == id)?.Name ?? "无所属";
+    private static string CityState(int state) => state switch { 0 => "正常", 1 => "饥荒", 2 => "旱灾", 3 => "水灾", 4 => "暴动", _ => "未知" };
 
     private void RunSmoke()
     {
         try
         {
-            map.ActivateCity("city.beiping");
-            if (selectedCityId != "city.beiping" || map.SelectedCityId != "city.beiping") throw new InvalidOperationException("地图与详情选择未同步。");
-            var initialHash = session.GetStateHash();
-            OnDevelop();
-            if (session.GetStateHash() != initialHash) throw new InvalidOperationException("资源不足时状态发生变化。");
-            OnThemeToggle();
-            OnThemeToggle();
-            if (session.GetStateHash() != initialHash) throw new InvalidOperationException("主题切换改变了规则状态。");
-            map.ActivateCity("city.anling");
-            OnDevelop();
-            orderList.Select(0);
-            OnCancel();
-            if (session.GetView().Orders.Count != 0) throw new InvalidOperationException("UI 取消未清理任务。");
-            OnDevelop();
-            OnEndTurn();
+            StartGame(1, "person-013");
+            map.ActivateCity("city-005");
+            selectedPersonId = "person-089";
+            Refresh();
+            OnCommand();
+            var city = session.GetView().Cities.Single(city => city.Id == "city-005");
+            if (city.Farming != 1002) throw new InvalidOperationException("开垦接受时效果不符合 golden。");
+            var beforeDuplicate = session.GetStateHash();
+            var duplicate = session.IssueCommand(1, "city-005", "person-089");
+            if (duplicate.Accepted || session.GetStateHash() != beforeDuplicate) throw new InvalidOperationException("重复命令未被拒绝。");
+            OnEndMonth();
+            city = session.GetView().Cities.Single(city => city.Id == "city-005");
+            if (session.GetView().Month != 2 || city.Food != 228 || city.Farming != 1002)
+                throw new InvalidOperationException("开垦月末结果不符合 golden。");
+            commandOptions.Select(2);
+            selectedPersonId = "person-089";
+            Refresh();
+            OnCommand();
+            OnEndMonth();
             OnSave();
-            var continuous = SaveService.Load(SavePath);
-            continuous.IssueDevelopment(selectedCityId, "char.shenyan", DevelopmentTrack.Commerce);
-            continuous.EndTurn();
+            var continuous = MainSaveService.Load(SavePath, content);
+            continuous.EndMonth();
             var expected = continuous.GetStateHash();
             OnLoad();
-            session.IssueDevelopment(selectedCityId, "char.shenyan", DevelopmentTrack.Commerce);
-            OnEndTurn();
+            OnEndMonth();
             if (session.GetStateHash() != expected) throw new InvalidOperationException("读档后续状态不一致。");
-            GD.Print($"SPIKE_SMOKE_OK turn={session.GetView().Turn} hash={session.GetStateHash()}");
+            var secondRuler = content.Periods[1].RulerIds[0];
+            StartGame(2, secondRuler);
+            if (session.GetView().Year != 198 || session.GetView().PlayerRulerId != secondRuler)
+                throw new InvalidOperationException("第二时期开局失败。");
+            GD.Print($"MAIN_M2A_SMOKE_OK periods=4 commands=5 hash={expected}");
             GetTree().Quit(0);
         }
         catch (Exception error)
         {
-            GD.PushError($"SPIKE_SMOKE_FAILED: {error}");
+            GD.PushError($"MAIN_M2A_SMOKE_FAILED: {error}");
             GetTree().Quit(1);
         }
     }
@@ -307,6 +335,7 @@ public partial class Main : Control
     {
         try
         {
+            StartGame(1, "person-013");
             var argument = OS.GetCmdlineUserArgs().FirstOrDefault(value => value.StartsWith("--capture-dir=", StringComparison.Ordinal));
             var directory = argument is null ? "build/ui" : argument["--capture-dir=".Length..];
             Directory.CreateDirectory(directory);

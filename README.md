@@ -1,76 +1,67 @@
 # Project Three Kingdoms（代号 `rewrite`）
 
-一个从零开始的单机回合制三国策略游戏。灵感来自经典的三国策略玩法，但**代码、数据、美术、文本、音乐、名称全部原创**。
-
-> 正式名称待定；在完成商标检索前，不沿用《三国霸业》的名字、Logo 或既有素材。
+使用 Godot 4.7.2 + C#/.NET 8，按照 `main` 分支的 `SGBY.lib` 内容与功能重写单机三国策略游戏。当前优先技术落地，商标及其他合规工作按项目决定后置，见 ADR-0009。
 
 ## 状态
 
-**预制作 R0，技术栈 Spike 与低保真双风格界面已完成。** 当前有可点击战略地图、城池/道路/旗号、深色墨色与浅色纸本切换，以及真实开发/取消/回合/存读档流程和 16 项自动化测试；尚不是 R1 可玩原型，G0 仍未通过。技术实测见 `docs/09-r0-s1-spike.md`，界面样片见 `docs/10-r0-ui-samples.md`。
+**Main-M2A 与 Main-R1 结构重构已完成。**
 
-先交付 3–5 城、2 势力、8–12 武将、15–30 分钟的小原型（R1），包含真实可操作的最小 UI；试玩通过后再扩为 20 城/60 武将、2–3 小时的 MVP（R2）。
+全部时期和真实君主可进入，支持五项内政、月度归队、AI 行动和 schema 3 存读档。静态内容与可变状态已分离，命令/公式/AI/队列/月度/ViewModel 已拆分。44 项测试、导入器 33 项检查及独立 macOS 应用冒烟通过。玩法验收见 `docs/14-main-m2a.md`，结构说明见 `docs/15-main-architecture-refactor.md`。
+
+现有 Godot 分层工程、双主题地图、规则测试、快照存档和 macOS 导出链继续复用。R0 的虚构内容与自动战斗仅保留为历史技术验证，不再限制 main 的属性范围和战术战斗目标。
 
 ## 三个分支的关系
 
-| 分支 | 内容 | 角色 |
+| 分支 | 内容 | 当前角色 |
 |---|---|---|
-| `main` | 旧的 H5/Electron 版本 | 历史版本，不再开发 |
-| `godot` | iBaye C 核心的原生 P0 验证 | **行为参考**，不进入新工程 |
-| `rewrite` | 本分支，干净历史，只有新设计 | 新游戏从零开始 |
+| `main` | H5/Electron 版本与 `SGBY.lib` | 内容导入和 golden 行为基准 |
+| `godot` | iBaye C 核心的原生 P0 验证 | 历史研究参考，不进入生产工程 |
+| `rewrite` | Godot + C# 重写 | 当前生产开发分支 |
 
-`rewrite` 是 orphan 分支：没有旧代码、没有旧历史。旧的 iBaye UI 计划已归档到 `godot` 分支 `docs/reference/`，仅作历史参考，不属于本工程。需要看旧实现时：
-
-```bash
-git show godot:README.md
-git show godot:docs/p0-report.md
-git worktree add ../SanGuoBaYe-godot godot
-```
+main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运行时。Electron、联网页面、调试页和旧存档格式不按原样移植。
 
 ## 已确定的决策
 
-1. **放弃 iBaye 作为生产代码**：不看它的实现来写新代码，不做逐行移植。它只用于对照高层玩法行为。
-2. **精神续作，而不是复刻**：三国历史属于公共领域，但原游戏的代码、数据、地图、美术、文本、音乐、名称都不能复用。
-3. **规则先明确，最小 UI 同步**：先写清扣费、行动占用、冲突和胜负规则；用 spike 选栈，R1 即交付可操作界面，尽早试玩。
-4. **美术方向**：R1/R2 采用 `08-ui-design.md` 的简洁国风战略桌面；写实半身立绘后置（ADR-0007）。
-5. **不着急**：按阶段交付，每个阶段都有可验收的产物，不搞一次性大爆炸。
+1. **按 main/SGBY 重写**：首发只对齐原版精修，不同时支持 MOD。
+2. **保留核心体验**：四时期、战略命令队列、月度 AI 和独立战术战斗进入路线图。
+3. **原生分层**：Domain/Application 为纯 .NET，Godot 负责 UI；生产内容来自可重复导入的 JSON。
+4. **垂直切片**：先完成 190 年刘备内政切片，再扩完整战略和战术战斗。
+5. **技术优先**：商标及其他合规事项后置，不阻塞当前开发。
 
 ## 文档
 
 | 文档 | 内容 |
 |---|---|
-| [docs/01-charter.md](docs/01-charter.md) | 愿景、范围、原则、成功标准 |
-| [docs/02-architecture.md](docs/02-architecture.md) | 领域模型、回合流程、战斗、AI、存档、测试 |
-| [docs/03-content.md](docs/03-content.md) | 精神续作的内容策略、clean-room 规则、MVP 内容量 |
-| [docs/04-tech-selection.md](docs/04-tech-selection.md) | 技术栈候选、评估矩阵、推荐与 spike 计划 |
-| [docs/05-roadmap.md](docs/05-roadmap.md) | R0–R5 阶段、门禁、风险 |
+| [docs/02-architecture.md](docs/02-architecture.md) | 分层、领域模型、存档与测试 |
+| [docs/05-roadmap.md](docs/05-roadmap.md) | Main M1–M4 重写路线与阶段门禁 |
 | [docs/06-decisions.md](docs/06-decisions.md) | 架构决策记录（ADR） |
-| [docs/07-turn-rules.md](docs/07-turn-rules.md) | 原型回合合同、资源/占用/退款、冲突、胜负与验收 |
-| [docs/08-ui-design.md](docs/08-ui-design.md) | 地图布局、下令反馈、任务/回合报告、视觉建议与 UI 验收 |
-| [docs/09-r0-s1-spike.md](docs/09-r0-s1-spike.md) | R0-S1 工具版本、实测数据、验证结果与限制 |
-| [docs/10-r0-ui-samples.md](docs/10-r0-ui-samples.md) | R0-S2 低保真地图、深色/浅色样片与可读性检查 |
-| [docs/provenance.md](docs/provenance.md) | 内容与资产来源记录 |
+| [docs/07-turn-rules.md](docs/07-turn-rules.md) | 历史 R0 回合合同 |
+| [docs/08-ui-design.md](docs/08-ui-design.md) | 地图、下令反馈与 UI 验收 |
+| [docs/09-r0-s1-spike.md](docs/09-r0-s1-spike.md) | Godot/.NET 工具链实测 |
+| [docs/10-r0-ui-samples.md](docs/10-r0-ui-samples.md) | 双主题低保真样片 |
+| [docs/11-r0-prototype.md](docs/11-r0-prototype.md) | 历史 R0 参数与模拟依据 |
+| [docs/12-r0-five-turns.md](docs/12-r0-five-turns.md) | 历史 R0 五回合模拟 |
+| [docs/13-main-m1.md](docs/13-main-m1.md) | Main-M1 内容导入与首个切片 |
+| [docs/14-main-m2a.md](docs/14-main-m2a.md) | Main-M2A 四时期、五项内政 golden 与验收 |
+| [docs/15-main-architecture-refactor.md](docs/15-main-architecture-refactor.md) | Main-R1 内容/状态、规则流程与存档结构 |
+| [docs/provenance.md](docs/provenance.md) | 实际内容与资产来源记录 |
 
 ## 构建与验证
 
-本地工具链位于 `.tools/`（不入库），版本见 Spike 记录。macOS 上执行：
+本地工具链位于 `.tools/`（不入库）。macOS 上执行：
 
 ```bash
-scripts/verify.sh        # 构建、16 项测试、Godot UI 冒烟
+scripts/verify.sh        # 导入校验、44 项测试、R0 回归、Main-M2A UI 冒烟
 scripts/export-macos.sh # 导出并运行独立 macOS 应用冒烟
 scripts/capture-ui.sh   # 重新生成深色、浅色和对比样片
 ```
 
-Godot 编辑器打开根目录 `project.godot`；正常运行可点击地图或城池列表，切换主题，并试用开发、取消、回合和存读档界面。
+Godot 编辑器打开根目录 `project.godot`。main 内容导入命令见 `tools/main-import/`；R0 模拟工具仅作历史回归。
 
 ## 下一步
 
-R0 还没结束。正式 R1 前需要完成：
-
-1. 原型具体内容清单、初始局面、费用收益参数和自动战斗公式。
-2. 数据 schema 草案（角色/城市/剧本/事件），校验原型内容。
-3. 纸面模拟至少 5 回合，验证扣费、取消、战斗与结局。
-4. 名称/商标初查，以及正式字体与后续外部素材授权记录。
+继续 Main-M2：补齐搜寻其他分支、月度收入、人员/道具/物资、对敌策略、军备和完整 AI，再进入 M3 的出征与独立战术战斗。
 
 ## 注意
 
-本仓库是研究与开发用途。新游戏不包含原版素材；但“三国”题材、人物、历史事件属于公共领域，具体表达必须原创。正式发行前仍需做商标与法律审查。
+本仓库包含 main 分支导入的内容，具体来源见 `docs/provenance.md`。当前工作以技术实现与可玩验收为准，后续发行前再单独处理合规检查。

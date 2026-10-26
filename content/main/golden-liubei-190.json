@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "kind": "main-golden-liubei-190",
+  "source": {
+    "branch": "main",
+    "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+    "library": "libs/SGBY.lib",
+    "libraryBytes": 615415,
+    "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+    "engine": "js/baye.js",
+    "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+    "bridge": "js/bridge.js",
+    "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+    "wasm": "js/baye.wasm",
+    "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+    "decoding": "Node.js 26 native TextDecoder(GBK)"
+  },
+  "scenarioId": "period-001",
+  "date": {
+    "year": 190,
+    "month": 1
+  },
+  "ruler": {
+    "id": "person-013",
+    "index": 13,
+    "name": "刘备",
+    "raw": {
+      "OldBelong": 0,
+      "Belong": 14,
+      "Level": 1,
+      "Force": 85,
+      "IQ": 76,
+      "Devotion": 100,
+      "Character": 3,
+      "Experience": 0,
+      "Thew": 100,
+      "ArmsType": 0,
+      "Arms": 100,
+      "Tool1": 5,
+      "Tool2": 0,
+      "Equip": [
+        5,
+        0
+      ],
+      "Age": 29
+    },
+    "oldOwnerPersonId": null,
+    "ownerPersonId": "person-013",
+    "tool1Id": "tool-004",
+    "tool2Id": null
+  },
+  "city": {
+    "id": "city-005",
+    "index": 5,
+    "name": "平原",
+    "raw": {
+      "State": 0,
+      "Belong": 14,
+      "SatrapId": 0,
+      "FarmingLimit": 2470,
+      "Farming": 938,
+      "CommerceLimit": 2486,
+      "Commerce": 845,
+      "PeopleDevotion": 68,
+      "AvoidCalamity": 62,
+      "PopulationLimit": 87096,
+      "Population": 32225,
+      "Money": 93,
+      "Food": 234,
+      "MothballArms": 0,
+      "PersonQueue": 21,
+      "Persons": 5,
+      "ToolQueue": 3,
+      "Tools": 0
+    },
+    "ownerPersonId": "person-013",
+    "satrapPersonId": null,
+    "personIds": [
+      "person-013",
+      "person-089",
+      "person-090",
+      "person-143",
+      "person-172"
+    ],
+    "toolIds": []
+  },
+  "people": [
+    {
+      "id": "person-013",
+      "index": 13,
+      "name": "刘备",
+      "raw": {
+        "OldBelong": 0,
+        "Belong": 14,
+        "Level": 1,
+        "Force": 85,
+        "IQ": 76,
+        "Devotion": 100,
+        "Character": 3,
+        "Experience": 0,
+        "Thew": 100,
+        "ArmsType": 0,
+        "Arms": 100,
+        "Tool1": 5,
+        "Tool2": 0,
+        "Equip": [
+          5,
+          0
+        ],
+        "Age": 29
+      },
+      "oldOwnerPersonId": null,
+      "ownerPersonId": "person-013",
+      "tool1Id": "tool-004",
+      "tool2Id": null
+    },
+    {
+      "id": "person-089",
+      "index": 89,
+      "name": "关羽",
+      "raw": {
+        "OldBelong": 0,
+        "Belong": 14,
+        "Level": 1,
+        "Force": 106,
+        "IQ": 81,
+        "Devotion": 98,
+        "Character": 4,
+        "Experience": 0,
+        "Thew": 100,
+        "ArmsType": 1,
+        "Arms": 100,
+        "Tool1": 3,
+        "Tool2": 0,
+        "Equip": [
+          3,
+          0
+        ],
+        "Age": 28
+      },
+      "oldOwnerPersonId": null,
+      "ownerPersonId": "person-013",
+      "tool1Id": "tool-002",
+      "tool2Id": null
+    },
+    {
+      "id": "person-090",
+      "index": 90,
+      "name": "张飞",
+      "raw": {
+        "OldBelong": 0,
+        "Belong": 14,
+        "Level": 1,
+        "Force": 107,
+        "IQ": 67,
+        "Devotion": 98,
+        "Character": 0,
+        "Experience": 0,
+        "Thew": 100,
+        "ArmsType": 0,
+        "Arms": 100,
+        "Tool1": 4,
+        "Tool2": 0,
+        "Equip": [
+          4,
+          0
+        ],
+        "Age": 23
+      },
+      "oldOwnerPersonId": null,
+      "ownerPersonId": "person-013",
+      "tool1Id": "tool-003",
+      "tool2Id": null
+    },
+    {
+      "id": "person-143",
+      "index": 143,
+      "name": "吴懿",
+      "raw": {
+        "OldBelong": 0,
+        "Belong": 0,
+        "Level": 1,
+        "Force": 82,
+        "IQ": 59,
+        "Devotion": 0,
+        "Character": 3,
+        "Experience": 0,
+        "Thew": 100,
+        "ArmsType": 1,
+        "Arms": 100,
+        "Tool1": 0,
+        "Tool2": 0,
+        "Equip": [
+          0,
+          0
+        ],
+        "Age": 24
+      },
+      "oldOwnerPersonId": null,
+      "ownerPersonId": null,
+      "tool1Id": null,
+      "tool2Id": null
+    },
+    {
+      "id": "person-172",
+      "index": 172,
+      "name": "丁奉",
+      "raw": {
+        "OldBelong": 0,
+        "Belong": 0,
+        "Level": 1,
+        "Force": 75,
+        "IQ": 84,
+        "Devotion": 0,
+        "Character": 4,
+        "Experience": 0,
+        "Thew": 100,
+        "ArmsType": 3,
+        "Arms": 100,
+        "Tool1": 0,
+        "Tool2": 0,
+        "Equip": [
+          0,
+          0
+        ],
+        "Age": 18
+      },
+      "oldOwnerPersonId": null,
+      "ownerPersonId": null,
+      "tool1Id": null,
+      "tool2Id": null
+    }
+  ],
+  "tools": [
+    {
+      "id": "tool-004",
+      "index": 4,
+      "name": "双股剑",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 4,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-002",
+      "index": 2,
+      "name": "青龙刀",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 8,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-003",
+      "index": 3,
+      "name": "丈八矛",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 8,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    }
+  ],
+  "guanYuFarming": {
+    "status": "not-captured",
+    "reason": "本工作包只进行无 UI 的只读反射导出，未可靠驱动开垦接受、取消和月末流程，因此不生成这些状态。"
+  }
+}

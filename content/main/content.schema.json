@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sanguobaye.local/main/content.schema.json",
+  "type": "object",
+  "required": ["kind", "source", "tools", "skills"],
+  "properties": {
+    "kind": { "const": "main-content" },
+    "source": { "type": "object", "required": ["branch", "commit", "library", "librarySha256"] },
+    "tools": { "type": "array", "minItems": 33, "maxItems": 33, "items": { "$ref": "#/$defs/tool" } },
+    "skills": { "type": "array", "minItems": 30, "maxItems": 30, "items": { "$ref": "#/$defs/skill" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^(city|person|tool|skill)-[0-9]{3}$" },
+    "rawTool": {
+      "type": "object",
+      "required": ["useflag", "changeAttackRange", "at", "iq", "move", "arm"],
+      "properties": {
+        "useflag": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "changeAttackRange": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "at": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "iq": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "move": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "arm": { "type": "integer", "minimum": 0, "maximum": 255 }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "required": ["id", "index", "name", "raw"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "index": { "type": "integer", "minimum": 0 },
+        "name": { "type": "string", "minLength": 1 },
+        "raw": { "$ref": "#/$defs/rawTool" }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "required": ["id", "index", "name", "raw"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "index": { "type": "integer", "minimum": 0 },
+        "name": { "type": "string", "minLength": 1 },
+        "raw": {
+          "type": "object",
+          "required": ["aim", "state", "power", "destroy", "useMp", "weather", "eland", "oland", "earm"],
+          "properties": {
+            "aim": { "type": "integer", "minimum": 0, "maximum": 255 },
+            "state": { "type": "integer", "minimum": 0, "maximum": 255 },
+            "power": { "type": "integer", "minimum": 0, "maximum": 65535 },
+            "destroy": { "type": "integer", "minimum": 0, "maximum": 65535 },
+            "useMp": { "type": "integer", "minimum": 0, "maximum": 255 },
+            "weather": { "type": "array", "items": { "type": "integer" } },
+            "eland": { "type": "array", "items": { "type": "integer" } },
+            "oland": { "type": "array", "items": { "type": "integer" } },
+            "earm": { "type": "array", "items": { "type": "integer" } }
+          }
+        }
+      }
+    }
+  }
+}

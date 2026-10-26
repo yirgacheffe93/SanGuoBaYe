@@ -1,0 +1,457 @@
+{
+  "schemaVersion": 1,
+  "kind": "main-import-summary",
+  "source": {
+    "branch": "main",
+    "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+    "library": "libs/SGBY.lib",
+    "libraryBytes": 615415,
+    "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+    "engine": "js/baye.js",
+    "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+    "bridge": "js/bridge.js",
+    "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+    "wasm": "js/baye.wasm",
+    "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+    "decoding": "Node.js 26 native TextDecoder(GBK)"
+  },
+  "counts": {
+    "periods": 4,
+    "citiesPerPeriod": 38,
+    "personsPerPeriod": 200,
+    "cityRecords": 152,
+    "personRecords": 800,
+    "tools": 33,
+    "skills": 30,
+    "orderSlotsPerPeriod": 200
+  },
+  "periods": [
+    {
+      "id": "period-001",
+      "date": {
+        "year": 190,
+        "month": 1
+      },
+      "cities": 38,
+      "persons": 200,
+      "tools": 33,
+      "skills": 30,
+      "orderSlots": 200,
+      "peopleInCities": 157,
+      "toolsInCities": 22,
+      "attributeValuesOver100": {
+        "Force": 6,
+        "IQ": 2,
+        "Devotion": 0,
+        "Thew": 0,
+        "Arms": 0
+      },
+      "maxForce": 150,
+      "maxIQ": 150,
+      "mapAvailable": false
+    },
+    {
+      "id": "period-002",
+      "date": {
+        "year": 198,
+        "month": 1
+      },
+      "cities": 38,
+      "persons": 200,
+      "tools": 33,
+      "skills": 30,
+      "orderSlots": 200,
+      "peopleInCities": 175,
+      "toolsInCities": 23,
+      "attributeValuesOver100": {
+        "Force": 7,
+        "IQ": 2,
+        "Devotion": 0,
+        "Thew": 0,
+        "Arms": 0
+      },
+      "maxForce": 150,
+      "maxIQ": 150,
+      "mapAvailable": false
+    },
+    {
+      "id": "period-003",
+      "date": {
+        "year": 208,
+        "month": 1
+      },
+      "cities": 38,
+      "persons": 200,
+      "tools": 33,
+      "skills": 30,
+      "orderSlots": 200,
+      "peopleInCities": 179,
+      "toolsInCities": 22,
+      "attributeValuesOver100": {
+        "Force": 5,
+        "IQ": 2,
+        "Devotion": 0,
+        "Thew": 0,
+        "Arms": 0
+      },
+      "maxForce": 150,
+      "maxIQ": 150,
+      "mapAvailable": false
+    },
+    {
+      "id": "period-004",
+      "date": {
+        "year": 225,
+        "month": 1
+      },
+      "cities": 38,
+      "persons": 200,
+      "tools": 33,
+      "skills": 30,
+      "orderSlots": 200,
+      "peopleInCities": 166,
+      "toolsInCities": 25,
+      "attributeValuesOver100": {
+        "Force": 3,
+        "IQ": 2,
+        "Devotion": 0,
+        "Thew": 0,
+        "Arms": 0
+      },
+      "maxForce": 150,
+      "maxIQ": 150,
+      "mapAvailable": false
+    }
+  ],
+  "golden": {
+    "file": "golden-liubei-190.json",
+    "city": "平原",
+    "people": [
+      "刘备",
+      "关羽",
+      "张飞",
+      "吴懿",
+      "丁奉"
+    ],
+    "farming": "938/2470",
+    "commerce": "845/2486",
+    "population": "32225/87096",
+    "money": 93,
+    "food": 234
+  },
+  "checks": [
+    {
+      "id": "period-count",
+      "result": "passed",
+      "details": {
+        "actual": 4,
+        "expected": 4
+      }
+    },
+    {
+      "id": "tool-count",
+      "result": "passed",
+      "details": {
+        "actual": 33,
+        "expected": 33
+      }
+    },
+    {
+      "id": "skill-count",
+      "result": "passed",
+      "details": {
+        "actual": 30,
+        "expected": 30
+      }
+    },
+    {
+      "id": "period-1-city-count",
+      "result": "passed",
+      "details": {
+        "actual": 38,
+        "expected": 38
+      }
+    },
+    {
+      "id": "period-1-person-count",
+      "result": "passed",
+      "details": {
+        "actual": 200,
+        "expected": 200
+      }
+    },
+    {
+      "id": "period-1-tool-count",
+      "result": "passed",
+      "details": {
+        "actual": 33,
+        "expected": 33
+      }
+    },
+    {
+      "id": "period-1-skill-count",
+      "result": "passed",
+      "details": {
+        "actual": 30,
+        "expected": 30
+      }
+    },
+    {
+      "id": "period-2-city-count",
+      "result": "passed",
+      "details": {
+        "actual": 38,
+        "expected": 38
+      }
+    },
+    {
+      "id": "period-2-person-count",
+      "result": "passed",
+      "details": {
+        "actual": 200,
+        "expected": 200
+      }
+    },
+    {
+      "id": "period-2-tool-count",
+      "result": "passed",
+      "details": {
+        "actual": 33,
+        "expected": 33
+      }
+    },
+    {
+      "id": "period-2-skill-count",
+      "result": "passed",
+      "details": {
+        "actual": 30,
+        "expected": 30
+      }
+    },
+    {
+      "id": "period-3-city-count",
+      "result": "passed",
+      "details": {
+        "actual": 38,
+        "expected": 38
+      }
+    },
+    {
+      "id": "period-3-person-count",
+      "result": "passed",
+      "details": {
+        "actual": 200,
+        "expected": 200
+      }
+    },
+    {
+      "id": "period-3-tool-count",
+      "result": "passed",
+      "details": {
+        "actual": 33,
+        "expected": 33
+      }
+    },
+    {
+      "id": "period-3-skill-count",
+      "result": "passed",
+      "details": {
+        "actual": 30,
+        "expected": 30
+      }
+    },
+    {
+      "id": "period-4-city-count",
+      "result": "passed",
+      "details": {
+        "actual": 38,
+        "expected": 38
+      }
+    },
+    {
+      "id": "period-4-person-count",
+      "result": "passed",
+      "details": {
+        "actual": 200,
+        "expected": 200
+      }
+    },
+    {
+      "id": "period-4-tool-count",
+      "result": "passed",
+      "details": {
+        "actual": 33,
+        "expected": 33
+      }
+    },
+    {
+      "id": "period-4-skill-count",
+      "result": "passed",
+      "details": {
+        "actual": 30,
+        "expected": 30
+      }
+    },
+    {
+      "id": "reference-integrity",
+      "result": "passed",
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "id": "period-2-city-identity-stability",
+      "result": "passed",
+      "details": "城市原始索引与名称映射保持不变"
+    },
+    {
+      "id": "period-3-city-identity-stability",
+      "result": "passed",
+      "details": "城市原始索引与名称映射保持不变"
+    },
+    {
+      "id": "period-4-city-identity-stability",
+      "result": "passed",
+      "details": "城市原始索引与名称映射保持不变"
+    },
+    {
+      "id": "golden-date",
+      "result": "passed",
+      "details": {
+        "year": 190,
+        "month": 1
+      }
+    },
+    {
+      "id": "golden-pingyuan-people",
+      "result": "passed",
+      "details": {
+        "city": "平原",
+        "people": [
+          "刘备",
+          "关羽",
+          "张飞",
+          "吴懿",
+          "丁奉"
+        ]
+      }
+    },
+    {
+      "id": "golden-pingyuan-values",
+      "result": "passed",
+      "details": {
+        "State": 0,
+        "Belong": 14,
+        "SatrapId": 0,
+        "FarmingLimit": 2470,
+        "Farming": 938,
+        "CommerceLimit": 2486,
+        "Commerce": 845,
+        "PeopleDevotion": 68,
+        "AvoidCalamity": 62,
+        "PopulationLimit": 87096,
+        "Population": 32225,
+        "Money": 93,
+        "Food": 234,
+        "MothballArms": 0,
+        "PersonQueue": 21,
+        "Persons": 5,
+        "ToolQueue": 3,
+        "Tools": 0
+      }
+    },
+    {
+      "id": "golden-force-刘备",
+      "result": "passed",
+      "details": {
+        "actual": 85,
+        "expected": 85
+      }
+    },
+    {
+      "id": "golden-force-关羽",
+      "result": "passed",
+      "details": {
+        "actual": 106,
+        "expected": 106
+      }
+    },
+    {
+      "id": "golden-force-张飞",
+      "result": "passed",
+      "details": {
+        "actual": 107,
+        "expected": 107
+      }
+    },
+    {
+      "id": "golden-force-not-truncated",
+      "result": "passed",
+      "details": [
+        {
+          "name": "刘备",
+          "force": 85
+        },
+        {
+          "name": "关羽",
+          "force": 106
+        },
+        {
+          "name": "张飞",
+          "force": 107
+        },
+        {
+          "name": "吴懿",
+          "force": 82
+        },
+        {
+          "name": "丁奉",
+          "force": 75
+        }
+      ]
+    },
+    {
+      "id": "golden-tool-刘备",
+      "result": "passed",
+      "details": {
+        "actual": "双股剑",
+        "expected": "双股剑"
+      }
+    },
+    {
+      "id": "golden-tool-关羽",
+      "result": "passed",
+      "details": {
+        "actual": "青龙刀",
+        "expected": "青龙刀"
+      }
+    },
+    {
+      "id": "golden-tool-张飞",
+      "result": "passed",
+      "details": {
+        "actual": "丈八矛",
+        "expected": "丈八矛"
+      }
+    }
+  ],
+  "limitations": [
+    "时期加载未触发地图绘制，因此没有导出地图矩阵或逐城坐标；g_CityPos 是当前坐标而非逐城坐标表。",
+    "未驱动 UI 指令流，关羽开垦的接受、取消和月末 golden 未生成。",
+    "g_OrderQueue 全槽位按原值导出，不根据 demos.js 推断规则。"
+  ],
+  "files": {
+    "content.json": {
+      "bytes": 57638,
+      "sha256": "19c1dcdd4a0a37c62fe10608bf86260ed81f7fa6f51a9408e0c9762725a5d12b"
+    },
+    "scenarios.json": {
+      "bytes": 1128815,
+      "sha256": "136e74d4816aa9629e1ebe529c020c26455655e4ee43c2e3ff6bb030aaf8d96f"
+    },
+    "golden-liubei-190.json": {
+      "bytes": 5862,
+      "sha256": "966a0925ac0b300a4136328b4d817f61b9f055274ae780f04bc5251d452c84e8"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # 02 · 架构设计（草案）
 
-> 目标：定义规则与界面分离的骨架。R0-S1 已验证 Godot + C#、独立 .NET 规则库，最终选型见 ADR-0008。回合细则见 `07-turn-rules.md`，UI 见 `08-ui-design.md`。
+> 目标：定义规则与界面分离的骨架。R0-S1 已验证 Godot + C#、独立 .NET 规则库，最终选型见 ADR-0008。当前 main 的内容/状态/命令/月度/ViewModel 实际结构见 `15-main-architecture-refactor.md`；本文其余 R0 细节仅作设计历史。
 
 ## 1. 架构目标
 

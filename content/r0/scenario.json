@@ -1,0 +1,105 @@
+{
+  "contentVersion": "r0-1",
+  "rulesVersion": "r0-1",
+  "seed": 123456789,
+  "factionId": "faction.zhaoming",
+  "factions": [
+    { "id": "faction.zhaoming", "name": "昭明" },
+    { "id": "faction.xuanshuo", "name": "玄朔" }
+  ],
+  "rules": {
+    "maxTurns": 24,
+    "developmentCost": 100,
+    "levelCap": 5,
+    "agricultureIncome": 20,
+    "commerceIncome": 15,
+    "upkeepFoodPer1000Troops": 10,
+    "recruitGoldPer100Troops": 20,
+    "recruitFoodPer100Troops": 10,
+    "envoyCost": 50,
+    "starvationLossPercent": 10,
+    "truceBaseScore": 50,
+    "truceStrengthWeight": 25,
+    "truceRelationWeight": 25,
+    "truceAcceptScore": 60,
+    "battleDamageDivisor": 100000,
+    "battleMinRoll": 90,
+    "battleMaxRoll": 110,
+    "battleMaxRounds": 8,
+    "battleMinDamage": 1
+  },
+  "cities": [
+    {
+      "id": "city.anling",
+      "name": "安陵",
+      "factionId": "faction.zhaoming",
+      "gold": 400,
+      "food": 800,
+      "population": 12000,
+      "agriculture": 2,
+      "commerce": 1,
+      "defense": 20,
+      "troops": 1200,
+      "connections": ["city.beiping", "city.hejin"]
+    },
+    {
+      "id": "city.beiping",
+      "name": "北平",
+      "factionId": "faction.zhaoming",
+      "gold": 260,
+      "food": 650,
+      "population": 9000,
+      "agriculture": 1,
+      "commerce": 2,
+      "defense": 25,
+      "troops": 1000,
+      "connections": ["city.anling", "city.hejin"]
+    },
+    {
+      "id": "city.hejin",
+      "name": "河津",
+      "factionId": "faction.xuanshuo",
+      "gold": 320,
+      "food": 700,
+      "population": 10000,
+      "agriculture": 1,
+      "commerce": 1,
+      "defense": 30,
+      "troops": 900,
+      "connections": ["city.anling", "city.beiping", "city.lingchuan"]
+    },
+    {
+      "id": "city.lingchuan",
+      "name": "临川",
+      "factionId": "faction.xuanshuo",
+      "gold": 350,
+      "food": 750,
+      "population": 11000,
+      "agriculture": 2,
+      "commerce": 1,
+      "defense": 20,
+      "troops": 1100,
+      "connections": ["city.hejin"]
+    }
+  ],
+  "roads": [
+    { "fromCityId": "city.anling", "toCityId": "city.beiping", "distance": 1 },
+    { "fromCityId": "city.anling", "toCityId": "city.hejin", "distance": 1 },
+    { "fromCityId": "city.beiping", "toCityId": "city.hejin", "distance": 1 },
+    { "fromCityId": "city.hejin", "toCityId": "city.lingchuan", "distance": 1 }
+  ],
+  "characters": [
+    { "id": "char.shenyan", "name": "沈砚", "factionId": "faction.zhaoming", "cityId": "city.anling", "leadership": 62, "war": 55, "intellect": 70, "politics": 75, "charm": 68 },
+    { "id": "char.zhouheng", "name": "周衡", "factionId": "faction.zhaoming", "cityId": "city.anling", "leadership": 70, "war": 76, "intellect": 48, "politics": 45, "charm": 60 },
+    { "id": "char.luqing", "name": "陆青", "factionId": "faction.zhaoming", "cityId": "city.beiping", "leadership": 58, "war": 52, "intellect": 72, "politics": 78, "charm": 65 },
+    { "id": "char.hanqing", "name": "韩青", "factionId": "faction.zhaoming", "cityId": "city.beiping", "leadership": 68, "war": 72, "intellect": 50, "politics": 55, "charm": 61 },
+    { "id": "char.weizhang", "name": "魏璋", "factionId": "faction.xuanshuo", "cityId": "city.hejin", "leadership": 66, "war": 70, "intellect": 55, "politics": 52, "charm": 58 },
+    { "id": "char.dufeng", "name": "杜风", "factionId": "faction.xuanshuo", "cityId": "city.hejin", "leadership": 55, "war": 50, "intellect": 68, "politics": 70, "charm": 62 },
+    { "id": "char.guxiao", "name": "顾骁", "factionId": "faction.xuanshuo", "cityId": "city.lingchuan", "leadership": 72, "war": 78, "intellect": 46, "politics": 44, "charm": 57 },
+    { "id": "char.suyan", "name": "苏严", "factionId": "faction.xuanshuo", "cityId": "city.lingchuan", "leadership": 60, "war": 54, "intellect": 66, "politics": 69, "charm": 64 }
+  ],
+  "events": [
+    { "id": "event.market_report", "triggerTurn": 2, "textKey": "r0.market_report", "text": "粮商抵达各城，市面交易平稳。" },
+    { "id": "event.border_report", "triggerTurn": 4, "textKey": "r0.border_report", "text": "斥候回报，边境商旅逐渐减少。" }
+  ]
+}

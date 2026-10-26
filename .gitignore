@@ -2,6 +2,7 @@
 build/
 dist/
 .tools/
+.reference/
 
 # Godot
 .godot/

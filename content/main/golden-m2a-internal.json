@@ -1,0 +1,60 @@
+{
+  "kind": "main-m2a-internal-golden",
+  "source": {
+    "branch": "main",
+    "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+    "capture": "生产 baye.wasm 实际按键流、反射与 tacticStage 钩子；同源 C 3f0e168 仅用于解释行为"
+  },
+  "actor": { "period": 1, "cityId": "city-005", "personId": "person-089", "initialRngState": 1, "iq": 81 },
+  "rng": {
+    "stateType": "uint32",
+    "multiplier": 1103515245,
+    "increment": 12345,
+    "return": "temper(updatedState) >> 1",
+    "acceptedState": 1103527590,
+    "beforePolicyExecState": 3105560752,
+    "beforePolicyExecActiveOrders": 16
+  },
+  "accepted": [
+    { "commandId": 1, "name": "开垦", "money": 43, "farming": 1002, "thew": 92, "cityPersons": 4, "timeCount": 0 },
+    { "commandId": 2, "name": "招商", "money": 43, "commerce": 909, "thew": 92, "cityPersons": 4, "timeCount": 0 },
+    { "commandId": 3, "name": "搜寻", "money": 93, "farming": 938, "thew": 92, "cityPersons": 4, "timeCount": 0 },
+    { "commandId": 4, "name": "治理", "money": 93, "avoidCalamity": 64, "thew": 100, "cityPersons": 4, "timeCount": 0 },
+    { "commandId": 5, "name": "出巡", "money": 43, "peopleDevotion": 70, "population": 32325, "thew": 92, "cityPersons": 4, "timeCount": 0 }
+  ],
+  "assartMonthEnd": {
+    "beforeConditionUpdateRngState": 648760710,
+    "afterConditionUpdateRngState": 1406511986,
+    "year": 190,
+    "month": 2,
+    "money": 43,
+    "food": 228,
+    "farming": 1002,
+    "population": 32275,
+    "cityPersons": 5,
+    "guanThew": 96,
+    "activeOrders": 0
+  },
+  "searchMonthEnd": {
+    "driverCalls": [
+      { "beforeState": 3105560752, "rawResult": 1956525574, "afterState": 3660534569, "modulo": 4, "moduloResult": 2, "branch": "money" },
+      { "beforeState": 3660534569, "rawResult": 1061053609, "afterState": 204674734, "modulo": 162, "moduloResult": 103, "moneyGain": 113 }
+    ],
+    "beforeConditionUpdateRngState": 3102103705,
+    "afterConditionUpdateRngState": 3949672138,
+    "year": 190,
+    "month": 2,
+    "money": 206,
+    "food": 228,
+    "farming": 938,
+    "population": 32275,
+    "cityPersons": 5,
+    "guanThew": 96,
+    "activeOrders": 0
+  },
+  "notCovered": [
+    "搜寻人物、道具和失败分支",
+    "完整 ComputerTactic 与全部 AI 命令的等价性",
+    "排队命令取消退款（main 未找到依据）"
+  ]
+}

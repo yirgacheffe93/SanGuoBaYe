@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sanguobaye.local/main/scenarios.schema.json",
+  "type": "object",
+  "required": ["kind", "source", "periods"],
+  "properties": {
+    "kind": { "const": "main-scenarios" },
+    "source": { "type": "object", "required": ["branch", "commit", "library", "librarySha256"] },
+    "periods": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "$ref": "#/$defs/period" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^(city|person|tool|skill)-[0-9]{3}$" },
+    "nullableId": { "type": ["string", "null"], "pattern": "^(city|person|tool|skill)-[0-9]{3}$" },
+    "u8": { "type": "integer", "minimum": 0, "maximum": 255 },
+    "u16": { "type": "integer", "minimum": 0, "maximum": 65535 },
+    "u32": { "type": "integer", "minimum": 0 },
+    "period": {
+      "type": "object",
+      "required": ["period", "date", "cities", "persons"],
+      "properties": {
+        "period": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "date": {
+          "type": "object",
+          "required": ["year", "month"],
+          "properties": {
+            "year": { "type": "integer", "minimum": 1 },
+            "month": { "type": "integer", "minimum": 1, "maximum": 12 }
+          }
+        },
+        "cities": { "type": "array", "minItems": 38, "maxItems": 38, "items": { "$ref": "#/$defs/city" } },
+        "persons": { "type": "array", "minItems": 200, "maxItems": 200, "items": { "$ref": "#/$defs/person" } }
+      }
+    },
+    "city": {
+      "type": "object",
+      "required": ["id", "index", "name", "raw", "ownerPersonId", "satrapPersonId", "personIds", "toolIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "index": { "type": "integer", "minimum": 0, "maximum": 37 },
+        "name": { "type": "string", "minLength": 1 },
+        "ownerPersonId": { "$ref": "#/$defs/nullableId" },
+        "satrapPersonId": { "$ref": "#/$defs/nullableId" },
+        "personIds": { "type": "array", "items": { "$ref": "#/$defs/id" } },
+        "toolIds": { "type": "array", "items": { "$ref": "#/$defs/id" } },
+        "raw": {
+          "type": "object",
+          "required": ["State", "Belong", "SatrapId", "FarmingLimit", "Farming", "CommerceLimit", "Commerce", "PeopleDevotion", "AvoidCalamity", "PopulationLimit", "Population", "Money", "Food", "MothballArms", "PersonQueue", "Persons", "ToolQueue", "Tools"],
+          "properties": {
+            "State": { "$ref": "#/$defs/u8" },
+            "Belong": { "$ref": "#/$defs/u16" },
+            "SatrapId": { "$ref": "#/$defs/u16" },
+            "FarmingLimit": { "$ref": "#/$defs/u16" },
+            "Farming": { "$ref": "#/$defs/u16" },
+            "CommerceLimit": { "$ref": "#/$defs/u16" },
+            "Commerce": { "$ref": "#/$defs/u16" },
+            "PeopleDevotion": { "$ref": "#/$defs/u8" },
+            "AvoidCalamity": { "$ref": "#/$defs/u8" },
+            "PopulationLimit": { "$ref": "#/$defs/u32" },
+            "Population": { "$ref": "#/$defs/u32" },
+            "Money": { "$ref": "#/$defs/u16" },
+            "Food": { "$ref": "#/$defs/u16" },
+            "MothballArms": { "$ref": "#/$defs/u16" },
+            "PersonQueue": { "$ref": "#/$defs/u8" },
+            "Persons": { "$ref": "#/$defs/u8" },
+            "ToolQueue": { "$ref": "#/$defs/u16" },
+            "Tools": { "$ref": "#/$defs/u16" }
+          }
+        }
+      }
+    },
+    "person": {
+      "type": "object",
+      "required": ["id", "index", "name", "raw", "oldOwnerPersonId", "ownerPersonId", "tool1Id", "tool2Id"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "index": { "type": "integer", "minimum": 0, "maximum": 199 },
+        "name": { "type": "string" },
+        "oldOwnerPersonId": { "$ref": "#/$defs/nullableId" },
+        "ownerPersonId": { "$ref": "#/$defs/nullableId" },
+        "tool1Id": { "$ref": "#/$defs/nullableId" },
+        "tool2Id": { "$ref": "#/$defs/nullableId" },
+        "raw": {
+          "type": "object",
+          "required": ["OldBelong", "Belong", "Level", "Force", "IQ", "Devotion", "Character", "Experience", "Thew", "ArmsType", "Arms", "Tool1", "Tool2", "Equip", "Age"],
+          "properties": {
+            "OldBelong": { "$ref": "#/$defs/u16" },
+            "Belong": { "$ref": "#/$defs/u16" },
+            "Level": { "$ref": "#/$defs/u8" },
+            "Force": { "$ref": "#/$defs/u8" },
+            "IQ": { "$ref": "#/$defs/u8" },
+            "Devotion": { "$ref": "#/$defs/u8" },
+            "Character": { "$ref": "#/$defs/u8" },
+            "Experience": { "$ref": "#/$defs/u8" },
+            "Thew": { "$ref": "#/$defs/u8" },
+            "ArmsType": { "$ref": "#/$defs/u8" },
+            "Arms": { "$ref": "#/$defs/u16" },
+            "Tool1": { "$ref": "#/$defs/u16" },
+            "Tool2": { "$ref": "#/$defs/u16" },
+            "Equip": { "type": "array", "items": { "$ref": "#/$defs/u16" } },
+            "Age": { "$ref": "#/$defs/u8" }
+          }
+        }
+      }
+    }
+  }
+}

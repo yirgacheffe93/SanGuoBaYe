@@ -1,0 +1,3382 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "branch": "main",
+    "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+    "library": "libs/SGBY.lib",
+    "libraryBytes": 615415,
+    "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+    "engine": "js/baye.js",
+    "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+    "bridge": "js/bridge.js",
+    "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+    "wasm": "js/baye.wasm",
+    "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+    "decoding": "Node.js 26 native TextDecoder(GBK)"
+  },
+  "indexing": {
+    "city": "index 为原始零基数组索引；id 为 city-000..city-037。",
+    "person": "index 为原始零基数组索引；Belong/OldBelong/SatrapId 保留原始一基值，0 与 0xff 的规范化为 null。",
+    "tool": "index 为原始零基数组索引；Tool1/Tool2 保留原始一基值，0 与 0xff 的规范化为 null。",
+    "orderQueue": "保留全部原始槽位及原始字段，不推断空槽位或字段规则。"
+  },
+  "kind": "main-content",
+  "idMappings": {
+    "cities": [
+      {
+        "id": "city-000",
+        "index": 0,
+        "name": "西凉"
+      },
+      {
+        "id": "city-001",
+        "index": 1,
+        "name": "北平"
+      },
+      {
+        "id": "city-002",
+        "index": 2,
+        "name": "襄平"
+      },
+      {
+        "id": "city-003",
+        "index": 3,
+        "name": "安定"
+      },
+      {
+        "id": "city-004",
+        "index": 4,
+        "name": "晋阳"
+      },
+      {
+        "id": "city-005",
+        "index": 5,
+        "name": "平原"
+      },
+      {
+        "id": "city-006",
+        "index": 6,
+        "name": "南皮"
+      },
+      {
+        "id": "city-007",
+        "index": 7,
+        "name": "北海"
+      },
+      {
+        "id": "city-008",
+        "index": 8,
+        "name": "天水"
+      },
+      {
+        "id": "city-009",
+        "index": 9,
+        "name": "河内"
+      },
+      {
+        "id": "city-010",
+        "index": 10,
+        "name": "长安"
+      },
+      {
+        "id": "city-011",
+        "index": 11,
+        "name": "邺"
+      },
+      {
+        "id": "city-012",
+        "index": 12,
+        "name": "濮阳"
+      },
+      {
+        "id": "city-013",
+        "index": 13,
+        "name": "徐州"
+      },
+      {
+        "id": "city-014",
+        "index": 14,
+        "name": "汉中"
+      },
+      {
+        "id": "city-015",
+        "index": 15,
+        "name": "洛阳"
+      },
+      {
+        "id": "city-016",
+        "index": 16,
+        "name": "许昌"
+      },
+      {
+        "id": "city-017",
+        "index": 17,
+        "name": "小沛"
+      },
+      {
+        "id": "city-018",
+        "index": 18,
+        "name": "下邳"
+      },
+      {
+        "id": "city-019",
+        "index": 19,
+        "name": "梓潼"
+      },
+      {
+        "id": "city-020",
+        "index": 20,
+        "name": "宛城"
+      },
+      {
+        "id": "city-021",
+        "index": 21,
+        "name": "寿春"
+      },
+      {
+        "id": "city-022",
+        "index": 22,
+        "name": "建业"
+      },
+      {
+        "id": "city-023",
+        "index": 23,
+        "name": "吴"
+      },
+      {
+        "id": "city-024",
+        "index": 24,
+        "name": "成都"
+      },
+      {
+        "id": "city-025",
+        "index": 25,
+        "name": "棉竹"
+      },
+      {
+        "id": "city-026",
+        "index": 26,
+        "name": "襄阳"
+      },
+      {
+        "id": "city-027",
+        "index": 27,
+        "name": "江夏"
+      },
+      {
+        "id": "city-028",
+        "index": 28,
+        "name": "庐江"
+      },
+      {
+        "id": "city-029",
+        "index": 29,
+        "name": "会稽"
+      },
+      {
+        "id": "city-030",
+        "index": 30,
+        "name": "云南"
+      },
+      {
+        "id": "city-031",
+        "index": 31,
+        "name": "巴郡"
+      },
+      {
+        "id": "city-032",
+        "index": 32,
+        "name": "武陵"
+      },
+      {
+        "id": "city-033",
+        "index": 33,
+        "name": "长沙"
+      },
+      {
+        "id": "city-034",
+        "index": 34,
+        "name": "柴桑"
+      },
+      {
+        "id": "city-035",
+        "index": 35,
+        "name": "零陵"
+      },
+      {
+        "id": "city-036",
+        "index": 36,
+        "name": "桂阳"
+      },
+      {
+        "id": "city-037",
+        "index": 37,
+        "name": "建宁"
+      }
+    ],
+    "persons": [
+      {
+        "id": "person-000",
+        "index": 0,
+        "name": "董卓"
+      },
+      {
+        "id": "person-001",
+        "index": 1,
+        "name": "曹操"
+      },
+      {
+        "id": "person-002",
+        "index": 2,
+        "name": "袁绍"
+      },
+      {
+        "id": "person-003",
+        "index": 3,
+        "name": "袁术"
+      },
+      {
+        "id": "person-004",
+        "index": 4,
+        "name": "孙坚"
+      },
+      {
+        "id": "person-005",
+        "index": 5,
+        "name": "马腾"
+      },
+      {
+        "id": "person-006",
+        "index": 6,
+        "name": "陶谦"
+      },
+      {
+        "id": "person-007",
+        "index": 7,
+        "name": "孔融"
+      },
+      {
+        "id": "person-008",
+        "index": 8,
+        "name": "刘岱"
+      },
+      {
+        "id": "person-009",
+        "index": 9,
+        "name": "张杨"
+      },
+      {
+        "id": "person-010",
+        "index": 10,
+        "name": "韩馥"
+      },
+      {
+        "id": "person-011",
+        "index": 11,
+        "name": "王匡"
+      },
+      {
+        "id": "person-012",
+        "index": 12,
+        "name": "张邈"
+      },
+      {
+        "id": "person-013",
+        "index": 13,
+        "name": "刘备"
+      },
+      {
+        "id": "person-014",
+        "index": 14,
+        "name": "刘表"
+      },
+      {
+        "id": "person-015",
+        "index": 15,
+        "name": "刘焉"
+      },
+      {
+        "id": "person-016",
+        "index": 16,
+        "name": "公孙瓒"
+      },
+      {
+        "id": "person-017",
+        "index": 17,
+        "name": "公孙度"
+      },
+      {
+        "id": "person-018",
+        "index": 18,
+        "name": "张鲁"
+      },
+      {
+        "id": "person-019",
+        "index": 19,
+        "name": "李儒"
+      },
+      {
+        "id": "person-020",
+        "index": 20,
+        "name": "吕布"
+      },
+      {
+        "id": "person-021",
+        "index": 21,
+        "name": "华雄"
+      },
+      {
+        "id": "person-022",
+        "index": 22,
+        "name": "张辽"
+      },
+      {
+        "id": "person-023",
+        "index": 23,
+        "name": "李傕"
+      },
+      {
+        "id": "person-024",
+        "index": 24,
+        "name": "郭汜"
+      },
+      {
+        "id": "person-025",
+        "index": 25,
+        "name": "李肃"
+      },
+      {
+        "id": "person-026",
+        "index": 26,
+        "name": "侯成"
+      },
+      {
+        "id": "person-027",
+        "index": 27,
+        "name": "高顺"
+      },
+      {
+        "id": "person-028",
+        "index": 28,
+        "name": "徐荣"
+      },
+      {
+        "id": "person-029",
+        "index": 29,
+        "name": "牛辅"
+      },
+      {
+        "id": "person-030",
+        "index": 30,
+        "name": "王允"
+      },
+      {
+        "id": "person-031",
+        "index": 31,
+        "name": "荀攸"
+      },
+      {
+        "id": "person-032",
+        "index": 32,
+        "name": "夏侯惇"
+      },
+      {
+        "id": "person-033",
+        "index": 33,
+        "name": "夏侯渊"
+      },
+      {
+        "id": "person-034",
+        "index": 34,
+        "name": "李典"
+      },
+      {
+        "id": "person-035",
+        "index": 35,
+        "name": "乐进"
+      },
+      {
+        "id": "person-036",
+        "index": 36,
+        "name": "曹洪"
+      },
+      {
+        "id": "person-037",
+        "index": 37,
+        "name": "曹仁"
+      },
+      {
+        "id": "person-038",
+        "index": 38,
+        "name": "颜良"
+      },
+      {
+        "id": "person-039",
+        "index": 39,
+        "name": "文丑"
+      },
+      {
+        "id": "person-040",
+        "index": 40,
+        "name": "淳于琼"
+      },
+      {
+        "id": "person-041",
+        "index": 41,
+        "name": "逢纪"
+      },
+      {
+        "id": "person-042",
+        "index": 42,
+        "name": "审配"
+      },
+      {
+        "id": "person-043",
+        "index": 43,
+        "name": "田丰"
+      },
+      {
+        "id": "person-044",
+        "index": 44,
+        "name": "沮授"
+      },
+      {
+        "id": "person-045",
+        "index": 45,
+        "name": "许攸"
+      },
+      {
+        "id": "person-046",
+        "index": 46,
+        "name": "纪灵"
+      },
+      {
+        "id": "person-047",
+        "index": 47,
+        "name": "陈兰"
+      },
+      {
+        "id": "person-048",
+        "index": 48,
+        "name": "雷薄"
+      },
+      {
+        "id": "person-049",
+        "index": 49,
+        "name": "俞涉"
+      },
+      {
+        "id": "person-050",
+        "index": 50,
+        "name": "程普"
+      },
+      {
+        "id": "person-051",
+        "index": 51,
+        "name": "韩当"
+      },
+      {
+        "id": "person-052",
+        "index": 52,
+        "name": "黄盖"
+      },
+      {
+        "id": "person-053",
+        "index": 53,
+        "name": "祖茂"
+      },
+      {
+        "id": "person-054",
+        "index": 54,
+        "name": "孙策"
+      },
+      {
+        "id": "person-055",
+        "index": 55,
+        "name": "孙权"
+      },
+      {
+        "id": "person-056",
+        "index": 56,
+        "name": "韩遂"
+      },
+      {
+        "id": "person-057",
+        "index": 57,
+        "name": "马超"
+      },
+      {
+        "id": "person-058",
+        "index": 58,
+        "name": "庞德"
+      },
+      {
+        "id": "person-059",
+        "index": 59,
+        "name": "侯选"
+      },
+      {
+        "id": "person-060",
+        "index": 60,
+        "name": "程银"
+      },
+      {
+        "id": "person-061",
+        "index": 61,
+        "name": "李堪"
+      },
+      {
+        "id": "person-062",
+        "index": 62,
+        "name": "张横"
+      },
+      {
+        "id": "person-063",
+        "index": 63,
+        "name": "梁兴"
+      },
+      {
+        "id": "person-064",
+        "index": 64,
+        "name": "成宜"
+      },
+      {
+        "id": "person-065",
+        "index": 65,
+        "name": "马玩"
+      },
+      {
+        "id": "person-066",
+        "index": 66,
+        "name": "杨秋"
+      },
+      {
+        "id": "person-067",
+        "index": 67,
+        "name": "陈圭"
+      },
+      {
+        "id": "person-068",
+        "index": 68,
+        "name": "陈登"
+      },
+      {
+        "id": "person-069",
+        "index": 69,
+        "name": "孙乾"
+      },
+      {
+        "id": "person-070",
+        "index": 70,
+        "name": "糜竺"
+      },
+      {
+        "id": "person-071",
+        "index": 71,
+        "name": "糜芳"
+      },
+      {
+        "id": "person-072",
+        "index": 72,
+        "name": "曹豹"
+      },
+      {
+        "id": "person-073",
+        "index": 73,
+        "name": "太史慈"
+      },
+      {
+        "id": "person-074",
+        "index": 74,
+        "name": "武安国"
+      },
+      {
+        "id": "person-075",
+        "index": 75,
+        "name": "刘繇"
+      },
+      {
+        "id": "person-076",
+        "index": 76,
+        "name": "乔瑁"
+      },
+      {
+        "id": "person-077",
+        "index": 77,
+        "name": "袁遗"
+      },
+      {
+        "id": "person-078",
+        "index": 78,
+        "name": "董昭"
+      },
+      {
+        "id": "person-079",
+        "index": 79,
+        "name": "穆顺"
+      },
+      {
+        "id": "person-080",
+        "index": 80,
+        "name": "潘凤"
+      },
+      {
+        "id": "person-081",
+        "index": 81,
+        "name": "荀谌"
+      },
+      {
+        "id": "person-082",
+        "index": 82,
+        "name": "辛评"
+      },
+      {
+        "id": "person-083",
+        "index": 83,
+        "name": "关纯"
+      },
+      {
+        "id": "person-084",
+        "index": 84,
+        "name": "耿武"
+      },
+      {
+        "id": "person-085",
+        "index": 85,
+        "name": "方悦"
+      },
+      {
+        "id": "person-086",
+        "index": 86,
+        "name": "陈宫"
+      },
+      {
+        "id": "person-087",
+        "index": 87,
+        "name": "典韦"
+      },
+      {
+        "id": "person-088",
+        "index": 88,
+        "name": "张超"
+      },
+      {
+        "id": "person-089",
+        "index": 89,
+        "name": "关羽"
+      },
+      {
+        "id": "person-090",
+        "index": 90,
+        "name": "张飞"
+      },
+      {
+        "id": "person-091",
+        "index": 91,
+        "name": "蒯良"
+      },
+      {
+        "id": "person-092",
+        "index": 92,
+        "name": "蒯越"
+      },
+      {
+        "id": "person-093",
+        "index": 93,
+        "name": "蔡瑁"
+      },
+      {
+        "id": "person-094",
+        "index": 94,
+        "name": "张允"
+      },
+      {
+        "id": "person-095",
+        "index": 95,
+        "name": "黄祖"
+      },
+      {
+        "id": "person-096",
+        "index": 96,
+        "name": "甘宁"
+      },
+      {
+        "id": "person-097",
+        "index": 97,
+        "name": "张任"
+      },
+      {
+        "id": "person-098",
+        "index": 98,
+        "name": "严颜"
+      },
+      {
+        "id": "person-099",
+        "index": 99,
+        "name": "公孙越"
+      },
+      {
+        "id": "person-100",
+        "index": 100,
+        "name": "严纲"
+      },
+      {
+        "id": "person-101",
+        "index": 101,
+        "name": "王门"
+      },
+      {
+        "id": "person-102",
+        "index": 102,
+        "name": "田楷"
+      },
+      {
+        "id": "person-103",
+        "index": 103,
+        "name": "公孙康"
+      },
+      {
+        "id": "person-104",
+        "index": 104,
+        "name": "公孙恭"
+      },
+      {
+        "id": "person-105",
+        "index": 105,
+        "name": "张卫"
+      },
+      {
+        "id": "person-106",
+        "index": 106,
+        "name": "杨松"
+      },
+      {
+        "id": "person-107",
+        "index": 107,
+        "name": "杨任"
+      },
+      {
+        "id": "person-108",
+        "index": 108,
+        "name": "阎圃"
+      },
+      {
+        "id": "person-109",
+        "index": 109,
+        "name": "凌统"
+      },
+      {
+        "id": "person-110",
+        "index": 110,
+        "name": "曹休"
+      },
+      {
+        "id": "person-111",
+        "index": 111,
+        "name": "刘晔"
+      },
+      {
+        "id": "person-112",
+        "index": 112,
+        "name": "陈群"
+      },
+      {
+        "id": "person-113",
+        "index": 113,
+        "name": "刘璋"
+      },
+      {
+        "id": "person-114",
+        "index": 114,
+        "name": "陈武"
+      },
+      {
+        "id": "person-115",
+        "index": 115,
+        "name": "陆逊"
+      },
+      {
+        "id": "person-116",
+        "index": 116,
+        "name": "程昱"
+      },
+      {
+        "id": "person-117",
+        "index": 117,
+        "name": "吕范"
+      },
+      {
+        "id": "person-118",
+        "index": 118,
+        "name": "吕蒙"
+      },
+      {
+        "id": "person-119",
+        "index": 119,
+        "name": "费祎"
+      },
+      {
+        "id": "person-120",
+        "index": 120,
+        "name": "董允"
+      },
+      {
+        "id": "person-121",
+        "index": 121,
+        "name": "马良"
+      },
+      {
+        "id": "person-122",
+        "index": 122,
+        "name": "马谡"
+      },
+      {
+        "id": "person-123",
+        "index": 123,
+        "name": "满宠"
+      },
+      {
+        "id": "person-124",
+        "index": 124,
+        "name": "庞统"
+      },
+      {
+        "id": "person-125",
+        "index": 125,
+        "name": "关平"
+      },
+      {
+        "id": "person-126",
+        "index": 126,
+        "name": "郭嘉"
+      },
+      {
+        "id": "person-127",
+        "index": 127,
+        "name": "王朗"
+      },
+      {
+        "id": "person-128",
+        "index": 128,
+        "name": "虞翻"
+      },
+      {
+        "id": "person-129",
+        "index": 129,
+        "name": "华歆"
+      },
+      {
+        "id": "person-130",
+        "index": 130,
+        "name": "蒋琬"
+      },
+      {
+        "id": "person-131",
+        "index": 131,
+        "name": "文聘"
+      },
+      {
+        "id": "person-132",
+        "index": 132,
+        "name": "贾诩"
+      },
+      {
+        "id": "person-133",
+        "index": 133,
+        "name": "蒋钦"
+      },
+      {
+        "id": "person-134",
+        "index": 134,
+        "name": "辛毗"
+      },
+      {
+        "id": "person-135",
+        "index": 135,
+        "name": "徐庶"
+      },
+      {
+        "id": "person-136",
+        "index": 136,
+        "name": "雷铜"
+      },
+      {
+        "id": "person-137",
+        "index": 137,
+        "name": "许褚"
+      },
+      {
+        "id": "person-138",
+        "index": 138,
+        "name": "荀彧"
+      },
+      {
+        "id": "person-139",
+        "index": 139,
+        "name": "法正"
+      },
+      {
+        "id": "person-140",
+        "index": 140,
+        "name": "张松"
+      },
+      {
+        "id": "person-141",
+        "index": 141,
+        "name": "孟达"
+      },
+      {
+        "id": "person-142",
+        "index": 142,
+        "name": "李严"
+      },
+      {
+        "id": "person-143",
+        "index": 143,
+        "name": "吴懿"
+      },
+      {
+        "id": "person-144",
+        "index": 144,
+        "name": "黄权"
+      },
+      {
+        "id": "person-145",
+        "index": 145,
+        "name": "杨修"
+      },
+      {
+        "id": "person-146",
+        "index": 146,
+        "name": "伊籍"
+      },
+      {
+        "id": "person-147",
+        "index": 147,
+        "name": "于禁"
+      },
+      {
+        "id": "person-148",
+        "index": 148,
+        "name": "袁尚"
+      },
+      {
+        "id": "person-149",
+        "index": 149,
+        "name": "袁谭"
+      },
+      {
+        "id": "person-150",
+        "index": 150,
+        "name": "袁熙"
+      },
+      {
+        "id": "person-151",
+        "index": 151,
+        "name": "张纮"
+      },
+      {
+        "id": "person-152",
+        "index": 152,
+        "name": "张昭"
+      },
+      {
+        "id": "person-153",
+        "index": 153,
+        "name": "周仓"
+      },
+      {
+        "id": "person-154",
+        "index": 154,
+        "name": "廖化"
+      },
+      {
+        "id": "person-155",
+        "index": 155,
+        "name": "周泰"
+      },
+      {
+        "id": "person-156",
+        "index": 156,
+        "name": "诸葛谨"
+      },
+      {
+        "id": "person-157",
+        "index": 157,
+        "name": "诸葛亮"
+      },
+      {
+        "id": "person-158",
+        "index": 158,
+        "name": "郭图"
+      },
+      {
+        "id": "person-159",
+        "index": 159,
+        "name": "张南"
+      },
+      {
+        "id": "person-160",
+        "index": 160,
+        "name": "朱桓"
+      },
+      {
+        "id": "person-161",
+        "index": 161,
+        "name": "张绣"
+      },
+      {
+        "id": "person-162",
+        "index": 162,
+        "name": "钟繇"
+      },
+      {
+        "id": "person-163",
+        "index": 163,
+        "name": "徐晃"
+      },
+      {
+        "id": "person-164",
+        "index": 164,
+        "name": "凌操"
+      },
+      {
+        "id": "person-165",
+        "index": 165,
+        "name": "张郃"
+      },
+      {
+        "id": "person-166",
+        "index": 166,
+        "name": "赵云"
+      },
+      {
+        "id": "person-167",
+        "index": 167,
+        "name": "臧霸"
+      },
+      {
+        "id": "person-168",
+        "index": 168,
+        "name": "王平"
+      },
+      {
+        "id": "person-169",
+        "index": 169,
+        "name": "魏延"
+      },
+      {
+        "id": "person-170",
+        "index": 170,
+        "name": "王粲"
+      },
+      {
+        "id": "person-171",
+        "index": 171,
+        "name": "鲁肃"
+      },
+      {
+        "id": "person-172",
+        "index": 172,
+        "name": "丁奉"
+      },
+      {
+        "id": "person-173",
+        "index": 173,
+        "name": "王威"
+      },
+      {
+        "id": "person-174",
+        "index": 174,
+        "name": "王修"
+      },
+      {
+        "id": "person-175",
+        "index": 175,
+        "name": "王累"
+      },
+      {
+        "id": "person-176",
+        "index": 176,
+        "name": "简雍"
+      },
+      {
+        "id": "person-177",
+        "index": 177,
+        "name": "向朗"
+      },
+      {
+        "id": "person-178",
+        "index": 178,
+        "name": "阚泽"
+      },
+      {
+        "id": "person-179",
+        "index": 179,
+        "name": "黄忠"
+      },
+      {
+        "id": "person-180",
+        "index": 180,
+        "name": "高览"
+      },
+      {
+        "id": "person-181",
+        "index": 181,
+        "name": "高干"
+      },
+      {
+        "id": "person-182",
+        "index": 182,
+        "name": "王忠"
+      },
+      {
+        "id": "person-183",
+        "index": 183,
+        "name": "管辂"
+      },
+      {
+        "id": "person-184",
+        "index": 184,
+        "name": "华佗"
+      },
+      {
+        "id": "person-185",
+        "index": 185,
+        "name": "通宵虫"
+      },
+      {
+        "id": "person-186",
+        "index": 186,
+        "name": "南方小鬼"
+      },
+      {
+        "id": "person-187",
+        "index": 187,
+        "name": ""
+      },
+      {
+        "id": "person-188",
+        "index": 188,
+        "name": ""
+      },
+      {
+        "id": "person-189",
+        "index": 189,
+        "name": ""
+      },
+      {
+        "id": "person-190",
+        "index": 190,
+        "name": ""
+      },
+      {
+        "id": "person-191",
+        "index": 191,
+        "name": ""
+      },
+      {
+        "id": "person-192",
+        "index": 192,
+        "name": ""
+      },
+      {
+        "id": "person-193",
+        "index": 193,
+        "name": ""
+      },
+      {
+        "id": "person-194",
+        "index": 194,
+        "name": ""
+      },
+      {
+        "id": "person-195",
+        "index": 195,
+        "name": ""
+      },
+      {
+        "id": "person-196",
+        "index": 196,
+        "name": ""
+      },
+      {
+        "id": "person-197",
+        "index": 197,
+        "name": ""
+      },
+      {
+        "id": "person-198",
+        "index": 198,
+        "name": ""
+      },
+      {
+        "id": "person-199",
+        "index": 199,
+        "name": ""
+      }
+    ],
+    "tools": [
+      {
+        "id": "tool-000",
+        "index": 0,
+        "name": "方天画戟"
+      },
+      {
+        "id": "tool-001",
+        "index": 1,
+        "name": "七星刀"
+      },
+      {
+        "id": "tool-002",
+        "index": 2,
+        "name": "青龙刀"
+      },
+      {
+        "id": "tool-003",
+        "index": 3,
+        "name": "丈八矛"
+      },
+      {
+        "id": "tool-004",
+        "index": 4,
+        "name": "双股剑"
+      },
+      {
+        "id": "tool-005",
+        "index": 5,
+        "name": "三尖刀"
+      },
+      {
+        "id": "tool-006",
+        "index": 6,
+        "name": "双铁戟"
+      },
+      {
+        "id": "tool-007",
+        "index": 7,
+        "name": "倚天剑"
+      },
+      {
+        "id": "tool-008",
+        "index": 8,
+        "name": "青虹剑"
+      },
+      {
+        "id": "tool-009",
+        "index": 9,
+        "name": "望月枪"
+      },
+      {
+        "id": "tool-010",
+        "index": 10,
+        "name": "古淀刀"
+      },
+      {
+        "id": "tool-011",
+        "index": 11,
+        "name": "六韬"
+      },
+      {
+        "id": "tool-012",
+        "index": 12,
+        "name": "司马法"
+      },
+      {
+        "id": "tool-013",
+        "index": 13,
+        "name": "孙子兵法"
+      },
+      {
+        "id": "tool-014",
+        "index": 14,
+        "name": "范蠡兵法"
+      },
+      {
+        "id": "tool-015",
+        "index": 15,
+        "name": "墨子"
+      },
+      {
+        "id": "tool-016",
+        "index": 16,
+        "name": "吴子兵法"
+      },
+      {
+        "id": "tool-017",
+        "index": 17,
+        "name": "鬼谷子"
+      },
+      {
+        "id": "tool-018",
+        "index": 18,
+        "name": "孙膑兵法"
+      },
+      {
+        "id": "tool-019",
+        "index": 19,
+        "name": "尉缭子"
+      },
+      {
+        "id": "tool-020",
+        "index": 20,
+        "name": "商君书"
+      },
+      {
+        "id": "tool-021",
+        "index": 21,
+        "name": "三略"
+      },
+      {
+        "id": "tool-022",
+        "index": 22,
+        "name": "赤兔"
+      },
+      {
+        "id": "tool-023",
+        "index": 23,
+        "name": "的卢"
+      },
+      {
+        "id": "tool-024",
+        "index": 24,
+        "name": "绝影"
+      },
+      {
+        "id": "tool-025",
+        "index": 25,
+        "name": "爪黄飞电"
+      },
+      {
+        "id": "tool-026",
+        "index": 26,
+        "name": "王追"
+      },
+      {
+        "id": "tool-027",
+        "index": 27,
+        "name": "惊帆"
+      },
+      {
+        "id": "tool-028",
+        "index": 28,
+        "name": "白鸽"
+      },
+      {
+        "id": "tool-029",
+        "index": 29,
+        "name": "快航"
+      },
+      {
+        "id": "tool-030",
+        "index": 30,
+        "name": "铁骑兵符"
+      },
+      {
+        "id": "tool-031",
+        "index": 31,
+        "name": "太玄兵符"
+      },
+      {
+        "id": "tool-032",
+        "index": 32,
+        "name": "水战兵符"
+      }
+    ],
+    "skills": [
+      {
+        "id": "skill-000",
+        "index": 0,
+        "name": "践踏"
+      },
+      {
+        "id": "skill-001",
+        "index": 1,
+        "name": "冲锋"
+      },
+      {
+        "id": "skill-002",
+        "index": 2,
+        "name": "突击"
+      },
+      {
+        "id": "skill-003",
+        "index": 3,
+        "name": "突袭"
+      },
+      {
+        "id": "skill-004",
+        "index": 4,
+        "name": "火攻"
+      },
+      {
+        "id": "skill-005",
+        "index": 5,
+        "name": "滚木"
+      },
+      {
+        "id": "skill-006",
+        "index": 6,
+        "name": "落石"
+      },
+      {
+        "id": "skill-007",
+        "index": 7,
+        "name": "奋战"
+      },
+      {
+        "id": "skill-008",
+        "index": 8,
+        "name": "飞矢"
+      },
+      {
+        "id": "skill-009",
+        "index": 9,
+        "name": "箭雨"
+      },
+      {
+        "id": "skill-010",
+        "index": 10,
+        "name": "火箭"
+      },
+      {
+        "id": "skill-011",
+        "index": 11,
+        "name": "水淹"
+      },
+      {
+        "id": "skill-012",
+        "index": 12,
+        "name": "撞击"
+      },
+      {
+        "id": "skill-013",
+        "index": 13,
+        "name": "咒封"
+      },
+      {
+        "id": "skill-014",
+        "index": 14,
+        "name": "定身"
+      },
+      {
+        "id": "skill-015",
+        "index": 15,
+        "name": "流言"
+      },
+      {
+        "id": "skill-016",
+        "index": 16,
+        "name": "援兵"
+      },
+      {
+        "id": "skill-017",
+        "index": 17,
+        "name": "烈火"
+      },
+      {
+        "id": "skill-018",
+        "index": 18,
+        "name": "海啸"
+      },
+      {
+        "id": "skill-019",
+        "index": 19,
+        "name": "奇门"
+      },
+      {
+        "id": "skill-020",
+        "index": 20,
+        "name": "遁甲"
+      },
+      {
+        "id": "skill-021",
+        "index": 21,
+        "name": "天变"
+      },
+      {
+        "id": "skill-022",
+        "index": 22,
+        "name": "石阵"
+      },
+      {
+        "id": "skill-023",
+        "index": 23,
+        "name": "陷阱"
+      },
+      {
+        "id": "skill-024",
+        "index": 24,
+        "name": "天籁"
+      },
+      {
+        "id": "skill-025",
+        "index": 25,
+        "name": "潜踪"
+      },
+      {
+        "id": "skill-026",
+        "index": 26,
+        "name": "围攻"
+      },
+      {
+        "id": "skill-027",
+        "index": 27,
+        "name": "急行"
+      },
+      {
+        "id": "skill-028",
+        "index": 28,
+        "name": "援军"
+      },
+      {
+        "id": "skill-029",
+        "index": 29,
+        "name": "谍报"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "id": "tool-000",
+      "index": 0,
+      "name": "方天画戟",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 10,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-001",
+      "index": 1,
+      "name": "七星刀",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 10,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-002",
+      "index": 2,
+      "name": "青龙刀",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 8,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-003",
+      "index": 3,
+      "name": "丈八矛",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 8,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-004",
+      "index": 4,
+      "name": "双股剑",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 4,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-005",
+      "index": 5,
+      "name": "三尖刀",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 3,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-006",
+      "index": 6,
+      "name": "双铁戟",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 2,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-007",
+      "index": 7,
+      "name": "倚天剑",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 10,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-008",
+      "index": 8,
+      "name": "青虹剑",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 8,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-009",
+      "index": 9,
+      "name": "望月枪",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 3,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-010",
+      "index": 10,
+      "name": "古淀刀",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 5,
+        "iq": 0,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-011",
+      "index": 11,
+      "name": "六韬",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 8,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-012",
+      "index": 12,
+      "name": "司马法",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 2,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-013",
+      "index": 13,
+      "name": "孙子兵法",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 10,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-014",
+      "index": 14,
+      "name": "范蠡兵法",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 4,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-015",
+      "index": 15,
+      "name": "墨子",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 3,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-016",
+      "index": 16,
+      "name": "吴子兵法",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 2,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-017",
+      "index": 17,
+      "name": "鬼谷子",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 5,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-018",
+      "index": 18,
+      "name": "孙膑兵法",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 3,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-019",
+      "index": 19,
+      "name": "尉缭子",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 1,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-020",
+      "index": 20,
+      "name": "商君书",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 2,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-021",
+      "index": 21,
+      "name": "三略",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 6,
+        "move": 0,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-022",
+      "index": 22,
+      "name": "赤兔",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 3,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-023",
+      "index": 23,
+      "name": "的卢",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 2,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-024",
+      "index": 24,
+      "name": "绝影",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 2,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-025",
+      "index": 25,
+      "name": "爪黄飞电",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 1,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-026",
+      "index": 26,
+      "name": "王追",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 1,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-027",
+      "index": 27,
+      "name": "惊帆",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 1,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-028",
+      "index": 28,
+      "name": "白鸽",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 1,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-029",
+      "index": 29,
+      "name": "快航",
+      "raw": {
+        "useflag": 0,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 1,
+        "arm": 0
+      }
+    },
+    {
+      "id": "tool-030",
+      "index": 30,
+      "name": "铁骑兵符",
+      "raw": {
+        "useflag": 1,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 0,
+        "arm": 3
+      }
+    },
+    {
+      "id": "tool-031",
+      "index": 31,
+      "name": "太玄兵符",
+      "raw": {
+        "useflag": 1,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 0,
+        "arm": 2
+      }
+    },
+    {
+      "id": "tool-032",
+      "index": 32,
+      "name": "水战兵符",
+      "raw": {
+        "useflag": 1,
+        "changeAttackRange": 0,
+        "at": 0,
+        "iq": 0,
+        "move": 0,
+        "arm": 1
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill-000",
+      "index": 0,
+      "name": "践踏",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 400,
+        "destroy": 0,
+        "useMp": 15,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          0,
+          50,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "earm": [
+          0,
+          100,
+          80,
+          100,
+          0,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-001",
+      "index": 1,
+      "name": "冲锋",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 800,
+        "destroy": 0,
+        "useMp": 20,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "eland": [
+          100,
+          100,
+          0,
+          50,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          80,
+          0
+        ],
+        "earm": [
+          80,
+          100,
+          80,
+          100,
+          80,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-002",
+      "index": 2,
+      "name": "突击",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 1000,
+        "destroy": 0,
+        "useMp": 25,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          0,
+          0,
+          0,
+          0,
+          100,
+          100,
+          100,
+          0
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "earm": [
+          100,
+          100,
+          80,
+          100,
+          80,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-003",
+      "index": 3,
+      "name": "突袭",
+      "raw": {
+        "aim": 0,
+        "state": 1,
+        "power": 1000,
+        "destroy": 0,
+        "useMp": 30,
+        "weather": [
+          80,
+          100,
+          100,
+          100,
+          100
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          100,
+          100,
+          0
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "earm": [
+          80,
+          100,
+          60,
+          100,
+          80,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-004",
+      "index": 4,
+      "name": "火攻",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 400,
+        "destroy": 0,
+        "useMp": 15,
+        "weather": [
+          100,
+          80,
+          100,
+          0,
+          0
+        ],
+        "eland": [
+          60,
+          60,
+          0,
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-005",
+      "index": 5,
+      "name": "滚木",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 800,
+        "destroy": 0,
+        "useMp": 20,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          0,
+          60,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oland": [
+          0,
+          0,
+          100,
+          0,
+          0,
+          100,
+          0,
+          0
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-006",
+      "index": 6,
+      "name": "落石",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 1000,
+        "destroy": 0,
+        "useMp": 25,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          0,
+          60,
+          0,
+          0,
+          0,
+          100
+        ],
+        "oland": [
+          0,
+          0,
+          100,
+          0,
+          0,
+          100,
+          0,
+          0
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-007",
+      "index": 7,
+      "name": "奋战",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 1000,
+        "destroy": 0,
+        "useMp": 30,
+        "weather": [
+          100,
+          100,
+          100,
+          80,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          0,
+          60,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "earm": [
+          100,
+          90,
+          100,
+          100,
+          80,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-008",
+      "index": 8,
+      "name": "飞矢",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 500,
+        "destroy": 0,
+        "useMp": 15,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          80,
+          60,
+          80,
+          80,
+          80,
+          100
+        ],
+        "oland": [
+          80,
+          80,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          100,
+          80,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-009",
+      "index": 9,
+      "name": "箭雨",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 800,
+        "destroy": 0,
+        "useMp": 20,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          80,
+          60,
+          80,
+          80,
+          80,
+          100
+        ],
+        "oland": [
+          80,
+          80,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          100,
+          80,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-010",
+      "index": 10,
+      "name": "火箭",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 0,
+        "destroy": 150,
+        "useMp": 25,
+        "weather": [
+          100,
+          80,
+          100,
+          0,
+          0
+        ],
+        "eland": [
+          0,
+          0,
+          0,
+          0,
+          100,
+          100,
+          100,
+          0
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-011",
+      "index": 11,
+      "name": "水淹",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 800,
+        "destroy": 0,
+        "useMp": 20,
+        "weather": [
+          80,
+          80,
+          80,
+          100,
+          0
+        ],
+        "eland": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          50,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-012",
+      "index": 12,
+      "name": "撞击",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 1000,
+        "destroy": 0,
+        "useMp": 30,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          100
+        ],
+        "oland": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          100
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          80,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-013",
+      "index": 13,
+      "name": "咒封",
+      "raw": {
+        "aim": 0,
+        "state": 2,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 15,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-014",
+      "index": 14,
+      "name": "定身",
+      "raw": {
+        "aim": 0,
+        "state": 3,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 20,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-015",
+      "index": 15,
+      "name": "流言",
+      "raw": {
+        "aim": 0,
+        "state": 1,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 20,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-016",
+      "index": 16,
+      "name": "援兵",
+      "raw": {
+        "aim": 1,
+        "state": 0,
+        "power": 800,
+        "destroy": 0,
+        "useMp": 15,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-017",
+      "index": 17,
+      "name": "烈火",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 1200,
+        "destroy": 0,
+        "useMp": 30,
+        "weather": [
+          100,
+          80,
+          100,
+          0,
+          0
+        ],
+        "eland": [
+          80,
+          80,
+          0,
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-018",
+      "index": 18,
+      "name": "海啸",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 1200,
+        "destroy": 0,
+        "useMp": 30,
+        "weather": [
+          80,
+          80,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          70,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-019",
+      "index": 19,
+      "name": "奇门",
+      "raw": {
+        "aim": 1,
+        "state": 4,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 20,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-020",
+      "index": 20,
+      "name": "遁甲",
+      "raw": {
+        "aim": 1,
+        "state": 5,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 30,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-021",
+      "index": 21,
+      "name": "天变",
+      "raw": {
+        "aim": 1,
+        "state": 0,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 10,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-022",
+      "index": 22,
+      "name": "石阵",
+      "raw": {
+        "aim": 0,
+        "state": 6,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 20,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          80,
+          80,
+          100,
+          100,
+          0,
+          0,
+          0,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-023",
+      "index": 23,
+      "name": "陷阱",
+      "raw": {
+        "aim": 1,
+        "state": 0,
+        "power": 800,
+        "destroy": 0,
+        "useMp": 10,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          0,
+          0,
+          0,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-024",
+      "index": 24,
+      "name": "天籁",
+      "raw": {
+        "aim": 1,
+        "state": 1,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 10,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-025",
+      "index": 25,
+      "name": "潜踪",
+      "raw": {
+        "aim": 1,
+        "state": 7,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 10,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-026",
+      "index": 26,
+      "name": "围攻",
+      "raw": {
+        "aim": 0,
+        "state": 0,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 30,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-027",
+      "index": 27,
+      "name": "急行",
+      "raw": {
+        "aim": 1,
+        "state": 0,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 10,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80
+        ]
+      }
+    },
+    {
+      "id": "skill-028",
+      "index": 28,
+      "name": "援军",
+      "raw": {
+        "aim": 1,
+        "state": 0,
+        "power": 1800,
+        "destroy": 0,
+        "useMp": 30,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          0
+        ],
+        "eland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    },
+    {
+      "id": "skill-029",
+      "index": 29,
+      "name": "谍报",
+      "raw": {
+        "aim": 1,
+        "state": 0,
+        "power": 0,
+        "destroy": 0,
+        "useMp": 10,
+        "weather": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "eland": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "oland": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "earm": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ]
+}
