@@ -72,7 +72,7 @@ MainGameSession.EndMonth
 
 `Main.cs` 在每次 `Refresh()` 开头只调用一次 `session.GetView()`，保存到 `currentView`。地图、城市列表、人物列表、详情和报告使用同一份不可变快照。
 
-选中城市、武将和主题仍是 UI 状态，不写入 World。当前尚未拆分 Godot 场景；原始 main DTO/Mapper/Validator 也留到下一批，避免扩大本轮变更。
+选中城市、武将和主题仍是 UI 状态，不写入 World。后续 Main-R2 已完成原始 DTO/Mapper/Validator 和战略面板拆分，见 `16-main-r2-structure.md`。
 
 ## 6. 验证
 
@@ -84,7 +84,6 @@ MainGameSession.EndMonth
 
 ## 7. 后续结构工作
 
-1. 将 `MainContentLoader` 的 Raw DTO、Mapper、Validator 分离。
-2. 将 Godot `Main.cs` 拆成选局、战略控制器和独立面板。
-3. 新系统优先放入对应命令/月度/AI 组件，不重新集中到 Session。
-4. 只有确有 MOD 需求时才外置更多规则参数，不提前引入脚本公式系统。
+1. 新系统优先放入对应命令/月度/AI 组件，不重新集中到 Session。
+2. 只有确有 MOD 需求时才外置更多规则参数，不提前引入脚本公式系统。
+3. Raw DTO 与战略面板的后续拆分已在 Main-R2 完成，下一阶段直接进入 M2B 功能开发。

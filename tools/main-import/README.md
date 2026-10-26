@@ -1,5 +1,7 @@
 # Main 内容导入与 golden 导出
 
+> 2026-10-26 诊断发现：当前导入器将生产 `g_GoodsQueue` 的 U8 反射视图当成 U16 队列读取，四时期 60 条城市记录受影响。现有 55 项检查能够重现旧输出，但不能证明道具队列正确。修复尚未实施，详见 `docs/20-setgoods-diagnosis-result.md`。
+
 本工具只用于离线内容导入。WASM 仅在运行导入器时由 Node.js 加载；生成的 JSON 不依赖 WASM，也不要求生产 Godot 引入 JavaScript 或 WASM 运行时。
 
 ## 环境与命令
@@ -32,9 +34,9 @@ node tools/main-import/import.mjs \
 ## 输出文件
 
 - `content/main/content.json`：稳定 ID 映射、33 个道具和 30 个技能的完整反射字段。
-- `content/main/scenarios.json`：4 个时期，每期 38 城、200 条人物记录、33 个道具状态、30 个技能及 200 个 `g_OrderQueue` 原始槽位。
+- `content/main/scenarios.json`：4 个时期，每期 38 城、200 条人物记录、200 条人物 SearchCondition、33 个道具状态、33 条道具 SearchCondition、30 个技能及 200 个 `g_OrderQueue` 原始槽位。
 - `content/main/golden-liubei-190.json`：190 年 1 月平原、刘备及城内 5 人的完整初始记录，以及 3 人实际装备的道具定义。
-- `content/main/import-summary.json`：数量、时期日期、城内引用数量、超过 100 的属性统计、golden 基准、校验结果、文件哈希和限制。
+- `content/main/import-summary.json`：数量、时期日期、城内引用和高位/重复项统计、超过 100 的属性统计、golden 基准、校验结果、文件哈希和限制。
 
 `scenarios.json` 每条城市、人物、道具和技能记录都包含：
 
@@ -43,9 +45,11 @@ node tools/main-import/import.mjs \
 - `name`：从引擎名称接口实际解码的 GBK 名称。
 - `raw`：未经截断或规则改写的反射字段。
 
-城市的 `raw` 包含 `State/Belong/SatrapId/FarmingLimit/Farming/CommerceLimit/Commerce/PeopleDevotion/AvoidCalamity/PopulationLimit/Population/Money/Food/MothballArms/PersonQueue/Persons/ToolQueue/Tools`，另有规范化 `ownerPersonId/satrapPersonId/personIds/toolIds`。
+城市的 `raw` 包含 `State/Belong/SatrapId/FarmingLimit/Farming/CommerceLimit/Commerce/PeopleDevotion/AvoidCalamity/PopulationLimit/Population/Money/Food/MothballArms/PersonQueue/Persons/ToolQueue/Tools`，另有规范化 `ownerPersonId/satrapPersonId/personIds/toolIds/toolEntries`。道具队列按 `base + queueIndex × 2` 的 U16LE 读取，每次使用当前 HEAP 视图并检查地址边界；`toolEntries` 保留原始顺序和重复项，每项包含 `toolId`（`raw & 0x7fff` 后映射）与 `discovered`（`(raw & 0x8000) != 0`）；`toolIds` 保留用于兼容。
 
 人物的 `raw` 包含 `OldBelong/Belong/Level/Force/IQ/Devotion/Character/Experience/Thew/ArmsType/Arms/Tool1/Tool2/Equip/Age`，另有规范化 `oldOwnerPersonId/ownerPersonId/tool1Id/tool2Id`。`Equip` 保留原始二元数组，不额外猜测其语义。原始一基引用仍保留在 `raw` 中；`0` 和 `0xff` 在规范化引用中表示为 `null`。
+
+每期 `personSearchConditions` 和 `toolSearchConditions` 分别直接解析资源 63 和 67 的对应时期块。每条包含原始零基 `index`、`birth`（U8）、`bole`（U16LE）和 `city`（U8）；`city` 保留原值，`fixCityOffset=0`。资源目录、14 字节资源头和固定块长用于定位全部四期，不写死各期地址。
 
 `g_OrderQueue` 全量保留 `OrderId/Person/City/Object/Arms/Food/Money/Consume/TimeCount`，不读取 `demos.js` 推断空槽位或指令规则。人物末尾的未使用空槽也保留，以确保每期确有 200 条原始记录；有效人物必须有名称。
 
@@ -58,9 +62,20 @@ node tools/main-import/import.mjs \
 - 城内顺序为刘备、关羽、张飞、吴懿、丁奉。
 - 刘备武力 `85`，关羽 `106`，张飞 `107`；道具分别为双股剑、青龙刀、丈八矛。
 
-导入时检查时期/城市/人物/道具/技能数量、ID 与索引映射、人物和道具引用范围、队列边界、有效记录名称、U8 属性范围、城市身份稳定性，以及上述 golden 数值和道具。摘要另列每期 `Force/IQ/Devotion/Thew/Arms` 大于 100 的数量，避免把高属性静默截为 100。
+导入时检查时期/城市/人物/道具/技能和两类 SearchCondition 数量、ID 与索引映射、人物和道具引用范围、队列边界、有效记录名称、U8 属性范围、城市身份稳定性，以及上述 golden 数值和道具。另校验吴懿/丁奉的 `bole=0`，并逐期对照原始道具队列检查顺序、重复项和高位发现标记。摘要另列每期 `Force/IQ/Devotion/Thew/Arms` 大于 100 的数量，避免把高属性静默截为 100。
 
 ## 未导出的内容
 
 - 单独调用时期加载不会触发地图绘制，因此当前没有可靠的地图矩阵或逐城坐标可导出。`g_CityPos` 只是当前坐标，不冒充 38 城坐标表。
 - 本工具不驱动 UI。关羽开垦（ID 1、费用 50）的接受、取消和月末状态未可靠捕获，golden 中明确标为 `not-captured`，没有手工构造这些状态。
+
+## 道具发现位诊断
+
+```bash
+node tools/main-import/diagnose-setgoods.mjs
+# 可选：--reference <参考目录> --output <证据 JSON 文件>
+```
+
+使用未经修改的生产 JS、bridge、WASM 和库，运行 A/B 两个场景的玩家/非玩家与 Inspector 断点对照，共六次。通过现有阶段 hook 注入受控命令，虚拟定时器按到期顺序推进；不是 UI 接受命令 golden。检查真实写入、命令清槽、人物归队和月度后状态，并审计四时期道具队列。
+
+诊断断点偏移绑定指定 WASM SHA-256，产物不同会拒绝运行，避免使用过期地址。证据写入 `docs/evidence/setgoods-diagnosis.json`；可输出到临时文件与入库证据逐字节比较。本工具不覆盖正式导入内容或旧 golden。

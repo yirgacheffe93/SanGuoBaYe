@@ -18,6 +18,22 @@ public sealed class MainPeriod
     public List<string> RulerIds { get; set; } = [];
     public List<MainCity> Cities { get; set; } = [];
     public List<MainPerson> Persons { get; set; } = [];
+    public List<MainSearchCondition> PersonConditions { get; set; } = [];
+    public List<MainSearchCondition> ToolConditions { get; set; } = [];
+}
+
+public sealed class MainSearchCondition
+{
+    public int SourceIndex { get; set; }
+    public int Birth { get; set; }
+    public int Bole { get; set; }
+    public int CityIndex { get; set; }
+}
+
+public sealed class MainCityToolEntry
+{
+    public string ToolId { get; set; } = "";
+    public bool Discovered { get; set; }
 }
 
 public sealed class MainCity
@@ -43,6 +59,7 @@ public sealed class MainCity
     public int MothballArms { get; set; }
     public List<string> PersonIds { get; set; } = [];
     public List<string> ToolIds { get; set; } = [];
+    public List<MainCityToolEntry> ToolEntries { get; set; } = [];
     public List<string> Connections { get; set; } = [];
 }
 
@@ -115,7 +132,7 @@ public sealed class MainOrder
 
 public sealed class MainWorld
 {
-    public int SchemaVersion { get; set; } = 3;
+    public int SchemaVersion { get; set; } = 4;
     public string ContentVersion { get; set; } = "main-sgby-1";
     public string ContentHash { get; set; } = "";
     public string RngAlgorithmVersion { get; set; } = "main-compatible-1";

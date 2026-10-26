@@ -1,0 +1,53 @@
+{
+  "kind": "main-m2b-golden",
+  "source": "生产 baye.wasm 实际流程与同源 C 行为分析，main@eba4a77",
+  "monthly": [
+    {
+      "month": 3,
+      "beforeRngState": 4122348881,
+      "afterRngState": 2604806732,
+      "money": 515,
+      "food": 222,
+      "population": 32325,
+      "avoidCalamity": 61
+    },
+    {
+      "month": 6,
+      "beforeRngState": 2848809862,
+      "afterRngState": 2100362283,
+      "money": 937,
+      "food": 438,
+      "population": 32475,
+      "avoidCalamity": 58,
+      "note": "收获和税收先于粮耗；整局 RNG 依赖 main AI 状态"
+    },
+    {
+      "month": 10,
+      "beforeRngState": 91356638,
+      "afterRngState": 3741420731,
+      "money": 1359,
+      "food": 648,
+      "population": 32675,
+      "avoidCalamity": 54
+    }
+  ],
+  "search": [
+    { "state": 5, "case": "none", "finalRngState": 1222621274 },
+    { "state": 10, "case": "specialFailure", "finalRngState": 1849040536 },
+    { "state": 2, "case": "food", "gain": 119, "finalRngState": 1495354192 },
+    { "state": 1, "case": "personJoin", "personId": "person-172", "devotion": 91, "finalRngState": 2516284547 },
+    { "state": 38, "case": "personJoin", "personId": "person-143", "devotion": 81, "finalRngState": 886320000 },
+    { "state": 34, "case": "personReject", "personId": "person-172", "devotion": 0, "finalRngState": 1494626063 },
+    { "state": 43, "case": "toolDiscovered", "cityId": "city-001", "personId": "person-016", "toolId": "tool-031", "finalRngState": 1008917062, "queueDiscovered": true, "rawU16": 32799, "stage": "S4" }
+  ],
+  "moneySearchReference": {
+    "state": 3105560752,
+    "gain": 113,
+    "note": "既有 M2A golden 保持不变"
+  },
+  "unresolved": [
+    "伯乐直接加入和特殊道具分支",
+    "年度人物/道具出现",
+    "完整 ComputerTactic"
+  ]
+}

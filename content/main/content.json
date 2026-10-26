@@ -18,6 +18,8 @@
     "city": "index 为原始零基数组索引；id 为 city-000..city-037。",
     "person": "index 为原始零基数组索引；Belong/OldBelong/SatrapId 保留原始一基值，0 与 0xff 的规范化为 null。",
     "tool": "index 为原始零基数组索引；Tool1/Tool2 保留原始一基值，0 与 0xff 的规范化为 null。",
+    "searchCondition": "index 为资源内原始零基索引；birth/city 为 U8，bole 为 U16LE；city 保留原值且 fixCityOffset=0。",
+    "toolQueue": "保留原始顺序与重复项；toolId 使用 raw & 0x7fff 的零基索引，discovered 为 (raw & 0x8000) != 0。",
     "orderQueue": "保留全部原始槽位及原始字段，不推断空槽位或字段规则。"
   },
   "kind": "main-content",

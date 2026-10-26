@@ -4,14 +4,33 @@ namespace Game.Application;
 
 public static class MainMonthService
 {
-    public static void Update(MainWorld world)
+    public static IReadOnlyList<string> Update(MainWorld world)
     {
+        var messages = new List<string>();
         world.Month++;
         if (world.Month > 12)
         {
             world.Month = 1;
             world.Year++;
+            foreach (var person in world.Persons) person.Age = Math.Min(255, person.Age + 1);
+            messages.Add($"进入 {world.Year} 年，人物年龄增长。");
         }
+        if (world.Month is 6 or 10)
+            foreach (var city in world.Cities)
+                if (city.Food < 30000)
+                {
+                    var gain = city.Farming / 4;
+                    city.Food += gain;
+                    if (gain > 0) messages.Add($"{city.Name}收获粮 +{gain}。");
+                }
+        if (world.Month % 3 == 0)
+            foreach (var city in world.Cities)
+                if (city.Money < 30000)
+                {
+                    var gain = city.Commerce / 2;
+                    city.Money += gain;
+                    if (gain > 0) messages.Add($"{city.Name}税收金 +{gain}。");
+                }
         foreach (var person in world.Persons) person.Thew = Math.Min(100, person.Thew + 4);
         foreach (var city in world.Cities.OrderBy(city => city.SourceIndex))
         {
@@ -44,6 +63,9 @@ public static class MainMonthService
             }
         }
         ApplyRandomEvents(world);
+        var turn = world.Year * 12 + world.Month;
+        foreach (var message in messages) world.Reports.Add(new ReportEntry { Turn = turn, Message = message });
+        return messages;
     }
 
     private static void ApplyRandomEvents(MainWorld world)

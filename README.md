@@ -4,9 +4,9 @@
 
 ## 状态
 
-**Main-M2A 与 Main-R1 结构重构已完成。**
+**Main-M2B 与 SetGoods 修复已完成。**
 
-全部时期和真实君主可进入，支持五项内政、月度归队、AI 行动和 schema 3 存读档。静态内容与可变状态已分离，命令/公式/AI/队列/月度/ViewModel 已拆分。44 项测试、导入器 33 项检查及独立 macOS 应用冒烟通过。玩法验收见 `docs/14-main-m2a.md`，结构说明见 `docs/15-main-architecture-refactor.md`。
+全部时期和真实君主可进入，支持五项内政、完整月度、人物/道具搜寻、AI 行动和 schema 4 存读档。62 项测试、导入器 56 项检查及独立 macOS 应用冒烟通过。SetGoods 根因、导入和防重复发现已验收，见 `docs/17-main-m2b.md` 与 `docs/20-setgoods-diagnosis-result.md`；年度出现和完整 M2/M3 尚未完成。
 
 现有 Godot 分层工程、双主题地图、规则测试、快照存档和 macOS 导出链继续复用。R0 的虚构内容与自动战斗仅保留为历史技术验证，不再限制 main 的属性范围和战术战斗目标。
 
@@ -44,6 +44,9 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 | [docs/13-main-m1.md](docs/13-main-m1.md) | Main-M1 内容导入与首个切片 |
 | [docs/14-main-m2a.md](docs/14-main-m2a.md) | Main-M2A 四时期、五项内政 golden 与验收 |
 | [docs/15-main-architecture-refactor.md](docs/15-main-architecture-refactor.md) | Main-R1 内容/状态、规则流程与存档结构 |
+| [docs/16-main-r2-structure.md](docs/16-main-r2-structure.md) | Main-R2 加载层与战略 UI 组件 |
+| [docs/17-main-m2b.md](docs/17-main-m2b.md) | Main-M2B 完整月度、搜寻与 SetGoods 修复 |
+| [docs/20-setgoods-diagnosis-result.md](docs/20-setgoods-diagnosis-result.md) | U8/U16 诊断证据与修复验收 |
 | [docs/provenance.md](docs/provenance.md) | 实际内容与资产来源记录 |
 
 ## 构建与验证
@@ -51,7 +54,7 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 本地工具链位于 `.tools/`（不入库）。macOS 上执行：
 
 ```bash
-scripts/verify.sh        # 导入校验、44 项测试、R0 回归、Main-M2A UI 冒烟
+scripts/verify.sh        # 导入校验、62 项测试、R0 回归、Main-M2B UI 冒烟
 scripts/export-macos.sh # 导出并运行独立 macOS 应用冒烟
 scripts/capture-ui.sh   # 重新生成深色、浅色和对比样片
 ```
@@ -60,7 +63,7 @@ Godot 编辑器打开根目录 `project.godot`。main 内容导入命令见 `too
 
 ## 下一步
 
-继续 Main-M2：补齐搜寻其他分支、月度收入、人员/道具/物资、对敌策略、军备和完整 AI，再进入 M3 的出征与独立战术战斗。
+进入 Main-M2C：移动/输送、赏赐/没收/交易/宴请、招降/处斩/流放、征兵/分配/掠夺等人员与军备命令，并继续年度人物/道具出现的生产验证。
 
 ## 注意
 

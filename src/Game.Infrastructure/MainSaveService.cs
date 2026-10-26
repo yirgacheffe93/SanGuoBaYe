@@ -10,7 +10,7 @@ public sealed class MainSaveException(string message) : Exception(message);
 
 public static class MainSaveService
 {
-    private const int CurrentSchema = 3;
+    private const int CurrentSchema = 4;
     private static readonly JsonSerializerOptions Compact = new();
     private static readonly JsonSerializerOptions Indented = new() { WriteIndented = true };
 

@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import vm from 'node:vm';
 
@@ -97,7 +97,70 @@ function toolReference(rawId) {
   return rawId === 0 || rawId === 0xff ? null : entityId('tool', rawId - 1);
 }
 
-async function loadEngine(referenceDir) {
+function readGoodsQueueU16(context, queueIndex) {
+  const queue = context.baye.data.g_GoodsQueue;
+  const address = queue._addr + queueIndex * 2;
+  const heap = context.Module.HEAPU8;
+  if (!Number.isInteger(queueIndex) || queueIndex < 0 || address + 2 > heap.length) {
+    throw new Error(`道具队列地址越界: index=${queueIndex}, address=${address}`);
+  }
+  return new DataView(heap.buffer).getUint16(address, true);
+}
+
+function loadResource(library, resourceId) {
+  const headerBytes = 14;
+  const directoryOffset = (resourceId - 1) * 4;
+  if (!Number.isInteger(resourceId) || resourceId < 1 || directoryOffset + 4 > library.length) {
+    throw new Error(`资源编号越界: ${resourceId}`);
+  }
+  const address = library.readUInt32LE(directoryOffset);
+  if (address + headerBytes > library.length) throw new Error(`资源头越界: ${resourceId}`);
+  const bytes = library.readUInt32LE(address);
+  const actualResourceId = library.readUInt16LE(address + 4);
+  const recordBytes = library.readUInt16LE(address + 6);
+  const itemBytes = library.readUInt32LE(address + 8);
+  if (actualResourceId !== resourceId) {
+    throw new Error(`资源编号不一致: 目录 ${resourceId}，资源头 ${actualResourceId}`);
+  }
+  if (bytes < headerBytes || address + bytes > library.length || itemBytes === 0) {
+    throw new Error(`资源长度无效: ${resourceId}`);
+  }
+  const payloadBytes = bytes - headerBytes;
+  if (payloadBytes % itemBytes !== 0) throw new Error(`资源时期块不对齐: ${resourceId}`);
+  return {
+    resourceId,
+    address,
+    recordBytes,
+    itemBytes,
+    itemCount: payloadBytes / itemBytes,
+    item(period) {
+      if (!Number.isInteger(period) || period < 1 || period > this.itemCount) {
+        throw new Error(`资源 ${resourceId} 时期越界: ${period}`);
+      }
+      const start = address + headerBytes + (period - 1) * itemBytes;
+      return library.subarray(start, start + itemBytes);
+    },
+  };
+}
+
+function readSearchConditions(library, resourceId, period, expectedCount) {
+  const resource = loadResource(library, resourceId);
+  if (resource.recordBytes !== 4 || resource.itemBytes !== expectedCount * 4) {
+    throw new Error(`SearchCondition 资源布局无效: ${JSON.stringify(resource)}`);
+  }
+  const data = resource.item(period);
+  return Array.from({ length: expectedCount }, (_, index) => {
+    const offset = index * 4;
+    return {
+      index,
+      birth: data.readUInt8(offset),
+      bole: data.readUInt16LE(offset + 1),
+      city: data.readUInt8(offset + 3),
+    };
+  });
+}
+
+export async function loadEngine(referenceDir, { timers, restoreNativePromise = false } = {}) {
   const jsDir = path.join(referenceDir, 'js');
   const libraryPath = path.join(referenceDir, 'libs/SGBY.lib');
   for (const requiredPath of [
@@ -132,10 +195,10 @@ async function loadEngine(referenceDir) {
     Uint32Array,
     Float32Array,
     Float64Array,
-    setTimeout: () => 0,
-    clearTimeout: () => {},
-    setInterval: () => 0,
-    clearInterval: () => {},
+    setTimeout: timers?.setTimeout ?? (() => 0),
+    clearTimeout: timers?.clearTimeout ?? (() => {}),
+    setInterval: timers?.setInterval ?? (() => 0),
+    clearInterval: timers?.clearInterval ?? (() => {}),
     __dirname: jsDir,
     module: { exports: {} },
     exports: {},
@@ -145,6 +208,7 @@ async function loadEngine(referenceDir) {
   };
   context.window = context;
   context.global = context;
+  if (timers?.Date) context.Date = timers.Date;
   vm.createContext(context);
 
   let mapCapture = null;
@@ -157,6 +221,8 @@ async function loadEngine(referenceDir) {
           vm.runInContext(bridge, context, { filename: 'bridge.js' });
           context._bayeSetLcdSize(160, 96);
           context.baye_bridge_init();
+          // The legacy bridge replaces Promise; Asyncify.whenDone needs native Promise.
+          if (restoreNativePromise) context.Promise = Promise;
           context.baye.drawMap = (width, height, matrix) => {
             mapCapture = {
               available: true,
@@ -221,7 +287,7 @@ async function loadEngine(referenceDir) {
   };
 }
 
-function extractPeriod(context, period, takeMap) {
+function extractPeriod(context, library, period, takeMap) {
   context._bayeLoadPeriod(period);
   const actualPeriod = context._bayeGetCurrentPeriod();
   if (actualPeriod !== period) {
@@ -238,11 +304,14 @@ function extractPeriod(context, period, takeMap) {
       const personIndex = data.g_PersonsQueue[raw.PersonQueue + offset];
       return entityId('person', personIndex);
     });
-    const toolIds = Array.from({ length: raw.Tools }, (_, offset) => {
-      const toolIndex = data.g_GoodsQueue[raw.ToolQueue + offset];
-      return entityId('tool', toolIndex);
-    });
-    return {
+    const rawToolQueue = Array.from({ length: raw.Tools }, (_, offset) => (
+      readGoodsQueueU16(context, raw.ToolQueue + offset)
+    ));
+    const toolEntries = rawToolQueue.map((rawTool) => ({
+      toolId: entityId('tool', rawTool & 0x7fff),
+      discovered: (rawTool & 0x8000) !== 0,
+    }));
+    const city = {
       id: entityId('city', index),
       index,
       name: context.baye.getCityName(index),
@@ -250,8 +319,11 @@ function extractPeriod(context, period, takeMap) {
       ownerPersonId: personReference(raw.Belong),
       satrapPersonId: personReference(raw.SatrapId),
       personIds,
-      toolIds,
+      toolIds: toolEntries.map((entry) => entry.toolId),
+      toolEntries,
     };
+    Object.defineProperty(city, '_rawToolQueue', { value: rawToolQueue });
+    return city;
   });
 
   const persons = Array.from({ length: personCount }, (_, index) => {
@@ -293,7 +365,9 @@ function extractPeriod(context, period, takeMap) {
     map: takeMap(),
     cities,
     persons,
+    personSearchConditions: readSearchConditions(library, 63, period, personCount),
     tools,
+    toolSearchConditions: readSearchConditions(library, 67, period, tools.length),
     skills,
     orderQueue,
   };
@@ -308,13 +382,18 @@ function validateAndSummarize(content, scenarios, golden, checks) {
   check(scenarios.periods.length === 4, 'period-count', { actual: scenarios.periods.length, expected: 4 });
   check(content.tools.length === 33, 'tool-count', { actual: content.tools.length, expected: 33 });
   check(content.skills.length === 30, 'skill-count', { actual: content.skills.length, expected: 30 });
+  const highBitProbe = new DataView(new Uint8Array([0x1f, 0x80]).buffer).getUint16(0, true);
+  check(highBitProbe === 0x801f && (highBitProbe & 0x7fff) === 31 && (highBitProbe & 0x8000) !== 0,
+    'u16le-high-bit-decoding', { value: highBitProbe });
 
   const referenceErrors = [];
   const periodSummaries = [];
   for (const period of scenarios.periods) {
     check(period.cities.length === 38, `period-${period.period}-city-count`, { actual: period.cities.length, expected: 38 });
     check(period.persons.length === 200, `period-${period.period}-person-count`, { actual: period.persons.length, expected: 200 });
+    check(period.personSearchConditions.length === 200, `period-${period.period}-person-search-condition-count`, { actual: period.personSearchConditions.length, expected: 200 });
     check(period.tools.length === 33, `period-${period.period}-tool-count`, { actual: period.tools.length, expected: 33 });
+    check(period.toolSearchConditions.length === 33, `period-${period.period}-tool-search-condition-count`, { actual: period.toolSearchConditions.length, expected: 33 });
     check(period.skills.length === 30, `period-${period.period}-skill-count`, { actual: period.skills.length, expected: 30 });
 
     for (const [kind, records] of Object.entries({
@@ -331,6 +410,21 @@ function validateAndSummarize(content, scenarios, golden, checks) {
           referenceErrors.push(`${period.id}/${record.id}: unstable index mapping`);
         }
       }
+    }
+    for (const [kind, conditions] of Object.entries({
+      person: period.personSearchConditions,
+      tool: period.toolSearchConditions,
+    })) {
+      conditions.forEach((condition, index) => {
+        if (condition.index !== index) {
+          referenceErrors.push(`${period.id}/${kind}SearchConditions[${index}]: unstable index`);
+        }
+        for (const [field, maximum] of [['birth', 0xff], ['bole', 0xffff], ['city', 0xff]]) {
+          if (!Number.isInteger(condition[field]) || condition[field] < 0 || condition[field] > maximum) {
+            referenceErrors.push(`${period.id}/${kind}SearchConditions[${index}].${field}: invalid integer`);
+          }
+        }
+      });
     }
 
     for (const city of period.cities) {
@@ -354,6 +448,41 @@ function validateAndSummarize(content, scenarios, golden, checks) {
         if (index >= period.tools.length) referenceErrors.push(`${period.id}/${city.id}: ${id}`);
       }
     }
+
+    const rawToolQueue = period.cities.flatMap((city) => city._rawToolQueue);
+    const actualToolIds = period.cities.flatMap((city) => (
+      city.toolEntries.map((entry) => entry.toolId)
+    ));
+    const compatibleToolIds = period.cities.flatMap((city) => city.toolIds);
+    const expectedToolIds = rawToolQueue.map((rawTool) => entityId('tool', rawTool & 0x7fff));
+    check(
+      JSON.stringify(actualToolIds) === JSON.stringify(expectedToolIds)
+        && JSON.stringify(compatibleToolIds) === JSON.stringify(actualToolIds),
+      `period-${period.period}-tool-queue-order`,
+      { entries: actualToolIds.length },
+    );
+    const duplicateCount = (values) => values.length - new Set(values).size;
+    const actualDuplicateEntries = period.cities.reduce((sum, city) => (
+      sum + duplicateCount(city.toolEntries.map((entry) => entry.toolId))
+    ), 0);
+    const expectedDuplicateEntries = period.cities.reduce((sum, city) => (
+      sum + duplicateCount(city._rawToolQueue.map((rawTool) => rawTool & 0x7fff))
+    ), 0);
+    check(
+      actualDuplicateEntries === expectedDuplicateEntries
+        && actualToolIds.length === rawToolQueue.length,
+      `period-${period.period}-tool-queue-duplicates`,
+      { actual: actualDuplicateEntries, expected: expectedDuplicateEntries },
+    );
+    const actualDiscovered = period.cities.flatMap((city) => (
+      city.toolEntries.map((entry) => entry.discovered)
+    ));
+    const expectedDiscovered = rawToolQueue.map((rawTool) => (rawTool & 0x8000) !== 0);
+    check(
+      JSON.stringify(actualDiscovered) === JSON.stringify(expectedDiscovered),
+      `period-${period.period}-tool-queue-high-bit`,
+      { discovered: actualDiscovered.filter(Boolean).length },
+    );
 
     for (const person of period.persons) {
       for (const [field, rawId] of [['OldBelong', person.raw.OldBelong], ['Belong', person.raw.Belong]]) {
@@ -383,11 +512,15 @@ function validateAndSummarize(content, scenarios, golden, checks) {
       date: period.date,
       cities: period.cities.length,
       persons: period.persons.length,
+      personSearchConditions: period.personSearchConditions.length,
       tools: period.tools.length,
+      toolSearchConditions: period.toolSearchConditions.length,
       skills: period.skills.length,
       orderSlots: period.orderQueue.length,
       peopleInCities: period.cities.reduce((sum, city) => sum + city.personIds.length, 0),
       toolsInCities: period.cities.reduce((sum, city) => sum + city.toolIds.length, 0),
+      discoveredToolsInCities: actualDiscovered.filter(Boolean).length,
+      duplicateToolQueueEntries: actualDuplicateEntries,
       attributeValuesOver100: over100,
       maxForce: Math.max(...period.persons.map((person) => person.raw.Force)),
       maxIQ: Math.max(...period.persons.map((person) => person.raw.IQ)),
@@ -439,13 +572,22 @@ function validateAndSummarize(content, scenarios, golden, checks) {
       expected: toolName,
     });
   }
+  for (const name of ['吴懿', '丁奉']) {
+    const person = golden.people.find((candidate) => candidate.name === name);
+    const condition = first.personSearchConditions[person.index];
+    check(condition?.bole === 0, `golden-search-condition-${name}-bole`, {
+      index: person.index,
+      actual: condition?.bole,
+      expected: 0,
+    });
+  }
 
   return periodSummaries;
 }
 
 function buildOutputs(engine) {
   const periods = [1, 2, 3, 4].map((period) => (
-    extractPeriod(engine.context, period, engine.takeMap)
+    extractPeriod(engine.context, engine.library, period, engine.takeMap)
   ));
   const first = periods[0];
   const source = { ...engine.source };
@@ -457,6 +599,8 @@ function buildOutputs(engine) {
       city: 'index 为原始零基数组索引；id 为 city-000..city-037。',
       person: 'index 为原始零基数组索引；Belong/OldBelong/SatrapId 保留原始一基值，0 与 0xff 的规范化为 null。',
       tool: 'index 为原始零基数组索引；Tool1/Tool2 保留原始一基值，0 与 0xff 的规范化为 null。',
+      searchCondition: 'index 为资源内原始零基索引；birth/city 为 U8，bole 为 U16LE；city 保留原值且 fixCityOffset=0。',
+      toolQueue: '保留原始顺序与重复项；toolId 使用 raw & 0x7fff 的零基索引，discovered 为 (raw & 0x8000) != 0。',
       orderQueue: '保留全部原始槽位及原始字段，不推断空槽位或字段规则。',
     },
   };
@@ -519,6 +663,10 @@ function buildOutputs(engine) {
       personsPerPeriod: 200,
       cityRecords: periods.reduce((sum, period) => sum + period.cities.length, 0),
       personRecords: periods.reduce((sum, period) => sum + period.persons.length, 0),
+      personSearchConditionsPerPeriod: first.personSearchConditions.length,
+      personSearchConditionRecords: periods.reduce((sum, period) => sum + period.personSearchConditions.length, 0),
+      toolSearchConditionsPerPeriod: first.toolSearchConditions.length,
+      toolSearchConditionRecords: periods.reduce((sum, period) => sum + period.toolSearchConditions.length, 0),
       tools: content.tools.length,
       skills: content.skills.length,
       orderSlotsPerPeriod: first.orderQueue.length,
@@ -575,7 +723,9 @@ async function main() {
   console.log(JSON.stringify({ counts: summary.counts, checks: summary.checks.length }, null, 2));
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

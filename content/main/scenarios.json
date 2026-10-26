@@ -18,6 +18,8 @@
     "city": "index 为原始零基数组索引；id 为 city-000..city-037。",
     "person": "index 为原始零基数组索引；Belong/OldBelong/SatrapId 保留原始一基值，0 与 0xff 的规范化为 null。",
     "tool": "index 为原始零基数组索引；Tool1/Tool2 保留原始一基值，0 与 0xff 的规范化为 null。",
+    "searchCondition": "index 为资源内原始零基索引；birth/city 为 U8，bole 为 U16LE；city 保留原值且 fixCityOffset=0。",
+    "toolQueue": "保留原始顺序与重复项；toolId 使用 raw & 0x7fff 的零基索引，discovered 为 (raw & 0x8000) != 0。",
     "orderQueue": "保留全部原始槽位及原始字段，不推断空槽位或字段规则。"
   },
   "kind": "main-scenarios",
@@ -65,7 +67,8 @@
             "person-057",
             "person-161"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-001",
@@ -103,6 +106,12 @@
           ],
           "toolIds": [
             "tool-031"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-031",
+              "discovered": false
+            }
           ]
         },
         {
@@ -137,7 +146,13 @@
             "person-104"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-032"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-032",
+              "discovered": false
+            }
           ]
         },
         {
@@ -173,7 +188,8 @@
             "person-158",
             "person-175"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-004",
@@ -208,7 +224,13 @@
             "person-080"
           ],
           "toolIds": [
-            "tool-032"
+            "tool-017"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-017",
+              "discovered": false
+            }
           ]
         },
         {
@@ -244,7 +266,8 @@
             "person-143",
             "person-172"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-006",
@@ -287,7 +310,8 @@
             "person-163",
             "person-164"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-007",
@@ -320,7 +344,8 @@
             "person-073",
             "person-074"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-008",
@@ -358,7 +383,8 @@
             "person-065",
             "person-066"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-009",
@@ -394,7 +420,13 @@
             "person-154"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-030"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-030",
+              "discovered": false
+            }
           ]
         },
         {
@@ -429,7 +461,8 @@
             "person-025",
             "person-026"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-011",
@@ -468,7 +501,8 @@
             "person-138",
             "person-183"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-012",
@@ -510,8 +544,18 @@
             "person-174"
           ],
           "toolIds": [
-            "tool-017",
-            "tool-000"
+            "tool-016",
+            "tool-020"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-016",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-020",
+              "discovered": false
+            }
           ]
         },
         {
@@ -546,7 +590,8 @@
             "person-068",
             "person-070"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-014",
@@ -582,7 +627,13 @@
             "person-108"
           ],
           "toolIds": [
-            "tool-030"
+            "tool-019"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-019",
+              "discovered": false
+            }
           ]
         },
         {
@@ -622,7 +673,8 @@
             "person-116",
             "person-152"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-016",
@@ -659,9 +711,23 @@
             "person-171"
           ],
           "toolIds": [
-            "tool-000",
-            "tool-016",
-            "tool-000"
+            "tool-007",
+            "tool-008",
+            "tool-012"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-007",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-008",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-012",
+              "discovered": false
+            }
           ]
         },
         {
@@ -696,8 +762,18 @@
             "person-153"
           ],
           "toolIds": [
-            "tool-020",
-            "tool-000"
+            "tool-011",
+            "tool-015"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-011",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-015",
+              "discovered": false
+            }
           ]
         },
         {
@@ -730,7 +806,8 @@
             "person-072",
             "person-181"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-019",
@@ -761,7 +838,8 @@
           "personIds": [
             "person-173"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-020",
@@ -793,7 +871,8 @@
             "person-027",
             "person-029"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-021",
@@ -828,7 +907,8 @@
             "person-049",
             "person-117"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-022",
@@ -862,7 +942,13 @@
             "person-165"
           ],
           "toolIds": [
-            "tool-019"
+            "tool-028"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-028",
+              "discovered": false
+            }
           ]
         },
         {
@@ -894,7 +980,8 @@
           "personIds": [
             "person-128"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-024",
@@ -929,7 +1016,8 @@
             "person-113",
             "person-179"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-025",
@@ -960,7 +1048,8 @@
           "personIds": [
             "person-176"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-026",
@@ -997,7 +1086,8 @@
             "person-094",
             "person-184"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-027",
@@ -1031,8 +1121,18 @@
             "person-130"
           ],
           "toolIds": [
-            "tool-000",
-            "tool-007"
+            "tool-023",
+            "tool-029"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-023",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-029",
+              "discovered": false
+            }
           ]
         },
         {
@@ -1065,8 +1165,18 @@
             "person-177"
           ],
           "toolIds": [
-            "tool-000",
-            "tool-008"
+            "tool-021",
+            "tool-027"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-021",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-027",
+              "discovered": false
+            }
           ]
         },
         {
@@ -1099,7 +1209,13 @@
             "person-155"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-024"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-024",
+              "discovered": false
+            }
           ]
         },
         {
@@ -1134,7 +1250,8 @@
             "person-185",
             "person-186"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-031",
@@ -1166,7 +1283,8 @@
             "person-136",
             "person-140"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-032",
@@ -1197,7 +1315,8 @@
           "personIds": [
             "person-180"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-033",
@@ -1233,7 +1352,8 @@
             "person-053",
             "person-133"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-034",
@@ -1265,7 +1385,8 @@
             "person-127",
             "person-182"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-035",
@@ -1295,8 +1416,18 @@
           "satrapPersonId": null,
           "personIds": [],
           "toolIds": [
-            "tool-012",
-            "tool-000"
+            "tool-014",
+            "tool-018"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-014",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-018",
+              "discovered": false
+            }
           ]
         },
         {
@@ -1329,8 +1460,18 @@
             "person-167"
           ],
           "toolIds": [
-            "tool-011",
-            "tool-000"
+            "tool-025",
+            "tool-026"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-025",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-026",
+              "discovered": false
+            }
           ]
         },
         {
@@ -1364,7 +1505,8 @@
             "person-087",
             "person-088"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         }
       ],
       "persons": [
@@ -7169,6 +7311,1208 @@
           "tool2Id": null
         }
       ],
+      "personSearchConditions": [
+        {
+          "index": 0,
+          "birth": 0,
+          "bole": 0,
+          "city": 16
+        },
+        {
+          "index": 1,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 2,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 3,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 4,
+          "birth": 0,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 5,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 6,
+          "birth": 0,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 7,
+          "birth": 0,
+          "bole": 0,
+          "city": 8
+        },
+        {
+          "index": 8,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 9,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 10,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 11,
+          "birth": 0,
+          "bole": 0,
+          "city": 10
+        },
+        {
+          "index": 12,
+          "birth": 0,
+          "bole": 0,
+          "city": 38
+        },
+        {
+          "index": 13,
+          "birth": 0,
+          "bole": 0,
+          "city": 6
+        },
+        {
+          "index": 14,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 15,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 16,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 17,
+          "birth": 0,
+          "bole": 0,
+          "city": 3
+        },
+        {
+          "index": 18,
+          "birth": 0,
+          "bole": 0,
+          "city": 15
+        },
+        {
+          "index": 19,
+          "birth": 0,
+          "bole": 0,
+          "city": 16
+        },
+        {
+          "index": 20,
+          "birth": 0,
+          "bole": 0,
+          "city": 16
+        },
+        {
+          "index": 21,
+          "birth": 0,
+          "bole": 0,
+          "city": 16
+        },
+        {
+          "index": 22,
+          "birth": 0,
+          "bole": 0,
+          "city": 16
+        },
+        {
+          "index": 23,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 24,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 25,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 26,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 27,
+          "birth": 0,
+          "bole": 0,
+          "city": 21
+        },
+        {
+          "index": 28,
+          "birth": 180,
+          "bole": 0,
+          "city": 21
+        },
+        {
+          "index": 29,
+          "birth": 0,
+          "bole": 0,
+          "city": 21
+        },
+        {
+          "index": 30,
+          "birth": 0,
+          "bole": 0,
+          "city": 16
+        },
+        {
+          "index": 31,
+          "birth": 0,
+          "bole": 0,
+          "city": 16
+        },
+        {
+          "index": 32,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 33,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 34,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 35,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 36,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 37,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 38,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 39,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 40,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 41,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 42,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 43,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 44,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 45,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 46,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 47,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 48,
+          "birth": 176,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 49,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 50,
+          "birth": 0,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 51,
+          "birth": 0,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 52,
+          "birth": 0,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 53,
+          "birth": 0,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 54,
+          "birth": 175,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 55,
+          "birth": 182,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 56,
+          "birth": 0,
+          "bole": 0,
+          "city": 1
+        },
+        {
+          "index": 57,
+          "birth": 0,
+          "bole": 0,
+          "city": 1
+        },
+        {
+          "index": 58,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 59,
+          "birth": 176,
+          "bole": 0,
+          "city": 4
+        },
+        {
+          "index": 60,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 61,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 62,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 63,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 64,
+          "birth": 0,
+          "bole": 0,
+          "city": 4
+        },
+        {
+          "index": 65,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 66,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 67,
+          "birth": 0,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 68,
+          "birth": 0,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 69,
+          "birth": 197,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 70,
+          "birth": 0,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 71,
+          "birth": 0,
+          "bole": 0,
+          "city": 18
+        },
+        {
+          "index": 72,
+          "birth": 0,
+          "bole": 0,
+          "city": 19
+        },
+        {
+          "index": 73,
+          "birth": 0,
+          "bole": 0,
+          "city": 8
+        },
+        {
+          "index": 74,
+          "birth": 0,
+          "bole": 0,
+          "city": 8
+        },
+        {
+          "index": 75,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 76,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 77,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 78,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 79,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 80,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 81,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 82,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 83,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 84,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 85,
+          "birth": 0,
+          "bole": 0,
+          "city": 10
+        },
+        {
+          "index": 86,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 87,
+          "birth": 0,
+          "bole": 0,
+          "city": 38
+        },
+        {
+          "index": 88,
+          "birth": 0,
+          "bole": 0,
+          "city": 38
+        },
+        {
+          "index": 89,
+          "birth": 0,
+          "bole": 0,
+          "city": 6
+        },
+        {
+          "index": 90,
+          "birth": 0,
+          "bole": 0,
+          "city": 6
+        },
+        {
+          "index": 91,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 92,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 93,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 94,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 95,
+          "birth": 0,
+          "bole": 0,
+          "city": 28
+        },
+        {
+          "index": 96,
+          "birth": 0,
+          "bole": 0,
+          "city": 28
+        },
+        {
+          "index": 97,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 98,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 99,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 100,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 101,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 102,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 103,
+          "birth": 0,
+          "bole": 0,
+          "city": 3
+        },
+        {
+          "index": 104,
+          "birth": 0,
+          "bole": 0,
+          "city": 3
+        },
+        {
+          "index": 105,
+          "birth": 0,
+          "bole": 0,
+          "city": 15
+        },
+        {
+          "index": 106,
+          "birth": 0,
+          "bole": 0,
+          "city": 15
+        },
+        {
+          "index": 107,
+          "birth": 0,
+          "bole": 0,
+          "city": 15
+        },
+        {
+          "index": 108,
+          "birth": 0,
+          "bole": 0,
+          "city": 15
+        },
+        {
+          "index": 109,
+          "birth": 189,
+          "bole": 0,
+          "city": 29
+        },
+        {
+          "index": 110,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 111,
+          "birth": 175,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 112,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 113,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 114,
+          "birth": 176,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 115,
+          "birth": 183,
+          "bole": 0,
+          "city": 23
+        },
+        {
+          "index": 116,
+          "birth": 0,
+          "bole": 0,
+          "city": 16
+        },
+        {
+          "index": 117,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 118,
+          "birth": 178,
+          "bole": 0,
+          "city": 29
+        },
+        {
+          "index": 119,
+          "birth": 193,
+          "bole": 0,
+          "city": 26
+        },
+        {
+          "index": 120,
+          "birth": 192,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 121,
+          "birth": 187,
+          "bole": 147,
+          "city": 27
+        },
+        {
+          "index": 122,
+          "birth": 190,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 123,
+          "birth": 0,
+          "bole": 0,
+          "city": 10
+        },
+        {
+          "index": 124,
+          "birth": 179,
+          "bole": 158,
+          "city": 27
+        },
+        {
+          "index": 125,
+          "birth": 187,
+          "bole": 90,
+          "city": 6
+        },
+        {
+          "index": 126,
+          "birth": 0,
+          "bole": 117,
+          "city": 13
+        },
+        {
+          "index": 127,
+          "birth": 0,
+          "bole": 0,
+          "city": 35
+        },
+        {
+          "index": 128,
+          "birth": 0,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 129,
+          "birth": 0,
+          "bole": 0,
+          "city": 23
+        },
+        {
+          "index": 130,
+          "birth": 0,
+          "bole": 0,
+          "city": 28
+        },
+        {
+          "index": 131,
+          "birth": 178,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 132,
+          "birth": 0,
+          "bole": 0,
+          "city": 10
+        },
+        {
+          "index": 133,
+          "birth": 0,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 134,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 135,
+          "birth": 180,
+          "bole": 14,
+          "city": 27
+        },
+        {
+          "index": 136,
+          "birth": 0,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 137,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 138,
+          "birth": 0,
+          "bole": 2,
+          "city": 12
+        },
+        {
+          "index": 139,
+          "birth": 176,
+          "bole": 0,
+          "city": 38
+        },
+        {
+          "index": 140,
+          "birth": 0,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 141,
+          "birth": 0,
+          "bole": 0,
+          "city": 31
+        },
+        {
+          "index": 142,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 143,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 144,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 145,
+          "birth": 175,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 146,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 147,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 148,
+          "birth": 179,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 149,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 150,
+          "birth": 176,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 151,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 152,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 153,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 154,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 155,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 156,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 157,
+          "birth": 181,
+          "bole": 14,
+          "city": 27
+        },
+        {
+          "index": 158,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 159,
+          "birth": 190,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 160,
+          "birth": 177,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 161,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 162,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 163,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 164,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 165,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 166,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 167,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 168,
+          "birth": 192,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 169,
+          "birth": 175,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 170,
+          "birth": 177,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 171,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 172,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 173,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 174,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 175,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 176,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 177,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 178,
+          "birth": 178,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 179,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 180,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 181,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 182,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 183,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 184,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 185,
+          "birth": 0,
+          "bole": 72,
+          "city": 31
+        },
+        {
+          "index": 186,
+          "birth": 0,
+          "bole": 72,
+          "city": 31
+        },
+        {
+          "index": 187,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 188,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 189,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 190,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 191,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 192,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 193,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 194,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 195,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 196,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 197,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 198,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 199,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        }
+      ],
       "tools": [
         {
           "id": "tool-000",
@@ -7598,6 +8942,206 @@
             "move": 0,
             "arm": 1
           }
+        }
+      ],
+      "toolSearchConditions": [
+        {
+          "index": 0,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 1,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 2,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 3,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 4,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 5,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 6,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 7,
+          "birth": 144,
+          "bole": 2,
+          "city": 17
+        },
+        {
+          "index": 8,
+          "birth": 144,
+          "bole": 2,
+          "city": 17
+        },
+        {
+          "index": 9,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 10,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 11,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 12,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 13,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 14,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 15,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 16,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 17,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 18,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 19,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 20,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 21,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 22,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 23,
+          "birth": 144,
+          "bole": 167,
+          "city": 28
+        },
+        {
+          "index": 24,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 25,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 26,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 27,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 28,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 29,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 30,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 31,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 32,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
         }
       ],
       "skills": [
@@ -12061,7 +13605,8 @@
             "person-174",
             "person-184"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-001",
@@ -12100,6 +13645,12 @@
           ],
           "toolIds": [
             "tool-019"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-019",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12134,7 +13685,8 @@
             "person-097",
             "person-144"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-003",
@@ -12168,7 +13720,13 @@
             "person-176"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-010"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-010",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12204,7 +13762,13 @@
             "person-062"
           ],
           "toolIds": [
-            "tool-010"
+            "tool-028"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-028",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12239,7 +13803,8 @@
             "person-052",
             "person-061"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-006",
@@ -12275,7 +13840,8 @@
             "person-055",
             "person-060"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-007",
@@ -12308,7 +13874,8 @@
             "person-139",
             "person-173"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-008",
@@ -12345,7 +13912,8 @@
             "person-108",
             "person-109"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-009",
@@ -12378,7 +13946,13 @@
             "person-018"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-001"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-001",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12413,7 +13987,8 @@
             "person-142",
             "person-181"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-011",
@@ -12450,8 +14025,18 @@
             "person-177"
           ],
           "toolIds": [
-            "tool-028",
-            "tool-000"
+            "tool-016",
+            "tool-020"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-016",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-020",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12492,7 +14077,8 @@
             "person-149",
             "person-179"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-013",
@@ -12529,7 +14115,13 @@
             "person-166"
           ],
           "toolIds": [
-            "tool-001"
+            "tool-025"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-025",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12566,7 +14158,8 @@
             "person-138",
             "person-178"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-015",
@@ -12598,7 +14191,13 @@
             "person-148"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-021"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-021",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12644,7 +14243,8 @@
             "person-146",
             "person-147"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-017",
@@ -12681,8 +14281,18 @@
             "person-175"
           ],
           "toolIds": [
-            "tool-016",
-            "tool-000"
+            "tool-012",
+            "tool-026"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-012",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-026",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12717,9 +14327,23 @@
             "person-183"
           ],
           "toolIds": [
-            "tool-020",
-            "tool-000",
-            "tool-025"
+            "tool-017",
+            "tool-027",
+            "tool-031"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-017",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-027",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-031",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12756,7 +14380,13 @@
             "person-134"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-014"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-014",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12792,7 +14422,13 @@
             "person-159"
           ],
           "toolIds": [
-            "tool-021"
+            "tool-018"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-018",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12833,7 +14469,13 @@
             "person-165"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-024"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-024",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12873,7 +14515,13 @@
             "person-078"
           ],
           "toolIds": [
-            "tool-012"
+            "tool-032"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-032",
+              "discovered": false
+            }
           ]
         },
         {
@@ -12910,7 +14558,8 @@
             "person-081",
             "person-180"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-024",
@@ -12944,7 +14593,8 @@
             "person-133",
             "person-169"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-025",
@@ -12975,7 +14625,8 @@
           "personIds": [
             "person-126"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-026",
@@ -13020,7 +14671,8 @@
             "person-170",
             "person-171"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-027",
@@ -13056,7 +14708,13 @@
             "person-168"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-023"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-023",
+              "discovered": false
+            }
           ]
         },
         {
@@ -13089,8 +14747,18 @@
             "person-167"
           ],
           "toolIds": [
-            "tool-026",
-            "tool-000"
+            "tool-011",
+            "tool-015"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-011",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-015",
+              "discovered": false
+            }
           ]
         },
         {
@@ -13120,7 +14788,8 @@
           "ownerPersonId": null,
           "satrapPersonId": null,
           "personIds": [],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-030",
@@ -13149,7 +14818,8 @@
           "ownerPersonId": null,
           "satrapPersonId": null,
           "personIds": [],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-031",
@@ -13183,7 +14853,8 @@
             "person-129",
             "person-141"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-032",
@@ -13214,7 +14885,8 @@
           "personIds": [
             "person-155"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-033",
@@ -13249,7 +14921,13 @@
             "person-095"
           ],
           "toolIds": [
-            "tool-017"
+            "tool-029"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-029",
+              "discovered": false
+            }
           ]
         },
         {
@@ -13281,7 +14959,8 @@
           "personIds": [
             "person-162"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-035",
@@ -13313,7 +14992,13 @@
             "person-140"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-013"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-013",
+              "discovered": false
+            }
           ]
         },
         {
@@ -13344,7 +15029,13 @@
           "satrapPersonId": null,
           "personIds": [],
           "toolIds": [
-            "tool-027"
+            "tool-030"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-030",
+              "discovered": false
+            }
           ]
         },
         {
@@ -13378,7 +15069,8 @@
             "person-082",
             "person-083"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         }
       ],
       "persons": [
@@ -19183,6 +20875,1208 @@
           "tool2Id": null
         }
       ],
+      "personSearchConditions": [
+        {
+          "index": 0,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 1,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 2,
+          "birth": 0,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 3,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 4,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 5,
+          "birth": 0,
+          "bole": 0,
+          "city": 23
+        },
+        {
+          "index": 6,
+          "birth": 0,
+          "bole": 0,
+          "city": 38
+        },
+        {
+          "index": 7,
+          "birth": 0,
+          "bole": 0,
+          "city": 21
+        },
+        {
+          "index": 8,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 9,
+          "birth": 0,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 10,
+          "birth": 0,
+          "bole": 0,
+          "city": 3
+        },
+        {
+          "index": 11,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 12,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 13,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 14,
+          "birth": 0,
+          "bole": 0,
+          "city": 15
+        },
+        {
+          "index": 15,
+          "birth": 0,
+          "bole": 0,
+          "city": 8
+        },
+        {
+          "index": 16,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 17,
+          "birth": 0,
+          "bole": 0,
+          "city": 10
+        },
+        {
+          "index": 18,
+          "birth": 0,
+          "bole": 0,
+          "city": 10
+        },
+        {
+          "index": 19,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 20,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 21,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 22,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 23,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 24,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 25,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 26,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 27,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 28,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 29,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 30,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 31,
+          "birth": 0,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 32,
+          "birth": 0,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 33,
+          "birth": 0,
+          "bole": 0,
+          "city": 18
+        },
+        {
+          "index": 34,
+          "birth": 0,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 35,
+          "birth": 0,
+          "bole": 0,
+          "city": 19
+        },
+        {
+          "index": 36,
+          "birth": 0,
+          "bole": 0,
+          "city": 19
+        },
+        {
+          "index": 37,
+          "birth": 0,
+          "bole": 0,
+          "city": 18
+        },
+        {
+          "index": 38,
+          "birth": 0,
+          "bole": 0,
+          "city": 18
+        },
+        {
+          "index": 39,
+          "birth": 0,
+          "bole": 0,
+          "city": 19
+        },
+        {
+          "index": 40,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 41,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 42,
+          "birth": 0,
+          "bole": 0,
+          "city": 6
+        },
+        {
+          "index": 43,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 44,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 45,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 46,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 47,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 48,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 49,
+          "birth": 0,
+          "bole": 0,
+          "city": 6
+        },
+        {
+          "index": 50,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 51,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 52,
+          "birth": 0,
+          "bole": 0,
+          "city": 6
+        },
+        {
+          "index": 53,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 54,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 55,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 56,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 57,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 58,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 59,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 60,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 61,
+          "birth": 0,
+          "bole": 0,
+          "city": 6
+        },
+        {
+          "index": 62,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 63,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 64,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 65,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 66,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 67,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 68,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 69,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 70,
+          "birth": 0,
+          "bole": 0,
+          "city": 23
+        },
+        {
+          "index": 71,
+          "birth": 0,
+          "bole": 0,
+          "city": 23
+        },
+        {
+          "index": 72,
+          "birth": 0,
+          "bole": 0,
+          "city": 23
+        },
+        {
+          "index": 73,
+          "birth": 0,
+          "bole": 0,
+          "city": 23
+        },
+        {
+          "index": 74,
+          "birth": 0,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 75,
+          "birth": 0,
+          "bole": 0,
+          "city": 23
+        },
+        {
+          "index": 76,
+          "birth": 0,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 77,
+          "birth": 0,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 78,
+          "birth": 0,
+          "bole": 0,
+          "city": 23
+        },
+        {
+          "index": 79,
+          "birth": 0,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 80,
+          "birth": 0,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 81,
+          "birth": 0,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 82,
+          "birth": 0,
+          "bole": 0,
+          "city": 38
+        },
+        {
+          "index": 83,
+          "birth": 0,
+          "bole": 0,
+          "city": 38
+        },
+        {
+          "index": 84,
+          "birth": 0,
+          "bole": 0,
+          "city": 21
+        },
+        {
+          "index": 85,
+          "birth": 0,
+          "bole": 0,
+          "city": 21
+        },
+        {
+          "index": 86,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 87,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 88,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 89,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 90,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 91,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 92,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 93,
+          "birth": 0,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 94,
+          "birth": 0,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 95,
+          "birth": 0,
+          "bole": 0,
+          "city": 34
+        },
+        {
+          "index": 96,
+          "birth": 0,
+          "bole": 0,
+          "city": 3
+        },
+        {
+          "index": 97,
+          "birth": 0,
+          "bole": 0,
+          "city": 3
+        },
+        {
+          "index": 98,
+          "birth": 0,
+          "bole": 0,
+          "city": 1
+        },
+        {
+          "index": 99,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 100,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 101,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 102,
+          "birth": 0,
+          "bole": 0,
+          "city": 4
+        },
+        {
+          "index": 103,
+          "birth": 0,
+          "bole": 0,
+          "city": 4
+        },
+        {
+          "index": 104,
+          "birth": 0,
+          "bole": 0,
+          "city": 1
+        },
+        {
+          "index": 105,
+          "birth": 0,
+          "bole": 0,
+          "city": 1
+        },
+        {
+          "index": 106,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 107,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 108,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 109,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 110,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 111,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 112,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 113,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 114,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 115,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 116,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 117,
+          "birth": 0,
+          "bole": 0,
+          "city": 28
+        },
+        {
+          "index": 118,
+          "birth": 0,
+          "bole": 0,
+          "city": 28
+        },
+        {
+          "index": 119,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 120,
+          "birth": 0,
+          "bole": 0,
+          "city": 28
+        },
+        {
+          "index": 121,
+          "birth": 0,
+          "bole": 0,
+          "city": 28
+        },
+        {
+          "index": 122,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 123,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 124,
+          "birth": 0,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 125,
+          "birth": 0,
+          "bole": 0,
+          "city": 20
+        },
+        {
+          "index": 126,
+          "birth": 0,
+          "bole": 0,
+          "city": 26
+        },
+        {
+          "index": 127,
+          "birth": 0,
+          "bole": 0,
+          "city": 26
+        },
+        {
+          "index": 128,
+          "birth": 0,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 129,
+          "birth": 0,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 130,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 131,
+          "birth": 0,
+          "bole": 0,
+          "city": 20
+        },
+        {
+          "index": 132,
+          "birth": 0,
+          "bole": 0,
+          "city": 20
+        },
+        {
+          "index": 133,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 134,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 135,
+          "birth": 0,
+          "bole": 0,
+          "city": 15
+        },
+        {
+          "index": 136,
+          "birth": 0,
+          "bole": 0,
+          "city": 15
+        },
+        {
+          "index": 137,
+          "birth": 0,
+          "bole": 0,
+          "city": 15
+        },
+        {
+          "index": 138,
+          "birth": 0,
+          "bole": 0,
+          "city": 15
+        },
+        {
+          "index": 139,
+          "birth": 0,
+          "bole": 0,
+          "city": 8
+        },
+        {
+          "index": 140,
+          "birth": 0,
+          "bole": 30,
+          "city": 0
+        },
+        {
+          "index": 141,
+          "birth": 0,
+          "bole": 141,
+          "city": 0
+        },
+        {
+          "index": 142,
+          "birth": 0,
+          "bole": 142,
+          "city": 0
+        },
+        {
+          "index": 143,
+          "birth": 0,
+          "bole": 142,
+          "city": 0
+        },
+        {
+          "index": 144,
+          "birth": 0,
+          "bole": 143,
+          "city": 0
+        },
+        {
+          "index": 145,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 146,
+          "birth": 0,
+          "bole": 20,
+          "city": 17
+        },
+        {
+          "index": 147,
+          "birth": 0,
+          "bole": 147,
+          "city": 17
+        },
+        {
+          "index": 148,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 149,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 150,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 151,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 152,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 153,
+          "birth": 192,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 154,
+          "birth": 193,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 155,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 156,
+          "birth": 190,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 157,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 158,
+          "birth": 191,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 159,
+          "birth": 0,
+          "bole": 3,
+          "city": 0
+        },
+        {
+          "index": 160,
+          "birth": 187,
+          "bole": 3,
+          "city": 0
+        },
+        {
+          "index": 161,
+          "birth": 190,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 162,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 163,
+          "birth": 0,
+          "bole": 3,
+          "city": 18
+        },
+        {
+          "index": 164,
+          "birth": 187,
+          "bole": 32,
+          "city": 0
+        },
+        {
+          "index": 165,
+          "birth": 0,
+          "bole": 32,
+          "city": 0
+        },
+        {
+          "index": 166,
+          "birth": 0,
+          "bole": 32,
+          "city": 0
+        },
+        {
+          "index": 167,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 168,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 169,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 170,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 171,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 172,
+          "birth": 195,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 173,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 174,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 175,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 176,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 177,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 178,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 179,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 180,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 181,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 182,
+          "birth": 183,
+          "bole": 3,
+          "city": 27
+        },
+        {
+          "index": 183,
+          "birth": 0,
+          "bole": 118,
+          "city": 19
+        },
+        {
+          "index": 184,
+          "birth": 0,
+          "bole": 10,
+          "city": 1
+        },
+        {
+          "index": 185,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 186,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 187,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 188,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 189,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 190,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 191,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 192,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 193,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 194,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 195,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 196,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 197,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 198,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 199,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        }
+      ],
       "tools": [
         {
           "id": "tool-000",
@@ -19612,6 +22506,206 @@
             "move": 0,
             "arm": 1
           }
+        }
+      ],
+      "toolSearchConditions": [
+        {
+          "index": 0,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 1,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 2,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 3,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 4,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 5,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 6,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 7,
+          "birth": 144,
+          "bole": 2,
+          "city": 17
+        },
+        {
+          "index": 8,
+          "birth": 144,
+          "bole": 2,
+          "city": 17
+        },
+        {
+          "index": 9,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 10,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 11,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 12,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 13,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 14,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 15,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 16,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 17,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 18,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 19,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 20,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 21,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 22,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 23,
+          "birth": 144,
+          "bole": 167,
+          "city": 28
+        },
+        {
+          "index": 24,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 25,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 26,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 27,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 28,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 29,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 30,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 31,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 32,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
         }
       ],
       "skills": [
@@ -24073,7 +27167,8 @@
             "person-133",
             "person-134"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-001",
@@ -24111,7 +27206,8 @@
             "person-072",
             "person-073"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-002",
@@ -24146,9 +27242,27 @@
           ],
           "toolIds": [
             "tool-011",
-            "tool-000",
             "tool-013",
-            "tool-000"
+            "tool-018",
+            "tool-019"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-011",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-013",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-018",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-019",
+              "discovered": false
+            }
           ]
         },
         {
@@ -24182,7 +27296,13 @@
             "person-128"
           ],
           "toolIds": [
-            "tool-018"
+            "tool-027"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-027",
+              "discovered": false
+            }
           ]
         },
         {
@@ -24216,7 +27336,8 @@
             "person-063",
             "person-064"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-005",
@@ -24245,7 +27366,8 @@
           "ownerPersonId": "person-004",
           "satrapPersonId": null,
           "personIds": [],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-006",
@@ -24278,7 +27400,13 @@
             "person-161"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-032"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-032",
+              "discovered": false
+            }
           ]
         },
         {
@@ -24314,7 +27442,13 @@
             "person-162"
           ],
           "toolIds": [
-            "tool-019"
+            "tool-031"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-031",
+              "discovered": false
+            }
           ]
         },
         {
@@ -24354,7 +27488,8 @@
             "person-155",
             "person-178"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-009",
@@ -24387,7 +27522,8 @@
             "person-030",
             "person-033"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-010",
@@ -24422,7 +27558,8 @@
             "person-184",
             "person-187"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-011",
@@ -24454,7 +27591,8 @@
             "person-042",
             "person-050"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-012",
@@ -24489,7 +27627,8 @@
             "person-169",
             "person-181"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-013",
@@ -24521,7 +27660,8 @@
             "person-046",
             "person-058"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-014",
@@ -24557,7 +27697,13 @@
             "person-138"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-016"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-016",
+              "discovered": false
+            }
           ]
         },
         {
@@ -24591,7 +27737,8 @@
             "person-052",
             "person-182"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-016",
@@ -24626,9 +27773,23 @@
             "person-068"
           ],
           "toolIds": [
-            "tool-027",
-            "tool-000",
-            "tool-032"
+            "tool-005",
+            "tool-008",
+            "tool-014"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-005",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-008",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-014",
+              "discovered": false
+            }
           ]
         },
         {
@@ -24660,6 +27821,12 @@
           "personIds": [],
           "toolIds": [
             "tool-000"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-000",
+              "discovered": false
+            }
           ]
         },
         {
@@ -24692,7 +27859,8 @@
             "person-164",
             "person-185"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-019",
@@ -24725,7 +27893,8 @@
             "person-146",
             "person-147"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-020",
@@ -24759,7 +27928,8 @@
             "person-059",
             "person-067"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-021",
@@ -24794,7 +27964,13 @@
             "person-065"
           ],
           "toolIds": [
-            "tool-031"
+            "tool-025"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-025",
+              "discovered": false
+            }
           ]
         },
         {
@@ -24849,7 +28025,8 @@
             "person-122",
             "person-156"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-023",
@@ -24883,7 +28060,13 @@
             "person-157"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-021"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-021",
+              "discovered": false
+            }
           ]
         },
         {
@@ -24921,7 +28104,8 @@
             "person-183",
             "person-186"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-025",
@@ -24955,8 +28139,18 @@
             "person-152"
           ],
           "toolIds": [
-            "tool-016",
-            "tool-000"
+            "tool-006",
+            "tool-030"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-006",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-030",
+              "discovered": false
+            }
           ]
         },
         {
@@ -25007,7 +28201,8 @@
             "person-165",
             "person-172"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-027",
@@ -25051,7 +28246,8 @@
             "person-090",
             "person-091"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-028",
@@ -25086,8 +28282,18 @@
             "person-104"
           ],
           "toolIds": [
-            "tool-005",
-            "tool-000"
+            "tool-010",
+            "tool-020"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-010",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-020",
+              "discovered": false
+            }
           ]
         },
         {
@@ -25119,7 +28325,8 @@
           "personIds": [
             "person-097"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-030",
@@ -25149,7 +28356,13 @@
           "satrapPersonId": null,
           "personIds": [],
           "toolIds": [
-            "tool-008"
+            "tool-012"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-012",
+              "discovered": false
+            }
           ]
         },
         {
@@ -25187,7 +28400,8 @@
             "person-153",
             "person-188"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-032",
@@ -25221,8 +28435,18 @@
             "person-173"
           ],
           "toolIds": [
-            "tool-000",
-            "tool-014"
+            "tool-001",
+            "tool-015"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-001",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-015",
+              "discovered": false
+            }
           ]
         },
         {
@@ -25258,7 +28482,8 @@
             "person-014",
             "person-166"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-034",
@@ -25292,7 +28517,13 @@
             "person-163"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-017"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-017",
+              "discovered": false
+            }
           ]
         },
         {
@@ -25327,7 +28558,8 @@
             "person-015",
             "person-016"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-036",
@@ -25360,7 +28592,8 @@
             "person-017",
             "person-018"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-037",
@@ -25391,7 +28624,8 @@
           "personIds": [
             "person-171"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         }
       ],
       "persons": [
@@ -31196,6 +34430,1208 @@
           "tool2Id": null
         }
       ],
+      "personSearchConditions": [
+        {
+          "index": 0,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 1,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 2,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 3,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 4,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 5,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 6,
+          "birth": 0,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 7,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 8,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 9,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 10,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 11,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 12,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 13,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 14,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 15,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 16,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 17,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 18,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 19,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 20,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 21,
+          "birth": 0,
+          "bole": 0,
+          "city": 10
+        },
+        {
+          "index": 22,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 23,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 24,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 25,
+          "birth": 0,
+          "bole": 0,
+          "city": 6
+        },
+        {
+          "index": 26,
+          "birth": 0,
+          "bole": 0,
+          "city": 7
+        },
+        {
+          "index": 27,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 28,
+          "birth": 0,
+          "bole": 0,
+          "city": 8
+        },
+        {
+          "index": 29,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 30,
+          "birth": 0,
+          "bole": 0,
+          "city": 10
+        },
+        {
+          "index": 31,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 32,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 33,
+          "birth": 0,
+          "bole": 0,
+          "city": 10
+        },
+        {
+          "index": 34,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 35,
+          "birth": 0,
+          "bole": 0,
+          "city": 8
+        },
+        {
+          "index": 36,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 37,
+          "birth": 0,
+          "bole": 0,
+          "city": 2
+        },
+        {
+          "index": 38,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 39,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 40,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 41,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 42,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 43,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 44,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 45,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 46,
+          "birth": 0,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 47,
+          "birth": 0,
+          "bole": 0,
+          "city": 8
+        },
+        {
+          "index": 48,
+          "birth": 0,
+          "bole": 0,
+          "city": 16
+        },
+        {
+          "index": 49,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 50,
+          "birth": 0,
+          "bole": 0,
+          "city": 12
+        },
+        {
+          "index": 51,
+          "birth": 0,
+          "bole": 0,
+          "city": 13
+        },
+        {
+          "index": 52,
+          "birth": 0,
+          "bole": 0,
+          "city": 16
+        },
+        {
+          "index": 53,
+          "birth": 0,
+          "bole": 0,
+          "city": 21
+        },
+        {
+          "index": 54,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 55,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 56,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 57,
+          "birth": 0,
+          "bole": 0,
+          "city": 21
+        },
+        {
+          "index": 58,
+          "birth": 0,
+          "bole": 0,
+          "city": 14
+        },
+        {
+          "index": 59,
+          "birth": 0,
+          "bole": 0,
+          "city": 21
+        },
+        {
+          "index": 60,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 61,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 62,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 63,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 64,
+          "birth": 0,
+          "bole": 0,
+          "city": 5
+        },
+        {
+          "index": 65,
+          "birth": 0,
+          "bole": 0,
+          "city": 22
+        },
+        {
+          "index": 66,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 67,
+          "birth": 0,
+          "bole": 0,
+          "city": 21
+        },
+        {
+          "index": 68,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 69,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 70,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 71,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 72,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 73,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 74,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 75,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 76,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 77,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 78,
+          "birth": 0,
+          "bole": 0,
+          "city": 27
+        },
+        {
+          "index": 79,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 80,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 81,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 82,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 83,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 84,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 85,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 86,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 87,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 88,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 89,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 90,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 91,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 92,
+          "birth": 0,
+          "bole": 0,
+          "city": 29
+        },
+        {
+          "index": 93,
+          "birth": 0,
+          "bole": 0,
+          "city": 29
+        },
+        {
+          "index": 94,
+          "birth": 0,
+          "bole": 0,
+          "city": 29
+        },
+        {
+          "index": 95,
+          "birth": 0,
+          "bole": 0,
+          "city": 23
+        },
+        {
+          "index": 96,
+          "birth": 0,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 97,
+          "birth": 0,
+          "bole": 0,
+          "city": 30
+        },
+        {
+          "index": 98,
+          "birth": 0,
+          "bole": 0,
+          "city": 35
+        },
+        {
+          "index": 99,
+          "birth": 0,
+          "bole": 0,
+          "city": 35
+        },
+        {
+          "index": 100,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 101,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 102,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 103,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 104,
+          "birth": 0,
+          "bole": 0,
+          "city": 29
+        },
+        {
+          "index": 105,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 106,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 107,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 108,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 109,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 110,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 111,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 112,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 113,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 114,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 115,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 116,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 117,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 118,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 119,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 120,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 121,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 122,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 123,
+          "birth": 0,
+          "bole": 0,
+          "city": 1
+        },
+        {
+          "index": 124,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 125,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 126,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 127,
+          "birth": 0,
+          "bole": 0,
+          "city": 4
+        },
+        {
+          "index": 128,
+          "birth": 0,
+          "bole": 0,
+          "city": 4
+        },
+        {
+          "index": 129,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 130,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 131,
+          "birth": 0,
+          "bole": 0,
+          "city": 9
+        },
+        {
+          "index": 132,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 133,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 134,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 135,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 136,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 137,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 138,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 139,
+          "birth": 0,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 140,
+          "birth": 0,
+          "bole": 0,
+          "city": 20
+        },
+        {
+          "index": 141,
+          "birth": 0,
+          "bole": 0,
+          "city": 26
+        },
+        {
+          "index": 142,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 143,
+          "birth": 0,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 144,
+          "birth": 0,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 145,
+          "birth": 0,
+          "bole": 0,
+          "city": 26
+        },
+        {
+          "index": 146,
+          "birth": 0,
+          "bole": 0,
+          "city": 20
+        },
+        {
+          "index": 147,
+          "birth": 0,
+          "bole": 0,
+          "city": 20
+        },
+        {
+          "index": 148,
+          "birth": 0,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 149,
+          "birth": 0,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 150,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 151,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 152,
+          "birth": 0,
+          "bole": 0,
+          "city": 26
+        },
+        {
+          "index": 153,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 154,
+          "birth": 193,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 155,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 156,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 157,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 158,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 159,
+          "birth": 205,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 160,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 161,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 162,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 163,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 164,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 165,
+          "birth": 0,
+          "bole": 91,
+          "city": 27
+        },
+        {
+          "index": 166,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 167,
+          "birth": 197,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 168,
+          "birth": 225,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 169,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 170,
+          "birth": 206,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 171,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 172,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 173,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 174,
+          "birth": 226,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 175,
+          "birth": 212,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 176,
+          "birth": 205,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 177,
+          "birth": 194,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 178,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 179,
+          "birth": 194,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 180,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 181,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 182,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 183,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 184,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 185,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 186,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 187,
+          "birth": 0,
+          "bole": 176,
+          "city": 11
+        },
+        {
+          "index": 188,
+          "birth": 0,
+          "bole": 135,
+          "city": 32
+        },
+        {
+          "index": 189,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 190,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 191,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 192,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 193,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 194,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 195,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 196,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 197,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 198,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 199,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        }
+      ],
       "tools": [
         {
           "id": "tool-000",
@@ -31625,6 +36061,206 @@
             "move": 0,
             "arm": 1
           }
+        }
+      ],
+      "toolSearchConditions": [
+        {
+          "index": 0,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 1,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 2,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 3,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 4,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 5,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 6,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 7,
+          "birth": 144,
+          "bole": 2,
+          "city": 17
+        },
+        {
+          "index": 8,
+          "birth": 144,
+          "bole": 2,
+          "city": 17
+        },
+        {
+          "index": 9,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 10,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 11,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 12,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 13,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 14,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 15,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 16,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 17,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 18,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 19,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 20,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 21,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 22,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 23,
+          "birth": 144,
+          "bole": 167,
+          "city": 28
+        },
+        {
+          "index": 24,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 25,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 26,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 27,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 28,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 29,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 30,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 31,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 32,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
         }
       ],
       "skills": [
@@ -36086,6 +40722,12 @@
           ],
           "toolIds": [
             "tool-012"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-012",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36121,7 +40763,13 @@
             "person-156"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-018"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-018",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36155,7 +40803,8 @@
             "person-148",
             "person-149"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-003",
@@ -36187,7 +40836,13 @@
             "person-173"
           ],
           "toolIds": [
-            "tool-018"
+            "tool-019"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-019",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36222,7 +40877,8 @@
             "person-061",
             "person-175"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-005",
@@ -36255,7 +40911,8 @@
             "person-059",
             "person-062"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-006",
@@ -36291,7 +40948,13 @@
             "person-063"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-032"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-032",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36328,7 +40991,8 @@
             "person-028",
             "person-068"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-008",
@@ -36361,7 +41025,13 @@
             "person-058"
           ],
           "toolIds": [
-            "tool-019"
+            "tool-025"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-025",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36404,7 +41074,13 @@
             "person-155"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-001"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-001",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36441,7 +41117,8 @@
             "person-041",
             "person-053"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-011",
@@ -36474,7 +41151,8 @@
             "person-034",
             "person-057"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-012",
@@ -36506,7 +41184,8 @@
             "person-042",
             "person-056"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-013",
@@ -36541,7 +41220,8 @@
             "person-043",
             "person-060"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-014",
@@ -36580,7 +41260,8 @@
             "person-097",
             "person-099"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-015",
@@ -36617,7 +41298,8 @@
             "person-066",
             "person-164"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-016",
@@ -36651,7 +41333,13 @@
             "person-071"
           ],
           "toolIds": [
-            "tool-032"
+            "tool-007"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-007",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36682,7 +41370,13 @@
           "satrapPersonId": null,
           "personIds": [],
           "toolIds": [
-            "tool-000"
+            "tool-013"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-013",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36712,7 +41406,8 @@
           "ownerPersonId": null,
           "satrapPersonId": null,
           "personIds": [],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-019",
@@ -36746,7 +41441,13 @@
             "person-167"
           ],
           "toolIds": [
-            "tool-025"
+            "tool-000"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-000",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36783,7 +41484,8 @@
             "person-052",
             "person-171"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-021",
@@ -36818,7 +41520,13 @@
             "person-067"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-005"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-005",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36859,8 +41567,18 @@
             "person-161"
           ],
           "toolIds": [
-            "tool-001",
-            "tool-000"
+            "tool-004",
+            "tool-026"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-004",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-026",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36895,8 +41613,18 @@
             "person-162"
           ],
           "toolIds": [
-            "tool-007",
-            "tool-000"
+            "tool-010",
+            "tool-027"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-010",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-027",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36937,9 +41665,23 @@
             "person-170"
           ],
           "toolIds": [
-            "tool-013",
-            "tool-000",
-            "tool-000"
+            "tool-006",
+            "tool-011",
+            "tool-031"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-006",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-011",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-031",
+              "discovered": false
+            }
           ]
         },
         {
@@ -36977,7 +41719,8 @@
             "person-094",
             "person-159"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-026",
@@ -37011,7 +41754,8 @@
             "person-126",
             "person-168"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-027",
@@ -37046,8 +41790,18 @@
             "person-120"
           ],
           "toolIds": [
-            "tool-000",
-            "tool-005"
+            "tool-023",
+            "tool-030"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-023",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-030",
+              "discovered": false
+            }
           ]
         },
         {
@@ -37083,7 +41837,13 @@
             "person-137"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-015"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-015",
+              "discovered": false
+            }
           ]
         },
         {
@@ -37117,7 +41877,8 @@
             "person-110",
             "person-122"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-030",
@@ -37158,7 +41919,8 @@
             "person-147",
             "person-150"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-031",
@@ -37197,9 +41959,23 @@
             "person-101"
           ],
           "toolIds": [
-            "tool-004",
-            "tool-000",
-            "tool-026"
+            "tool-014",
+            "tool-017",
+            "tool-021"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-014",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-017",
+              "discovered": false
+            },
+            {
+              "toolId": "tool-021",
+              "discovered": false
+            }
           ]
         },
         {
@@ -37235,7 +42011,8 @@
             "person-121",
             "person-172"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-033",
@@ -37266,7 +42043,8 @@
           "personIds": [
             "person-131"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-034",
@@ -37302,7 +42080,13 @@
             "person-132"
           ],
           "toolIds": [
-            "tool-000"
+            "tool-016"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-016",
+              "discovered": false
+            }
           ]
         },
         {
@@ -37335,7 +42119,8 @@
             "person-130",
             "person-166"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-036",
@@ -37367,7 +42152,8 @@
             "person-128",
             "person-133"
           ],
-          "toolIds": []
+          "toolIds": [],
+          "toolEntries": []
         },
         {
           "id": "city-037",
@@ -37397,7 +42183,13 @@
           "satrapPersonId": null,
           "personIds": [],
           "toolIds": [
-            "tool-010"
+            "tool-020"
+          ],
+          "toolEntries": [
+            {
+              "toolId": "tool-020",
+              "discovered": false
+            }
           ]
         }
       ],
@@ -43203,6 +47995,1208 @@
           "tool2Id": null
         }
       ],
+      "personSearchConditions": [
+        {
+          "index": 0,
+          "birth": 0,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 1,
+          "birth": 0,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 2,
+          "birth": 0,
+          "bole": 0,
+          "city": 24
+        },
+        {
+          "index": 3,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 4,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 5,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 6,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 7,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 8,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 9,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 10,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 11,
+          "birth": 0,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 12,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 13,
+          "birth": 210,
+          "bole": 0,
+          "city": 1
+        },
+        {
+          "index": 14,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 15,
+          "birth": 210,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 16,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 17,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 18,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 19,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 20,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 21,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 22,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 23,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 24,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 25,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 26,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 27,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 28,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 29,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 30,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 31,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 32,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 33,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 34,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 35,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 36,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 37,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 38,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 39,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 40,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 41,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 42,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 43,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 44,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 45,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 46,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 47,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 48,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 49,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 50,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 51,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 52,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 53,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 54,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 55,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 56,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 57,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 58,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 59,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 60,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 61,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 62,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 63,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 64,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 65,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 66,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 67,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 68,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 69,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 70,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 71,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 72,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 73,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 74,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 75,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 76,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 77,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 78,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 79,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 80,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 81,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 82,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 83,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 84,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 85,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 86,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 87,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 88,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 89,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 90,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 91,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 92,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 93,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 94,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 95,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 96,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 97,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 98,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 99,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 100,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 101,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 102,
+          "birth": 210,
+          "bole": 0,
+          "city": 33
+        },
+        {
+          "index": 103,
+          "birth": 210,
+          "bole": 0,
+          "city": 32
+        },
+        {
+          "index": 104,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 105,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 106,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 107,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 108,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 109,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 110,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 111,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 112,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 113,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 114,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 115,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 116,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 117,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 118,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 119,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 120,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 121,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 122,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 123,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 124,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 125,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 126,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 127,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 128,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 129,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 130,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 131,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 132,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 133,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 134,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 135,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 136,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 137,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 138,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 139,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 140,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 141,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 142,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 143,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 144,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 145,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 146,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 147,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 148,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 149,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 150,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 151,
+          "birth": 225,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 152,
+          "birth": 210,
+          "bole": 0,
+          "city": 17
+        },
+        {
+          "index": 153,
+          "birth": 210,
+          "bole": 0,
+          "city": 11
+        },
+        {
+          "index": 154,
+          "birth": 221,
+          "bole": 0,
+          "city": 10
+        },
+        {
+          "index": 155,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 156,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 157,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 158,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 159,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 160,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 161,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 162,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 163,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 164,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 165,
+          "birth": 212,
+          "bole": 0,
+          "city": 25
+        },
+        {
+          "index": 166,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 167,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 168,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 169,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 170,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 171,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 172,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 173,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 174,
+          "birth": 210,
+          "bole": 2,
+          "city": 20
+        },
+        {
+          "index": 175,
+          "birth": 0,
+          "bole": 4,
+          "city": 5
+        },
+        {
+          "index": 176,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 177,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 178,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 179,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 180,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 181,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 182,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 183,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 184,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 185,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 186,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 187,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 188,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 189,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 190,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 191,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 192,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 193,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 194,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 195,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 196,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 197,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 198,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 199,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        }
+      ],
       "tools": [
         {
           "id": "tool-000",
@@ -43632,6 +49626,206 @@
             "move": 0,
             "arm": 1
           }
+        }
+      ],
+      "toolSearchConditions": [
+        {
+          "index": 0,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 1,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 2,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 3,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 4,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 5,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 6,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 7,
+          "birth": 144,
+          "bole": 2,
+          "city": 17
+        },
+        {
+          "index": 8,
+          "birth": 144,
+          "bole": 2,
+          "city": 17
+        },
+        {
+          "index": 9,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 10,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 11,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 12,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 13,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 14,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 15,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 16,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 17,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 18,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 19,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 20,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 21,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 22,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 23,
+          "birth": 144,
+          "bole": 167,
+          "city": 28
+        },
+        {
+          "index": 24,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 25,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 26,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 27,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 28,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 29,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 30,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 31,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
+        },
+        {
+          "index": 32,
+          "birth": 0,
+          "bole": 0,
+          "city": 0
         }
       ],
       "skills": [

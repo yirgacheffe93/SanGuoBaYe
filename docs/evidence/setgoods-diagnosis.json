@@ -1,0 +1,4391 @@
+{
+  "kind": "setgoods-runtime-diagnosis",
+  "binaryModified": false,
+  "method": "原始生产 JS/bridge/WASM，虚拟定时器按到期顺序推进；原有阶段 hook；可选 Node Inspector 只读断点",
+  "cases": [
+    {
+      "name": "A-pingyuan-injected-player",
+      "city": 5,
+      "person": 89,
+      "player": 13,
+      "tool": 0,
+      "injectTool": 0,
+      "seed": 3,
+      "finalRng": 679304702,
+      "trace": false,
+      "completed": true,
+      "monthlyCompleted": true,
+      "saveReloadTested": false,
+      "fixture": "生产引擎阶段 hook 注入命令；阶段 3 重载原始时期以清除 AI 干扰；不是 UI 接受测试",
+      "queueMetadata": {
+        "goods": {
+          "address": 2647568,
+          "length": 2000,
+          "elementType": 0,
+          "elementBytes": 1
+        },
+        "persons": {
+          "address": 2643568,
+          "length": 2000,
+          "elementType": 1,
+          "elementBytes": 2
+        }
+      },
+      "stages": [
+        {
+          "stage": "S0-fixture-ready",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            0
+          ],
+          "bytes": [
+            0,
+            0
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 3,
+          "money": 93,
+          "food": 234,
+          "personIndices": [
+            13,
+            89,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 65535,
+            "City": 255,
+            "Object": 65535,
+            "Arms": 65535,
+            "Food": 65535,
+            "Money": 65535,
+            "Consume": 255,
+            "TimeCount": 255
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S1-queue-injected",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            0
+          ],
+          "bytes": [
+            0,
+            0
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 3,
+          "money": 93,
+          "food": 234,
+          "personIndices": [
+            13,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": false,
+          "order": {
+            "OrderId": 3,
+            "Person": 89,
+            "City": 5,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S4-policy-complete",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            32768
+          ],
+          "bytes": [
+            0,
+            128
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 679304702,
+          "money": 93,
+          "food": 234,
+          "personIndices": [
+            89,
+            13,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 89,
+            "City": 5,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S5-monthly-complete",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            32768
+          ],
+          "bytes": [
+            0,
+            128
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 294859788,
+          "money": 93,
+          "food": 228,
+          "personIndices": [
+            89,
+            13,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 89,
+            "City": 5,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        }
+      ],
+      "instructions": [],
+      "source": {
+        "branch": "main",
+        "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+        "library": "libs/SGBY.lib",
+        "libraryBytes": 615415,
+        "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+        "engine": "js/baye.js",
+        "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+        "bridge": "js/bridge.js",
+        "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+        "wasm": "js/baye.wasm",
+        "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+        "decoding": "Node.js 26 native TextDecoder(GBK)",
+        "engineMessages": [
+          "set cn font to 0",
+          "set en font to 0",
+          "Using custom lib",
+          "Lib length:615415",
+          "lib version=1 magic=0x2",
+          "g_ax_scale=2"
+        ]
+      }
+    },
+    {
+      "name": "A-pingyuan-injected-nonplayer",
+      "city": 5,
+      "person": 89,
+      "player": 0,
+      "tool": 0,
+      "injectTool": 0,
+      "seed": 3,
+      "finalRng": 679304702,
+      "trace": false,
+      "completed": true,
+      "monthlyCompleted": true,
+      "saveReloadTested": false,
+      "fixture": "生产引擎阶段 hook 注入命令；阶段 3 重载原始时期以清除 AI 干扰；不是 UI 接受测试",
+      "queueMetadata": {
+        "goods": {
+          "address": 2647568,
+          "length": 2000,
+          "elementType": 0,
+          "elementBytes": 1
+        },
+        "persons": {
+          "address": 2643568,
+          "length": 2000,
+          "elementType": 1,
+          "elementBytes": 2
+        }
+      },
+      "stages": [
+        {
+          "stage": "S0-fixture-ready",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            0
+          ],
+          "bytes": [
+            0,
+            0
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 3,
+          "money": 93,
+          "food": 234,
+          "personIndices": [
+            13,
+            89,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 65535,
+            "City": 255,
+            "Object": 65535,
+            "Arms": 65535,
+            "Food": 65535,
+            "Money": 65535,
+            "Consume": 255,
+            "TimeCount": 255
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S1-queue-injected",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            0
+          ],
+          "bytes": [
+            0,
+            0
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 3,
+          "money": 93,
+          "food": 234,
+          "personIndices": [
+            13,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": false,
+          "order": {
+            "OrderId": 3,
+            "Person": 89,
+            "City": 5,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S4-policy-complete",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            32768
+          ],
+          "bytes": [
+            0,
+            128
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 679304702,
+          "money": 93,
+          "food": 234,
+          "personIndices": [
+            89,
+            13,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 89,
+            "City": 5,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S5-monthly-complete",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            32768
+          ],
+          "bytes": [
+            0,
+            128
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 294859788,
+          "money": 93,
+          "food": 228,
+          "personIndices": [
+            89,
+            13,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 89,
+            "City": 5,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        }
+      ],
+      "instructions": [],
+      "source": {
+        "branch": "main",
+        "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+        "library": "libs/SGBY.lib",
+        "libraryBytes": 615415,
+        "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+        "engine": "js/baye.js",
+        "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+        "bridge": "js/bridge.js",
+        "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+        "wasm": "js/baye.wasm",
+        "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+        "decoding": "Node.js 26 native TextDecoder(GBK)",
+        "engineMessages": [
+          "set cn font to 0",
+          "set en font to 0",
+          "Using custom lib",
+          "Lib length:615415",
+          "lib version=1 magic=0x2",
+          "g_ax_scale=2"
+        ]
+      }
+    },
+    {
+      "name": "A-pingyuan-injected-player-trace",
+      "city": 5,
+      "person": 89,
+      "player": 13,
+      "tool": 0,
+      "injectTool": 0,
+      "seed": 3,
+      "finalRng": 679304702,
+      "trace": true,
+      "completed": true,
+      "monthlyCompleted": true,
+      "saveReloadTested": false,
+      "fixture": "生产引擎阶段 hook 注入命令；阶段 3 重载原始时期以清除 AI 干扰；不是 UI 接受测试",
+      "queueMetadata": {
+        "goods": {
+          "address": 2647568,
+          "length": 2000,
+          "elementType": 0,
+          "elementBytes": 1
+        },
+        "persons": {
+          "address": 2643568,
+          "length": 2000,
+          "elementType": 1,
+          "elementBytes": 2
+        }
+      },
+      "stages": [
+        {
+          "stage": "S0-fixture-ready",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            0
+          ],
+          "bytes": [
+            0,
+            0
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 3,
+          "money": 93,
+          "food": 234,
+          "personIndices": [
+            13,
+            89,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 65535,
+            "City": 255,
+            "Object": 65535,
+            "Arms": 65535,
+            "Food": 65535,
+            "Money": 65535,
+            "Consume": 255,
+            "TimeCount": 255
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S1-queue-injected",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            0
+          ],
+          "bytes": [
+            0,
+            0
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 3,
+          "money": 93,
+          "food": 234,
+          "personIndices": [
+            13,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": false,
+          "order": {
+            "OrderId": 3,
+            "Person": 89,
+            "City": 5,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S4-policy-complete",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            32768
+          ],
+          "bytes": [
+            0,
+            128
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 679304702,
+          "money": 93,
+          "food": 234,
+          "personIndices": [
+            89,
+            13,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 89,
+            "City": 5,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S5-monthly-complete",
+          "cityIndex": 5,
+          "toolQueue": 3,
+          "tools": 1,
+          "address": 2647574,
+          "rawU16": [
+            32768
+          ],
+          "bytes": [
+            0,
+            128
+          ],
+          "legacyBridgeItems": [
+            0
+          ],
+          "rng": 294859788,
+          "money": 93,
+          "food": 228,
+          "personIndices": [
+            89,
+            13,
+            90,
+            143,
+            172
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 89,
+            "City": 5,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "event": "condition-loaded",
+          "offset": "0x47b4",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 0,
+            "$var3": 89,
+            "$var4": 7908496,
+            "$var5": 0,
+            "$var6": 77,
+            "$var7": 0,
+            "$var8": 8712928,
+            "$var9": 32,
+            "$var10": 8133264,
+            "$var11": 14,
+            "$var12": 8136392,
+            "$var13": 1,
+            "$var14": 2634281,
+            "$var15": 7930208,
+            "$var16": 0,
+            "$var17": 0,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 255,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 7934208,
+            "$var26": 8,
+            "$var27": 118,
+            "$var28": 2598623
+          },
+          "snapshot": {
+            "stage": "condition-loaded",
+            "cityIndex": 5,
+            "toolQueue": 3,
+            "tools": 1,
+            "address": 2647574,
+            "rawU16": [
+              0
+            ],
+            "bytes": [
+              0,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "rng": 679304702,
+            "money": 93,
+            "food": 234,
+            "personIndices": [
+              13,
+              90,
+              143,
+              172
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 89,
+              "City": 5,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          },
+          "condition": {
+            "candidate": 0,
+            "actor": 89,
+            "bole": 0,
+            "address": 8712929,
+            "rawBole": 0
+          }
+        },
+        {
+          "event": "before-report",
+          "offset": "0x484b",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 0,
+            "$var3": 89,
+            "$var4": 7908496,
+            "$var5": 7909520,
+            "$var6": 77,
+            "$var7": 7909520,
+            "$var8": 8712928,
+            "$var9": 32,
+            "$var10": 8133264,
+            "$var11": 14,
+            "$var12": 1,
+            "$var13": 1,
+            "$var14": 2634281,
+            "$var15": 7930208,
+            "$var16": 0,
+            "$var17": 0,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 255,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 7934208,
+            "$var26": 8,
+            "$var27": 118,
+            "$var28": 2598623
+          },
+          "snapshot": {
+            "stage": "before-report",
+            "cityIndex": 5,
+            "toolQueue": 3,
+            "tools": 1,
+            "address": 2647574,
+            "rawU16": [
+              0
+            ],
+            "bytes": [
+              0,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "rng": 679304702,
+            "money": 93,
+            "food": 234,
+            "personIndices": [
+              13,
+              90,
+              143,
+              172
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 89,
+              "City": 5,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          },
+          "pauseCount": 15
+        },
+        {
+          "event": "after-report",
+          "offset": "0x485d",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 0,
+            "$var3": 89,
+            "$var4": 7908496,
+            "$var5": 7909520,
+            "$var6": 77,
+            "$var7": 7909520,
+            "$var8": 7926088,
+            "$var9": 55,
+            "$var10": 8133264,
+            "$var11": 14,
+            "$var12": 1,
+            "$var13": 1,
+            "$var14": 2634281,
+            "$var15": 7930208,
+            "$var16": 0,
+            "$var17": 0,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 0,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 0,
+            "$var26": 8,
+            "$var27": 0,
+            "$var28": 0
+          },
+          "snapshot": {
+            "stage": "after-report",
+            "cityIndex": 5,
+            "toolQueue": 3,
+            "tools": 1,
+            "address": 2647574,
+            "rawU16": [
+              0
+            ],
+            "bytes": [
+              0,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "rng": 679304702,
+            "money": 93,
+            "food": 234,
+            "personIndices": [
+              13,
+              90,
+              143,
+              172
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 89,
+              "City": 5,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          }
+        },
+        {
+          "event": "setgoods-loop",
+          "offset": "0x4894",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 0,
+            "$var3": 89,
+            "$var4": 7908496,
+            "$var5": 1,
+            "$var6": 77,
+            "$var7": 3,
+            "$var8": 7926088,
+            "$var9": 55,
+            "$var10": 8133264,
+            "$var11": 14,
+            "$var12": 4,
+            "$var13": 1,
+            "$var14": 2634281,
+            "$var15": 7930208,
+            "$var16": 0,
+            "$var17": 0,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 0,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 0,
+            "$var26": 8,
+            "$var27": 0,
+            "$var28": 0
+          },
+          "snapshot": {
+            "stage": "setgoods-loop",
+            "cityIndex": 5,
+            "toolQueue": 3,
+            "tools": 1,
+            "address": 2647574,
+            "rawU16": [
+              0
+            ],
+            "bytes": [
+              0,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "rng": 679304702,
+            "money": 93,
+            "food": 234,
+            "personIndices": [
+              13,
+              90,
+              143,
+              172
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 89,
+              "City": 5,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          }
+        },
+        {
+          "event": "before-store16",
+          "offset": "0x48dc",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 32768,
+            "$var3": 89,
+            "$var4": 7908496,
+            "$var5": 1,
+            "$var6": 77,
+            "$var7": 3,
+            "$var8": 7926088,
+            "$var9": 55,
+            "$var10": 8133264,
+            "$var11": 14,
+            "$var12": 4,
+            "$var13": 0,
+            "$var14": 0,
+            "$var15": 2647574,
+            "$var16": 0,
+            "$var17": 0,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 0,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 0,
+            "$var26": 8,
+            "$var27": 0,
+            "$var28": 0
+          },
+          "snapshot": {
+            "stage": "before-store16",
+            "cityIndex": 5,
+            "toolQueue": 3,
+            "tools": 1,
+            "address": 2647574,
+            "rawU16": [
+              0
+            ],
+            "bytes": [
+              0,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "rng": 679304702,
+            "money": 93,
+            "food": 234,
+            "personIndices": [
+              13,
+              90,
+              143,
+              172
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 89,
+              "City": 5,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          },
+          "write": {
+            "address": 2647574,
+            "value": 32768,
+            "memoryValue": 0
+          }
+        },
+        {
+          "event": "after-store16",
+          "offset": "0x48df",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 32768,
+            "$var3": 89,
+            "$var4": 7908496,
+            "$var5": 1,
+            "$var6": 77,
+            "$var7": 3,
+            "$var8": 7926088,
+            "$var9": 55,
+            "$var10": 8133264,
+            "$var11": 14,
+            "$var12": 4,
+            "$var13": 0,
+            "$var14": 0,
+            "$var15": 2647574,
+            "$var16": 0,
+            "$var17": 0,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 0,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 0,
+            "$var26": 8,
+            "$var27": 0,
+            "$var28": 0
+          },
+          "snapshot": {
+            "stage": "after-store16",
+            "cityIndex": 5,
+            "toolQueue": 3,
+            "tools": 1,
+            "address": 2647574,
+            "rawU16": [
+              32768
+            ],
+            "bytes": [
+              0,
+              128
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "rng": 679304702,
+            "money": 93,
+            "food": 234,
+            "personIndices": [
+              13,
+              90,
+              143,
+              172
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 89,
+              "City": 5,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          },
+          "write": {
+            "address": 2647574,
+            "value": 32768,
+            "memoryValue": 32768
+          }
+        }
+      ],
+      "source": {
+        "branch": "main",
+        "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+        "library": "libs/SGBY.lib",
+        "libraryBytes": 615415,
+        "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+        "engine": "js/baye.js",
+        "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+        "bridge": "js/bridge.js",
+        "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+        "wasm": "js/baye.wasm",
+        "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+        "decoding": "Node.js 26 native TextDecoder(GBK)",
+        "engineMessages": [
+          "set cn font to 0",
+          "set en font to 0",
+          "Using custom lib",
+          "Lib length:615415",
+          "lib version=1 magic=0x2",
+          "g_ax_scale=2"
+        ]
+      }
+    },
+    {
+      "name": "B-beiping-original-player",
+      "city": 1,
+      "person": 16,
+      "player": 16,
+      "tool": 31,
+      "seed": 43,
+      "finalRng": 1008917062,
+      "trace": false,
+      "completed": true,
+      "monthlyCompleted": true,
+      "saveReloadTested": false,
+      "fixture": "生产引擎阶段 hook 注入命令；阶段 3 重载原始时期以清除 AI 干扰；不是 UI 接受测试",
+      "queueMetadata": {
+        "goods": {
+          "address": 2647568,
+          "length": 2000,
+          "elementType": 0,
+          "elementBytes": 1
+        },
+        "persons": {
+          "address": 2643568,
+          "length": 2000,
+          "elementType": 1,
+          "elementBytes": 2
+        }
+      },
+      "stages": [
+        {
+          "stage": "S0-fixture-ready",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            31
+          ],
+          "bytes": [
+            31,
+            0
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 43,
+          "money": 341,
+          "food": 355,
+          "personIndices": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 65535,
+            "City": 255,
+            "Object": 65535,
+            "Arms": 65535,
+            "Food": 65535,
+            "Money": 65535,
+            "Consume": 255,
+            "TimeCount": 255
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S1-queue-injected",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            31
+          ],
+          "bytes": [
+            31,
+            0
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 43,
+          "money": 341,
+          "food": 355,
+          "personIndices": [
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": false,
+          "order": {
+            "OrderId": 3,
+            "Person": 16,
+            "City": 1,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S4-policy-complete",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            32799
+          ],
+          "bytes": [
+            31,
+            128
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 1008917062,
+          "money": 341,
+          "food": 355,
+          "personIndices": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 16,
+            "City": 1,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S5-monthly-complete",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            32799
+          ],
+          "bytes": [
+            31,
+            128
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 2358894996,
+          "money": 341,
+          "food": 345,
+          "personIndices": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 16,
+            "City": 1,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        }
+      ],
+      "instructions": [],
+      "source": {
+        "branch": "main",
+        "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+        "library": "libs/SGBY.lib",
+        "libraryBytes": 615415,
+        "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+        "engine": "js/baye.js",
+        "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+        "bridge": "js/bridge.js",
+        "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+        "wasm": "js/baye.wasm",
+        "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+        "decoding": "Node.js 26 native TextDecoder(GBK)",
+        "engineMessages": [
+          "set cn font to 0",
+          "set en font to 0",
+          "Using custom lib",
+          "Lib length:615415",
+          "lib version=1 magic=0x2",
+          "g_ax_scale=2"
+        ]
+      }
+    },
+    {
+      "name": "B-beiping-original-nonplayer",
+      "city": 1,
+      "person": 16,
+      "player": 0,
+      "tool": 31,
+      "seed": 43,
+      "finalRng": 1008917062,
+      "trace": false,
+      "completed": true,
+      "monthlyCompleted": true,
+      "saveReloadTested": false,
+      "fixture": "生产引擎阶段 hook 注入命令；阶段 3 重载原始时期以清除 AI 干扰；不是 UI 接受测试",
+      "queueMetadata": {
+        "goods": {
+          "address": 2647568,
+          "length": 2000,
+          "elementType": 0,
+          "elementBytes": 1
+        },
+        "persons": {
+          "address": 2643568,
+          "length": 2000,
+          "elementType": 1,
+          "elementBytes": 2
+        }
+      },
+      "stages": [
+        {
+          "stage": "S0-fixture-ready",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            31
+          ],
+          "bytes": [
+            31,
+            0
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 43,
+          "money": 341,
+          "food": 355,
+          "personIndices": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 65535,
+            "City": 255,
+            "Object": 65535,
+            "Arms": 65535,
+            "Food": 65535,
+            "Money": 65535,
+            "Consume": 255,
+            "TimeCount": 255
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S1-queue-injected",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            31
+          ],
+          "bytes": [
+            31,
+            0
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 43,
+          "money": 341,
+          "food": 355,
+          "personIndices": [
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": false,
+          "order": {
+            "OrderId": 3,
+            "Person": 16,
+            "City": 1,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S4-policy-complete",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            32799
+          ],
+          "bytes": [
+            31,
+            128
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 1008917062,
+          "money": 341,
+          "food": 355,
+          "personIndices": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 16,
+            "City": 1,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S5-monthly-complete",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            32799
+          ],
+          "bytes": [
+            31,
+            128
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 2358894996,
+          "money": 341,
+          "food": 345,
+          "personIndices": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 16,
+            "City": 1,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        }
+      ],
+      "instructions": [],
+      "source": {
+        "branch": "main",
+        "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+        "library": "libs/SGBY.lib",
+        "libraryBytes": 615415,
+        "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+        "engine": "js/baye.js",
+        "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+        "bridge": "js/bridge.js",
+        "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+        "wasm": "js/baye.wasm",
+        "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+        "decoding": "Node.js 26 native TextDecoder(GBK)",
+        "engineMessages": [
+          "set cn font to 0",
+          "set en font to 0",
+          "Using custom lib",
+          "Lib length:615415",
+          "lib version=1 magic=0x2",
+          "g_ax_scale=2"
+        ]
+      }
+    },
+    {
+      "name": "B-beiping-original-player-trace",
+      "city": 1,
+      "person": 16,
+      "player": 16,
+      "tool": 31,
+      "seed": 43,
+      "finalRng": 1008917062,
+      "trace": true,
+      "completed": true,
+      "monthlyCompleted": true,
+      "saveReloadTested": false,
+      "fixture": "生产引擎阶段 hook 注入命令；阶段 3 重载原始时期以清除 AI 干扰；不是 UI 接受测试",
+      "queueMetadata": {
+        "goods": {
+          "address": 2647568,
+          "length": 2000,
+          "elementType": 0,
+          "elementBytes": 1
+        },
+        "persons": {
+          "address": 2643568,
+          "length": 2000,
+          "elementType": 1,
+          "elementBytes": 2
+        }
+      },
+      "stages": [
+        {
+          "stage": "S0-fixture-ready",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            31
+          ],
+          "bytes": [
+            31,
+            0
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 43,
+          "money": 341,
+          "food": 355,
+          "personIndices": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 65535,
+            "City": 255,
+            "Object": 65535,
+            "Arms": 65535,
+            "Food": 65535,
+            "Money": 65535,
+            "Consume": 255,
+            "TimeCount": 255
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S1-queue-injected",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            31
+          ],
+          "bytes": [
+            31,
+            0
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 43,
+          "money": 341,
+          "food": 355,
+          "personIndices": [
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": false,
+          "order": {
+            "OrderId": 3,
+            "Person": 16,
+            "City": 1,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S4-policy-complete",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            32799
+          ],
+          "bytes": [
+            31,
+            128
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 1008917062,
+          "money": 341,
+          "food": 355,
+          "personIndices": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 16,
+            "City": 1,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        },
+        {
+          "stage": "S5-monthly-complete",
+          "cityIndex": 1,
+          "toolQueue": 0,
+          "tools": 1,
+          "address": 2647568,
+          "rawU16": [
+            32799
+          ],
+          "bytes": [
+            31,
+            128
+          ],
+          "legacyBridgeItems": [
+            31
+          ],
+          "rng": 2358894996,
+          "money": 341,
+          "food": 345,
+          "personIndices": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "actorPresent": true,
+          "order": {
+            "OrderId": 255,
+            "Person": 16,
+            "City": 1,
+            "Object": 0,
+            "Arms": 0,
+            "Food": 0,
+            "Money": 0,
+            "Consume": 0,
+            "TimeCount": 0
+          },
+          "asyncify": {
+            "state": 0,
+            "continuationPending": false
+          }
+        }
+      ],
+      "instructions": [
+        {
+          "event": "condition-loaded",
+          "offset": "0x47b4",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 31,
+            "$var3": 16,
+            "$var4": 7908496,
+            "$var5": 0,
+            "$var6": 29,
+            "$var7": 0,
+            "$var8": 8712928,
+            "$var9": 32,
+            "$var10": 8133264,
+            "$var11": 17,
+            "$var12": 8136392,
+            "$var13": 1,
+            "$var14": 2634133,
+            "$var15": 7930208,
+            "$var16": 0,
+            "$var17": 31,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 255,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 7934208,
+            "$var26": 8,
+            "$var27": 118,
+            "$var28": 2598623
+          },
+          "snapshot": {
+            "stage": "condition-loaded",
+            "cityIndex": 1,
+            "toolQueue": 0,
+            "tools": 1,
+            "address": 2647568,
+            "rawU16": [
+              31
+            ],
+            "bytes": [
+              31,
+              0
+            ],
+            "legacyBridgeItems": [
+              31
+            ],
+            "rng": 1008917062,
+            "money": 341,
+            "food": 355,
+            "personIndices": [
+              99,
+              100,
+              101,
+              102,
+              166
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 16,
+              "City": 1,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          },
+          "condition": {
+            "candidate": 31,
+            "actor": 16,
+            "bole": 0,
+            "address": 8713053,
+            "rawBole": 0
+          }
+        },
+        {
+          "event": "before-report",
+          "offset": "0x484b",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 31,
+            "$var3": 16,
+            "$var4": 7908496,
+            "$var5": 7909520,
+            "$var6": 29,
+            "$var7": 7909520,
+            "$var8": 8712928,
+            "$var9": 32,
+            "$var10": 8133264,
+            "$var11": 17,
+            "$var12": 1,
+            "$var13": 1,
+            "$var14": 2634133,
+            "$var15": 7930208,
+            "$var16": 0,
+            "$var17": 31,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 255,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 7934208,
+            "$var26": 8,
+            "$var27": 118,
+            "$var28": 2598623
+          },
+          "snapshot": {
+            "stage": "before-report",
+            "cityIndex": 1,
+            "toolQueue": 0,
+            "tools": 1,
+            "address": 2647568,
+            "rawU16": [
+              31
+            ],
+            "bytes": [
+              31,
+              0
+            ],
+            "legacyBridgeItems": [
+              31
+            ],
+            "rng": 1008917062,
+            "money": 341,
+            "food": 355,
+            "personIndices": [
+              99,
+              100,
+              101,
+              102,
+              166
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 16,
+              "City": 1,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          },
+          "pauseCount": 15
+        },
+        {
+          "event": "after-report",
+          "offset": "0x485d",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 31,
+            "$var3": 16,
+            "$var4": 7908496,
+            "$var5": 7909520,
+            "$var6": 29,
+            "$var7": 7909520,
+            "$var8": 7926088,
+            "$var9": 55,
+            "$var10": 8133264,
+            "$var11": 17,
+            "$var12": 1,
+            "$var13": 1,
+            "$var14": 2634133,
+            "$var15": 7930208,
+            "$var16": 0,
+            "$var17": 31,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 0,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 0,
+            "$var26": 8,
+            "$var27": 0,
+            "$var28": 0
+          },
+          "snapshot": {
+            "stage": "after-report",
+            "cityIndex": 1,
+            "toolQueue": 0,
+            "tools": 1,
+            "address": 2647568,
+            "rawU16": [
+              31
+            ],
+            "bytes": [
+              31,
+              0
+            ],
+            "legacyBridgeItems": [
+              31
+            ],
+            "rng": 1008917062,
+            "money": 341,
+            "food": 355,
+            "personIndices": [
+              99,
+              100,
+              101,
+              102,
+              166
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 16,
+              "City": 1,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          }
+        },
+        {
+          "event": "setgoods-loop",
+          "offset": "0x4894",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 31,
+            "$var3": 16,
+            "$var4": 7908496,
+            "$var5": 1,
+            "$var6": 29,
+            "$var7": 0,
+            "$var8": 7926088,
+            "$var9": 55,
+            "$var10": 8133264,
+            "$var11": 17,
+            "$var12": 1,
+            "$var13": 1,
+            "$var14": 2634133,
+            "$var15": 7930208,
+            "$var16": 0,
+            "$var17": 31,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 0,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 0,
+            "$var26": 8,
+            "$var27": 0,
+            "$var28": 0
+          },
+          "snapshot": {
+            "stage": "setgoods-loop",
+            "cityIndex": 1,
+            "toolQueue": 0,
+            "tools": 1,
+            "address": 2647568,
+            "rawU16": [
+              31
+            ],
+            "bytes": [
+              31,
+              0
+            ],
+            "legacyBridgeItems": [
+              31
+            ],
+            "rng": 1008917062,
+            "money": 341,
+            "food": 355,
+            "personIndices": [
+              99,
+              100,
+              101,
+              102,
+              166
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 16,
+              "City": 1,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          }
+        },
+        {
+          "event": "before-store16",
+          "offset": "0x48dc",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 32799,
+            "$var3": 16,
+            "$var4": 7908496,
+            "$var5": 1,
+            "$var6": 29,
+            "$var7": 0,
+            "$var8": 7926088,
+            "$var9": 55,
+            "$var10": 8133264,
+            "$var11": 17,
+            "$var12": 1,
+            "$var13": 31,
+            "$var14": 0,
+            "$var15": 2647568,
+            "$var16": 0,
+            "$var17": 31,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 0,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 0,
+            "$var26": 8,
+            "$var27": 0,
+            "$var28": 0
+          },
+          "snapshot": {
+            "stage": "before-store16",
+            "cityIndex": 1,
+            "toolQueue": 0,
+            "tools": 1,
+            "address": 2647568,
+            "rawU16": [
+              31
+            ],
+            "bytes": [
+              31,
+              0
+            ],
+            "legacyBridgeItems": [
+              31
+            ],
+            "rng": 1008917062,
+            "money": 341,
+            "food": 355,
+            "personIndices": [
+              99,
+              100,
+              101,
+              102,
+              166
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 16,
+              "City": 1,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          },
+          "write": {
+            "address": 2647568,
+            "value": 32799,
+            "memoryValue": 31
+          }
+        },
+        {
+          "event": "after-store16",
+          "offset": "0x48df",
+          "locals": {
+            "$var0": 7910608,
+            "$var1": 7910544,
+            "$var2": 32799,
+            "$var3": 16,
+            "$var4": 7908496,
+            "$var5": 1,
+            "$var6": 29,
+            "$var7": 0,
+            "$var8": 7926088,
+            "$var9": 55,
+            "$var10": 8133264,
+            "$var11": 17,
+            "$var12": 1,
+            "$var13": 31,
+            "$var14": 0,
+            "$var15": 2647568,
+            "$var16": 0,
+            "$var17": 31,
+            "$var18": 0,
+            "$var19": 8133264,
+            "$var20": 7930608,
+            "$var21": 0,
+            "$var22": 89,
+            "$var23": 2597058,
+            "$var24": 7930208,
+            "$var25": 0,
+            "$var26": 8,
+            "$var27": 0,
+            "$var28": 0
+          },
+          "snapshot": {
+            "stage": "after-store16",
+            "cityIndex": 1,
+            "toolQueue": 0,
+            "tools": 1,
+            "address": 2647568,
+            "rawU16": [
+              32799
+            ],
+            "bytes": [
+              31,
+              128
+            ],
+            "legacyBridgeItems": [
+              31
+            ],
+            "rng": 1008917062,
+            "money": 341,
+            "food": 355,
+            "personIndices": [
+              99,
+              100,
+              101,
+              102,
+              166
+            ],
+            "actorPresent": false,
+            "order": {
+              "OrderId": 3,
+              "Person": 16,
+              "City": 1,
+              "Object": 0,
+              "Arms": 0,
+              "Food": 0,
+              "Money": 0,
+              "Consume": 0,
+              "TimeCount": 0
+            },
+            "asyncify": {
+              "state": 0,
+              "continuationPending": false
+            }
+          },
+          "write": {
+            "address": 2647568,
+            "value": 32799,
+            "memoryValue": 32799
+          }
+        }
+      ],
+      "source": {
+        "branch": "main",
+        "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+        "library": "libs/SGBY.lib",
+        "libraryBytes": 615415,
+        "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+        "engine": "js/baye.js",
+        "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+        "bridge": "js/bridge.js",
+        "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+        "wasm": "js/baye.wasm",
+        "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+        "decoding": "Node.js 26 native TextDecoder(GBK)",
+        "engineMessages": [
+          "set cn font to 0",
+          "set en font to 0",
+          "Using custom lib",
+          "Lib length:615415",
+          "lib version=1 magic=0x2",
+          "g_ax_scale=2"
+        ]
+      }
+    }
+  ],
+  "importAudit": {
+    "goods": {
+      "address": 2647568,
+      "length": 2000,
+      "elementType": 0,
+      "elementBytes": 1
+    },
+    "persons": {
+      "address": 2643568,
+      "length": 2000,
+      "elementType": 1,
+      "elementBytes": 2
+    },
+    "affectedCityRecords": 60,
+    "periods": [
+      {
+        "period": 1,
+        "affectedCities": 13,
+        "differences": [
+          {
+            "cityIndex": 2,
+            "name": "襄平",
+            "toolQueue": 1,
+            "address": 2647570,
+            "rawU16": [
+              32
+            ],
+            "bytes": [
+              32,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-032",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 4,
+            "name": "晋阳",
+            "toolQueue": 2,
+            "address": 2647572,
+            "rawU16": [
+              17
+            ],
+            "bytes": [
+              17,
+              0
+            ],
+            "legacyBridgeItems": [
+              32
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-032",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-017",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 9,
+            "name": "河内",
+            "toolQueue": 3,
+            "address": 2647574,
+            "rawU16": [
+              30
+            ],
+            "bytes": [
+              30,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-030",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 12,
+            "name": "濮阳",
+            "toolQueue": 4,
+            "address": 2647576,
+            "rawU16": [
+              16,
+              20
+            ],
+            "bytes": [
+              16,
+              0,
+              20,
+              0
+            ],
+            "legacyBridgeItems": [
+              17,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-017",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-016",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-020",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 14,
+            "name": "汉中",
+            "toolQueue": 6,
+            "address": 2647580,
+            "rawU16": [
+              19
+            ],
+            "bytes": [
+              19,
+              0
+            ],
+            "legacyBridgeItems": [
+              30
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-030",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-019",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 16,
+            "name": "许昌",
+            "toolQueue": 7,
+            "address": 2647582,
+            "rawU16": [
+              7,
+              8,
+              12
+            ],
+            "bytes": [
+              7,
+              0,
+              8,
+              0,
+              12,
+              0
+            ],
+            "legacyBridgeItems": [
+              0,
+              16,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-016",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-007",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-008",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-012",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 17,
+            "name": "小沛",
+            "toolQueue": 10,
+            "address": 2647588,
+            "rawU16": [
+              11,
+              15
+            ],
+            "bytes": [
+              11,
+              0,
+              15,
+              0
+            ],
+            "legacyBridgeItems": [
+              20,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-020",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-011",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-015",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 22,
+            "name": "建业",
+            "toolQueue": 12,
+            "address": 2647592,
+            "rawU16": [
+              28
+            ],
+            "bytes": [
+              28,
+              0
+            ],
+            "legacyBridgeItems": [
+              19
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-019",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-028",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 27,
+            "name": "江夏",
+            "toolQueue": 13,
+            "address": 2647594,
+            "rawU16": [
+              23,
+              29
+            ],
+            "bytes": [
+              23,
+              0,
+              29,
+              0
+            ],
+            "legacyBridgeItems": [
+              0,
+              7
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-007",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-023",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-029",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 28,
+            "name": "庐江",
+            "toolQueue": 15,
+            "address": 2647598,
+            "rawU16": [
+              21,
+              27
+            ],
+            "bytes": [
+              21,
+              0,
+              27,
+              0
+            ],
+            "legacyBridgeItems": [
+              0,
+              8
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-008",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-021",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-027",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 29,
+            "name": "会稽",
+            "toolQueue": 17,
+            "address": 2647602,
+            "rawU16": [
+              24
+            ],
+            "bytes": [
+              24,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-024",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 35,
+            "name": "零陵",
+            "toolQueue": 18,
+            "address": 2647604,
+            "rawU16": [
+              14,
+              18
+            ],
+            "bytes": [
+              14,
+              0,
+              18,
+              0
+            ],
+            "legacyBridgeItems": [
+              12,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-012",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-014",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-018",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 36,
+            "name": "桂阳",
+            "toolQueue": 20,
+            "address": 2647608,
+            "rawU16": [
+              25,
+              26
+            ],
+            "bytes": [
+              25,
+              0,
+              26,
+              0
+            ],
+            "legacyBridgeItems": [
+              11,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-011",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-025",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-026",
+                "discovered": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "period": 2,
+        "affectedCities": 17,
+        "differences": [
+          {
+            "cityIndex": 3,
+            "name": "安定",
+            "toolQueue": 1,
+            "address": 2647570,
+            "rawU16": [
+              10
+            ],
+            "bytes": [
+              10,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-010",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 4,
+            "name": "晋阳",
+            "toolQueue": 2,
+            "address": 2647572,
+            "rawU16": [
+              28
+            ],
+            "bytes": [
+              28,
+              0
+            ],
+            "legacyBridgeItems": [
+              10
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-010",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-028",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 9,
+            "name": "河内",
+            "toolQueue": 3,
+            "address": 2647574,
+            "rawU16": [
+              1
+            ],
+            "bytes": [
+              1,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-001",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 11,
+            "name": "邺",
+            "toolQueue": 4,
+            "address": 2647576,
+            "rawU16": [
+              16,
+              20
+            ],
+            "bytes": [
+              16,
+              0,
+              20,
+              0
+            ],
+            "legacyBridgeItems": [
+              28,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-028",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-016",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-020",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 13,
+            "name": "徐州",
+            "toolQueue": 6,
+            "address": 2647580,
+            "rawU16": [
+              25
+            ],
+            "bytes": [
+              25,
+              0
+            ],
+            "legacyBridgeItems": [
+              1
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-001",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-025",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 15,
+            "name": "洛阳",
+            "toolQueue": 7,
+            "address": 2647582,
+            "rawU16": [
+              21
+            ],
+            "bytes": [
+              21,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-021",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 17,
+            "name": "小沛",
+            "toolQueue": 8,
+            "address": 2647584,
+            "rawU16": [
+              12,
+              26
+            ],
+            "bytes": [
+              12,
+              0,
+              26,
+              0
+            ],
+            "legacyBridgeItems": [
+              16,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-016",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-012",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-026",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 18,
+            "name": "下邳",
+            "toolQueue": 10,
+            "address": 2647588,
+            "rawU16": [
+              17,
+              27,
+              31
+            ],
+            "bytes": [
+              17,
+              0,
+              27,
+              0,
+              31,
+              0
+            ],
+            "legacyBridgeItems": [
+              20,
+              0,
+              25
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-020",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-025",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-017",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-027",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-031",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 19,
+            "name": "梓潼",
+            "toolQueue": 13,
+            "address": 2647594,
+            "rawU16": [
+              14
+            ],
+            "bytes": [
+              14,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-014",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 20,
+            "name": "宛城",
+            "toolQueue": 14,
+            "address": 2647596,
+            "rawU16": [
+              18
+            ],
+            "bytes": [
+              18,
+              0
+            ],
+            "legacyBridgeItems": [
+              21
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-021",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-018",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 21,
+            "name": "寿春",
+            "toolQueue": 15,
+            "address": 2647598,
+            "rawU16": [
+              24
+            ],
+            "bytes": [
+              24,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-024",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 22,
+            "name": "建业",
+            "toolQueue": 16,
+            "address": 2647600,
+            "rawU16": [
+              32
+            ],
+            "bytes": [
+              32,
+              0
+            ],
+            "legacyBridgeItems": [
+              12
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-012",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-032",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 27,
+            "name": "江夏",
+            "toolQueue": 17,
+            "address": 2647602,
+            "rawU16": [
+              23
+            ],
+            "bytes": [
+              23,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-023",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 28,
+            "name": "庐江",
+            "toolQueue": 18,
+            "address": 2647604,
+            "rawU16": [
+              11,
+              15
+            ],
+            "bytes": [
+              11,
+              0,
+              15,
+              0
+            ],
+            "legacyBridgeItems": [
+              26,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-026",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-011",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-015",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 33,
+            "name": "长沙",
+            "toolQueue": 20,
+            "address": 2647608,
+            "rawU16": [
+              29
+            ],
+            "bytes": [
+              29,
+              0
+            ],
+            "legacyBridgeItems": [
+              17
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-017",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-029",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 35,
+            "name": "零陵",
+            "toolQueue": 21,
+            "address": 2647610,
+            "rawU16": [
+              13
+            ],
+            "bytes": [
+              13,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-013",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 36,
+            "name": "桂阳",
+            "toolQueue": 22,
+            "address": 2647612,
+            "rawU16": [
+              30
+            ],
+            "bytes": [
+              30,
+              0
+            ],
+            "legacyBridgeItems": [
+              27
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-027",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-030",
+                "discovered": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "period": 3,
+        "affectedCities": 13,
+        "differences": [
+          {
+            "cityIndex": 2,
+            "name": "襄平",
+            "toolQueue": 0,
+            "address": 2647568,
+            "rawU16": [
+              11,
+              13,
+              18,
+              19
+            ],
+            "bytes": [
+              11,
+              0,
+              13,
+              0,
+              18,
+              0,
+              19,
+              0
+            ],
+            "legacyBridgeItems": [
+              11,
+              0,
+              13,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-011",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-013",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-011",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-013",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-018",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-019",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 3,
+            "name": "安定",
+            "toolQueue": 4,
+            "address": 2647576,
+            "rawU16": [
+              27
+            ],
+            "bytes": [
+              27,
+              0
+            ],
+            "legacyBridgeItems": [
+              18
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-018",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-027",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 6,
+            "name": "南皮",
+            "toolQueue": 5,
+            "address": 2647578,
+            "rawU16": [
+              32
+            ],
+            "bytes": [
+              32,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-032",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 7,
+            "name": "北海",
+            "toolQueue": 6,
+            "address": 2647580,
+            "rawU16": [
+              31
+            ],
+            "bytes": [
+              31,
+              0
+            ],
+            "legacyBridgeItems": [
+              19
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-019",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-031",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 14,
+            "name": "汉中",
+            "toolQueue": 7,
+            "address": 2647582,
+            "rawU16": [
+              16
+            ],
+            "bytes": [
+              16,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-016",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 16,
+            "name": "许昌",
+            "toolQueue": 8,
+            "address": 2647584,
+            "rawU16": [
+              5,
+              8,
+              14
+            ],
+            "bytes": [
+              5,
+              0,
+              8,
+              0,
+              14,
+              0
+            ],
+            "legacyBridgeItems": [
+              27,
+              0,
+              32
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-027",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-032",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-005",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-008",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-014",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 21,
+            "name": "寿春",
+            "toolQueue": 12,
+            "address": 2647592,
+            "rawU16": [
+              25
+            ],
+            "bytes": [
+              25,
+              0
+            ],
+            "legacyBridgeItems": [
+              31
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-031",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-025",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 23,
+            "name": "吴",
+            "toolQueue": 13,
+            "address": 2647594,
+            "rawU16": [
+              21
+            ],
+            "bytes": [
+              21,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-021",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 25,
+            "name": "棉竹",
+            "toolQueue": 14,
+            "address": 2647596,
+            "rawU16": [
+              6,
+              30
+            ],
+            "bytes": [
+              6,
+              0,
+              30,
+              0
+            ],
+            "legacyBridgeItems": [
+              16,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-016",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-006",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-030",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 28,
+            "name": "庐江",
+            "toolQueue": 16,
+            "address": 2647600,
+            "rawU16": [
+              10,
+              20
+            ],
+            "bytes": [
+              10,
+              0,
+              20,
+              0
+            ],
+            "legacyBridgeItems": [
+              5,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-005",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-010",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-020",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 30,
+            "name": "云南",
+            "toolQueue": 18,
+            "address": 2647604,
+            "rawU16": [
+              12
+            ],
+            "bytes": [
+              12,
+              0
+            ],
+            "legacyBridgeItems": [
+              8
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-008",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-012",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 32,
+            "name": "武陵",
+            "toolQueue": 19,
+            "address": 2647606,
+            "rawU16": [
+              1,
+              15
+            ],
+            "bytes": [
+              1,
+              0,
+              15,
+              0
+            ],
+            "legacyBridgeItems": [
+              0,
+              14
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-014",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-001",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-015",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 34,
+            "name": "柴桑",
+            "toolQueue": 21,
+            "address": 2647610,
+            "rawU16": [
+              17
+            ],
+            "bytes": [
+              17,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-017",
+                "discovered": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "period": 4,
+        "affectedCities": 17,
+        "differences": [
+          {
+            "cityIndex": 1,
+            "name": "北平",
+            "toolQueue": 1,
+            "address": 2647570,
+            "rawU16": [
+              18
+            ],
+            "bytes": [
+              18,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-018",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 3,
+            "name": "安定",
+            "toolQueue": 2,
+            "address": 2647572,
+            "rawU16": [
+              19
+            ],
+            "bytes": [
+              19,
+              0
+            ],
+            "legacyBridgeItems": [
+              18
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-018",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-019",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 6,
+            "name": "南皮",
+            "toolQueue": 3,
+            "address": 2647574,
+            "rawU16": [
+              32
+            ],
+            "bytes": [
+              32,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-032",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 8,
+            "name": "天水",
+            "toolQueue": 4,
+            "address": 2647576,
+            "rawU16": [
+              25
+            ],
+            "bytes": [
+              25,
+              0
+            ],
+            "legacyBridgeItems": [
+              19
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-019",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-025",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 9,
+            "name": "河内",
+            "toolQueue": 5,
+            "address": 2647578,
+            "rawU16": [
+              1
+            ],
+            "bytes": [
+              1,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-001",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 16,
+            "name": "许昌",
+            "toolQueue": 6,
+            "address": 2647580,
+            "rawU16": [
+              7
+            ],
+            "bytes": [
+              7,
+              0
+            ],
+            "legacyBridgeItems": [
+              32
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-032",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-007",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 17,
+            "name": "小沛",
+            "toolQueue": 7,
+            "address": 2647582,
+            "rawU16": [
+              13
+            ],
+            "bytes": [
+              13,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-013",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 19,
+            "name": "梓潼",
+            "toolQueue": 8,
+            "address": 2647584,
+            "rawU16": [
+              0
+            ],
+            "bytes": [
+              0,
+              0
+            ],
+            "legacyBridgeItems": [
+              25
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-025",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 21,
+            "name": "寿春",
+            "toolQueue": 9,
+            "address": 2647586,
+            "rawU16": [
+              5
+            ],
+            "bytes": [
+              5,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-005",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 22,
+            "name": "建业",
+            "toolQueue": 10,
+            "address": 2647588,
+            "rawU16": [
+              4,
+              26
+            ],
+            "bytes": [
+              4,
+              0,
+              26,
+              0
+            ],
+            "legacyBridgeItems": [
+              1,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-001",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-004",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-026",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 23,
+            "name": "吴",
+            "toolQueue": 12,
+            "address": 2647592,
+            "rawU16": [
+              10,
+              27
+            ],
+            "bytes": [
+              10,
+              0,
+              27,
+              0
+            ],
+            "legacyBridgeItems": [
+              7,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-007",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-010",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-027",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 24,
+            "name": "成都",
+            "toolQueue": 14,
+            "address": 2647596,
+            "rawU16": [
+              6,
+              11,
+              31
+            ],
+            "bytes": [
+              6,
+              0,
+              11,
+              0,
+              31,
+              0
+            ],
+            "legacyBridgeItems": [
+              13,
+              0,
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-013",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-006",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-011",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-031",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 27,
+            "name": "江夏",
+            "toolQueue": 17,
+            "address": 2647602,
+            "rawU16": [
+              23,
+              30
+            ],
+            "bytes": [
+              23,
+              0,
+              30,
+              0
+            ],
+            "legacyBridgeItems": [
+              0,
+              5
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-005",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-023",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-030",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 28,
+            "name": "庐江",
+            "toolQueue": 19,
+            "address": 2647606,
+            "rawU16": [
+              15
+            ],
+            "bytes": [
+              15,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-015",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 31,
+            "name": "巴郡",
+            "toolQueue": 20,
+            "address": 2647608,
+            "rawU16": [
+              14,
+              17,
+              21
+            ],
+            "bytes": [
+              14,
+              0,
+              17,
+              0,
+              21,
+              0
+            ],
+            "legacyBridgeItems": [
+              4,
+              0,
+              26
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-004",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-026",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-014",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-017",
+                "discovered": false
+              },
+              {
+                "toolId": "tool-021",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 34,
+            "name": "柴桑",
+            "toolQueue": 23,
+            "address": 2647614,
+            "rawU16": [
+              16
+            ],
+            "bytes": [
+              16,
+              0
+            ],
+            "legacyBridgeItems": [
+              0
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-000",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-016",
+                "discovered": false
+              }
+            ]
+          },
+          {
+            "cityIndex": 37,
+            "name": "建宁",
+            "toolQueue": 24,
+            "address": 2647616,
+            "rawU16": [
+              20
+            ],
+            "bytes": [
+              20,
+              0
+            ],
+            "legacyBridgeItems": [
+              10
+            ],
+            "importedEntries": [
+              {
+                "toolId": "tool-010",
+                "discovered": false
+              }
+            ],
+            "expectedEntries": [
+              {
+                "toolId": "tool-020",
+                "discovered": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

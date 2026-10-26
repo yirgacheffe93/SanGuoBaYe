@@ -39,12 +39,12 @@ public sealed class MainGameSession
     public IReadOnlyList<string> EndMonth(bool runAi = true)
     {
         if (runAi) MainAiPlanner.Plan(World);
-        var messages = MainOrderExecutor.Execute(World);
-        MainMonthService.Update(World);
+        var messages = MainOrderExecutor.Execute(World, Content).ToList();
+        messages.AddRange(MainMonthService.Update(World));
         return messages;
     }
 
-    public IReadOnlyList<string> ExecuteOrders() => MainOrderExecutor.Execute(World);
+    public IReadOnlyList<string> ExecuteOrders() => MainOrderExecutor.Execute(World, Content);
 
     public void ConditionUpdate() => MainMonthService.Update(World);
 

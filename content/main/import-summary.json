@@ -21,6 +21,10 @@
     "personsPerPeriod": 200,
     "cityRecords": 152,
     "personRecords": 800,
+    "personSearchConditionsPerPeriod": 200,
+    "personSearchConditionRecords": 800,
+    "toolSearchConditionsPerPeriod": 33,
+    "toolSearchConditionRecords": 132,
     "tools": 33,
     "skills": 30,
     "orderSlotsPerPeriod": 200
@@ -34,11 +38,15 @@
       },
       "cities": 38,
       "persons": 200,
+      "personSearchConditions": 200,
       "tools": 33,
+      "toolSearchConditions": 33,
       "skills": 30,
       "orderSlots": 200,
       "peopleInCities": 157,
       "toolsInCities": 22,
+      "discoveredToolsInCities": 0,
+      "duplicateToolQueueEntries": 0,
       "attributeValuesOver100": {
         "Force": 6,
         "IQ": 2,
@@ -58,11 +66,15 @@
       },
       "cities": 38,
       "persons": 200,
+      "personSearchConditions": 200,
       "tools": 33,
+      "toolSearchConditions": 33,
       "skills": 30,
       "orderSlots": 200,
       "peopleInCities": 175,
       "toolsInCities": 23,
+      "discoveredToolsInCities": 0,
+      "duplicateToolQueueEntries": 0,
       "attributeValuesOver100": {
         "Force": 7,
         "IQ": 2,
@@ -82,11 +94,15 @@
       },
       "cities": 38,
       "persons": 200,
+      "personSearchConditions": 200,
       "tools": 33,
+      "toolSearchConditions": 33,
       "skills": 30,
       "orderSlots": 200,
       "peopleInCities": 179,
       "toolsInCities": 22,
+      "discoveredToolsInCities": 0,
+      "duplicateToolQueueEntries": 0,
       "attributeValuesOver100": {
         "Force": 5,
         "IQ": 2,
@@ -106,11 +122,15 @@
       },
       "cities": 38,
       "persons": 200,
+      "personSearchConditions": 200,
       "tools": 33,
+      "toolSearchConditions": 33,
       "skills": 30,
       "orderSlots": 200,
       "peopleInCities": 166,
       "toolsInCities": 25,
+      "discoveredToolsInCities": 0,
+      "duplicateToolQueueEntries": 0,
       "attributeValuesOver100": {
         "Force": 3,
         "IQ": 2,
@@ -165,6 +185,13 @@
       }
     },
     {
+      "id": "u16le-high-bit-decoding",
+      "result": "passed",
+      "details": {
+        "value": 32799
+      }
+    },
+    {
       "id": "period-1-city-count",
       "result": "passed",
       "details": {
@@ -181,7 +208,23 @@
       }
     },
     {
+      "id": "period-1-person-search-condition-count",
+      "result": "passed",
+      "details": {
+        "actual": 200,
+        "expected": 200
+      }
+    },
+    {
       "id": "period-1-tool-count",
+      "result": "passed",
+      "details": {
+        "actual": 33,
+        "expected": 33
+      }
+    },
+    {
+      "id": "period-1-tool-search-condition-count",
       "result": "passed",
       "details": {
         "actual": 33,
@@ -194,6 +237,28 @@
       "details": {
         "actual": 30,
         "expected": 30
+      }
+    },
+    {
+      "id": "period-1-tool-queue-order",
+      "result": "passed",
+      "details": {
+        "entries": 22
+      }
+    },
+    {
+      "id": "period-1-tool-queue-duplicates",
+      "result": "passed",
+      "details": {
+        "actual": 0,
+        "expected": 0
+      }
+    },
+    {
+      "id": "period-1-tool-queue-high-bit",
+      "result": "passed",
+      "details": {
+        "discovered": 0
       }
     },
     {
@@ -213,7 +278,23 @@
       }
     },
     {
+      "id": "period-2-person-search-condition-count",
+      "result": "passed",
+      "details": {
+        "actual": 200,
+        "expected": 200
+      }
+    },
+    {
       "id": "period-2-tool-count",
+      "result": "passed",
+      "details": {
+        "actual": 33,
+        "expected": 33
+      }
+    },
+    {
+      "id": "period-2-tool-search-condition-count",
       "result": "passed",
       "details": {
         "actual": 33,
@@ -226,6 +307,28 @@
       "details": {
         "actual": 30,
         "expected": 30
+      }
+    },
+    {
+      "id": "period-2-tool-queue-order",
+      "result": "passed",
+      "details": {
+        "entries": 23
+      }
+    },
+    {
+      "id": "period-2-tool-queue-duplicates",
+      "result": "passed",
+      "details": {
+        "actual": 0,
+        "expected": 0
+      }
+    },
+    {
+      "id": "period-2-tool-queue-high-bit",
+      "result": "passed",
+      "details": {
+        "discovered": 0
       }
     },
     {
@@ -245,7 +348,23 @@
       }
     },
     {
+      "id": "period-3-person-search-condition-count",
+      "result": "passed",
+      "details": {
+        "actual": 200,
+        "expected": 200
+      }
+    },
+    {
       "id": "period-3-tool-count",
+      "result": "passed",
+      "details": {
+        "actual": 33,
+        "expected": 33
+      }
+    },
+    {
+      "id": "period-3-tool-search-condition-count",
       "result": "passed",
       "details": {
         "actual": 33,
@@ -258,6 +377,28 @@
       "details": {
         "actual": 30,
         "expected": 30
+      }
+    },
+    {
+      "id": "period-3-tool-queue-order",
+      "result": "passed",
+      "details": {
+        "entries": 22
+      }
+    },
+    {
+      "id": "period-3-tool-queue-duplicates",
+      "result": "passed",
+      "details": {
+        "actual": 0,
+        "expected": 0
+      }
+    },
+    {
+      "id": "period-3-tool-queue-high-bit",
+      "result": "passed",
+      "details": {
+        "discovered": 0
       }
     },
     {
@@ -277,7 +418,23 @@
       }
     },
     {
+      "id": "period-4-person-search-condition-count",
+      "result": "passed",
+      "details": {
+        "actual": 200,
+        "expected": 200
+      }
+    },
+    {
       "id": "period-4-tool-count",
+      "result": "passed",
+      "details": {
+        "actual": 33,
+        "expected": 33
+      }
+    },
+    {
+      "id": "period-4-tool-search-condition-count",
       "result": "passed",
       "details": {
         "actual": 33,
@@ -290,6 +447,28 @@
       "details": {
         "actual": 30,
         "expected": 30
+      }
+    },
+    {
+      "id": "period-4-tool-queue-order",
+      "result": "passed",
+      "details": {
+        "entries": 25
+      }
+    },
+    {
+      "id": "period-4-tool-queue-duplicates",
+      "result": "passed",
+      "details": {
+        "actual": 0,
+        "expected": 0
+      }
+    },
+    {
+      "id": "period-4-tool-queue-high-bit",
+      "result": "passed",
+      "details": {
+        "discovered": 0
       }
     },
     {
@@ -433,6 +612,24 @@
         "actual": "丈八矛",
         "expected": "丈八矛"
       }
+    },
+    {
+      "id": "golden-search-condition-吴懿-bole",
+      "result": "passed",
+      "details": {
+        "index": 143,
+        "actual": 0,
+        "expected": 0
+      }
+    },
+    {
+      "id": "golden-search-condition-丁奉-bole",
+      "result": "passed",
+      "details": {
+        "index": 172,
+        "actual": 0,
+        "expected": 0
+      }
     }
   ],
   "limitations": [
@@ -442,16 +639,16 @@
   ],
   "files": {
     "content.json": {
-      "bytes": 57638,
-      "sha256": "19c1dcdd4a0a37c62fe10608bf86260ed81f7fa6f51a9408e0c9762725a5d12b"
+      "bytes": 57916,
+      "sha256": "f88515c7917ce021877f91174ea2153103e7cc0822fb7e77ddd3c03c038aade8"
     },
     "scenarios.json": {
-      "bytes": 1128815,
-      "sha256": "136e74d4816aa9629e1ebe529c020c26455655e4ee43c2e3ff6bb030aaf8d96f"
+      "bytes": 1244118,
+      "sha256": "5a1bed691433cbf901dc957a4cddc1afc07a081eeb72dd49363bdafaf2f1442f"
     },
     "golden-liubei-190.json": {
-      "bytes": 5862,
-      "sha256": "966a0925ac0b300a4136328b4d817f61b9f055274ae780f04bc5251d452c84e8"
+      "bytes": 5885,
+      "sha256": "62654c7bf96aa74a58a13f85954f5cafd9b51d83e2c955178e1959baa653088a"
     }
   }
 }

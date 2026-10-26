@@ -19,7 +19,14 @@ public sealed class MainContentTests
         {
             Assert.Equal(38, period.Cities.Count);
             Assert.Equal(200, period.Persons.Count);
+            Assert.Equal(200, period.PersonConditions.Count);
+            Assert.Equal(33, period.ToolConditions.Count);
+            Assert.All(period.Cities, city => Assert.Equal(city.ToolIds.Count, city.ToolEntries.Count));
         });
+        Assert.Equal(0, content.Periods[0].PersonConditions[143].Bole);
+        Assert.Equal(0, content.Periods[0].PersonConditions[172].Bole);
+        Assert.Equal(["tool-007", "tool-008", "tool-012"],
+            content.Periods[0].Cities.Single(city => city.Id == "city-016").ToolEntries.Select(entry => entry.ToolId).ToList());
         Assert.Equal(18, content.Periods[0].RulerIds.Count);
         Assert.Equal(150, content.Periods.SelectMany(period => period.Persons).Max(person => person.Force));
         Assert.Equal("main-sgby-eba4a77", content.ContentVersion);

@@ -11,6 +11,9 @@ public partial class Main : Control
     private MainGameSession session = null!;
     private MainGameView currentView = null!;
     private MainStartScreen startScreen = null!;
+    private MainCityListPanel cityListPanel = null!;
+    private MainCityDetailPanel detailPanel = null!;
+    private MainOrderReportPanel orderReportPanel = null!;
     private Control gameRoot = null!;
     private string selectedCityId = "city-005";
     private string selectedPersonId = "person-089";
@@ -20,16 +23,8 @@ public partial class Main : Control
     private MainStrategicMap map = null!;
     private Label title = null!;
     private Label summary = null!;
-    private Label cityDetails = null!;
-    private Label personDetails = null!;
     private Label feedback = null!;
     private Button themeButton = null!;
-    private Button commandButton = null!;
-    private OptionButton commandOptions = null!;
-    private ItemList cityList = null!;
-    private ItemList personList = null!;
-    private ItemList orderList = null!;
-    private TextEdit report = null!;
     private Button endMonthButton = null!;
     private string SavePath => ProjectSettings.GlobalizePath("user://main-m2a-save.json");
 
@@ -90,16 +85,9 @@ public partial class Main : Control
 
         var columns = new HSplitContainer { SizeFlagsVertical = SizeFlags.ExpandFill, SplitOffsets = [205] };
         gameRoot.AddChild(columns);
-        var leftPanel = new PanelContainer { CustomMinimumSize = new Vector2(200, 350) };
-        columns.AddChild(leftPanel);
-        var left = new VBoxContainer();
-        leftPanel.AddChild(left);
-        left.AddChild(new Label { Text = "三十八城 · 我方标红" });
-        cityList = new ItemList { SizeFlagsVertical = SizeFlags.ExpandFill, CustomMinimumSize = new Vector2(180, 350) };
-        cityList.ItemSelected += index => SelectCity(session.GetView().Cities[(int)index].Id);
-        left.AddChild(cityList);
-        left.AddChild(new Label { Text = "点击地图或列表定位\n令 表示城内有待执行命令" });
-
+        cityListPanel = new MainCityListPanel { CustomMinimumSize = new Vector2(200, 350) };
+        cityListPanel.CitySelected += SelectCity;
+        columns.AddChild(cityListPanel);
         map = new MainStrategicMap
         {
             CustomMinimumSize = new Vector2(420, 350),
@@ -109,46 +97,14 @@ public partial class Main : Control
         };
         map.CitySelected += SelectCity;
         columns.AddChild(map);
+        detailPanel = new MainCityDetailPanel { CustomMinimumSize = new Vector2(325, 350) };
+        detailPanel.PersonSelected += personId => { selectedPersonId = personId; RefreshPerson(); };
+        detailPanel.CommandSelectionChanged += RefreshPerson;
+        detailPanel.CommandConfirmed += OnCommand;
+        columns.AddChild(detailPanel);
 
-        var rightPanel = new PanelContainer { CustomMinimumSize = new Vector2(325, 350) };
-        columns.AddChild(rightPanel);
-        var right = new VBoxContainer();
-        right.AddThemeConstantOverride("separation", 6);
-        rightPanel.AddChild(right);
-        cityDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart };
-        cityDetails.AddThemeFontSizeOverride("font_size", 15);
-        right.AddChild(cityDetails);
-        right.AddChild(new Label { Text = "城内武将" });
-        personList = new ItemList { CustomMinimumSize = new Vector2(280, 92), SizeFlagsVertical = SizeFlags.ExpandFill };
-        personList.ItemSelected += index =>
-        {
-            selectedPersonId = CityPersons()[(int)index].Id;
-            RefreshPerson();
-        };
-        right.AddChild(personList);
-        personDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart };
-        personDetails.AddThemeFontSizeOverride("font_size", 14);
-        right.AddChild(personDetails);
-        commandOptions = new OptionButton();
-        for (var commandId = 1; commandId <= 5; commandId++) commandOptions.AddItem(MainGameSession.CommandName(commandId), commandId);
-        commandOptions.ItemSelected += _ => RefreshPerson();
-        right.AddChild(commandOptions);
-        commandButton = new Button();
-        commandButton.Pressed += OnCommand;
-        right.AddChild(commandButton);
-
-        var lower = new HSplitContainer { CustomMinimumSize = new Vector2(0, 145) };
-        gameRoot.AddChild(lower);
-        var orderPanel = new PanelContainer { CustomMinimumSize = new Vector2(510, 140) };
-        lower.AddChild(orderPanel);
-        var orders = new VBoxContainer();
-        orderPanel.AddChild(orders);
-        orders.AddChild(new Label { Text = "武将命令队列 · 接受后月末归队，不可取消" });
-        orderList = new ItemList { SizeFlagsVertical = SizeFlags.ExpandFill, CustomMinimumSize = new Vector2(390, 82) };
-        orders.AddChild(orderList);
-        report = new TextEdit { Editable = false, CustomMinimumSize = new Vector2(360, 140), Text = "月度报告" };
-        lower.AddChild(report);
-
+        orderReportPanel = new MainOrderReportPanel { CustomMinimumSize = new Vector2(0, 145) };
+        gameRoot.AddChild(orderReportPanel);
         var actions = new HBoxContainer();
         gameRoot.AddChild(actions);
         feedback = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, SizeFlagsHorizontal = SizeFlags.ExpandFill };
@@ -160,9 +116,8 @@ public partial class Main : Control
         load.Pressed += OnLoad;
         actions.AddChild(load);
         endMonthButton = new Button { Text = "策略结束  →" };
-        endMonthButton.Pressed += OnEndMonth;
+        endMonthButton.Pressed += () => OnEndMonth();
         actions.AddChild(endMonthButton);
-
         startScreen = new MainStartScreen();
         AddChild(startScreen);
         ApplyTheme();
@@ -213,58 +168,34 @@ public partial class Main : Control
         var city = view.Cities.Single(city => city.Id == selectedCityId);
         title.Text = "三国霸业 · 战略地图";
         summary.Text = $"{PersonName(view.PlayerRulerId)}  |  {view.Year} 年 {view.Month} 月  |  38 城  ";
-        cityList.Clear();
-        foreach (var item in view.Cities)
-        {
-            var mine = item.Belong == view.PlayerRulerId ? "我" : "·";
-            var order = view.Orders.Any(order => order.CityId == item.Id) ? " 令" : "";
-            cityList.AddItem($"{mine} {item.Name}{order}");
-        }
-        cityList.Select(view.Cities.ToList().FindIndex(item => item.Id == city.Id));
+        cityListPanel.SetView(view, city.Id);
         map.SetView(view, city.Id);
-        cityDetails.Text = $"{city.Name} · {(city.Belong == view.PlayerRulerId ? "我方" : PersonName(city.Belong))}\n金 {city.Money}  粮 {city.Food}  后备兵 {city.MothballArms}\n农业 {city.Farming}/{city.FarmingLimit}\n商业 {city.Commerce}/{city.CommerceLimit}\n民忠 {city.PeopleDevotion}  防灾 {city.AvoidCalamity} · {CityState(city.State)}\n人口 {city.Population}/{city.PopulationLimit}";
-        personList.Clear();
         var persons = CityPersons();
         if (persons.Count > 0 && persons.All(person => person.Id != selectedPersonId)) selectedPersonId = persons[0].Id;
-        foreach (var person in persons)
-            personList.AddItem($"{person.Name} · 武 {person.Force} 智 {person.Iq} 体 {person.Thew}{(person.IsBusy ? " · 忙碌" : "")}");
-        var selectedIndex = Math.Max(0, persons.ToList().FindIndex(person => person.Id == selectedPersonId));
-        if (persons.Count > 0) personList.Select(selectedIndex);
+        detailPanel.SetView(view, city, selectedPersonId, city.Belong == view.PlayerRulerId ? "我方" : PersonName(city.Belong));
         RefreshPerson();
-        orderList.Clear();
-        foreach (var order in view.Orders)
-            orderList.AddItem($"{order.CityName} · {order.PersonName} · {MainGameSession.CommandName(order.OrderId)} · 待月末");
-        report.Text = view.Reports.Count == 0 ? "月度报告\n\n安排内政命令后点击“策略结束”，查看搜寻与月度结果。" :
-            "月度报告\n\n" + string.Join("\n", view.Reports.Select(entry => entry.Message));
+        orderReportPanel.SetView(view);
     }
 
     private void RefreshPerson()
     {
         var person = currentView.Persons.FirstOrDefault(item => item.Id == selectedPersonId);
-        if (person is null)
-        {
-            personDetails.Text = "此城没有可安排的己方武将。";
-            commandButton.Disabled = true;
-            return;
-        }
-        var commandId = SelectedCommandId();
-        var preview = session.PreviewCommand(commandId, selectedCityId, person.Id);
-        personDetails.Text = $"{person.Name} · 等级 {person.Level}  兵力 {person.Arms}\n忠诚 {person.Devotion}  道具 {session.GetToolName(person.Tool1Id)}\n{(preview.Available ? $"接受：金 {preview.MoneyAfter + preview.MoneyCost} → {preview.MoneyAfter}，体力 {preview.ThewAfter}；月末归队" : preview.Message)}";
-        commandButton.Text = $"{MainGameSession.CommandName(commandId)} · {preview.MoneyCost} 金 · {preview.ThewCost} 体力";
-        commandButton.Disabled = !preview.Available;
+        var commandId = detailPanel.SelectedCommandId;
+        var preview = session.PreviewCommand(commandId, selectedCityId, person?.Id ?? "");
+        detailPanel.SetPerson(person, preview, person is null ? "" : session.GetToolName(person.Tool1Id));
     }
 
     private void OnCommand()
     {
-        var result = session.IssueCommand(SelectedCommandId(), selectedCityId, selectedPersonId);
+        var result = session.IssueCommand(detailPanel.SelectedCommandId, selectedCityId, selectedPersonId);
         Refresh();
         feedback.Text = result.Message;
     }
 
-    private void OnEndMonth()
+    private void OnEndMonth(bool runAi = true)
     {
         endMonthButton.Disabled = true;
-        try { session.EndMonth(); }
+        try { session.EndMonth(runAi); }
         finally { endMonthButton.Disabled = false; }
         Refresh();
         feedback.Text = "月度结算完成。";
@@ -282,10 +213,8 @@ public partial class Main : Control
         catch (Exception error) { feedback.Text = $"读档失败：{error.Message}"; }
     }
 
-    private int SelectedCommandId() => commandOptions.GetSelectedId();
     private List<MainPersonView> CityPersons() => currentView.Persons.Where(person => person.CityId == selectedCityId).ToList();
     private string PersonName(string id) => currentView.Persons.FirstOrDefault(person => person.Id == id)?.Name ?? "无所属";
-    private static string CityState(int state) => state switch { 0 => "正常", 1 => "饥荒", 2 => "旱灾", 3 => "水灾", 4 => "暴动", _ => "未知" };
 
     private void RunSmoke()
     {
@@ -305,11 +234,18 @@ public partial class Main : Control
             city = session.GetView().Cities.Single(city => city.Id == "city-005");
             if (session.GetView().Month != 2 || city.Food != 228 || city.Farming != 1002)
                 throw new InvalidOperationException("开垦月末结果不符合 golden。");
-            commandOptions.Select(2);
+            detailPanel.SelectCommand(2);
             selectedPersonId = "person-089";
+            session.World.Month = 5;
+            session.World.RandomState = 1;
             Refresh();
             OnCommand();
-            OnEndMonth();
+            session.World.RandomState = 1;
+            OnEndMonth(false);
+            if (session.GetView().Month != 6 || session.World.Persons.Single(person => person.Id == "person-172").Belong != "person-013")
+                throw new InvalidOperationException("人物搜寻或六月月度流程失败。");
+            if (!currentView.Reports.Any(entry => entry.Message.Contains("收获") || entry.Message.Contains("税收")))
+                throw new InvalidOperationException("月度收入/收获报告缺失。");
             OnSave();
             var continuous = MainSaveService.Load(SavePath, content);
             continuous.EndMonth();
@@ -321,12 +257,27 @@ public partial class Main : Control
             StartGame(2, secondRuler);
             if (session.GetView().Year != 198 || session.GetView().PlayerRulerId != secondRuler)
                 throw new InvalidOperationException("第二时期开局失败。");
-            GD.Print($"MAIN_M2A_SMOKE_OK periods=4 commands=5 hash={expected}");
+            StartGame(1, "person-016");
+            map.ActivateCity("city-001");
+            selectedPersonId = "person-016";
+            detailPanel.SelectCommand(2);
+            session.World.RandomState = 43;
+            Refresh();
+            OnCommand();
+            session.World.RandomState = 43;
+            OnEndMonth(false);
+            if (!session.World.Cities.Single(city => city.Id == "city-001").ToolEntries[0].Discovered)
+                throw new InvalidOperationException("道具发现位未提交。");
+            OnSave();
+            var discoveredSave = MainSaveService.Load(SavePath, content);
+            if (!discoveredSave.World.Cities.Single(city => city.Id == "city-001").ToolEntries[0].Discovered)
+                throw new InvalidOperationException("道具发现位未持久化。");
+            GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=5 hash={expected}");
             GetTree().Quit(0);
         }
         catch (Exception error)
         {
-            GD.PushError($"MAIN_M2A_SMOKE_FAILED: {error}");
+            GD.PushError($"MAIN_M2B_SMOKE_FAILED: {error}");
             GetTree().Quit(1);
         }
     }

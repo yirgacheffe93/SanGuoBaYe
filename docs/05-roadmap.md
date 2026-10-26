@@ -49,6 +49,26 @@
 
 详见 `15-main-architecture-refactor.md`。
 
+## Main-R2 · 加载层与战略 UI 结构收尾（已完成）
+
+- [x] Raw DTO、MainContentMapper、MainContentValidator 分离。
+- [x] 城市列表、城市/人物详情、命令与月度报告组件化。
+- [x] Loader 和 Main.cs 仅负责输入/组合，UI 保持单快照。
+- [x] 44 项测试、双主题截图和独立 macOS 应用回归。
+
+详见 `16-main-r2-structure.md`。后续不再安排独立架构专项，直接进入 M2B。
+
+## Main-M2B · 完整月度与搜寻（已完成）
+
+- [x] 四时期人物/道具搜寻条件与有序队列项导入。
+- [x] 季度收入、六/十月收获、粮耗和跨年年龄。
+- [x] 搜寻无收获、失败、金钱、粮食、人物加入/拒绝及精确 RNG。
+- [x] schema 4 存档、62 项测试、UI 和独立 macOS 应用验收。
+- [x] U16LE 导入、SetGoods 发现位、防重复发现及持久化验收。
+- [ ] 年度人物/道具出现。
+
+主要验收见 `17-main-m2b.md`；道具发现位差异未虚报为完成。
+
 ## M2 · 四时期与完整战略层
 
 **目标**：覆盖 main 的战略玩法和四时期开局。
