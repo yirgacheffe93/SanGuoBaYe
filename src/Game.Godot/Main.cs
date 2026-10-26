@@ -172,7 +172,8 @@ public partial class Main : Control
         map.SetView(view, city.Id);
         var persons = CityPersons();
         if (persons.Count > 0 && persons.All(person => person.Id != selectedPersonId)) selectedPersonId = persons[0].Id;
-        detailPanel.SetView(view, city, selectedPersonId, city.Belong == view.PlayerRulerId ? "我方" : PersonName(city.Belong));
+        var discoveredTools = city.DiscoveredToolIds.Select(id => (id, session.GetToolName(id))).ToList();
+        detailPanel.SetView(view, city, selectedPersonId, city.Belong == view.PlayerRulerId ? "我方" : PersonName(city.Belong), discoveredTools);
         RefreshPerson();
         orderReportPanel.SetView(view);
     }
@@ -180,17 +181,21 @@ public partial class Main : Control
     private void RefreshPerson()
     {
         var person = currentView.Persons.FirstOrDefault(item => item.Id == selectedPersonId);
-        var commandId = detailPanel.SelectedCommandId;
-        var preview = session.PreviewCommand(commandId, selectedCityId, person?.Id ?? "");
+        var preview = session.PreviewCommand(CreateCommandRequest(person?.Id ?? ""));
         detailPanel.SetPerson(person, preview, person is null ? "" : session.GetToolName(person.Tool1Id));
     }
 
     private void OnCommand()
     {
-        var result = session.IssueCommand(detailPanel.SelectedCommandId, selectedCityId, selectedPersonId);
+        var result = session.IssueCommand(CreateCommandRequest(selectedPersonId));
         Refresh();
         feedback.Text = result.Message;
     }
+
+    private MainCommandRequest CreateCommandRequest(string personId) => new(
+        detailPanel.SelectedCommandId, selectedCityId, personId,
+        detailPanel.SelectedTargetCityId, detailPanel.SelectedToolId, detailPanel.TradeDirection,
+        detailPanel.TradeQuantity, detailPanel.TransportFood, detailPanel.TransportMoney, detailPanel.TransportArms);
 
     private void OnEndMonth(bool runAi = true)
     {
@@ -272,7 +277,36 @@ public partial class Main : Control
             var discoveredSave = MainSaveService.Load(SavePath, content);
             if (!discoveredSave.World.Cities.Single(city => city.Id == "city-001").ToolEntries[0].Discovered)
                 throw new InvalidOperationException("道具发现位未持久化。");
-            GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=5 hash={expected}");
+            var banquetCity = session.World.Cities.Single(city => city.Id == "city-001");
+            var banquetPerson = session.World.Persons.Single(person => person.Id == "person-016");
+            banquetPerson.Thew = 40;
+            var banquetMoney = banquetCity.Money;
+            detailPanel.SelectCommand(8);
+            Refresh();
+            selectedPersonId = "person-016";
+            RefreshPerson();
+            OnCommand();
+            if (banquetPerson.Thew != 90 || banquetPerson.OrderId is not null || banquetCity.Money != banquetMoney - 100)
+                throw new InvalidOperationException("宴请即时效果失败。");
+            StartGame(1, "person-005");
+            var transportPersonId = selectedPersonId;
+            var transportCity = session.World.Cities.Single(city => city.Id == selectedCityId);
+            var transportFood = transportCity.Food;
+            var transportMoney = transportCity.Money;
+            var transportArms = transportCity.MothballArms;
+            detailPanel.SelectCommand(9);
+            detailPanel.SetTransportAmounts(1, 2, 0);
+            Refresh();
+            selectedPersonId = transportPersonId;
+            RefreshPerson();
+            var transportTarget = detailPanel.SelectedTargetCityId ?? throw new InvalidOperationException("输送没有同归属目标城市。");
+            OnCommand();
+            var transportOrder = session.World.Orders.Single(order => order.PersonId == transportPersonId);
+            if (transportOrder.OrderId != MainCommandCatalog.TransportOrderId || transportOrder.ObjectId != transportTarget ||
+                transportOrder.Food != 1 || transportOrder.Money != 2 || transportOrder.Arms != 0 ||
+                transportCity.Food != transportFood - 1 || transportCity.Money != transportMoney - 2 || transportCity.MothballArms != transportArms)
+                throw new InvalidOperationException("输送请求或即时扣减失败。");
+            GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=11 hash={expected}");
             GetTree().Quit(0);
         }
         catch (Exception error)

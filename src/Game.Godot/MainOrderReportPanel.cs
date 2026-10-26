@@ -25,7 +25,12 @@ public partial class MainOrderReportPanel : HSplitContainer
     {
         orderList.Clear();
         foreach (var order in view.Orders)
-            orderList.AddItem($"{order.CityName} · {order.PersonName} · {MainGameSession.CommandName(order.OrderId)} · 待月末");
+        {
+            var commandName = MainGameSession.CommandName(order.OrderId);
+            var status = order.OrderId is MainCommandCatalog.TradeOrderId or MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId
+                ? commandName : "待月末";
+            orderList.AddItem($"{order.CityName} · {order.PersonName} · {commandName} · {status}");
+        }
         report.Text = view.Reports.Count == 0 ? "月度报告\n\n安排内政命令后点击“策略结束”，查看搜寻与月度结果。" :
             "月度报告\n\n" + string.Join("\n", view.Reports.Select(entry => entry.Message));
     }

@@ -26,10 +26,16 @@ public sealed class MainGameSession
     public MainContent Content { get; }
 
     public MainCommandPreview PreviewCommand(int commandId, string cityId, string personId) =>
-        MainCommandService.Preview(World, commandId, cityId, personId);
+        PreviewCommand(new MainCommandRequest(commandId, cityId, personId));
+
+    public MainCommandPreview PreviewCommand(MainCommandRequest request) =>
+        MainCommandService.Preview(World, Content, request);
 
     public MainCommandResult IssueCommand(int commandId, string cityId, string personId) =>
-        MainCommandService.Issue(World, commandId, cityId, personId);
+        IssueCommand(new MainCommandRequest(commandId, cityId, personId));
+
+    public MainCommandResult IssueCommand(MainCommandRequest request) =>
+        MainCommandService.Issue(World, Content, request);
 
     public MainCommandResult IssueReclaim(string cityId, string personId) => IssueCommand(ReclaimOrderId, cityId, personId);
 

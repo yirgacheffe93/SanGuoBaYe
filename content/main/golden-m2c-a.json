@@ -1,0 +1,91 @@
+{
+  "kind": "main-m2c-a-golden",
+  "source": "生产 baye.wasm 实际命令/受控 S4 fixture 与同源 C，main@eba4a77",
+  "banquet": {
+    "commandId": 12,
+    "moneyBefore": 1000,
+    "moneyAfter": 900,
+    "thewBefore": 20,
+    "thewAfter": 70,
+    "devotionBefore": 97,
+    "devotionAfter": 98,
+    "queued": false
+  },
+  "reward": {
+    "commandId": 9,
+    "personId": "person-089",
+    "toolId": "tool-000",
+    "forceBefore": 106,
+    "forceAfter": 116,
+    "devotionBefore": 95,
+    "devotionAfter": 100,
+    "equipmentAfter": [3, 1],
+    "cityToolsAfter": 0
+  },
+  "confiscate": {
+    "commandId": 10,
+    "personId": "person-089",
+    "toolId": "tool-002",
+    "forceBefore": 106,
+    "forceAfter": 98,
+    "devotionBefore": 15,
+    "devotionAfter": 0,
+    "equipmentAfter": [0, 0],
+    "cityRawToolAfter": 32770
+  },
+  "tradeBuy": {
+    "commandId": 11,
+    "quantity": 200,
+    "moneyBefore": 1000,
+    "moneyAfter": 0,
+    "foodBefore": 234,
+    "foodAfter": 434,
+    "thewBefore": 80,
+    "thewAfter": 68,
+    "orderId": 11
+  },
+  "move": {
+    "commandId": 14,
+    "sourceCityId": "city-015",
+    "targetCityId": "city-010",
+    "personId": "person-020",
+    "targetPersonIdsAfter": [20, 23, 24, 25, 26],
+    "timeCount": 3,
+    "note": "TimeCount 不用于延迟；golden 取 S4，不把 S5 月度变化混入"
+  },
+  "transportSuccess": {
+    "commandId": 13,
+    "sourceCityId": "city-015",
+    "targetCityId": "city-010",
+    "personId": "person-020",
+    "food": 123,
+    "money": 45,
+    "arms": 67,
+    "rngState": 2588401304,
+    "roll": 42,
+    "sourceAfter": { "food": 877, "money": 455, "mothballArms": 133 },
+    "targetAfter": { "food": 1220, "money": 621, "mothballArms": 67 },
+    "actorCityAfter": "city-015"
+  },
+  "transportFailure": {
+    "commandId": 13,
+    "sourceCityId": "city-015",
+    "targetCityId": "city-010",
+    "personId": "person-020",
+    "food": 123,
+    "money": 45,
+    "arms": 67,
+    "rngState": 3,
+    "roll": 9,
+    "sourceAfter": { "food": 877, "money": 455, "mothballArms": 133 },
+    "targetAfter": { "food": 1097, "money": 576, "mothballArms": 0 },
+    "actorCityAfter": "city-015"
+  },
+  "uncovered": [
+    "移动/输送原生 UI 接受阶段的完整 golden",
+    "空城/敌城执行分支",
+    "低体力下溢、U16 绕回、队列满和特殊装备",
+    "原生寻路和 TimeCount 生成",
+    "完整 ComputerTactic"
+  ]
+}

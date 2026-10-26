@@ -17,7 +17,8 @@ public sealed record MainCityView(
     int PopulationLimit,
     int Money,
     int Food,
-    int MothballArms);
+    int MothballArms,
+    IReadOnlyList<string> DiscoveredToolIds);
 public sealed record MainPersonView(
     string Id,
     string Name,
