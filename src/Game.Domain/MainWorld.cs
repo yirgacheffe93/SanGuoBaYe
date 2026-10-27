@@ -135,9 +135,11 @@ public sealed class MainOrder
     public int TimeCount { get; set; }
 }
 
+public enum MainGameOutcome { InProgress, Won, Lost }
+
 public sealed class MainWorld
 {
-    public int SchemaVersion { get; set; } = 4;
+    public int SchemaVersion { get; set; } = 5;
     public string ContentVersion { get; set; } = "main-sgby-1";
     public string ContentHash { get; set; } = "";
     public string RngAlgorithmVersion { get; set; } = "main-compatible-1";
@@ -146,6 +148,7 @@ public sealed class MainWorld
     public int Month { get; set; }
     public string PlayerRulerId { get; set; } = "";
     public ulong RandomState { get; set; }
+    public MainGameOutcome Outcome { get; set; } = MainGameOutcome.InProgress;
     public long NextSequence { get; set; } = 1;
     public List<MainCity> Cities { get; set; } = [];
     public List<MainPerson> Persons { get; set; } = [];

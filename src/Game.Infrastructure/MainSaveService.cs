@@ -10,7 +10,7 @@ public sealed class MainSaveException(string message) : Exception(message);
 
 public static class MainSaveService
 {
-    private const int CurrentSchema = 4;
+    private const int CurrentSchema = 5;
     private static readonly JsonSerializerOptions Compact = new();
     private static readonly JsonSerializerOptions Indented = new() { WriteIndented = true };
 
@@ -43,7 +43,7 @@ public static class MainSaveService
         Envelope envelope;
         try { envelope = JsonSerializer.Deserialize<Envelope>(File.ReadAllText(path), Compact) ?? throw new MainSaveException("存档为空。"); }
         catch (JsonException error) { throw new MainSaveException($"存档 JSON 无效：{error.Message}"); }
-        if (envelope.SchemaVersion != CurrentSchema) throw new MainSaveException("不支持的存档版本。");
+        if (envelope.SchemaVersion is not (4 or CurrentSchema)) throw new MainSaveException("不支持的存档版本。");
         if (!string.Equals(envelope.ContentHash, content.ContentHash, StringComparison.Ordinal))
             throw new MainSaveException("存档内容版本不匹配。");
         if (envelope.World is null) throw new MainSaveException("存档缺少世界状态。");
@@ -53,12 +53,17 @@ public static class MainSaveService
         if (!string.Equals(envelope.Checksum, Hash(worldJson), StringComparison.Ordinal))
             throw new MainSaveException("存档校验和失败。");
         Validate(envelope.World);
+        if (envelope.World.SchemaVersion == 4)
+        {
+            envelope.World.SchemaVersion = CurrentSchema;
+            envelope.World.Outcome = MainGameOutcome.InProgress;
+        }
         return new MainGameSession(envelope.World, content);
     }
 
     private static void Validate(MainWorld world)
     {
-        if (world.SchemaVersion != CurrentSchema || world.Year < 1 || world.Month is < 1 or > 12 || world.RandomState == 0)
+        if (world.SchemaVersion is not (4 or CurrentSchema) || world.Year < 1 || world.Month is < 1 or > 12 || world.RandomState == 0)
             throw new MainSaveException("存档版本、日期或随机状态非法。");
         var cityIds = world.Cities.Select(city => city.Id).ToHashSet(StringComparer.Ordinal);
         var personIds = world.Persons.Select(person => person.Id).ToHashSet(StringComparer.Ordinal);

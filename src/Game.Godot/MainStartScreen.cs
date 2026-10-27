@@ -25,7 +25,7 @@ public partial class MainStartScreen : PanelContainer
         var title = new Label { Text = "三国霸业", HorizontalAlignment = HorizontalAlignment.Center };
         title.AddThemeFontSizeOverride("font_size", 36);
         content.AddChild(title);
-        var subtitle = new Label { Text = "Godot 重写 · Main-M2A", HorizontalAlignment = HorizontalAlignment.Center };
+        var subtitle = new Label { Text = "Godot 重写 · Main-M2D-B", HorizontalAlignment = HorizontalAlignment.Center };
         subtitle.AddThemeFontSizeOverride("font_size", 17);
         content.AddChild(subtitle);
         content.AddChild(new Label { Text = "选择时期" });
@@ -40,7 +40,7 @@ public partial class MainStartScreen : PanelContainer
         content.AddChild(startButton);
         content.AddChild(new Label
         {
-            Text = "当前：四时期与全部君主、38 城、五项内政、月度与存读档。\n完整战略命令和独立战术战斗将在后续里程碑开放。",
+            Text = "当前：四时期、38 城、战略命令、非战斗 AI、自动太守与胜负。\n独立战术战斗将在后续里程碑开放。",
             HorizontalAlignment = HorizontalAlignment.Center,
             AutowrapMode = TextServer.AutowrapMode.WordSmart
         });

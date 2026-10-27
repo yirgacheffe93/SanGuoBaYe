@@ -18,14 +18,16 @@ public static class MainCommandService
     public static MainCommandPreview Preview(MainWorld world, int commandId, string cityId, string personId) =>
         Preview(world, new MainContent(), new MainCommandRequest(commandId, cityId, personId));
 
-    public static MainCommandPreview Preview(MainWorld world, MainContent content, MainCommandRequest request)
+    public static MainCommandPreview Preview(MainWorld world, MainContent content, MainCommandRequest request, string? rulerId = null)
     {
         var commandId = request.CommandId;
+        var actingRulerId = rulerId ?? world.PlayerRulerId;
         var (moneyCost, thewCost) = MainCommandCatalog.Costs(commandId);
         if (commandId == MainCommandCatalog.ConscriptOrderId) moneyCost = request.Quantity / 10;
         var city = world.Cities.FirstOrDefault(item => item.Id == request.CityId);
         var person = world.Persons.FirstOrDefault(item => item.Id == request.PersonId);
         if (city is null || person is null) return Preview(false, "not_found", "城市或武将不存在。");
+        if (world.Outcome != MainGameOutcome.InProgress) return Preview(false, "game_over", "战局已经结束。");
         if (commandId == MainCommandCatalog.ExecuteOrderId && person.Status != MainPersonStatus.Captive)
             return Preview(false, "invalid_target", "处斩目标必须是本城俘虏。");
         if (commandId == MainCommandCatalog.ExileOrderId && person.Status == MainPersonStatus.Executed)
@@ -41,9 +43,9 @@ public static class MainCommandService
             var target = world.Persons.FirstOrDefault(item => item.Id == request.TargetPersonId);
             var valid = target is not null && commandId switch
             {
-                MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId => MainDiplomacyRules.IsEnemyOfficer(world, target),
-                MainCommandCatalog.CounterespionageOrderId => MainDiplomacyRules.IsEnemySatrap(world, target),
-                _ => MainDiplomacyRules.IsEnemyRuler(world, target)
+                MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId => MainDiplomacyRules.IsEnemyOfficer(world, target, actingRulerId),
+                MainCommandCatalog.CounterespionageOrderId => MainDiplomacyRules.IsEnemySatrap(world, target, actingRulerId),
+                _ => MainDiplomacyRules.IsEnemyRuler(world, target, actingRulerId)
             };
             if (!valid) return Preview(false, "invalid_target", "没有符合该命令条件的目标人物。");
         }
@@ -54,7 +56,7 @@ public static class MainCommandService
                 return Preview(false, "invalid_city", "侦察目标必须是不同的非己方城市。");
         }
         if (commandId != MainCommandCatalog.ExecuteOrderId && commandId != MainCommandCatalog.ExileOrderId &&
-            (city.Belong != world.PlayerRulerId || person.Belong != world.PlayerRulerId || person.CityId != city.Id))
+            (city.Belong != actingRulerId || person.Belong != actingRulerId || person.CityId != city.Id))
             return Preview(false, "invalid_target", "只能选择我方城中的己方武将。");
         if (person.OrderId is not null) return Preview(false, "person_busy", $"{person.Name} 已有命令。");
         if (person.Thew < thewCost) return Preview(false, "thew_low", $"体力不足，需要 {thewCost}。");
@@ -123,9 +125,9 @@ public static class MainCommandService
     public static MainCommandResult Issue(MainWorld world, int commandId, string cityId, string personId) =>
         Issue(world, new MainContent(), new MainCommandRequest(commandId, cityId, personId));
 
-    public static MainCommandResult Issue(MainWorld world, MainContent content, MainCommandRequest request)
+    public static MainCommandResult Issue(MainWorld world, MainContent content, MainCommandRequest request, string? rulerId = null)
     {
-        var preview = Preview(world, content, request);
+        var preview = Preview(world, content, request, rulerId);
         if (!preview.Available) return new MainCommandResult(false, preview.Code, preview.Message);
         return IssueInternal(world, content, request);
     }

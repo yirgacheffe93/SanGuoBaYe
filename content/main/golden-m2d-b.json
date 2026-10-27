@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 1,
+  "kind": "main-golden-m2d-b",
+  "source": {
+    "branch": "main",
+    "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+    "library": "libs/SGBY.lib",
+    "libraryBytes": 615415,
+    "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+    "engine": "js/baye.js",
+    "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+    "bridge": "js/bridge.js",
+    "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+    "wasm": "js/baye.wasm",
+    "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+    "decoding": "Node.js 26 native TextDecoder(GBK)"
+  },
+  "boundaries": [
+    "不捕获M3出征；AI直接效果与玩家公式分别记录。",
+    "反间/劝降沿用Main-M2D-A的生产边界。"
+  ],
+  "scenarios": [
+    {
+      "branch": "interior-harmonize",
+      "seed": 3,
+      "fixture": "生产S2隔离一个AI城和玩家城，清空订单并固定RNG；S3读取真实ComputerTactic，不是玩家UI接受测试",
+      "before": {
+        "rng": 3,
+        "playerKing": 13,
+        "city": {
+          "State": 2,
+          "Belong": 6,
+          "SatrapId": 0,
+          "Farming": 100,
+          "Commerce": 100,
+          "PeopleDevotion": 10,
+          "AvoidCalamity": 99,
+          "Population": 100,
+          "Money": 20000,
+          "Food": 50,
+          "people": [
+            56,
+            57,
+            161
+          ]
+        },
+        "persons": [
+          {
+            "index": 56,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 70,
+            "IQ": 60,
+            "Experience": 0,
+            "Arms": 100
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 98,
+            "IQ": 53,
+            "Experience": 0,
+            "Arms": 100
+          }
+        ],
+        "orders": []
+      },
+      "after": {
+        "rng": 679304702,
+        "playerKing": 13,
+        "city": {
+          "State": 0,
+          "Belong": 6,
+          "SatrapId": 0,
+          "Farming": 100,
+          "Commerce": 100,
+          "PeopleDevotion": 14,
+          "AvoidCalamity": 100,
+          "Population": 200,
+          "Money": 10000,
+          "Food": 500,
+          "people": [
+            161
+          ]
+        },
+        "persons": [
+          {
+            "index": 56,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 70,
+            "IQ": 60,
+            "Experience": 0,
+            "Arms": 100
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 98,
+            "IQ": 53,
+            "Experience": 0,
+            "Arms": 100
+          }
+        ],
+        "orders": [
+          {
+            "OrderId": 3,
+            "Person": 56,
+            "City": 0,
+            "Object": 0,
+            "Arms": 47055,
+            "Food": 1016,
+            "Money": 0,
+            "Consume": 5,
+            "TimeCount": 0
+          },
+          {
+            "OrderId": 5,
+            "Person": 57,
+            "City": 0,
+            "Object": 0,
+            "Arms": 47055,
+            "Food": 1016,
+            "Money": 0,
+            "Consume": 5,
+            "TimeCount": 0
+          }
+        ]
+      }
+    },
+    {
+      "branch": "diplomacy",
+      "seed": 29,
+      "fixture": "生产S2隔离一个AI城和玩家城，清空订单并固定RNG；S3读取真实ComputerTactic，不是玩家UI接受测试",
+      "before": {
+        "rng": 29,
+        "playerKing": 13,
+        "city": {
+          "State": 2,
+          "Belong": 6,
+          "SatrapId": 0,
+          "Farming": 100,
+          "Commerce": 100,
+          "PeopleDevotion": 10,
+          "AvoidCalamity": 99,
+          "Population": 100,
+          "Money": 20000,
+          "Food": 50,
+          "people": [
+            56,
+            57,
+            161
+          ]
+        },
+        "persons": [
+          {
+            "index": 56,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 70,
+            "IQ": 60,
+            "Experience": 0,
+            "Arms": 100
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 98,
+            "IQ": 53,
+            "Experience": 0,
+            "Arms": 100
+          }
+        ],
+        "orders": []
+      },
+      "after": {
+        "rng": 893552736,
+        "playerKing": 13,
+        "city": {
+          "State": 0,
+          "Belong": 6,
+          "SatrapId": 0,
+          "Farming": 100,
+          "Commerce": 100,
+          "PeopleDevotion": 10,
+          "AvoidCalamity": 100,
+          "Population": 100,
+          "Money": 10000,
+          "Food": 500,
+          "people": [
+            56,
+            57,
+            161
+          ]
+        },
+        "persons": [
+          {
+            "index": 56,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 70,
+            "IQ": 60,
+            "Experience": 0,
+            "Arms": 100
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 98,
+            "IQ": 53,
+            "Experience": 0,
+            "Arms": 100
+          }
+        ],
+        "orders": []
+      }
+    },
+    {
+      "branch": "diplomacy-order",
+      "seed": 80,
+      "fixture": "生产S2隔离一个AI城和玩家城，清空订单并固定RNG；S3读取真实ComputerTactic，不是玩家UI接受测试",
+      "before": {
+        "rng": 80,
+        "playerKing": 13,
+        "city": {
+          "State": 2,
+          "Belong": 6,
+          "SatrapId": 0,
+          "Farming": 100,
+          "Commerce": 100,
+          "PeopleDevotion": 10,
+          "AvoidCalamity": 99,
+          "Population": 100,
+          "Money": 20000,
+          "Food": 50,
+          "people": [
+            56,
+            57,
+            161
+          ]
+        },
+        "persons": [
+          {
+            "index": 56,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 70,
+            "IQ": 60,
+            "Experience": 0,
+            "Arms": 100
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 98,
+            "IQ": 53,
+            "Experience": 0,
+            "Arms": 100
+          }
+        ],
+        "orders": []
+      },
+      "after": {
+        "rng": 946655612,
+        "playerKing": 13,
+        "city": {
+          "State": 0,
+          "Belong": 6,
+          "SatrapId": 0,
+          "Farming": 100,
+          "Commerce": 100,
+          "PeopleDevotion": 10,
+          "AvoidCalamity": 100,
+          "Population": 100,
+          "Money": 10000,
+          "Food": 500,
+          "people": [
+            56,
+            161
+          ]
+        },
+        "persons": [
+          {
+            "index": 56,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 70,
+            "IQ": 60,
+            "Experience": 0,
+            "Arms": 100
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 98,
+            "IQ": 53,
+            "Experience": 0,
+            "Arms": 100
+          }
+        ],
+        "orders": [
+          {
+            "OrderId": 15,
+            "Person": 57,
+            "City": 0,
+            "Object": 90,
+            "Arms": 47055,
+            "Food": 1016,
+            "Money": 0,
+            "Consume": 5,
+            "TimeCount": 0
+          }
+        ]
+      }
+    },
+    {
+      "branch": "armament",
+      "seed": 7,
+      "fixture": "生产S2隔离一个AI城和玩家城，清空订单并固定RNG；S3读取真实ComputerTactic，不是玩家UI接受测试",
+      "before": {
+        "rng": 7,
+        "playerKing": 13,
+        "city": {
+          "State": 2,
+          "Belong": 6,
+          "SatrapId": 0,
+          "Farming": 100,
+          "Commerce": 100,
+          "PeopleDevotion": 10,
+          "AvoidCalamity": 99,
+          "Population": 100,
+          "Money": 20000,
+          "Food": 50,
+          "people": [
+            56,
+            57,
+            161
+          ]
+        },
+        "persons": [
+          {
+            "index": 56,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 70,
+            "IQ": 60,
+            "Experience": 0,
+            "Arms": 100
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 98,
+            "IQ": 53,
+            "Experience": 0,
+            "Arms": 100
+          }
+        ],
+        "orders": []
+      },
+      "after": {
+        "rng": 1486001571,
+        "playerKing": 13,
+        "city": {
+          "State": 0,
+          "Belong": 6,
+          "SatrapId": 0,
+          "Farming": 100,
+          "Commerce": 100,
+          "PeopleDevotion": 10,
+          "AvoidCalamity": 100,
+          "Population": 100,
+          "Money": 10000,
+          "Food": 500,
+          "people": [
+            56,
+            57,
+            161
+          ]
+        },
+        "persons": [
+          {
+            "index": 56,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 70,
+            "IQ": 60,
+            "Experience": 0,
+            "Arms": 100
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "Level": 1,
+            "Force": 98,
+            "IQ": 53,
+            "Experience": 0,
+            "Arms": 1610
+          }
+        ],
+        "orders": []
+      }
+    }
+  ]
+}

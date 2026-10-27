@@ -4,15 +4,18 @@ namespace Game.Application;
 
 public static class MainDiplomacyRules
 {
-    public static bool IsEnemyOfficer(MainWorld world, MainPerson target) =>
-        target.Status == MainPersonStatus.Active && target.Id != world.PlayerRulerId && target.Id != target.Belong &&
-        world.Cities.Any(city => city.Id == target.CityId && city.Belong.Length > 0 && city.Belong == target.Belong && city.Belong != world.PlayerRulerId);
+    public static bool IsEnemyOfficer(MainWorld world, MainPerson target, string? rulerId = null)
+    {
+        var actingRulerId = rulerId ?? world.PlayerRulerId;
+        return target.Status == MainPersonStatus.Active && target.Id != actingRulerId && target.Id != target.Belong &&
+            world.Cities.Any(city => city.Id == target.CityId && city.Belong.Length > 0 && city.Belong == target.Belong && city.Belong != actingRulerId);
+    }
 
-    public static bool IsEnemySatrap(MainWorld world, MainPerson target) =>
-        IsEnemyOfficer(world, target) && world.Cities.Any(city => city.SatrapId == target.Id);
+    public static bool IsEnemySatrap(MainWorld world, MainPerson target, string? rulerId = null) =>
+        IsEnemyOfficer(world, target, rulerId) && world.Cities.Any(city => city.SatrapId == target.Id);
 
-    public static bool IsEnemyRuler(MainWorld world, MainPerson target) =>
-        target.Id != world.PlayerRulerId && world.Cities.Any(city => city.Belong == target.Id);
+    public static bool IsEnemyRuler(MainWorld world, MainPerson target, string? rulerId = null) =>
+        target.Id != (rulerId ?? world.PlayerRulerId) && world.Cities.Any(city => city.Belong == target.Id);
 
     public static string Execute(MainWorld world, MainOrder order) => order.OrderId switch
     {
@@ -48,6 +51,11 @@ public static class MainDiplomacyRules
             if (actor.Belong == world.PlayerRulerId) MainRandom.Next(world, 3);
             return $"{target.Name}拒绝招揽。";
         }
+        if (target.CityId.Length == 0)
+        {
+            if (actor.Belong == world.PlayerRulerId) MainRandom.Next(world, 3);
+            return $"{target.Name}已不在城中，招揽失败。";
+        }
         var source = world.Cities.Single(city => city.Id == target.CityId);
         var destination = world.Cities.Single(city => city.Id == order.CityId);
         source.PersonIds.Remove(target.Id);
@@ -69,6 +77,11 @@ public static class MainDiplomacyRules
         {
             if (actor.Belong == world.PlayerRulerId) MainRandom.Next(world, 2);
             return $"{target.Name}拒绝独立。";
+        }
+        if (target.CityId.Length == 0)
+        {
+            if (actor.Belong == world.PlayerRulerId) MainRandom.Next(world, 2);
+            return $"{target.Name}已不在城中，策反失败。";
         }
         var city = world.Cities.Single(city => city.Id == target.CityId);
         city.Belong = target.Id;

@@ -167,7 +167,8 @@ public partial class Main : Control
         selectedCityId = view.Cities.FirstOrDefault(city => city.Id == selectedCityId)?.Id ?? "city-005";
         var city = view.Cities.Single(city => city.Id == selectedCityId);
         title.Text = "三国霸业 · 战略地图";
-        summary.Text = $"{PersonName(view.PlayerRulerId)}  |  {view.Year} 年 {view.Month} 月  |  38 城  ";
+        summary.Text = $"{PersonName(view.PlayerRulerId)}  |  {view.Year} 年 {view.Month} 月  |  38 城 · {MainFactionRules.Name(session.World.Outcome)}";
+        endMonthButton.Disabled = session.World.Outcome != MainGameOutcome.InProgress;
         cityListPanel.SetView(view, city.Id);
         map.SetView(view, city.Id);
         var persons = CityPersons();
@@ -390,6 +391,7 @@ public partial class Main : Control
                 throw new InvalidOperationException("年度人物出场或 RNG 不符合 golden。");
 
             RunDiplomacySmoke();
+            RunFactionSmoke();
             GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=17 hash={expected}");
             GD.Print("MAIN_M2C_SMOKE_OK conscript=1000 execute+exile=equipment-preserved");
             GD.Print("MAIN_M2C_C_SMOKE_OK native-route use-item annual=191");
@@ -400,6 +402,22 @@ public partial class Main : Control
             GD.PushError($"MAIN_M2B_SMOKE_FAILED: {error}");
             GetTree().Quit(1);
         }
+    }
+
+    private void RunFactionSmoke()
+    {
+        StartGame(1, "person-013");
+        MainFactionRules.UpdateSatraps(session.World);
+        if (session.World.Cities[5].SatrapId != "person-013") throw new InvalidOperationException("自动太守未优先选择君主。");
+        foreach (var city in session.World.Cities.Where(city => city.Id != "city-005")) city.Belong = "";
+        OnEndMonth(false);
+        if (session.World.Outcome != MainGameOutcome.Won || !currentView.Reports.Any(report => report.Message.Contains("战局结束")))
+            throw new InvalidOperationException("胜利判定或报告失败。");
+        var finished = session.GetStateHash();
+        OnEndMonth(false);
+        if (session.GetStateHash() != finished || session.PreviewCommand(1, "city-005", "person-089").Code != "game_over")
+            throw new InvalidOperationException("战局结束后仍可重复结算或下令。");
+        GD.Print("MAIN_M2D_B_SMOKE_OK ai satrap outcome=idempotent");
     }
 
     private void RunDiplomacySmoke()
