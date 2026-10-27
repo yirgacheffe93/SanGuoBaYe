@@ -36,6 +36,23 @@ public static class MainCommandService
             if (target is null || target.Status != MainPersonStatus.Captive || target.CityId != city.Id)
                 return Preview(false, "invalid_target", "招降目标必须是本城俘虏。");
         }
+        if (commandId is MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId or MainCommandCatalog.CounterespionageOrderId or MainCommandCatalog.InduceOrderId)
+        {
+            var target = world.Persons.FirstOrDefault(item => item.Id == request.TargetPersonId);
+            var valid = target is not null && commandId switch
+            {
+                MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId => MainDiplomacyRules.IsEnemyOfficer(world, target),
+                MainCommandCatalog.CounterespionageOrderId => MainDiplomacyRules.IsEnemySatrap(world, target),
+                _ => MainDiplomacyRules.IsEnemyRuler(world, target)
+            };
+            if (!valid) return Preview(false, "invalid_target", "没有符合该命令条件的目标人物。");
+        }
+        if (commandId == MainCommandCatalog.ReconnoitreOrderId)
+        {
+            var target = world.Cities.FirstOrDefault(item => item.Id == request.TargetCityId);
+            if (target is null || target.Id == city.Id || target.Belong == city.Belong)
+                return Preview(false, "invalid_city", "侦察目标必须是不同的非己方城市。");
+        }
         if (commandId != MainCommandCatalog.ExecuteOrderId && commandId != MainCommandCatalog.ExileOrderId &&
             (city.Belong != world.PlayerRulerId || person.Belong != world.PlayerRulerId || person.CityId != city.Id))
             return Preview(false, "invalid_target", "只能选择我方城中的己方武将。");
@@ -155,7 +172,17 @@ public static class MainCommandService
             return CreateQueuedOrder(world, request, moneyCost, thewCost, "掠夺将在月末结算。");
 
         string effect;
-        if (commandId == MainCommandCatalog.TradeOrderId)
+        if (commandId == MainCommandCatalog.ReconnoitreOrderId)
+        {
+            var target = world.Cities.Single(item => item.Id == request.TargetCityId);
+            effect = MainDiplomacyRules.DescribeCity(target);
+            world.Reports.Add(new ReportEntry { Turn = world.Year * 12 + world.Month, Message = effect });
+        }
+        else if (commandId is MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId or MainCommandCatalog.CounterespionageOrderId or MainCommandCatalog.InduceOrderId)
+        {
+            effect = $"{MainCommandCatalog.Name(commandId)}将在月末判定。";
+        }
+        else if (commandId == MainCommandCatalog.TradeOrderId)
         {
             if (request.TradeDirection == MainTradeDirection.Buy)
             {
@@ -196,8 +223,13 @@ public static class MainCommandService
         {
             Id = $"main.order.{world.NextSequence++}", OrderId = request.CommandId, CityId = request.CityId, PersonId = request.PersonId,
             ObjectId = request.TargetPersonId ?? request.TargetCityId ?? "", Food = request.Food, Money = request.Money, Arms = request.Arms,
-            Consume = thewCost, TimeCount = request.CommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId
-                ? MainTravelRules.Find(world, request.CityId, request.TargetCityId!)?.Distance ?? 0 : 0
+            Consume = thewCost, TimeCount = request.CommandId switch
+            {
+                MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId => MainTravelRules.Find(world, request.CityId, request.TargetCityId!)?.Distance ?? 0,
+                MainCommandCatalog.ReconnoitreOrderId => 1,
+                MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId or MainCommandCatalog.CounterespionageOrderId or MainCommandCatalog.InduceOrderId => 10,
+                _ => 0
+            }
         };
         city.Money -= moneyCost;
         person.Thew -= thewCost;

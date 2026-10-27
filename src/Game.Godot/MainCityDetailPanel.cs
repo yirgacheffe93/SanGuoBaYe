@@ -27,8 +27,8 @@ public partial class MainCityDetailPanel : PanelContainer
     public event Action? CommandSelectionChanged;
     public int SelectedCommandId => commandOptions.GetSelectedId();
     public string? SelectedToolId => SelectedCommandId == MainCommandCatalog.RewardOrderId ? SelectedMetadata(toolOptions) : null;
-    public string? SelectedTargetCityId => SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId ? SelectedMetadata(targetCityOptions) : null;
-    public string? SelectedTargetPersonId => SelectedCommandId == MainCommandCatalog.RecruitOrderId ? SelectedMetadata(targetPersonOptions) : null;
+    public string? SelectedTargetCityId => SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId or MainCommandCatalog.ReconnoitreOrderId ? SelectedMetadata(targetCityOptions) : null;
+    public string? SelectedTargetPersonId => SelectedCommandId is MainCommandCatalog.RecruitOrderId or MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId or MainCommandCatalog.CounterespionageOrderId or MainCommandCatalog.InduceOrderId ? SelectedMetadata(targetPersonOptions) : null;
     public MainTradeDirection TradeDirection => tradeDirectionOptions.Selected == 1 ? MainTradeDirection.Sell : MainTradeDirection.Buy;
     public int Quantity => SelectedCommandId switch
     {
@@ -61,7 +61,7 @@ public partial class MainCityDetailPanel : PanelContainer
         personDetails.AddThemeFontSizeOverride("font_size", 14);
         content.AddChild(personDetails);
         commandOptions = new OptionButton();
-        foreach (var commandId in new[] { 1, 2, 3, 4, 5, 6, 7, 8, 24, 25, 26, 9, 10, 11, 12, 13, 14 })
+        foreach (var commandId in new[] { 1, 2, 3, 4, 5, 6, 7, 8, 24, 25, 26, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 23 })
             commandOptions.AddItem(MainCommandCatalog.Name(commandId), commandId);
         commandOptions.ItemSelected += _ => OnCommandInputChanged();
         content.AddChild(commandOptions);
@@ -100,7 +100,8 @@ public partial class MainCityDetailPanel : PanelContainer
     }
 
     public void SetView(MainGameView view, MainCityView city, string selectedPersonId, string ownerName,
-        IReadOnlyList<(string Id, string Name)> discoveredTools, IReadOnlyList<(string Id, string Name, int Distance)> travelTargets)
+        IReadOnlyList<(string Id, string Name)> discoveredTools, IReadOnlyList<(string Id, string Name, int Distance)> travelTargets,
+        IReadOnlyList<string> targetPersonIds)
     {
         cityDetails.Text = $"{city.Name} · {ownerName}\n金 {city.Money}  粮 {city.Food}  后备兵 {city.MothballArms}\n农业 {city.Farming}/{city.FarmingLimit}\n商业 {city.Commerce}/{city.CommerceLimit}\n民忠 {city.PeopleDevotion}  防灾 {city.AvoidCalamity} · {CityState(city.State)}\n人口 {city.Population}/{city.PopulationLimit}";
         personList.Clear();
@@ -119,15 +120,27 @@ public partial class MainCityDetailPanel : PanelContainer
             toolOptions.SetItemMetadata(toolOptions.ItemCount - 1, tool.Id);
         }
         targetCityOptions.Clear();
-        foreach (var target in travelTargets)
+        if (SelectedCommandId == MainCommandCatalog.ReconnoitreOrderId)
         {
-            targetCityOptions.AddItem($"目标 {target.Name} · 距离 {target.Distance}");
-            targetCityOptions.SetItemMetadata(targetCityOptions.ItemCount - 1, target.Id);
+            foreach (var target in view.Cities.Where(item => item.Id != city.Id && item.Belong != city.Belong))
+            {
+                targetCityOptions.AddItem($"侦察 {target.Name}");
+                targetCityOptions.SetItemMetadata(targetCityOptions.ItemCount - 1, target.Id);
+            }
+        }
+        else
+        {
+            foreach (var target in travelTargets)
+            {
+                targetCityOptions.AddItem($"目标 {target.Name} · 距离 {target.Distance}");
+                targetCityOptions.SetItemMetadata(targetCityOptions.ItemCount - 1, target.Id);
+            }
         }
         targetPersonOptions.Clear();
-        foreach (var target in persons.Where(person => person.Status == Game.Domain.MainPersonStatus.Captive))
+        foreach (var target in targetPersonIds.Select(id => view.Persons.Single(person => person.Id == id)))
         {
-            targetPersonOptions.AddItem($"招降 {target.Name}");
+            var targetCityName = view.Cities.FirstOrDefault(city => city.Id == target.CityId)?.Name ?? "在途";
+            targetPersonOptions.AddItem($"{MainCommandCatalog.Name(SelectedCommandId)} {target.Name} · {targetCityName} · 忠 {target.Devotion}");
             targetPersonOptions.SetItemMetadata(targetPersonOptions.ItemCount - 1, target.Id);
         }
     }
@@ -174,8 +187,8 @@ public partial class MainCityDetailPanel : PanelContainer
     private void UpdateCommandControls()
     {
         toolOptions.Visible = SelectedCommandId == MainCommandCatalog.RewardOrderId;
-        targetCityOptions.Visible = SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId;
-        targetPersonOptions.Visible = SelectedCommandId == MainCommandCatalog.RecruitOrderId;
+        targetCityOptions.Visible = SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId or MainCommandCatalog.ReconnoitreOrderId;
+        targetPersonOptions.Visible = SelectedCommandId is MainCommandCatalog.RecruitOrderId or MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId or MainCommandCatalog.CounterespionageOrderId or MainCommandCatalog.InduceOrderId;
         tradeControls.Visible = SelectedCommandId == MainCommandCatalog.TradeOrderId;
         transportControls.Visible = SelectedCommandId == MainCommandCatalog.TransportOrderId;
         commandQuantity.Visible = SelectedCommandId is MainCommandCatalog.ConscriptOrderId or MainCommandCatalog.DistributeOrderId;

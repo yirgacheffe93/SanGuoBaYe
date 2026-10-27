@@ -58,6 +58,15 @@ public sealed class MainGameSession
 
     public MainTravelRoute? GetTravelRoute(string sourceId, string targetId) => MainTravelRules.Find(World, sourceId, targetId);
 
+    public IReadOnlyList<string> GetCommandTargetPersonIds(int commandId, string cityId) => World.Persons.Where(person => commandId switch
+    {
+        MainCommandCatalog.RecruitOrderId => person.CityId == cityId && person.Status == MainPersonStatus.Captive,
+        MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId => MainDiplomacyRules.IsEnemyOfficer(World, person),
+        MainCommandCatalog.CounterespionageOrderId => MainDiplomacyRules.IsEnemySatrap(World, person),
+        MainCommandCatalog.InduceOrderId => MainDiplomacyRules.IsEnemyRuler(World, person),
+        _ => false
+    }).Select(person => person.Id).ToList();
+
     public MainSearchDiagnostics GetSearchDiagnostics(string cityId, string personId)
     {
         var city = World.Cities.Single(city => city.Id == cityId);

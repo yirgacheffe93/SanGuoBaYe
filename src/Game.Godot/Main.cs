@@ -99,7 +99,7 @@ public partial class Main : Control
         columns.AddChild(map);
         detailPanel = new MainCityDetailPanel { CustomMinimumSize = new Vector2(325, 350) };
         detailPanel.PersonSelected += personId => { selectedPersonId = personId; RefreshPerson(); };
-        detailPanel.CommandSelectionChanged += RefreshPerson;
+        detailPanel.CommandSelectionChanged += Refresh;
         detailPanel.CommandConfirmed += OnCommand;
         columns.AddChild(detailPanel);
 
@@ -176,7 +176,8 @@ public partial class Main : Control
         var travelTargets = view.Cities.Where(item => item.Id != city.Id && item.Belong == city.Belong)
             .Select(item => (item.Id, item.Name, Route: session.GetTravelRoute(city.Id, item.Id)))
             .Where(item => item.Route is not null).Select(item => (item.Id, item.Name, item.Route!.Distance)).ToList();
-        detailPanel.SetView(view, city, selectedPersonId, city.Belong == view.PlayerRulerId ? "我方" : PersonName(city.Belong), discoveredTools, travelTargets);
+        var targetPersonIds = session.GetCommandTargetPersonIds(detailPanel.SelectedCommandId, city.Id);
+        detailPanel.SetView(view, city, selectedPersonId, city.Belong == view.PlayerRulerId ? "我方" : PersonName(city.Belong), discoveredTools, travelTargets, targetPersonIds);
         RefreshPerson();
         orderReportPanel.SetView(view);
     }
@@ -388,6 +389,7 @@ public partial class Main : Control
                 session.World.Persons[169].CityId != "city-034" || session.World.RandomState != 3025925713)
                 throw new InvalidOperationException("年度人物出场或 RNG 不符合 golden。");
 
+            RunDiplomacySmoke();
             GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=17 hash={expected}");
             GD.Print("MAIN_M2C_SMOKE_OK conscript=1000 execute+exile=equipment-preserved");
             GD.Print("MAIN_M2C_C_SMOKE_OK native-route use-item annual=191");
@@ -400,11 +402,60 @@ public partial class Main : Control
         }
     }
 
+    private void RunDiplomacySmoke()
+    {
+        foreach (var commandId in new[] { 15, 16, 17 })
+        {
+            StartGame(1, "person-013");
+            map.ActivateCity("city-005");
+            selectedPersonId = "person-089";
+            detailPanel.SelectCommand(commandId - 15 + 17);
+            Refresh();
+            var targetId = detailPanel.SelectedTargetPersonId ?? throw new InvalidOperationException("对敌命令没有目标人物。");
+            var actor = session.World.Persons.Single(person => person.Id == selectedPersonId);
+            var target = session.World.Persons.Single(person => person.Id == targetId);
+            actor.Iq = commandId == 15 ? 200 : 255;
+            target.Iq = 0;
+            target.Devotion = commandId == 15 ? 3 : 0;
+            if (commandId == 17) session.World.Cities.Single(city => city.Id == target.CityId).SatrapId = targetId;
+            session.World.RandomState = 7;
+            Refresh();
+            OnCommand();
+            session.ExecuteOrders();
+            if (commandId == 15 && target.Devotion != 0 || commandId == 16 && (target.Belong != "person-013" || target.CityId != "city-005") ||
+                commandId == 17 && target.Belong != targetId)
+                throw new InvalidOperationException($"对敌命令 {commandId} 的 UI 冒烟失败。");
+        }
+        StartGame(1, "person-013");
+        map.ActivateCity("city-005");
+        selectedPersonId = "person-089";
+        detailPanel.SelectCommand(20);
+        Refresh();
+        OnCommand();
+        session.ExecuteOrders();
+        Refresh();
+        if (!currentView.Reports.Any(report => report.Message.Contains("未产生效果")))
+            throw new InvalidOperationException("原版劝降边界缺失。");
+        StartGame(1, "person-013");
+        map.ActivateCity("city-005");
+        selectedPersonId = "person-089";
+        detailPanel.SelectCommand(21);
+        Refresh();
+        OnCommand();
+        if (!currentView.Reports.Any(report => report.Message.Contains("侦察西凉"))) throw new InvalidOperationException("侦察即时报告失败。");
+        session.ExecuteOrders();
+        if (session.World.Persons[89].CityId != "city-005") throw new InvalidOperationException("侦察归队失败。");
+        GD.Print("MAIN_M2D_A_SMOKE_OK alienate canvass counterespionage induce-boundary reconnoitre");
+    }
+
     private async void RunCapture()
     {
         try
         {
             StartGame(1, "person-013");
+            selectedPersonId = "person-089";
+            detailPanel.SelectCommand(17);
+            Refresh();
             var argument = OS.GetCmdlineUserArgs().FirstOrDefault(value => value.StartsWith("--capture-dir=", StringComparison.Ordinal));
             var directory = argument is null ? "build/ui" : argument["--capture-dir=".Length..];
             Directory.CreateDirectory(directory);

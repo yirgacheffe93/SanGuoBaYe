@@ -1,0 +1,9078 @@
+{
+  "schemaVersion": 1,
+  "kind": "main-golden-m2d-a",
+  "source": {
+    "branch": "main",
+    "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+    "library": "libs/SGBY.lib",
+    "libraryBytes": 615415,
+    "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+    "engine": "js/baye.js",
+    "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+    "bridge": "js/bridge.js",
+    "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+    "wasm": "js/baye.wasm",
+    "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+    "decoding": "Node.js 26 native TextDecoder(GBK)"
+  },
+  "acceptance": {
+    "money": [
+      50,
+      50,
+      50,
+      50,
+      20
+    ],
+    "thew": [
+      20,
+      20,
+      20,
+      20,
+      10
+    ],
+    "commands": [
+      15,
+      16,
+      17,
+      19,
+      23
+    ],
+    "note": "来自main命令表；反间18的Make/Drv均为空实现，不生成自创玩法。"
+  },
+  "scenarios": [
+    {
+      "name": "alienate-success-devotion-floor",
+      "command": 15,
+      "success": true,
+      "devotion": 3,
+      "fixture": "生产S3受控人物/城市/RNG与订单，S4读取真实PolicyExec；不是UI接受测试",
+      "before": {
+        "rng": 7,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 200,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 0,
+            "Devotion": 3,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 15,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      },
+      "after": {
+        "rng": 712265938,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              89,
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 200,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 0,
+            "Devotion": 0,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 255,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      }
+    },
+    {
+      "name": "alienate-first-gate-failure",
+      "command": 15,
+      "success": false,
+      "fixture": "生产S3受控人物/城市/RNG与订单，S4读取真实PolicyExec；不是UI接受测试",
+      "before": {
+        "rng": 1,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 0,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 255,
+            "Devotion": 100,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 15,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      },
+      "after": {
+        "rng": 1103527590,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              89,
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 0,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 255,
+            "Devotion": 100,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 255,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      }
+    },
+    {
+      "name": "canvass-success",
+      "command": 16,
+      "success": true,
+      "fixture": "生产S3受控人物/城市/RNG与订单，S4读取真实PolicyExec；不是UI接受测试",
+      "before": {
+        "rng": 7,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 255,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 0,
+            "Devotion": 0,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 16,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      },
+      "after": {
+        "rng": 2131988640,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              89,
+              57,
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 255,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 14,
+            "IQ": 0,
+            "Devotion": 43,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 255,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      }
+    },
+    {
+      "name": "canvass-success-loyalty-rng-zero",
+      "command": 16,
+      "success": true,
+      "rng": 63,
+      "fixture": "生产S3受控人物/城市/RNG与订单，S4读取真实PolicyExec；不是UI接受测试",
+      "before": {
+        "rng": 63,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 255,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 0,
+            "Devotion": 0,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 16,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      },
+      "after": {
+        "rng": 173759992,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              89,
+              57,
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 255,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 14,
+            "IQ": 0,
+            "Devotion": 40,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 255,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      }
+    },
+    {
+      "name": "canvass-first-gate-failure",
+      "command": 16,
+      "success": false,
+      "fixture": "生产S3受控人物/城市/RNG与订单，S4读取真实PolicyExec；不是UI接受测试",
+      "before": {
+        "rng": 1,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 0,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 255,
+            "Devotion": 100,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 16,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      },
+      "after": {
+        "rng": 2524885223,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              89,
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 0,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 255,
+            "Devotion": 100,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 255,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      }
+    },
+    {
+      "name": "counterespionage-success-independent",
+      "command": 17,
+      "success": true,
+      "fixture": "生产S3受控人物/城市/RNG与订单，S4读取真实PolicyExec；不是UI接受测试",
+      "before": {
+        "rng": 7,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 58,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 255,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 0,
+            "Devotion": 0,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 17,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      },
+      "after": {
+        "rng": 2131988640,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 58,
+            "SatrapId": 58,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              89,
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 255,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 58,
+            "IQ": 0,
+            "Devotion": 0,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 255,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      }
+    },
+    {
+      "name": "counterespionage-first-gate-failure",
+      "command": 17,
+      "success": false,
+      "fixture": "生产S3受控人物/城市/RNG与订单，S4读取真实PolicyExec；不是UI接受测试",
+      "before": {
+        "rng": 1,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 58,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 0,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 255,
+            "Devotion": 100,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 17,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      },
+      "after": {
+        "rng": 662824084,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 58,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              89,
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 0,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 255,
+            "Devotion": 100,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 255,
+          "Person": 89,
+          "City": 5,
+          "Object": 57,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      }
+    },
+    {
+      "name": "induce-success-whole-faction",
+      "command": 19,
+      "success": true,
+      "target": 5,
+      "fixture": "生产S3受控人物/城市/RNG与订单，S4读取真实PolicyExec；不是UI接受测试",
+      "before": {
+        "rng": 7,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 14,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 14,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 14,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 14,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 14,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 255,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 0,
+            "Devotion": 0,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 19,
+          "Person": 89,
+          "City": 5,
+          "Object": 5,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      },
+      "after": {
+        "rng": 7,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 14,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 14,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 14,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              89,
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 14,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 14,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 255,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 0,
+            "Devotion": 0,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 255,
+          "Person": 89,
+          "City": 5,
+          "Object": 5,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      }
+    },
+    {
+      "name": "induce-city-count-failure",
+      "command": 19,
+      "success": false,
+      "target": 5,
+      "fixture": "生产S3受控人物/城市/RNG与订单，S4读取真实PolicyExec；不是UI接受测试",
+      "before": {
+        "rng": 1,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 14,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 14,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 14,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 14,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 0,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 255,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 19,
+          "Person": 89,
+          "City": 5,
+          "Object": 5,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      },
+      "after": {
+        "rng": 1,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 14,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 14,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 14,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              89,
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 14,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 0,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 255,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 255,
+          "Person": 89,
+          "City": 5,
+          "Object": 5,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 10
+        }
+      }
+    },
+    {
+      "name": "reconnoitre-return",
+      "command": 23,
+      "success": true,
+      "fixture": "生产S3受控人物/城市/RNG与订单，S4读取真实PolicyExec；不是UI接受测试",
+      "before": {
+        "rng": 7,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 255,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 0,
+            "Devotion": 0,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 23,
+          "Person": 89,
+          "City": 5,
+          "Object": 0,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 1
+        }
+      },
+      "after": {
+        "rng": 7,
+        "cities": [
+          {
+            "index": 0,
+            "Belong": 6,
+            "SatrapId": 57,
+            "people": [
+              56,
+              57,
+              161
+            ]
+          },
+          {
+            "index": 1,
+            "Belong": 17,
+            "SatrapId": 17,
+            "people": [
+              16,
+              99,
+              100,
+              101,
+              102,
+              166
+            ]
+          },
+          {
+            "index": 2,
+            "Belong": 18,
+            "SatrapId": 18,
+            "people": [
+              17,
+              104
+            ]
+          },
+          {
+            "index": 3,
+            "Belong": 6,
+            "SatrapId": 65,
+            "people": [
+              64,
+              147,
+              151,
+              158,
+              175
+            ]
+          },
+          {
+            "index": 4,
+            "Belong": 10,
+            "SatrapId": 10,
+            "people": []
+          },
+          {
+            "index": 5,
+            "Belong": 14,
+            "SatrapId": 14,
+            "people": [
+              89,
+              13,
+              90,
+              143,
+              172
+            ]
+          },
+          {
+            "index": 6,
+            "Belong": 3,
+            "SatrapId": 3,
+            "people": [
+              2,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              149,
+              162,
+              163,
+              164
+            ]
+          },
+          {
+            "index": 7,
+            "Belong": 8,
+            "SatrapId": 8,
+            "people": [
+              7,
+              73,
+              74
+            ]
+          },
+          {
+            "index": 8,
+            "Belong": 6,
+            "SatrapId": 6,
+            "people": [
+              5,
+              58,
+              60,
+              61,
+              62,
+              63,
+              65,
+              66
+            ]
+          },
+          {
+            "index": 9,
+            "Belong": 12,
+            "SatrapId": 12,
+            "people": [
+              11,
+              85,
+              123,
+              132,
+              154
+            ]
+          },
+          {
+            "index": 10,
+            "Belong": 1,
+            "SatrapId": 26,
+            "people": [
+              24,
+              26
+            ]
+          },
+          {
+            "index": 11,
+            "Belong": 11,
+            "SatrapId": 11,
+            "people": [
+              10,
+              81,
+              82,
+              83,
+              84,
+              112,
+              134,
+              138,
+              183
+            ]
+          },
+          {
+            "index": 12,
+            "Belong": 2,
+            "SatrapId": 2,
+            "people": [
+              1,
+              33,
+              36,
+              37,
+              110,
+              126,
+              137,
+              174
+            ]
+          },
+          {
+            "index": 13,
+            "Belong": 7,
+            "SatrapId": 7,
+            "people": [
+              6,
+              67,
+              70
+            ]
+          },
+          {
+            "index": 14,
+            "Belong": 19,
+            "SatrapId": 19,
+            "people": [
+              108
+            ]
+          },
+          {
+            "index": 15,
+            "Belong": 1,
+            "SatrapId": 1,
+            "people": [
+              0,
+              19,
+              22,
+              30,
+              31,
+              116,
+              152
+            ]
+          },
+          {
+            "index": 16,
+            "Belong": 9,
+            "SatrapId": 9,
+            "people": [
+              156,
+              171
+            ]
+          },
+          {
+            "index": 17,
+            "Belong": 7,
+            "SatrapId": 72,
+            "people": [
+              144,
+              153
+            ]
+          },
+          {
+            "index": 18,
+            "Belong": 7,
+            "SatrapId": 73,
+            "people": [
+              72,
+              181
+            ]
+          },
+          {
+            "index": 19,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              173
+            ]
+          },
+          {
+            "index": 20,
+            "Belong": 1,
+            "SatrapId": 28,
+            "people": []
+          },
+          {
+            "index": 21,
+            "Belong": 4,
+            "SatrapId": 4,
+            "people": [
+              3,
+              46,
+              49,
+              117
+            ]
+          },
+          {
+            "index": 22,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              129,
+              146,
+              165
+            ]
+          },
+          {
+            "index": 23,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              128
+            ]
+          },
+          {
+            "index": 24,
+            "Belong": 16,
+            "SatrapId": 16,
+            "people": [
+              15,
+              97,
+              98,
+              113,
+              179
+            ]
+          },
+          {
+            "index": 25,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              176
+            ]
+          },
+          {
+            "index": 26,
+            "Belong": 15,
+            "SatrapId": 15,
+            "people": [
+              14,
+              86,
+              92,
+              94,
+              184
+            ]
+          },
+          {
+            "index": 27,
+            "Belong": 15,
+            "SatrapId": 97,
+            "people": [
+              95,
+              96,
+              130
+            ]
+          },
+          {
+            "index": 28,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              177
+            ]
+          },
+          {
+            "index": 29,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              155
+            ]
+          },
+          {
+            "index": 30,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              141,
+              142,
+              185,
+              186
+            ]
+          },
+          {
+            "index": 31,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              136,
+              140
+            ]
+          },
+          {
+            "index": 32,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              180
+            ]
+          },
+          {
+            "index": 33,
+            "Belong": 5,
+            "SatrapId": 5,
+            "people": [
+              4,
+              50,
+              51,
+              52,
+              53,
+              133
+            ]
+          },
+          {
+            "index": 34,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              127,
+              182
+            ]
+          },
+          {
+            "index": 35,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": []
+          },
+          {
+            "index": 36,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              167
+            ]
+          },
+          {
+            "index": 37,
+            "Belong": 0,
+            "SatrapId": 0,
+            "people": [
+              12,
+              87,
+              88
+            ]
+          }
+        ],
+        "persons": [
+          {
+            "index": 89,
+            "Belong": 14,
+            "IQ": 255,
+            "Devotion": 98,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 3,
+            "Tool2": 0
+          },
+          {
+            "index": 57,
+            "Belong": 6,
+            "IQ": 0,
+            "Devotion": 0,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 5,
+            "Belong": 6,
+            "IQ": 46,
+            "Devotion": 100,
+            "Character": 4,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          },
+          {
+            "index": 58,
+            "Belong": 6,
+            "IQ": 20,
+            "Devotion": 94,
+            "Character": 0,
+            "Thew": 100,
+            "Tool1": 0,
+            "Tool2": 0
+          }
+        ],
+        "order": {
+          "OrderId": 255,
+          "Person": 89,
+          "City": 5,
+          "Object": 0,
+          "Arms": 0,
+          "Food": 0,
+          "Money": 0,
+          "Consume": 0,
+          "TimeCount": 1
+        }
+      }
+    }
+  ]
+}

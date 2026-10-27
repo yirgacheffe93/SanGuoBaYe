@@ -4,9 +4,9 @@
 
 ## 状态
 
-**Main-M2C-C 已完成。**
+**Main-M2D-A 已完成。**
 
-全部时期和真实君主可进入，支持五项内政、完整月度、年度人物/道具出现、人物/道具搜寻，以及赏赐、没收、宴请、交易、移动、输送、招降、处斩、流放、征兵、分配和掠夺。移动/输送已使用原始城市连接和距离，特殊兵符可正确使用。89 项测试、双主题及独立 macOS 应用验收已完成，见 `docs/24-main-m2c-c.md`；完整 M2/M3 尚未完成。
+全部时期和真实君主可进入，支持五项内政、完整月度、年度出现、搜寻、人员物资、军备、离间、招揽、策反和侦察。移动/输送使用原始城市连接，特殊兵符可正确使用；反间/劝降保留当前 main 的无效果边界。96 项测试、双主题及独立 macOS 应用验收已完成，见 `docs/25-main-m2d-a.md`；完整 AI、势力存亡和 M3 尚未完成。
 
 现有 Godot 分层工程、双主题地图、规则测试、快照存档和 macOS 导出链继续复用。R0 的虚构内容与自动战斗仅保留为历史技术验证，不再限制 main 的属性范围和战术战斗目标。
 
@@ -51,6 +51,7 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 | [docs/22-search-diagnostics.md](docs/22-search-diagnostics.md) | 搜寻候选、伯乐与失败原因诊断 |
 | [docs/23-main-m2c-b.md](docs/23-main-m2c-b.md) | Main-M2C-B 军备与人员处置 |
 | [docs/24-main-m2c-c.md](docs/24-main-m2c-c.md) | Main-M2C-C 寻路、特殊装备与年度出现 |
+| [docs/25-main-m2d-a.md](docs/25-main-m2d-a.md) | Main-M2D-A 对敌策略与侦察 |
 | [docs/provenance.md](docs/provenance.md) | 实际内容与资产来源记录 |
 
 ## 构建与验证
@@ -58,16 +59,16 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 本地工具链位于 `.tools/`（不入库）。macOS 上执行：
 
 ```bash
-scripts/verify.sh        # 导入校验、89 项测试、R0 回归、Godot 冒烟
+scripts/verify.sh        # 导入校验、96 项测试、R0 回归、Godot 冒烟
 scripts/export-macos.sh # 导出并运行独立 macOS 应用冒烟
-scripts/capture-ui.sh   # 重新生成深色、浅色和对比样片
+scripts/capture-ui.sh   # 构建并重新生成深色、浅色和对比样片
 ```
 
 Godot 编辑器打开根目录 `project.godot`。main 内容导入命令见 `tools/main-import/`；R0 模拟工具仅作历史回归。
 
 ## 下一步
 
-完成 M2 剩余对敌策略与完整 AI，再进入 M3 出征与独立战术战斗；另行补录原生赏赐 UI golden。
+完成 Main-M2D-B 完整战略 AI、任命/势力存亡和长局回归，再进入 M3 出征与独立战术战斗；另行补录原生赏赐 UI golden。
 
 ## 注意
 

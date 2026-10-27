@@ -19,6 +19,11 @@ public static class MainCommandCatalog
     public const int BanquetOrderId = 12;
     public const int TransportOrderId = 13;
     public const int MoveOrderId = 14;
+    public const int AlienateOrderId = 15;
+    public const int CanvassOrderId = 16;
+    public const int CounterespionageOrderId = 17;
+    public const int InduceOrderId = 19;
+    public const int ReconnoitreOrderId = 23;
     public const int ReclaimCost = 50;
     public const int ReclaimThewCost = 8;
 
@@ -41,6 +46,11 @@ public static class MainCommandCatalog
         BanquetOrderId => "宴请",
         TransportOrderId => "输送",
         MoveOrderId => "移动",
+        AlienateOrderId => "离间",
+        CanvassOrderId => "招揽",
+        CounterespionageOrderId => "策反",
+        InduceOrderId => "劝降（原版无效果）",
+        ReconnoitreOrderId => "侦察",
         _ => "未知"
     };
 
@@ -54,13 +64,16 @@ public static class MainCommandCatalog
         TradeOrderId => (0, 12),
         BanquetOrderId => (100, 0),
         TransportOrderId or MoveOrderId => (0, 8),
+        AlienateOrderId or CanvassOrderId or CounterespionageOrderId or InduceOrderId => (50, 20),
+        ReconnoitreOrderId => (20, 10),
         _ => throw new ArgumentOutOfRangeException(nameof(commandId))
     };
 
     public static bool RequiresQueue(int commandId) => commandId switch
     {
         ReclaimOrderId or CommerceOrderId or SearchOrderId or GovernOrderId or InspectOrderId or
-            RecruitOrderId or ConscriptOrderId or PlunderOrderId or TradeOrderId or TransportOrderId or MoveOrderId => true,
+            RecruitOrderId or ConscriptOrderId or PlunderOrderId or TradeOrderId or TransportOrderId or MoveOrderId or
+            AlienateOrderId or CanvassOrderId or CounterespionageOrderId or InduceOrderId or ReconnoitreOrderId => true,
         RewardOrderId or ConfiscateOrderId or BanquetOrderId or ExecuteOrderId or ExileOrderId or DistributeOrderId => false,
         _ => throw new ArgumentOutOfRangeException(nameof(commandId))
     };
