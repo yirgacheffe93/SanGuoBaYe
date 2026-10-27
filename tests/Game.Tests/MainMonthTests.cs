@@ -76,7 +76,7 @@ public sealed class MainMonthTests
     }
 
     [Fact]
-    public void New_year_increases_year_and_all_ages()
+    public void New_year_increases_ages_and_appears_people()
     {
         var session = CreateSession();
         session.World.Month = 12;
@@ -84,7 +84,10 @@ public sealed class MainMonthTests
         session.ConditionUpdate();
         Assert.Equal(191, session.World.Year);
         Assert.Equal(1, session.World.Month);
-        Assert.All(session.World.Persons, person => Assert.Equal(Math.Min(255, ages[person.Id] + 1), person.Age));
+        Assert.All(session.World.Persons, person => Assert.Equal(person.SourceIndex is 54 or 111 or 145 or 169 ? 16 : (ages[person.Id] + 1) & 0xff, person.Age));
+        Assert.Equal("city-013", session.World.Persons[111].CityId);
+        Assert.Equal("city-025", session.World.Persons[145].CityId);
+        Assert.Equal(session.World.Persons[169].CityId, session.World.Persons[54].CityId);
     }
 
     private static MainGameSession CreateSession()

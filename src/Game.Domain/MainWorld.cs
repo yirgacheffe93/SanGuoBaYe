@@ -43,6 +43,8 @@ public sealed class MainCity
     public string Name { get; set; } = "";
     public int X { get; set; }
     public int Y { get; set; }
+    public int NativeX { get; set; }
+    public int NativeY { get; set; }
     public int State { get; set; }
     public string Belong { get; set; } = "";
     public string SatrapId { get; set; } = "";

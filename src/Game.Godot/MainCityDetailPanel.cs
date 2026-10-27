@@ -100,7 +100,7 @@ public partial class MainCityDetailPanel : PanelContainer
     }
 
     public void SetView(MainGameView view, MainCityView city, string selectedPersonId, string ownerName,
-        IReadOnlyList<(string Id, string Name)> discoveredTools)
+        IReadOnlyList<(string Id, string Name)> discoveredTools, IReadOnlyList<(string Id, string Name, int Distance)> travelTargets)
     {
         cityDetails.Text = $"{city.Name} · {ownerName}\n金 {city.Money}  粮 {city.Food}  后备兵 {city.MothballArms}\n农业 {city.Farming}/{city.FarmingLimit}\n商业 {city.Commerce}/{city.CommerceLimit}\n民忠 {city.PeopleDevotion}  防灾 {city.AvoidCalamity} · {CityState(city.State)}\n人口 {city.Population}/{city.PopulationLimit}";
         personList.Clear();
@@ -119,9 +119,9 @@ public partial class MainCityDetailPanel : PanelContainer
             toolOptions.SetItemMetadata(toolOptions.ItemCount - 1, tool.Id);
         }
         targetCityOptions.Clear();
-        foreach (var target in view.Cities.Where(item => item.Id != city.Id && item.Belong == city.Belong))
+        foreach (var target in travelTargets)
         {
-            targetCityOptions.AddItem($"目标 {target.Name}");
+            targetCityOptions.AddItem($"目标 {target.Name} · 距离 {target.Distance}");
             targetCityOptions.SetItemMetadata(targetCityOptions.ItemCount - 1, target.Id);
         }
         targetPersonOptions.Clear();

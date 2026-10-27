@@ -1,0 +1,980 @@
+{
+  "schemaVersion": 1,
+  "kind": "main-golden-m2c-c",
+  "source": {
+    "branch": "main",
+    "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+    "library": "libs/SGBY.lib",
+    "libraryBytes": 615415,
+    "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+    "engine": "js/baye.js",
+    "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+    "bridge": "js/bridge.js",
+    "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+    "wasm": "js/baye.wasm",
+    "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+    "decoding": "Node.js 26 native TextDecoder(GBK)"
+  },
+  "annual": [
+    {
+      "scenario": "annual",
+      "fixture": "生产阶段3设置年末、清空AI订单并固定RNG；阶段5读取真实ConditionUpdate结果",
+      "period": 1,
+      "year": 191,
+      "before": {
+        "year": 190,
+        "month": 12
+      },
+      "after": {
+        "year": 191,
+        "month": 1,
+        "rng": 3025925713
+      },
+      "people": [
+        {
+          "index": 111,
+          "city": 13
+        },
+        {
+          "index": 145,
+          "city": 25
+        },
+        {
+          "index": 169,
+          "city": 34
+        },
+        {
+          "index": 54,
+          "city": 34
+        }
+      ],
+      "tools": [],
+      "ages": [
+        {
+          "index": 0,
+          "age": 52
+        },
+        {
+          "index": 48,
+          "age": 45
+        },
+        {
+          "index": 54,
+          "age": 16
+        },
+        {
+          "index": 160,
+          "age": 44
+        },
+        {
+          "index": 169,
+          "age": 16
+        }
+      ]
+    },
+    {
+      "scenario": "annual",
+      "fixture": "生产阶段3设置年末、清空AI订单并固定RNG；阶段5读取真实ConditionUpdate结果",
+      "period": 1,
+      "year": 192,
+      "before": {
+        "year": 191,
+        "month": 12
+      },
+      "after": {
+        "year": 192,
+        "month": 1,
+        "rng": 456633834
+      },
+      "people": [
+        {
+          "index": 59,
+          "city": 4
+        },
+        {
+          "index": 48,
+          "city": 22
+        },
+        {
+          "index": 114,
+          "city": 24
+        }
+      ],
+      "tools": [],
+      "ages": [
+        {
+          "index": 0,
+          "age": 52
+        },
+        {
+          "index": 48,
+          "age": 16
+        },
+        {
+          "index": 54,
+          "age": 46
+        },
+        {
+          "index": 160,
+          "age": 44
+        },
+        {
+          "index": 169,
+          "age": 46
+        }
+      ]
+    },
+    {
+      "scenario": "annual",
+      "fixture": "生产阶段3设置年末、清空AI订单并固定RNG；阶段5读取真实ConditionUpdate结果",
+      "period": 1,
+      "year": 194,
+      "before": {
+        "year": 193,
+        "month": 12
+      },
+      "after": {
+        "year": 194,
+        "month": 1,
+        "rng": 456633834
+      },
+      "people": [
+        {
+          "index": 178,
+          "city": 25
+        },
+        {
+          "index": 131,
+          "city": 27
+        },
+        {
+          "index": 118,
+          "city": 29
+        }
+      ],
+      "tools": [],
+      "ages": [
+        {
+          "index": 0,
+          "age": 52
+        },
+        {
+          "index": 48,
+          "age": 45
+        },
+        {
+          "index": 54,
+          "age": 46
+        },
+        {
+          "index": 160,
+          "age": 44
+        },
+        {
+          "index": 169,
+          "age": 46
+        }
+      ]
+    }
+  ],
+  "timeCount": {
+    "scenario": "nonzero-timecount",
+    "fixture": "生产阶段3注入TimeCount=5的移动订单；阶段4检查实际PolicyExec",
+    "before": {
+      "orderTimeCount": 5,
+      "cities": [
+        {
+          "city": 0,
+          "people": [
+            56,
+            57,
+            161
+          ],
+          "tools": []
+        },
+        {
+          "city": 1,
+          "people": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "tools": [
+            31
+          ]
+        },
+        {
+          "city": 2,
+          "people": [
+            17,
+            104
+          ],
+          "tools": [
+            32
+          ]
+        },
+        {
+          "city": 3,
+          "people": [
+            64,
+            147,
+            151,
+            158,
+            175
+          ],
+          "tools": []
+        },
+        {
+          "city": 4,
+          "people": [],
+          "tools": [
+            17
+          ]
+        },
+        {
+          "city": 5,
+          "people": [
+            89,
+            90,
+            143,
+            172
+          ],
+          "tools": []
+        },
+        {
+          "city": 6,
+          "people": [
+            2,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            149,
+            162,
+            163,
+            164
+          ],
+          "tools": []
+        },
+        {
+          "city": 7,
+          "people": [
+            7,
+            73,
+            74
+          ],
+          "tools": []
+        },
+        {
+          "city": 8,
+          "people": [
+            5,
+            58,
+            60,
+            61,
+            62,
+            63,
+            65,
+            66
+          ],
+          "tools": []
+        },
+        {
+          "city": 9,
+          "people": [
+            11,
+            85,
+            123,
+            132,
+            154
+          ],
+          "tools": [
+            30
+          ]
+        },
+        {
+          "city": 10,
+          "people": [
+            24,
+            26
+          ],
+          "tools": []
+        },
+        {
+          "city": 11,
+          "people": [
+            10,
+            81,
+            82,
+            83,
+            84,
+            112,
+            134,
+            138,
+            183
+          ],
+          "tools": []
+        },
+        {
+          "city": 12,
+          "people": [
+            1,
+            33,
+            36,
+            37,
+            110,
+            126,
+            137,
+            174
+          ],
+          "tools": [
+            16,
+            20
+          ]
+        },
+        {
+          "city": 13,
+          "people": [
+            6,
+            67,
+            70
+          ],
+          "tools": []
+        },
+        {
+          "city": 14,
+          "people": [
+            108
+          ],
+          "tools": [
+            19
+          ]
+        },
+        {
+          "city": 15,
+          "people": [
+            0,
+            19,
+            22,
+            30,
+            31,
+            116,
+            152
+          ],
+          "tools": []
+        },
+        {
+          "city": 16,
+          "people": [
+            156,
+            171
+          ],
+          "tools": [
+            7,
+            8,
+            12
+          ]
+        },
+        {
+          "city": 17,
+          "people": [
+            144,
+            153
+          ],
+          "tools": [
+            11,
+            15
+          ]
+        },
+        {
+          "city": 18,
+          "people": [
+            72,
+            181
+          ],
+          "tools": []
+        },
+        {
+          "city": 19,
+          "people": [
+            173
+          ],
+          "tools": []
+        },
+        {
+          "city": 20,
+          "people": [],
+          "tools": []
+        },
+        {
+          "city": 21,
+          "people": [
+            3,
+            46,
+            49,
+            117
+          ],
+          "tools": []
+        },
+        {
+          "city": 22,
+          "people": [
+            129,
+            146,
+            165
+          ],
+          "tools": [
+            28
+          ]
+        },
+        {
+          "city": 23,
+          "people": [
+            128
+          ],
+          "tools": []
+        },
+        {
+          "city": 24,
+          "people": [
+            15,
+            97,
+            98,
+            113,
+            179
+          ],
+          "tools": []
+        },
+        {
+          "city": 25,
+          "people": [
+            176
+          ],
+          "tools": []
+        },
+        {
+          "city": 26,
+          "people": [
+            14,
+            86,
+            92,
+            94,
+            184
+          ],
+          "tools": []
+        },
+        {
+          "city": 27,
+          "people": [
+            95,
+            96,
+            130
+          ],
+          "tools": [
+            23,
+            29
+          ]
+        },
+        {
+          "city": 28,
+          "people": [
+            177
+          ],
+          "tools": [
+            21,
+            27
+          ]
+        },
+        {
+          "city": 29,
+          "people": [
+            155
+          ],
+          "tools": [
+            24
+          ]
+        },
+        {
+          "city": 30,
+          "people": [
+            141,
+            142,
+            185,
+            186
+          ],
+          "tools": []
+        },
+        {
+          "city": 31,
+          "people": [
+            136,
+            140
+          ],
+          "tools": []
+        },
+        {
+          "city": 32,
+          "people": [
+            180
+          ],
+          "tools": []
+        },
+        {
+          "city": 33,
+          "people": [
+            4,
+            50,
+            51,
+            52,
+            53,
+            133
+          ],
+          "tools": []
+        },
+        {
+          "city": 34,
+          "people": [
+            127,
+            182
+          ],
+          "tools": []
+        },
+        {
+          "city": 35,
+          "people": [],
+          "tools": [
+            14,
+            18
+          ]
+        },
+        {
+          "city": 36,
+          "people": [
+            167
+          ],
+          "tools": [
+            25,
+            26
+          ]
+        },
+        {
+          "city": 37,
+          "people": [
+            12,
+            87,
+            88
+          ],
+          "tools": []
+        }
+      ]
+    },
+    "after": {
+      "orderTimeCount": 5,
+      "orderId": 255,
+      "cities": [
+        {
+          "city": 0,
+          "people": [
+            56,
+            57,
+            161
+          ],
+          "tools": []
+        },
+        {
+          "city": 1,
+          "people": [
+            16,
+            99,
+            100,
+            101,
+            102,
+            166
+          ],
+          "tools": [
+            31
+          ]
+        },
+        {
+          "city": 2,
+          "people": [
+            17,
+            104
+          ],
+          "tools": [
+            32
+          ]
+        },
+        {
+          "city": 3,
+          "people": [
+            13,
+            64,
+            147,
+            151,
+            158,
+            175
+          ],
+          "tools": []
+        },
+        {
+          "city": 4,
+          "people": [],
+          "tools": [
+            17
+          ]
+        },
+        {
+          "city": 5,
+          "people": [
+            89,
+            90,
+            143,
+            172
+          ],
+          "tools": []
+        },
+        {
+          "city": 6,
+          "people": [
+            2,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            149,
+            162,
+            163,
+            164
+          ],
+          "tools": []
+        },
+        {
+          "city": 7,
+          "people": [
+            7,
+            73,
+            74
+          ],
+          "tools": []
+        },
+        {
+          "city": 8,
+          "people": [
+            5,
+            58,
+            60,
+            61,
+            62,
+            63,
+            65,
+            66
+          ],
+          "tools": []
+        },
+        {
+          "city": 9,
+          "people": [
+            11,
+            85,
+            123,
+            132,
+            154
+          ],
+          "tools": [
+            30
+          ]
+        },
+        {
+          "city": 10,
+          "people": [
+            24,
+            26
+          ],
+          "tools": []
+        },
+        {
+          "city": 11,
+          "people": [
+            10,
+            81,
+            82,
+            83,
+            84,
+            112,
+            134,
+            138,
+            183
+          ],
+          "tools": []
+        },
+        {
+          "city": 12,
+          "people": [
+            1,
+            33,
+            36,
+            37,
+            110,
+            126,
+            137,
+            174
+          ],
+          "tools": [
+            16,
+            20
+          ]
+        },
+        {
+          "city": 13,
+          "people": [
+            6,
+            67,
+            70
+          ],
+          "tools": []
+        },
+        {
+          "city": 14,
+          "people": [
+            108
+          ],
+          "tools": [
+            19
+          ]
+        },
+        {
+          "city": 15,
+          "people": [
+            0,
+            19,
+            22,
+            30,
+            31,
+            116,
+            152
+          ],
+          "tools": []
+        },
+        {
+          "city": 16,
+          "people": [
+            156,
+            171
+          ],
+          "tools": [
+            7,
+            8,
+            12
+          ]
+        },
+        {
+          "city": 17,
+          "people": [
+            144,
+            153
+          ],
+          "tools": [
+            11,
+            15
+          ]
+        },
+        {
+          "city": 18,
+          "people": [
+            72,
+            181
+          ],
+          "tools": []
+        },
+        {
+          "city": 19,
+          "people": [
+            173
+          ],
+          "tools": []
+        },
+        {
+          "city": 20,
+          "people": [],
+          "tools": []
+        },
+        {
+          "city": 21,
+          "people": [
+            3,
+            46,
+            49,
+            117
+          ],
+          "tools": []
+        },
+        {
+          "city": 22,
+          "people": [
+            129,
+            146,
+            165
+          ],
+          "tools": [
+            28
+          ]
+        },
+        {
+          "city": 23,
+          "people": [
+            128
+          ],
+          "tools": []
+        },
+        {
+          "city": 24,
+          "people": [
+            15,
+            97,
+            98,
+            113,
+            179
+          ],
+          "tools": []
+        },
+        {
+          "city": 25,
+          "people": [
+            176
+          ],
+          "tools": []
+        },
+        {
+          "city": 26,
+          "people": [
+            14,
+            86,
+            92,
+            94,
+            184
+          ],
+          "tools": []
+        },
+        {
+          "city": 27,
+          "people": [
+            95,
+            96,
+            130
+          ],
+          "tools": [
+            23,
+            29
+          ]
+        },
+        {
+          "city": 28,
+          "people": [
+            177
+          ],
+          "tools": [
+            21,
+            27
+          ]
+        },
+        {
+          "city": 29,
+          "people": [
+            155
+          ],
+          "tools": [
+            24
+          ]
+        },
+        {
+          "city": 30,
+          "people": [
+            141,
+            142,
+            185,
+            186
+          ],
+          "tools": []
+        },
+        {
+          "city": 31,
+          "people": [
+            136,
+            140
+          ],
+          "tools": []
+        },
+        {
+          "city": 32,
+          "people": [
+            180
+          ],
+          "tools": []
+        },
+        {
+          "city": 33,
+          "people": [
+            4,
+            50,
+            51,
+            52,
+            53,
+            133
+          ],
+          "tools": []
+        },
+        {
+          "city": 34,
+          "people": [
+            127,
+            182
+          ],
+          "tools": []
+        },
+        {
+          "city": 35,
+          "people": [],
+          "tools": [
+            14,
+            18
+          ]
+        },
+        {
+          "city": 36,
+          "people": [
+            167
+          ],
+          "tools": [
+            25,
+            26
+          ]
+        },
+        {
+          "city": 37,
+          "people": [
+            12,
+            87,
+            88
+          ],
+          "tools": []
+        }
+      ]
+    }
+  },
+  "specialTool": {
+    "status": "not-captured",
+    "reason": "自动键盘驱动未可靠完成原生赏赐菜单，不生成伪造golden；UseFlag分支按原生C实现并另做C#规则验收。"
+  }
+}

@@ -46,15 +46,17 @@ public sealed class MainGameSession
     {
         if (runAi) MainAiPlanner.Plan(World);
         var messages = MainOrderExecutor.Execute(World, Content).ToList();
-        messages.AddRange(MainMonthService.Update(World));
+        messages.AddRange(MainMonthService.Update(World, Content));
         return messages;
     }
 
     public IReadOnlyList<string> ExecuteOrders() => MainOrderExecutor.Execute(World, Content);
 
-    public void ConditionUpdate() => MainMonthService.Update(World);
+    public void ConditionUpdate() => MainMonthService.Update(World, Content);
 
     public MainGameView GetView() => MainViewFactory.Create(World);
+
+    public MainTravelRoute? GetTravelRoute(string sourceId, string targetId) => MainTravelRules.Find(World, sourceId, targetId);
 
     public MainSearchDiagnostics GetSearchDiagnostics(string cityId, string personId)
     {

@@ -1,6 +1,6 @@
 # Main 内容导入与 golden 导出
 
-> 2026-10-26 诊断发现：当前导入器将生产 `g_GoodsQueue` 的 U8 反射视图当成 U16 队列读取，四时期 60 条城市记录受影响。现有 55 项检查能够重现旧输出，但不能证明道具队列正确。修复尚未实施，详见 `docs/20-setgoods-diagnosis-result.md`。
+> SetGoods 的 U8/U16 误诊已修复，当前导入器直接按 U16LE 读取真实队列并校验高位发现标记。诊断与验收见 `docs/20-setgoods-diagnosis-result.md`。
 
 本工具只用于离线内容导入。WASM 仅在运行导入器时由 Node.js 加载；生成的 JSON 不依赖 WASM，也不要求生产 Godot 引入 JavaScript 或 WASM 运行时。
 
@@ -53,6 +53,8 @@ node tools/main-import/import.mjs \
 
 `g_OrderQueue` 全量保留 `OrderId/Person/City/Object/Arms/Food/Money/Consume/TimeCount`，不读取 `demos.js` 推断空槽位或指令规则。人物末尾的未使用空槽也保留，以确保每期确有 200 条原始记录；有效人物必须有名称。
 
+城市的 `nativePosition` 来自资源 2 第 14 项 `C_MAP` 的 12×9 矩阵，`connections` 原样保留资源 59/60 的 8 个连接及距离字段。规则距离使用原始坐标；Godot 显示仍可独立布局，不读取 `g_CityPos` 冒充城市表。
+
 ## Golden 与校验
 
 190 年 1 月平原的实际导出基准为：
@@ -62,12 +64,15 @@ node tools/main-import/import.mjs \
 - 城内顺序为刘备、关羽、张飞、吴懿、丁奉。
 - 刘备武力 `85`，关羽 `106`，张飞 `107`；道具分别为双股剑、青龙刀、丈八矛。
 
-导入时检查时期/城市/人物/道具/技能和两类 SearchCondition 数量、ID 与索引映射、人物和道具引用范围、队列边界、有效记录名称、U8 属性范围、城市身份稳定性，以及上述 golden 数值和道具。另校验吴懿/丁奉的 `bole=0`，并逐期对照原始道具队列检查顺序、重复项和高位发现标记。摘要另列每期 `Force/IQ/Devotion/Thew/Arms` 大于 100 的数量，避免把高属性静默截为 100。
+导入时检查时期/城市/人物/道具/技能和两类 SearchCondition 数量、ID 与索引映射、人物和道具引用范围、队列边界、有效记录名称、U8 属性范围、城市身份稳定性，以及上述 golden 数值和道具。另校验吴懿/丁奉的 `bole=0`，并逐期对照原始道具队列检查顺序、重复项和高位发现标记，检查城市连接引用与双向一致性。摘要另列每期 `Force/IQ/Devotion/Thew/Arms` 大于 100 的数量，避免把高属性静默截为 100。
 
-## 未导出的内容
+年度出现和非零 `TimeCount` 的生产对照可重复生成：
 
-- 单独调用时期加载不会触发地图绘制，因此当前没有可靠的地图矩阵或逐城坐标可导出。`g_CityPos` 只是当前坐标，不冒充 38 城坐标表。
-- 本工具不驱动 UI。关羽开垦（ID 1、费用 50）的接受、取消和月末状态未可靠捕获，golden 中明确标为 `not-captured`，没有手工构造这些状态。
+```bash
+node tools/main-import/capture-m2c-c.mjs
+```
+
+输出为 `content/main/golden-m2c-c.json`。阶段 hook 注入属于受控 fixture，不冒充 UI 接受测试；原生赏赐 UI 自动驱动尚不可靠，特殊道具项明确保留 `not-captured`。
 
 ## 道具发现位诊断
 

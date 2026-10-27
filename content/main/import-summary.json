@@ -633,22 +633,22 @@
     }
   ],
   "limitations": [
-    "时期加载未触发地图绘制，因此没有导出地图矩阵或逐城坐标；g_CityPos 是当前坐标而非逐城坐标表。",
+    "战略地图使用资源59/60连接和资源2的C_MAP坐标，不使用g_CityPos；显示层仍可采用重写布局。",
     "未驱动 UI 指令流，关羽开垦的接受、取消和月末 golden 未生成。",
     "g_OrderQueue 全槽位按原值导出，不根据 demos.js 推断规则。"
   ],
   "files": {
     "content.json": {
-      "bytes": 57916,
-      "sha256": "f88515c7917ce021877f91174ea2153103e7cc0822fb7e77ddd3c03c038aade8"
+      "bytes": 58009,
+      "sha256": "91536ac699dc9bd9fe5ac7bff777487b11f1b19aaed90c6f7ea68c11e8e08c0f"
     },
     "scenarios.json": {
-      "bytes": 1244118,
-      "sha256": "5a1bed691433cbf901dc957a4cddc1afc07a081eeb72dd49363bdafaf2f1442f"
+      "bytes": 1393295,
+      "sha256": "736df3d2738cff0f1dc058fe9d29583039fe7c90e5fd88aebba6dae80210713d"
     },
     "golden-liubei-190.json": {
-      "bytes": 5885,
-      "sha256": "62654c7bf96aa74a58a13f85954f5cafd9b51d83e2c955178e1959baa653088a"
+      "bytes": 6584,
+      "sha256": "476d7e6b3904f75c999e4b78625d1fe6db5b12f52aec168ff2ef1cf878b88321"
     }
   }
 }

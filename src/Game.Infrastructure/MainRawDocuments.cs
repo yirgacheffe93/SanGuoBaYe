@@ -38,6 +38,16 @@ internal sealed class CityDocument
     public List<string> PersonIds { get; set; } = [];
     public List<string> ToolIds { get; set; } = [];
     public List<ToolEntryDocument> ToolEntries { get; set; } = [];
+    public NativePositionDocument NativePosition { get; set; } = new();
+    public List<CityConnectionDocument> Connections { get; set; } = [];
+}
+
+internal sealed class NativePositionDocument { public int X { get; set; } public int Y { get; set; } }
+internal sealed class CityConnectionDocument
+{
+    public int ResourceId { get; set; }
+    public List<string> LinkedCityIds { get; set; } = [];
+    public List<int> Distances { get; set; } = [];
 }
 
 internal sealed class RawCity

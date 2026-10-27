@@ -29,8 +29,15 @@ internal static class MainContentValidator
             var toolIds = content.Tools.Select(tool => tool.Id).ToHashSet(StringComparer.Ordinal);
             if (period.RulerIds.Count == 0 || period.RulerIds.Any(id => !personIds.Contains(id)))
                 throw new MainContentException($"时期 {period.Period} 君主引用非法。");
+            var cityIds = period.Cities.Select(city => city.Id).ToHashSet(StringComparer.Ordinal);
             foreach (var city in period.Cities)
             {
+                if (city.Connections.Count == 0 || city.Connections.Count > 8 || city.Connections.Distinct(StringComparer.Ordinal).Count() != city.Connections.Count ||
+                    city.Connections.Any(id => !cityIds.Contains(id) || id == city.Id))
+                    throw new MainContentException($"城市 {city.Id} 连接表非法。");
+                foreach (var targetId in city.Connections)
+                    if (!period.Cities.Single(target => target.Id == targetId).Connections.Contains(city.Id, StringComparer.Ordinal))
+                        throw new MainContentException($"城市 {city.Id} 与 {targetId} 的连接不对称。");
                 if (city.Money < 0 || city.Food < 0 || city.Population < 0 || city.MothballArms < 0 ||
                     city.Farming < 0 || city.Farming > city.FarmingLimit || city.Commerce < 0 || city.Commerce > city.CommerceLimit ||
                     city.Population > city.PopulationLimit)

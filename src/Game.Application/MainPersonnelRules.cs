@@ -8,12 +8,15 @@ public static class MainPersonnelRules
     {
         var tool = content.Tools.Single(item => item.Id == toolId);
         if (!CanUse(tool, person)) return $"{person.Name}无法使用{tool.Name}。";
-        person.Force += tool.Attack;
-        person.Iq += tool.Iq;
+        person.Force = (person.Force + tool.Attack) & 0xff;
+        person.Iq = (person.Iq + tool.Iq) & 0xff;
         ApplyArmsType(tool, person);
-        if (person.Tool1Id.Length == 0) person.Tool1Id = toolId;
-        else person.Tool2Id = toolId;
-        SyncEquipment(person);
+        if (tool.UseFlag == 0)
+        {
+            if (person.Tool1Id.Length == 0) person.Tool1Id = toolId;
+            else person.Tool2Id = toolId;
+            SyncEquipment(person);
+        }
         if (person.Id != world.PlayerRulerId) person.Devotion = Math.Min(100, person.Devotion + 8);
         var entryIndex = city.ToolEntries.FindIndex(entry => entry.ToolId == toolId && entry.Discovered);
         if (entryIndex >= 0) city.ToolEntries.RemoveAt(entryIndex);
@@ -24,8 +27,8 @@ public static class MainPersonnelRules
     {
         var toolId = person.Tool1Id.Length > 0 ? person.Tool1Id : person.Tool2Id;
         var tool = content.Tools.Single(item => item.Id == toolId);
-        person.Force -= tool.Attack;
-        person.Iq -= tool.Iq;
+        person.Force = (person.Force - tool.Attack) & 0xff;
+        person.Iq = (person.Iq - tool.Iq) & 0xff;
         if (person.Tool1Id.Length > 0) person.Tool1Id = person.Tool2Id;
         person.Tool2Id = "";
         SyncEquipment(person);

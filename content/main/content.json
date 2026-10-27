@@ -15,7 +15,7 @@
     "decoding": "Node.js 26 native TextDecoder(GBK)"
   },
   "indexing": {
-    "city": "index 为原始零基数组索引；id 为 city-000..city-037。",
+    "city": "index 为原始零基数组索引；nativePosition 来自资源2的C_MAP；connections 原样保留资源59/60的8个一基城市连接和8个距离字段。",
     "person": "index 为原始零基数组索引；Belong/OldBelong/SatrapId 保留原始一基值，0 与 0xff 的规范化为 null。",
     "tool": "index 为原始零基数组索引；Tool1/Tool2 保留原始一基值，0 与 0xff 的规范化为 null。",
     "searchCondition": "index 为资源内原始零基索引；birth/city 为 U8，bole 为 U16LE；city 保留原值且 fixCityOffset=0。",

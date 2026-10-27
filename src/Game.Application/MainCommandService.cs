@@ -52,8 +52,8 @@ public static class MainCommandService
         {
             if (request.ToolId is null || !city.ToolEntries.Any(entry => entry.ToolId == request.ToolId && entry.Discovered))
                 return Preview(false, "tool_unavailable", "没有可赏赐的已发现道具。");
-            if (person.Tool1Id.Length > 0 && person.Tool2Id.Length > 0) return Preview(false, "equipment_full", "装备槽已满。");
             var tool = content.Tools.FirstOrDefault(tool => tool.Id == request.ToolId);
+            if (tool?.UseFlag == 0 && person.Tool1Id.Length > 0 && person.Tool2Id.Length > 0) return Preview(false, "equipment_full", "装备槽已满。");
             if (tool is not null && tool.Arms == 2 && person.Iq <= 105 || tool is not null && tool.Arms == 3 && person.Force <= 105)
                 return Preview(false, "tool_unusable", "该人物无法使用此道具。");
         }
@@ -72,6 +72,8 @@ public static class MainCommandService
             var target = world.Cities.FirstOrDefault(item => item.Id == request.TargetCityId);
             if (target is null || target.Id == city.Id || target.Belong != city.Belong)
                 return Preview(false, "invalid_city", "目标必须是不同的同归属城市。");
+            if (MainTravelRules.Find(world, city.Id, target.Id) is null)
+                return Preview(false, "no_route", "目标城市无法通过己方城市到达。");
         }
         if (commandId == MainCommandCatalog.TransportOrderId)
         {
@@ -194,7 +196,8 @@ public static class MainCommandService
         {
             Id = $"main.order.{world.NextSequence++}", OrderId = request.CommandId, CityId = request.CityId, PersonId = request.PersonId,
             ObjectId = request.TargetPersonId ?? request.TargetCityId ?? "", Food = request.Food, Money = request.Money, Arms = request.Arms,
-            Consume = thewCost, TimeCount = 0
+            Consume = thewCost, TimeCount = request.CommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId
+                ? MainTravelRules.Find(world, request.CityId, request.TargetCityId!)?.Distance ?? 0 : 0
         };
         city.Money -= moneyCost;
         person.Thew -= thewCost;

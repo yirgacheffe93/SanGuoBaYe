@@ -83,7 +83,51 @@
       "person-172"
     ],
     "toolIds": [],
-    "toolEntries": []
+    "toolEntries": [],
+    "nativePosition": {
+      "cityId": "city-005",
+      "x": 7,
+      "y": 1
+    },
+    "connections": [
+      {
+        "resourceId": 59,
+        "linkedCityIds": [
+          "city-006",
+          "city-011",
+          "city-004"
+        ],
+        "distances": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "resourceId": 60,
+        "linkedCityIds": [
+          "city-004",
+          "city-011",
+          "city-012",
+          "city-006"
+        ],
+        "distances": [
+          3,
+          0,
+          2,
+          2,
+          2,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
   },
   "people": [
     {

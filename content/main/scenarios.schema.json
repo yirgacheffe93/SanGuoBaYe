@@ -33,11 +33,30 @@
     },
     "city": {
       "type": "object",
-      "required": ["id", "index", "name", "raw", "ownerPersonId", "satrapPersonId", "personIds", "toolIds"],
+      "required": ["id", "index", "name", "raw", "ownerPersonId", "satrapPersonId", "personIds", "toolIds", "nativePosition", "connections"],
       "properties": {
         "id": { "$ref": "#/$defs/id" },
         "index": { "type": "integer", "minimum": 0, "maximum": 37 },
         "name": { "type": "string", "minLength": 1 },
+        "nativePosition": {
+          "type": "object", "required": ["cityId", "x", "y"],
+          "properties": {
+            "cityId": { "$ref": "#/$defs/id" },
+            "x": { "type": "integer", "minimum": 0, "maximum": 11 },
+            "y": { "type": "integer", "minimum": 0, "maximum": 8 }
+          }
+        },
+        "connections": {
+          "type": "array", "minItems": 2, "maxItems": 2,
+          "items": {
+            "type": "object", "required": ["resourceId", "linkedCityIds", "distances"],
+            "properties": {
+              "resourceId": { "enum": [59, 60] },
+              "linkedCityIds": { "type": "array", "maxItems": 8, "items": { "$ref": "#/$defs/id" } },
+              "distances": { "type": "array", "minItems": 8, "maxItems": 8, "items": { "$ref": "#/$defs/u8" } }
+            }
+          }
+        },
         "ownerPersonId": { "$ref": "#/$defs/nullableId" },
         "satrapPersonId": { "$ref": "#/$defs/nullableId" },
         "personIds": { "type": "array", "items": { "$ref": "#/$defs/id" } },

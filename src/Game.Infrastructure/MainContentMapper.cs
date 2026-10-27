@@ -29,6 +29,8 @@ internal static class MainContentMapper
         var cities = document.Cities.Select(item => new MainCity
         {
             Id = item.Id, SourceIndex = item.Index, Name = item.Name, State = item.Raw.State,
+            NativeX = item.NativePosition.X, NativeY = item.NativePosition.Y,
+            Connections = item.Connections.Single(connection => connection.ResourceId == 59).LinkedCityIds,
             Belong = item.OwnerPersonId ?? "", SatrapId = item.SatrapPersonId ?? "",
             FarmingLimit = item.Raw.FarmingLimit, Farming = item.Raw.Farming,
             CommerceLimit = item.Raw.CommerceLimit, Commerce = item.Raw.Commerce,

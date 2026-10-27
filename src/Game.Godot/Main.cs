@@ -173,7 +173,10 @@ public partial class Main : Control
         var persons = CityPersons();
         if (persons.Count > 0 && persons.All(person => person.Id != selectedPersonId)) selectedPersonId = persons[0].Id;
         var discoveredTools = city.DiscoveredToolIds.Select(id => (id, session.GetToolName(id))).ToList();
-        detailPanel.SetView(view, city, selectedPersonId, city.Belong == view.PlayerRulerId ? "我方" : PersonName(city.Belong), discoveredTools);
+        var travelTargets = view.Cities.Where(item => item.Id != city.Id && item.Belong == city.Belong)
+            .Select(item => (item.Id, item.Name, Route: session.GetTravelRoute(city.Id, item.Id)))
+            .Where(item => item.Route is not null).Select(item => (item.Id, item.Name, item.Route!.Distance)).ToList();
+        detailPanel.SetView(view, city, selectedPersonId, city.Belong == view.PlayerRulerId ? "我方" : PersonName(city.Belong), discoveredTools, travelTargets);
         RefreshPerson();
         orderReportPanel.SetView(view);
     }
@@ -364,8 +367,30 @@ public partial class Main : Control
                 session.World.Orders.Count != exileOrderCount || !session.World.Cities.Single(item => item.Id == exileTarget.CityId).PersonIds.Contains(exileTarget.Id))
                 throw new InvalidOperationException("流放状态、装备或即时命令队列不符合预期。");
 
+            StartGame(1, "person-013");
+            map.ActivateCity("city-005");
+            selectedPersonId = "person-089";
+            var useCity = session.World.Cities.Single(item => item.Id == "city-005");
+            var usePerson = session.World.Persons.Single(item => item.Id == "person-089");
+            usePerson.Tool1Id = "tool-000";
+            usePerson.Tool2Id = "tool-001";
+            usePerson.EquipIds = [usePerson.Tool1Id, usePerson.Tool2Id];
+            useCity.ToolEntries.Add(new MainCityToolEntry { ToolId = "tool-032", Discovered = true });
+            detailPanel.SelectCommand(11);
+            Refresh();
+            OnCommand();
+            if (usePerson.ArmsType != 3 || usePerson.EquipIds.SequenceEqual(new[] { "tool-000", "tool-001" }) == false ||
+                useCity.ToolEntries.Any(entry => entry.ToolId == "tool-032"))
+                throw new InvalidOperationException("兵符消耗或装备槽边界失败。");
+            session.World.Month = 12;
+            OnEndMonth(false);
+            if (session.World.Year != 191 || session.World.Persons[111].CityId != "city-013" ||
+                session.World.Persons[169].CityId != "city-034" || session.World.RandomState != 3025925713)
+                throw new InvalidOperationException("年度人物出场或 RNG 不符合 golden。");
+
             GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=17 hash={expected}");
             GD.Print("MAIN_M2C_SMOKE_OK conscript=1000 execute+exile=equipment-preserved");
+            GD.Print("MAIN_M2C_C_SMOKE_OK native-route use-item annual=191");
             GetTree().Quit(0);
         }
         catch (Exception error)

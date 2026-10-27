@@ -102,7 +102,7 @@ public sealed class MainPersonnelCommandTests : IDisposable
         var target = session.World.Cities.Single(city => city.Id == "city-010");
         var before = (source.Money, source.Food, target.Money, target.Food);
         session.IssueCommand(new MainCommandRequest(14, source.Id, "person-020", TargetCityId: target.Id));
-        Assert.Equal(0, Assert.Single(session.World.Orders).TimeCount);
+        Assert.Equal(3, Assert.Single(session.World.Orders).TimeCount);
         session.ExecuteOrders();
         Assert.Equal(target.Id, session.World.Persons.Single(person => person.Id == "person-020").CityId);
         Assert.Equal("person-020", target.PersonIds[0]);

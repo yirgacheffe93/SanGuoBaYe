@@ -4,7 +4,7 @@ namespace Game.Application;
 
 public static class MainMonthService
 {
-    public static IReadOnlyList<string> Update(MainWorld world)
+    public static IReadOnlyList<string> Update(MainWorld world, MainContent content)
     {
         var messages = new List<string>();
         world.Month++;
@@ -12,7 +12,7 @@ public static class MainMonthService
         {
             world.Month = 1;
             world.Year++;
-            foreach (var person in world.Persons) person.Age = Math.Min(255, person.Age + 1);
+            messages.AddRange(MainAnnualRules.Update(world, content));
             messages.Add($"进入 {world.Year} 年，人物年龄增长。");
         }
         if (world.Month is 6 or 10)

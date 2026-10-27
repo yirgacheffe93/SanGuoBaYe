@@ -117,20 +117,34 @@ function loadResource(library, resourceId) {
   if (address + headerBytes > library.length) throw new Error(`资源头越界: ${resourceId}`);
   const bytes = library.readUInt32LE(address);
   const actualResourceId = library.readUInt16LE(address + 4);
-  const recordBytes = library.readUInt16LE(address + 6);
+  const itemCount = library.readUInt16LE(address + 6);
   const itemBytes = library.readUInt32LE(address + 8);
   if (actualResourceId !== resourceId) {
     throw new Error(`资源编号不一致: 目录 ${resourceId}，资源头 ${actualResourceId}`);
   }
-  if (bytes < headerBytes || address + bytes > library.length || itemBytes === 0) {
+  if (bytes < headerBytes || address + bytes > library.length) {
     throw new Error(`资源长度无效: ${resourceId}`);
   }
   const payloadBytes = bytes - headerBytes;
+  if (itemBytes === 0) {
+    const directory = address + headerBytes;
+    if (directory + itemCount * 8 > address + bytes) throw new Error(`变长资源目录越界: ${resourceId}`);
+    return {
+      resourceId, address, itemCount, itemBytes,
+      item(index) {
+        if (!Number.isInteger(index) || index < 1 || index > itemCount) throw new Error(`资源 ${resourceId} 索引非法`);
+        const start = address + library.readUInt32LE(directory + (index - 1) * 8);
+        const length = library.readUInt32LE(directory + (index - 1) * 8 + 4);
+        if (start + length > address + bytes) throw new Error(`资源 ${resourceId} 内容越界`);
+        return library.subarray(start, start + length);
+      },
+    };
+  }
   if (payloadBytes % itemBytes !== 0) throw new Error(`资源时期块不对齐: ${resourceId}`);
   return {
     resourceId,
     address,
-    recordBytes,
+    itemCount,
     itemBytes,
     itemCount: payloadBytes / itemBytes,
     item(period) {
@@ -145,7 +159,7 @@ function loadResource(library, resourceId) {
 
 function readSearchConditions(library, resourceId, period, expectedCount) {
   const resource = loadResource(library, resourceId);
-  if (resource.recordBytes !== 4 || resource.itemBytes !== expectedCount * 4) {
+  if (resource.itemCount !== 4 || resource.itemBytes !== expectedCount * 4) {
     throw new Error(`SearchCondition 资源布局无效: ${JSON.stringify(resource)}`);
   }
   const data = resource.item(period);
@@ -156,6 +170,39 @@ function readSearchConditions(library, resourceId, period, expectedCount) {
       birth: data.readUInt8(offset),
       bole: data.readUInt16LE(offset + 1),
       city: data.readUInt8(offset + 3),
+    };
+  });
+}
+
+function readMap(library) {
+  const resource = loadResource(library, 2);
+  const constants = resource.item(14);
+  const width = 12, height = 9;
+  const cells = Array.from(constants);
+  if (cells.length !== width * height) throw new Error('地图数据不足');
+  const positions = Array.from({ length: 38 }, (_, index) => {
+    const cell = cells.indexOf(index + 1);
+    if (cell < 0) throw new Error(`地图缺少城市 ${index}`);
+    return { cityId: entityId('city', index), x: cell % width, y: Math.floor(cell / width) };
+  });
+  if (new Set(cells.filter(Boolean)).size !== 38) throw new Error('地图城市编号重复或缺失');
+  return { resourceId: 2, constantIndex: 14, width, height, cells, positions };
+}
+
+function readConnections(library) {
+  return [59, 60].map((resourceId) => {
+    const resource = loadResource(library, resourceId);
+    if (resource.itemCount !== 1 || resource.itemBytes !== 38 * 16) {
+      throw new Error(`城市连接资源布局无效: ${JSON.stringify(resource)}`);
+    }
+    const data = resource.item(1);
+    return {
+      resourceId,
+      cities: Array.from({ length: 38 }, (_, index) => ({
+        cityId: entityId('city', index),
+        linkedCityIds: Array.from(data.subarray(index * 16, index * 16 + 8)).filter(Boolean).map((id) => entityId('city', id - 1)),
+        distances: Array.from(data.subarray(index * 16 + 8, index * 16 + 16)),
+      })),
     };
   });
 }
@@ -297,9 +344,17 @@ function extractPeriod(context, library, period, takeMap) {
   const data = context.baye.data;
   const personCount = context._bayeGetPersonCount();
   const cityCount = data.g_Cities.length;
+  const nativeMap = readMap(library);
+  const nativeConnections = readConnections(library);
   const cities = Array.from({ length: cityCount }, (_, index) => {
     const record = data.g_Cities[index];
     const raw = readFields(record, CITY_FIELDS);
+    const nativePosition = nativeMap?.positions[index];
+    const connections = nativeConnections?.map((table) => ({
+      resourceId: table.resourceId,
+      linkedCityIds: table.cities[index].linkedCityIds,
+      distances: table.cities[index].distances,
+    }));
     const personIds = Array.from({ length: raw.Persons }, (_, offset) => {
       const personIndex = data.g_PersonsQueue[raw.PersonQueue + offset];
       return entityId('person', personIndex);
@@ -321,6 +376,8 @@ function extractPeriod(context, library, period, takeMap) {
       personIds,
       toolIds: toolEntries.map((entry) => entry.toolId),
       toolEntries,
+      nativePosition,
+      connections,
     };
     Object.defineProperty(city, '_rawToolQueue', { value: rawToolQueue });
     return city;
@@ -428,6 +485,17 @@ function validateAndSummarize(content, scenarios, golden, checks) {
     }
 
     for (const city of period.cities) {
+      if (!city.nativePosition || city.connections?.length !== 2 || city.connections.some((table) => table.distances.length !== 8)) {
+        referenceErrors.push(`${period.id}/${city.id}: missing native position or connection tables`);
+      }
+      const linked = city.connections?.[0].linkedCityIds ?? [];
+      if (new Set(linked).size !== linked.length) referenceErrors.push(`${period.id}/${city.id}: duplicate connection`);
+      for (const target of linked) {
+        const other = period.cities[Number(target.slice(-3))];
+        if (!other?.connections?.[0].linkedCityIds.includes(city.id)) {
+          referenceErrors.push(`${period.id}/${city.id}: asymmetric right connection to ${target}`);
+        }
+      }
       for (const [field, rawId] of [['Belong', city.raw.Belong], ['SatrapId', city.raw.SatrapId]]) {
         if (![0, 0xff].includes(rawId) && (rawId < 1 || rawId > period.persons.length)) {
           referenceErrors.push(`${period.id}/${city.id}.${field}: ${rawId}`);
@@ -596,7 +664,7 @@ function buildOutputs(engine) {
     schemaVersion: 1,
     source,
     indexing: {
-      city: 'index 为原始零基数组索引；id 为 city-000..city-037。',
+      city: 'index 为原始零基数组索引；nativePosition 来自资源2的C_MAP；connections 原样保留资源59/60的8个一基城市连接和8个距离字段。',
       person: 'index 为原始零基数组索引；Belong/OldBelong/SatrapId 保留原始一基值，0 与 0xff 的规范化为 null。',
       tool: 'index 为原始零基数组索引；Tool1/Tool2 保留原始一基值，0 与 0xff 的规范化为 null。',
       searchCondition: 'index 为资源内原始零基索引；birth/city 为 U8，bole 为 U16LE；city 保留原值且 fixCityOffset=0。',
@@ -684,7 +752,7 @@ function buildOutputs(engine) {
     },
     checks,
     limitations: [
-      '时期加载未触发地图绘制，因此没有导出地图矩阵或逐城坐标；g_CityPos 是当前坐标而非逐城坐标表。',
+      '战略地图使用资源59/60连接和资源2的C_MAP坐标，不使用g_CityPos；显示层仍可采用重写布局。',
       '未驱动 UI 指令流，关羽开垦的接受、取消和月末 golden 未生成。',
       'g_OrderQueue 全槽位按原值导出，不根据 demos.js 推断规则。',
     ],
