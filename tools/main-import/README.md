@@ -36,6 +36,7 @@ node tools/main-import/import.mjs \
 - `content/main/content.json`：稳定 ID 映射、33 个道具和 30 个技能的完整反射字段。
 - `content/main/scenarios.json`：4 个时期，每期 38 城、200 条人物记录、200 条人物 SearchCondition、33 个道具状态、33 条道具 SearchCondition、30 个技能及 200 个 `g_OrderQueue` 原始槽位。
 - `content/main/golden-liubei-190.json`：190 年 1 月平原、刘备及城内 5 人的完整初始记录，以及 3 人实际装备的道具定义。
+- `content/main/battle.json`：38 张真实地形图、9 组站位、六类兵种技能及四时期人物特有技能。
 - `content/main/import-summary.json`：数量、时期日期、城内引用和高位/重复项统计、超过 100 的属性统计、golden 基准、校验结果、文件哈希和限制。
 
 `scenarios.json` 每条城市、人物、道具和技能记录都包含：

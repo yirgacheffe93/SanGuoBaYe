@@ -62,6 +62,7 @@ internal static class MainContentValidator
                     throw new MainContentException($"人物 {person.Id} 道具引用非法。");
             }
         }
+        MainBattleValidator.Validate(content);
     }
 
     private static void EnsureUnique(IEnumerable<string> ids, string kind)

@@ -102,6 +102,18 @@ public static class MainCommandService
             if (city.Food < request.Food || city.Money < request.Money || city.MothballArms < request.Arms)
                 return Preview(false, "resource_low", "输送数量超过当前库存。");
         }
+        if (commandId == MainCommandCatalog.BattleOrderId)
+        {
+            var target = world.Cities.FirstOrDefault(item => item.Id == request.TargetCityId);
+            var participants = request.ParticipantIds ?? [person.Id];
+            if (target is null || target.Id == city.Id || target.Belong == city.Belong || !city.Connections.Contains(target.Id))
+                return Preview(false, "invalid_city", "出征目标必须是相邻的非己方城市。");
+            if (request.Food <= 0 || request.Food > city.Food) return Preview(false, "food_low", "出征粮草必须大于零且不超过库存。");
+            if (participants.Count is < 1 or > 10 || participants.Distinct(StringComparer.Ordinal).Count() != participants.Count ||
+                participants.Any(id => world.Persons.FirstOrDefault(item => item.Id == id) is not { } member ||
+                    member.Belong != actingRulerId || member.CityId != city.Id || member.Status != MainPersonStatus.Active || member.OrderId is not null))
+                return Preview(false, "invalid_fighters", "编队必须为 1–10 名本城空闲在职武将。");
+        }
         if (commandId == MainCommandCatalog.ConscriptOrderId)
         {
             var maximum = Math.Min(city.PeopleDevotion * 20, Math.Min(city.Money * 10, 65534));
@@ -172,6 +184,8 @@ public static class MainCommandService
         }
         if (commandId == MainCommandCatalog.PlunderOrderId)
             return CreateQueuedOrder(world, request, moneyCost, thewCost, "掠夺将在月末结算。");
+        if (commandId == MainCommandCatalog.BattleOrderId)
+            return MainExpeditionRules.Accept(world, request);
 
         string effect;
         if (commandId == MainCommandCatalog.ReconnoitreOrderId)

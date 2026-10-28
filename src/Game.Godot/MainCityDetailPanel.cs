@@ -27,7 +27,8 @@ public partial class MainCityDetailPanel : PanelContainer
     public event Action? CommandSelectionChanged;
     public int SelectedCommandId => commandOptions.GetSelectedId();
     public string? SelectedToolId => SelectedCommandId == MainCommandCatalog.RewardOrderId ? SelectedMetadata(toolOptions) : null;
-    public string? SelectedTargetCityId => SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId or MainCommandCatalog.ReconnoitreOrderId ? SelectedMetadata(targetCityOptions) : null;
+    public string? SelectedTargetCityId => SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId or MainCommandCatalog.ReconnoitreOrderId or MainCommandCatalog.BattleOrderId ? SelectedMetadata(targetCityOptions) : null;
+    public List<string> SelectedParticipantIds => personList.GetSelectedItems().Select(index => personList.GetItemMetadata((int)index).AsString()).ToList();
     public string? SelectedTargetPersonId => SelectedCommandId is MainCommandCatalog.RecruitOrderId or MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId or MainCommandCatalog.CounterespionageOrderId or MainCommandCatalog.InduceOrderId ? SelectedMetadata(targetPersonOptions) : null;
     public MainTradeDirection TradeDirection => tradeDirectionOptions.Selected == 1 ? MainTradeDirection.Sell : MainTradeDirection.Buy;
     public int Quantity => SelectedCommandId switch
@@ -36,7 +37,7 @@ public partial class MainCityDetailPanel : PanelContainer
         MainCommandCatalog.ConscriptOrderId => (int)commandQuantity.Value,
         _ => 0
     };
-    public int TransportFood => SelectedCommandId == MainCommandCatalog.TransportOrderId ? (int)transportFood.Value : 0;
+    public int TransportFood => SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.BattleOrderId ? (int)transportFood.Value : 0;
     public int TransportMoney => SelectedCommandId == MainCommandCatalog.TransportOrderId ? (int)transportMoney.Value : 0;
     public int Arms => SelectedCommandId switch
     {
@@ -54,14 +55,14 @@ public partial class MainCityDetailPanel : PanelContainer
         cityDetails.AddThemeFontSizeOverride("font_size", 15);
         content.AddChild(cityDetails);
         content.AddChild(new Label { Text = "城内武将" });
-        personList = new ItemList { CustomMinimumSize = new Vector2(280, 92), SizeFlagsVertical = SizeFlags.ExpandFill };
+        personList = new ItemList { CustomMinimumSize = new Vector2(280, 92), SizeFlagsVertical = SizeFlags.ExpandFill, SelectMode = ItemList.SelectModeEnum.Multi };
         personList.ItemSelected += index => PersonSelected?.Invoke(personList.GetItemMetadata((int)index).AsString());
         content.AddChild(personList);
         personDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart };
         personDetails.AddThemeFontSizeOverride("font_size", 14);
         content.AddChild(personDetails);
         commandOptions = new OptionButton();
-        foreach (var commandId in new[] { 1, 2, 3, 4, 5, 6, 7, 8, 24, 25, 26, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 23 })
+        foreach (var commandId in new[] { 1, 2, 3, 4, 5, 6, 7, 8, 24, 25, 26, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 23, 27 })
             commandOptions.AddItem(MainCommandCatalog.Name(commandId), commandId);
         commandOptions.ItemSelected += _ => OnCommandInputChanged();
         content.AddChild(commandOptions);
@@ -128,6 +129,14 @@ public partial class MainCityDetailPanel : PanelContainer
                 targetCityOptions.SetItemMetadata(targetCityOptions.ItemCount - 1, target.Id);
             }
         }
+        else if (SelectedCommandId == MainCommandCatalog.BattleOrderId)
+        {
+            foreach (var target in view.Cities.Where(item => city.Connections.Contains(item.Id) && item.Belong != city.Belong))
+            {
+                targetCityOptions.AddItem($"出征 {target.Name}");
+                targetCityOptions.SetItemMetadata(targetCityOptions.ItemCount - 1, target.Id);
+            }
+        }
         else
         {
             foreach (var target in travelTargets)
@@ -187,10 +196,12 @@ public partial class MainCityDetailPanel : PanelContainer
     private void UpdateCommandControls()
     {
         toolOptions.Visible = SelectedCommandId == MainCommandCatalog.RewardOrderId;
-        targetCityOptions.Visible = SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId or MainCommandCatalog.ReconnoitreOrderId;
+        targetCityOptions.Visible = SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.MoveOrderId or MainCommandCatalog.ReconnoitreOrderId or MainCommandCatalog.BattleOrderId;
         targetPersonOptions.Visible = SelectedCommandId is MainCommandCatalog.RecruitOrderId or MainCommandCatalog.AlienateOrderId or MainCommandCatalog.CanvassOrderId or MainCommandCatalog.CounterespionageOrderId or MainCommandCatalog.InduceOrderId;
         tradeControls.Visible = SelectedCommandId == MainCommandCatalog.TradeOrderId;
-        transportControls.Visible = SelectedCommandId == MainCommandCatalog.TransportOrderId;
+        transportControls.Visible = SelectedCommandId is MainCommandCatalog.TransportOrderId or MainCommandCatalog.BattleOrderId;
+        transportMoney.Visible = SelectedCommandId != MainCommandCatalog.BattleOrderId;
+        transportArms.Visible = SelectedCommandId != MainCommandCatalog.BattleOrderId;
         commandQuantity.Visible = SelectedCommandId is MainCommandCatalog.ConscriptOrderId or MainCommandCatalog.DistributeOrderId;
         commandQuantity.Prefix = SelectedCommandId == MainCommandCatalog.DistributeOrderId ? "新兵力 " : "数量 ";
     }

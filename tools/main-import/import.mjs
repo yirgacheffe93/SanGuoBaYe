@@ -13,6 +13,7 @@ const OUTPUT_FILES = [
   'content.json',
   'scenarios.json',
   'golden-liubei-190.json',
+  'battle.json',
   'import-summary.json',
 ];
 const CITY_FIELDS = [
@@ -205,6 +206,42 @@ function readConnections(library) {
       })),
     };
   });
+}
+
+function readBattleContent(library, source) {
+  const constants = loadResource(library, 2);
+  const cityMapIds = constants.item(15);
+  const positions = constants.item(5);
+  const baseSkills = constants.item(2);
+  const maps = Array.from({ length: 38 }, (_, index) => {
+    const resourceId = 110 + cityMapIds[index];
+    const data = loadResource(library, resourceId).item(1);
+    const width = data[0], height = data[2];
+    const terrains = Array.from(data.subarray(16, 16 + width * height));
+    const cityCell = terrains.indexOf(3);
+    if (cityCell < 0 || terrains.indexOf(3, cityCell + 1) >= 0) throw new Error(`战斗地图城市格异常: ${resourceId}`);
+    return { cityId: entityId('city', index), mapResourceId: resourceId, width, height,
+      cityX: cityCell % width, cityY: Math.floor(cityCell / width), terrains };
+  });
+  return {
+    schemaVersion: 1,
+    kind: 'main-battle-content',
+    source,
+    maps,
+    initialPositions: [
+      ...Array.from({ length: 8 }, (_, way) => Array.from(positions.subarray(way * 20, way * 20 + 20))),
+      Array.from(constants.item(6).subarray(0, 20)),
+    ],
+    unitSkills: Array.from({ length: 6 }, (_, arm) => Array.from(baseSkills.subarray(arm * 10, arm * 10 + 10)).filter(Boolean).map((id) => entityId('skill', id - 1))),
+    unitSkillCounts: [3, 4, 3, 3, 4, 9],
+    specialSkills: Array.from({ length: 4 }, (_, period) => {
+      const data = loadResource(library, 14).item(period + 1);
+      return Array.from({ length: 200 }, (_, index) => {
+        const id = data.readUInt16LE(index * 2);
+        return id ? entityId('skill', id - 1) : null;
+      });
+    }),
+  };
 }
 
 export async function loadEngine(referenceDir, { timers, restoreNativePromise = false } = {}) {
@@ -720,6 +757,7 @@ function buildOutputs(engine) {
     'content.json': serialize(content),
     'scenarios.json': serialize(scenarios),
     'golden-liubei-190.json': serialize(golden),
+    'battle.json': serialize(readBattleContent(engine.library, source)),
   };
   const summary = {
     schemaVersion: 1,

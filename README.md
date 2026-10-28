@@ -4,9 +4,9 @@
 
 ## 状态
 
-**Main-M2D-B 已完成。**
+**Main-M3-A 已完成。**
 
-全部时期和真实君主可进入，战略层支持内政、年度出现、搜寻、人员物资、军备、对敌策略、侦察、非战斗 AI、自动太守和胜负判定。存档升级为 schema 5 并支持旧档迁移；四时期 120 个月长局及读档一致性通过。107 项测试、双主题及独立 macOS 应用验收已完成，见 `docs/26-main-m2d-b.md`；AI 出征和 M3 战术战斗尚未完成。
+战略层支持内政、人员物资、军备、对敌策略、侦察、非战斗 AI、自动太守和胜负判定。Main-M3-A 已打通出征编队、真实地形战场、移动、攻击、技能、基础敌方 AI、撤退与战略结算，存档升级为 schema 6。114 项测试、双主题及独立 macOS 应用验收已完成，见 `docs/27-main-m3-a.md`；完整 MG3 尚未完成。
 
 现有 Godot 分层工程、双主题地图、规则测试、快照存档和 macOS 导出链继续复用。R0 的虚构内容与自动战斗仅保留为历史技术验证，不再限制 main 的属性范围和战术战斗目标。
 
@@ -53,6 +53,7 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 | [docs/24-main-m2c-c.md](docs/24-main-m2c-c.md) | Main-M2C-C 寻路、特殊装备与年度出现 |
 | [docs/25-main-m2d-a.md](docs/25-main-m2d-a.md) | Main-M2D-A 对敌策略与侦察 |
 | [docs/26-main-m2d-b.md](docs/26-main-m2d-b.md) | Main-M2D-B 非战斗 AI 与势力闭环 |
+| [docs/27-main-m3-a.md](docs/27-main-m3-a.md) | Main-M3-A 出征与首个战术切片 |
 | [docs/provenance.md](docs/provenance.md) | 实际内容与资产来源记录 |
 
 ## 构建与验证
@@ -60,7 +61,7 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 本地工具链位于 `.tools/`（不入库）。macOS 上执行：
 
 ```bash
-scripts/verify.sh        # 导入校验、107 项测试、R0 回归、Godot 冒烟
+scripts/verify.sh        # 导入校验、114 项测试、R0 回归、Godot 冒烟
 scripts/export-macos.sh # 导出并运行独立 macOS 应用冒烟
 scripts/capture-ui.sh   # 构建并重新生成深色、浅色和对比样片
 ```
@@ -69,7 +70,7 @@ Godot 编辑器打开根目录 `project.godot`。main 内容导入命令见 `too
 
 ## 下一步
 
-进入 M3 出征与独立战术战斗，补齐部队编成、战场操作、地形兵种和战术 AI；另行补录原生赏赐 UI golden。
+进入 M3-B/C：非玩家自动战斗、防守方操作、全部技能特殊状态、完整战术 AI 与生产战斗 golden；另行补录原生赏赐 UI golden。
 
 ## 注意
 

@@ -43,24 +43,26 @@ public sealed class MainFactionTests
         Assert.Equal("game_over", session.PreviewCommand(1, "city-005", "person-089").Code);
     }
 
-    [Fact]
-    public void Schema_four_save_migrates_after_checksum_validation()
+    [Theory]
+    [InlineData(4)]
+    [InlineData(5)]
+    public void Previous_save_schemas_migrate_after_checksum_validation(int schema)
     {
         var session = CreateSession();
-        var path = Path.Combine(Path.GetTempPath(), $"main-schema4-{Guid.NewGuid()}.json");
+        var path = Path.Combine(Path.GetTempPath(), $"main-schema{schema}-{Guid.NewGuid()}.json");
         try
         {
             MainSaveService.Save(session, path);
             var envelope = JsonNode.Parse(File.ReadAllText(path))!.AsObject();
-            envelope["SchemaVersion"] = 4;
+            envelope["SchemaVersion"] = schema;
             var world = envelope["World"]!.AsObject();
-            world["SchemaVersion"] = 4;
-            world.Remove("Outcome");
+            world["SchemaVersion"] = schema;
+            if (schema == 4) world.Remove("Outcome");
             var worldJson = JsonSerializer.Serialize(world.Deserialize<MainWorld>());
             envelope["Checksum"] = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(worldJson))).ToLowerInvariant();
             File.WriteAllText(path, envelope.ToJsonString());
             var restored = MainSaveService.Load(path, session.Content);
-            Assert.Equal(5, restored.World.SchemaVersion);
+            Assert.Equal(6, restored.World.SchemaVersion);
             Assert.Equal(MainGameOutcome.InProgress, restored.World.Outcome);
             Assert.Equal(session.World.RandomState, restored.World.RandomState);
         }

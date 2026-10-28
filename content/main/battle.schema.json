@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sanguobaye.local/main/battle.schema.json",
+  "type": "object",
+  "required": ["kind", "source", "maps", "initialPositions", "unitSkills", "unitSkillCounts", "specialSkills"],
+  "properties": {
+    "kind": { "const": "main-battle-content" },
+    "source": { "type": "object", "required": ["branch", "commit", "librarySha256"] },
+    "maps": { "type": "array", "minItems": 38, "maxItems": 38, "items": { "$ref": "#/$defs/map" } },
+    "initialPositions": { "type": "array", "minItems": 9, "maxItems": 9, "items": { "type": "array", "minItems": 20, "maxItems": 20, "items": { "type": "integer", "minimum": 0, "maximum": 255 } } },
+    "unitSkills": { "type": "array", "minItems": 6, "maxItems": 6, "items": { "type": "array", "items": { "type": "string", "pattern": "^skill-[0-9]{3}$" } } },
+    "unitSkillCounts": { "type": "array", "minItems": 6, "maxItems": 6, "items": { "type": "integer", "minimum": 1, "maximum": 10 } },
+    "specialSkills": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "type": "array", "minItems": 200, "maxItems": 200, "items": { "type": ["string", "null"], "pattern": "^skill-[0-9]{3}$" } } }
+  },
+  "$defs": {
+    "map": {
+      "type": "object",
+      "required": ["cityId", "mapResourceId", "width", "height", "cityX", "cityY", "terrains"],
+      "properties": {
+        "cityId": { "type": "string", "pattern": "^city-[0-9]{3}$" },
+        "mapResourceId": { "type": "integer", "minimum": 110 },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "cityX": { "type": "integer", "minimum": 0 },
+        "cityY": { "type": "integer", "minimum": 0 },
+        "terrains": { "type": "array", "items": { "type": "integer", "minimum": 0, "maximum": 255 } }
+      }
+    }
+  }
+}

@@ -65,6 +65,14 @@ public sealed class MainGameSession
 
     public IReadOnlyList<string> ExecuteOrders() => MainOrderExecutor.Execute(World, Content);
 
+    public MainBattleState EnterBattle(string orderId) => MainBattleService.Begin(World, Content, orderId);
+
+    public string ResolveBattle() => MainBattleService.Resolve(World);
+
+    public MainBattleView GetBattleView() => MainBattleViewFactory.Create(World, Content);
+
+    public IReadOnlyList<string> GetBattleSkills(string personId) => MainBattleService.GetSkills(World, Content, personId);
+
     public void ConditionUpdate() => MainMonthService.Update(World, Content);
 
     public MainGameView GetView() => MainViewFactory.Create(World);

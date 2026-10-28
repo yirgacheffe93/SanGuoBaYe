@@ -14,6 +14,7 @@ public partial class Main : Control
     private MainCityListPanel cityListPanel = null!;
     private MainCityDetailPanel detailPanel = null!;
     private MainOrderReportPanel orderReportPanel = null!;
+    private MainBattlePanel battlePanel = null!;
     private Control gameRoot = null!;
     private string selectedCityId = "city-005";
     private string selectedPersonId = "person-089";
@@ -38,7 +39,9 @@ public partial class Main : Control
                 global::Godot.FileAccess.GetFileAsString("res://content/main/content.json"),
                 global::Godot.FileAccess.GetFileAsString("res://content/main/scenarios.json"),
                 global::Godot.FileAccess.GetFileAsString("res://content/main/content.schema.json"),
-                global::Godot.FileAccess.GetFileAsString("res://content/main/scenarios.schema.json"));
+                global::Godot.FileAccess.GetFileAsString("res://content/main/scenarios.schema.json"),
+                global::Godot.FileAccess.GetFileAsString("res://content/main/battle.json"),
+                global::Godot.FileAccess.GetFileAsString("res://content/main/battle.schema.json"));
         }
         catch (Exception error)
         {
@@ -118,6 +121,12 @@ public partial class Main : Control
         endMonthButton = new Button { Text = "策略结束  →" };
         endMonthButton.Pressed += () => OnEndMonth();
         actions.AddChild(endMonthButton);
+        battlePanel = new MainBattlePanel();
+        battlePanel.SkillProvider = personId => session.GetBattleSkills(personId)
+            .Select(id => (id, content.Skills.Single(skill => skill.Id == id).Name)).ToList();
+        battlePanel.CommandRequested += OnBattleCommand;
+        battlePanel.Hide();
+        AddChild(battlePanel);
         startScreen = new MainStartScreen();
         AddChild(startScreen);
         ApplyTheme();
@@ -144,6 +153,7 @@ public partial class Main : Control
             map.Palette = palette;
             map.QueueRedraw();
         }
+        if (battlePanel is not null) battlePanel.SetPalette(palette);
         if (themeButton is not null) themeButton.Text = themeMode == UiThemeMode.Dark ? "切换纸本" : "切换墨色";
     }
 
@@ -162,6 +172,15 @@ public partial class Main : Control
 
     private void Refresh()
     {
+        if (session.World.ActiveBattle is not null)
+        {
+            gameRoot.Hide();
+            battlePanel.SetView(session.GetBattleView());
+            battlePanel.Show();
+            return;
+        }
+        battlePanel.Hide();
+        gameRoot.Show();
         currentView = session.GetView();
         var view = currentView;
         selectedCityId = view.Cities.FirstOrDefault(city => city.Id == selectedCityId)?.Id ?? "city-005";
@@ -196,15 +215,51 @@ public partial class Main : Control
     private void OnCommand()
     {
         var result = session.IssueCommand(CreateCommandRequest(selectedPersonId));
+        if (result.Accepted && detailPanel.SelectedCommandId == MainCommandCatalog.BattleOrderId && result.OrderId is not null)
+            session.EnterBattle(result.OrderId);
         Refresh();
         feedback.Text = result.Message;
+    }
+
+    private void OnBattleCommand(MainBattleUiAction action, string? personId, string? targetId, string? skillId, int x, int y)
+    {
+        var message = "";
+        switch (action)
+        {
+            case MainBattleUiAction.Move when personId is not null:
+                message = MainBattleService.Move(session.World, content, personId, x, y) ? "移动完成。" : "目标格不可到达。";
+                break;
+            case MainBattleUiAction.Attack when personId is not null && targetId is not null:
+                message = MainBattleService.Attack(session.World, content, personId, targetId) ? "攻击完成。" : "目标不可攻击。";
+                break;
+            case MainBattleUiAction.Skill when personId is not null && targetId is not null && skillId is not null:
+                message = MainBattleService.UseSkill(session.World, content, personId, skillId, targetId) ? "技能完成。" : "技能目标或技力不符合条件。";
+                break;
+            case MainBattleUiAction.Wait when personId is not null:
+                message = MainBattleService.Wait(session.World, personId) ? "已待机。" : "该武将不能待机。";
+                break;
+            case MainBattleUiAction.EndTurn:
+                MainBattleService.EndTurn(session.World, content);
+                message = "敌方行动完成，进入新的一天。";
+                break;
+            case MainBattleUiAction.Retreat:
+                MainBattleService.Retreat(session.World);
+                message = "已全军撤退。";
+                break;
+            case MainBattleUiAction.Resolve:
+                message = session.ResolveBattle();
+                break;
+        }
+        Refresh();
+        if (session.World.ActiveBattle is not null) battlePanel.SetMessage(message);
+        else feedback.Text = message;
     }
 
     private MainCommandRequest CreateCommandRequest(string personId) => new(
         detailPanel.SelectedCommandId, selectedCityId, personId,
         detailPanel.SelectedTargetCityId, detailPanel.SelectedToolId, detailPanel.TradeDirection,
         detailPanel.Quantity, detailPanel.TransportFood, detailPanel.TransportMoney, detailPanel.Arms,
-        detailPanel.SelectedTargetPersonId);
+        detailPanel.SelectedTargetPersonId, ParticipantIds: detailPanel.SelectedParticipantIds);
 
     private void OnEndMonth(bool runAi = true)
     {
@@ -392,6 +447,7 @@ public partial class Main : Control
 
             RunDiplomacySmoke();
             RunFactionSmoke();
+            RunBattleSmoke();
             GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=17 hash={expected}");
             GD.Print("MAIN_M2C_SMOKE_OK conscript=1000 execute+exile=equipment-preserved");
             GD.Print("MAIN_M2C_C_SMOKE_OK native-route use-item annual=191");
@@ -402,6 +458,37 @@ public partial class Main : Control
             GD.PushError($"MAIN_M2B_SMOKE_FAILED: {error}");
             GetTree().Quit(1);
         }
+    }
+
+    private void RunBattleSmoke()
+    {
+        StartGame(1, "person-013");
+        map.ActivateCity("city-005");
+        selectedPersonId = "person-089";
+        detailPanel.SelectCommand(22);
+        detailPanel.SetTransportAmounts(100, 0, 0);
+        Refresh();
+        OnCommand();
+        var battle = session.World.ActiveBattle ?? throw new InvalidOperationException("出征未进入战场。");
+        var actor = battle.Units.First(unit => unit.PersonId == "person-089");
+        var target = battle.Units.First(unit => !unit.IsAttacker);
+        actor.X = 5;
+        actor.Y = 5;
+        target.X = 6;
+        target.Y = 5;
+        OnBattleCommand(MainBattleUiAction.Attack, actor.PersonId, target.PersonId, null, 0, 0);
+        if (!actor.HasActed) throw new InvalidOperationException("普通攻击未生效。");
+        actor.HasActed = false;
+        var mp = actor.Mp;
+        OnBattleCommand(MainBattleUiAction.Skill, actor.PersonId, target.PersonId, "skill-004", 0, 0);
+        if (actor.Mp >= mp) throw new InvalidOperationException("技能未消耗技力。");
+        OnBattleCommand(MainBattleUiAction.EndTurn, null, null, null, 0, 0);
+        if (battle.Day != 1) throw new InvalidOperationException("战斗回合未推进。");
+        OnBattleCommand(MainBattleUiAction.Retreat, null, null, null, 0, 0);
+        OnBattleCommand(MainBattleUiAction.Resolve, null, null, null, 0, 0);
+        if (session.World.ActiveBattle is not null || session.World.Persons[89].CityId.Length == 0)
+            throw new InvalidOperationException("战斗结算未返回战略层。");
+        GD.Print("MAIN_M3_A_SMOKE_OK expedition attack skill turn retreat resolve");
     }
 
     private void RunFactionSmoke()
@@ -472,8 +559,10 @@ public partial class Main : Control
         {
             StartGame(1, "person-013");
             selectedPersonId = "person-089";
-            detailPanel.SelectCommand(17);
+            detailPanel.SelectCommand(22);
+            detailPanel.SetTransportAmounts(100, 0, 0);
             Refresh();
+            OnCommand();
             var argument = OS.GetCmdlineUserArgs().FirstOrDefault(value => value.StartsWith("--capture-dir=", StringComparison.Ordinal));
             var directory = argument is null ? "build/ui" : argument["--capture-dir=".Length..];
             Directory.CreateDirectory(directory);

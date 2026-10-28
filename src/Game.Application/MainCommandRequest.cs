@@ -13,4 +13,5 @@ public sealed record MainCommandRequest(
     int Food = 0,
     int Money = 0,
     int Arms = 0,
-    string? TargetPersonId = null);
+    string? TargetPersonId = null,
+    List<string>? ParticipantIds = null);

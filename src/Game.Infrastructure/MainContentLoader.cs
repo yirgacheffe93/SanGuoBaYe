@@ -15,21 +15,27 @@ public static class MainContentLoader
     public static MainContent Load(string contentPath, string scenariosPath) =>
         LoadJson(File.ReadAllText(contentPath), File.ReadAllText(scenariosPath),
             File.ReadAllText(Path.Combine(Path.GetDirectoryName(Path.GetFullPath(contentPath))!, "content.schema.json")),
-            File.ReadAllText(Path.Combine(Path.GetDirectoryName(Path.GetFullPath(scenariosPath))!, "scenarios.schema.json")));
+            File.ReadAllText(Path.Combine(Path.GetDirectoryName(Path.GetFullPath(scenariosPath))!, "scenarios.schema.json")),
+            File.ReadAllText(Path.Combine(Path.GetDirectoryName(Path.GetFullPath(contentPath))!, "battle.json")),
+            File.ReadAllText(Path.Combine(Path.GetDirectoryName(Path.GetFullPath(contentPath))!, "battle.schema.json")));
 
     public static MainContent LoadJson(string contentJson, string scenariosJson,
-        string? contentSchemaJson = null, string? scenariosSchemaJson = null)
+        string? contentSchemaJson = null, string? scenariosSchemaJson = null, string? battleJson = null, string? battleSchemaJson = null)
     {
         try
         {
             if (contentSchemaJson is not null) ScenarioSchemaValidator.ValidateWithSchema(contentJson, contentSchemaJson);
             if (scenariosSchemaJson is not null) ScenarioSchemaValidator.ValidateWithSchema(scenariosJson, scenariosSchemaJson);
+            if (battleJson is not null && battleSchemaJson is not null) ScenarioSchemaValidator.ValidateWithSchema(battleJson, battleSchemaJson);
             var common = JsonSerializer.Deserialize<ContentDocument>(contentJson, Options)
                 ?? throw new MainContentException("main 通用内容为空。");
             var scenarios = JsonSerializer.Deserialize<ScenarioDocument>(scenariosJson, Options)
                 ?? throw new MainContentException("main 时期内容为空。");
-            var contentHash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(contentJson + scenariosJson))).ToLowerInvariant();
+            var battle = battleJson is null ? new MainBattleContent() : MainBattleMapper.Map(JsonSerializer.Deserialize<BattleDocument>(battleJson, Options)
+                ?? throw new MainContentException("main 战斗内容为空。"));
+            var contentHash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(contentJson + scenariosJson + battleJson))).ToLowerInvariant();
             var content = MainContentMapper.Map(common, scenarios, contentHash);
+            content.Battle = battle;
             MainContentValidator.Validate(content);
             return content;
         }

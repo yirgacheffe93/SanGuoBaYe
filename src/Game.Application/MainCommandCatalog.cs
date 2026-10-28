@@ -24,6 +24,7 @@ public static class MainCommandCatalog
     public const int CounterespionageOrderId = 17;
     public const int InduceOrderId = 19;
     public const int ReconnoitreOrderId = 23;
+    public const int BattleOrderId = 27;
     public const int ReclaimCost = 50;
     public const int ReclaimThewCost = 8;
 
@@ -51,6 +52,7 @@ public static class MainCommandCatalog
         CounterespionageOrderId => "策反",
         InduceOrderId => "劝降（原版无效果）",
         ReconnoitreOrderId => "侦察",
+        BattleOrderId => "出征",
         _ => "未知"
     };
 
@@ -66,6 +68,7 @@ public static class MainCommandCatalog
         TransportOrderId or MoveOrderId => (0, 8),
         AlienateOrderId or CanvassOrderId or CounterespionageOrderId or InduceOrderId => (50, 20),
         ReconnoitreOrderId => (20, 10),
+        BattleOrderId => (0, 0),
         _ => throw new ArgumentOutOfRangeException(nameof(commandId))
     };
 
@@ -73,7 +76,7 @@ public static class MainCommandCatalog
     {
         ReclaimOrderId or CommerceOrderId or SearchOrderId or GovernOrderId or InspectOrderId or
             RecruitOrderId or ConscriptOrderId or PlunderOrderId or TradeOrderId or TransportOrderId or MoveOrderId or
-            AlienateOrderId or CanvassOrderId or CounterespionageOrderId or InduceOrderId or ReconnoitreOrderId => true,
+            AlienateOrderId or CanvassOrderId or CounterespionageOrderId or InduceOrderId or ReconnoitreOrderId or BattleOrderId => true,
         RewardOrderId or ConfiscateOrderId or BanquetOrderId or ExecuteOrderId or ExileOrderId or DistributeOrderId => false,
         _ => throw new ArgumentOutOfRangeException(nameof(commandId))
     };

@@ -8,6 +8,7 @@ public sealed class MainContent
     public List<MainTool> Tools { get; set; } = [];
     public List<MainSkill> Skills { get; set; } = [];
     public List<MainPeriod> Periods { get; set; } = [];
+    public MainBattleContent Battle { get; set; } = new();
 }
 
 public sealed class MainPeriod
@@ -133,13 +134,14 @@ public sealed class MainOrder
     public int Money { get; set; }
     public int Consume { get; set; }
     public int TimeCount { get; set; }
+    public List<string> ParticipantIds { get; set; } = [];
 }
 
 public enum MainGameOutcome { InProgress, Won, Lost }
 
 public sealed class MainWorld
 {
-    public int SchemaVersion { get; set; } = 5;
+    public int SchemaVersion { get; set; } = 6;
     public string ContentVersion { get; set; } = "main-sgby-1";
     public string ContentHash { get; set; } = "";
     public string RngAlgorithmVersion { get; set; } = "main-compatible-1";
@@ -153,5 +155,6 @@ public sealed class MainWorld
     public List<MainCity> Cities { get; set; } = [];
     public List<MainPerson> Persons { get; set; } = [];
     public List<MainOrder> Orders { get; set; } = [];
+    public MainBattleState? ActiveBattle { get; set; }
     public List<ReportEntry> Reports { get; set; } = [];
 }

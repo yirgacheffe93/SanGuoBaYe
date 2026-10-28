@@ -649,6 +649,10 @@
     "golden-liubei-190.json": {
       "bytes": 6584,
       "sha256": "476d7e6b3904f75c999e4b78625d1fe6db5b12f52aec168ff2ef1cf878b88321"
+    },
+    "battle.json": {
+      "bytes": 459169,
+      "sha256": "f2f03858598fc7fce89c5fefa7a030c37f782d74c7073a3800a13933abcb8daa"
     }
   }
 }
