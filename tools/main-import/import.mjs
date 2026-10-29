@@ -202,6 +202,7 @@ function readConnections(library) {
       cities: Array.from({ length: 38 }, (_, index) => ({
         cityId: entityId('city', index),
         linkedCityIds: Array.from(data.subarray(index * 16, index * 16 + 8)).filter(Boolean).map((id) => entityId('city', id - 1)),
+        directionalCityIds: Array.from(data.subarray(index * 16, index * 16 + 8)).map((id) => id ? entityId('city', id - 1) : null),
         distances: Array.from(data.subarray(index * 16 + 8, index * 16 + 16)),
       })),
     };
@@ -212,6 +213,7 @@ function readBattleContent(library, source) {
   const constants = loadResource(library, 2);
   const cityMapIds = constants.item(15);
   const positions = constants.item(5);
+  if (positions.length < 9 * 20) throw new Error('战斗初始站位表不足9组');
   const baseSkills = constants.item(2);
   const maps = Array.from({ length: 38 }, (_, index) => {
     const resourceId = 110 + cityMapIds[index];
@@ -228,10 +230,7 @@ function readBattleContent(library, source) {
     kind: 'main-battle-content',
     source,
     maps,
-    initialPositions: [
-      ...Array.from({ length: 8 }, (_, way) => Array.from(positions.subarray(way * 20, way * 20 + 20))),
-      Array.from(constants.item(6).subarray(0, 20)),
-    ],
+    initialPositions: Array.from({ length: 9 }, (_, way) => Array.from(positions.subarray(way * 20, way * 20 + 20))),
     unitSkills: Array.from({ length: 6 }, (_, arm) => Array.from(baseSkills.subarray(arm * 10, arm * 10 + 10)).filter(Boolean).map((id) => entityId('skill', id - 1))),
     unitSkillCounts: [3, 4, 3, 3, 4, 9],
     specialSkills: Array.from({ length: 4 }, (_, period) => {
@@ -390,6 +389,7 @@ function extractPeriod(context, library, period, takeMap) {
     const connections = nativeConnections?.map((table) => ({
       resourceId: table.resourceId,
       linkedCityIds: table.cities[index].linkedCityIds,
+      directionalCityIds: table.cities[index].directionalCityIds,
       distances: table.cities[index].distances,
     }));
     const personIds = Array.from({ length: raw.Persons }, (_, offset) => {

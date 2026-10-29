@@ -643,16 +643,16 @@
       "sha256": "91536ac699dc9bd9fe5ac7bff777487b11f1b19aaed90c6f7ea68c11e8e08c0f"
     },
     "scenarios.json": {
-      "bytes": 1393295,
-      "sha256": "736df3d2738cff0f1dc058fe9d29583039fe7c90e5fd88aebba6dae80210713d"
+      "bytes": 1470175,
+      "sha256": "f8396169bfc575e535fb7b8e3a3b3aa9ac06fd8d4db7a6759022edbb40de6e2e"
     },
     "golden-liubei-190.json": {
-      "bytes": 6584,
-      "sha256": "476d7e6b3904f75c999e4b78625d1fe6db5b12f52aec168ff2ef1cf878b88321"
+      "bytes": 6966,
+      "sha256": "3ae174a5913dd74793f67799ff0e6df8f5a0431dc3cb2cd99c0b9169456d7d8b"
     },
     "battle.json": {
-      "bytes": 459169,
-      "sha256": "f2f03858598fc7fce89c5fefa7a030c37f782d74c7073a3800a13933abcb8daa"
+      "bytes": 459167,
+      "sha256": "da2a5f99d270d2bfe9d7c67b95bac11cc4d751ad99b001b5ceae08c1c810a5ef"
     }
   }
 }

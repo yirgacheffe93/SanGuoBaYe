@@ -97,6 +97,16 @@
           "city-011",
           "city-004"
         ],
+        "directionalCityIds": [
+          null,
+          null,
+          "city-006",
+          null,
+          "city-011",
+          null,
+          "city-004",
+          null
+        ],
         "distances": [
           0,
           0,
@@ -115,6 +125,16 @@
           "city-011",
           "city-012",
           "city-006"
+        ],
+        "directionalCityIds": [
+          "city-004",
+          null,
+          "city-011",
+          "city-012",
+          "city-006",
+          null,
+          null,
+          null
         ],
         "distances": [
           3,

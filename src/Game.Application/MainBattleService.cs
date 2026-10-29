@@ -23,7 +23,7 @@ public static class MainBattleService
         var defenders = target.PersonIds.Select(id => world.Persons.Single(person => person.Id == id))
             .Where(person => person.Belong == target.Belong && person.Status == MainPersonStatus.Active)
             .OrderByDescending(person => person.Arms).ThenBy(person => person.SourceIndex).Take(10).ToList();
-        var way = Math.Max(0, target.Connections.IndexOf(source.Id));
+        var way = Math.Max(0, target.DirectionalConnectionIds.IndexOf(source.Id));
         var state = new MainBattleState
         {
             SourceCityId = source.Id, TargetCityId = target.Id, AttackerRulerId = source.Belong,
@@ -341,6 +341,7 @@ public static class MainBattleService
         else if (skill.State != 0) target.State = skill.State;
         if (target.State == 3) target.Move = 1;
         if (person.Arms == 0 && skill.Aim == 0) target.State = 8;
+        AddExperience(world.Persons.Single(person => person.Id == actor.PersonId), 2);
         battle.Logs.Add($"{Name(world, actor)}使用{skill.Name}，兵力变化 {hurt}，粮草变化 {destroy}。");
     }
 
@@ -352,17 +353,19 @@ public static class MainBattleService
         var terrain = map.Terrains[target.Y * map.Width + target.X];
         var at = (int)(attacker.Force * (attacker.Level + 10) * AttackModulus[attacker.ArmsType]);
         var df = (int)(defender.Iq * (defender.Level + 10) * DefenceModulus[defender.ArmsType] * TerrainDefence[terrain]);
-        var hurt = (int)(at / (double)Math.Max(1, df) * (attacker.Arms >> 3) * Subdue[attacker.ArmsType, defender.ArmsType]) + 10;
+        var hurt = df == 0 ? 10 : (int)(at / (double)df * (attacker.Arms >> 3) * Subdue[attacker.ArmsType, defender.ArmsType]) + 10;
         defender.Arms = Math.Max(0, defender.Arms - hurt);
-        target.Hp = Math.Max(0, target.Hp - hurt / 10);
-        attacker.Experience = Math.Min(100, attacker.Experience + 2);
-        if (attacker.Experience >= 100)
-        {
-            attacker.Experience = 0;
-            attacker.Level = Math.Min(20, attacker.Level + 1);
-        }
-        if (defender.Arms == 0 || target.Hp == 0) target.State = 8;
+        AddExperience(attacker, 2);
+        if (defender.Arms == 0) target.State = 8;
         battle.Logs.Add($"{Name(world, actor)}攻击{Name(world, target)}，造成 {hurt} 伤害。");
+    }
+
+    private static void AddExperience(MainPerson person, int amount)
+    {
+        person.Experience = Math.Min(100, person.Experience + amount);
+        if (person.Experience < 100) return;
+        person.Experience = 0;
+        person.Level = Math.Min(20, person.Level + 1);
     }
 
     private static int Scale(MainWorld world, MainContent content, int value, MainSkill skill, MainBattleState battle, MainBattleUnit actor, MainBattleUnit target)
@@ -425,7 +428,8 @@ public static class MainBattleService
 
     private static (int X, int Y) AttackBase(MainBattleMap map, int way) => way switch
     {
-        1 => (map.Width / 2 - 2, 0), 2 => (map.Width - 5, 2), 3 => (map.Width - 5, map.Height / 2 - 2),
+        0 => (map.Width / 2 - 2, 0), 1 => (map.Width - 5, 2), 2 => (map.Width - 5, map.Height / 2 - 2),
+        3 => (map.Width - 5, map.Height - 5),
         4 => (map.Width / 2 - 2, map.Height - 5), 5 => (2, map.Height - 5), 6 => (2, map.Height / 2 - 2),
         7 => (0, 0), _ => (map.Width - 5, map.Height - 5)
     };

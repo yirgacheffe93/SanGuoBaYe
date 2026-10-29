@@ -64,6 +64,7 @@ public sealed class MainCity
     public List<string> ToolIds { get; set; } = [];
     public List<MainCityToolEntry> ToolEntries { get; set; } = [];
     public List<string> Connections { get; set; } = [];
+    public List<string> DirectionalConnectionIds { get; set; } = [];
 }
 
 public enum MainPersonStatus { Active, Free, Captive, Executed }

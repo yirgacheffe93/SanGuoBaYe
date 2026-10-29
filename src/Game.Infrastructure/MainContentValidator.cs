@@ -35,6 +35,8 @@ internal static class MainContentValidator
                 if (city.Connections.Count == 0 || city.Connections.Count > 8 || city.Connections.Distinct(StringComparer.Ordinal).Count() != city.Connections.Count ||
                     city.Connections.Any(id => !cityIds.Contains(id) || id == city.Id))
                     throw new MainContentException($"城市 {city.Id} 连接表非法。");
+                if (city.DirectionalConnectionIds.Count != 8 || city.DirectionalConnectionIds.Any(id => id.Length > 0 && !city.Connections.Contains(id, StringComparer.Ordinal)))
+                    throw new MainContentException($"城市 {city.Id} 八槽方向表非法。");
                 foreach (var targetId in city.Connections)
                     if (!period.Cities.Single(target => target.Id == targetId).Connections.Contains(city.Id, StringComparer.Ordinal))
                         throw new MainContentException($"城市 {city.Id} 与 {targetId} 的连接不对称。");

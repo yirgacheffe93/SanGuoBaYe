@@ -1,0 +1,6417 @@
+{
+  "schemaVersion": 1,
+  "kind": "main-golden-m3-c",
+  "source": {
+    "branch": "main",
+    "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+    "library": "libs/SGBY.lib",
+    "libraryBytes": 615415,
+    "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+    "engine": "js/baye.js",
+    "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+    "bridge": "js/bridge.js",
+    "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+    "wasm": "js/baye.wasm",
+    "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+    "decoding": "Node.js 26 native TextDecoder(GBK)"
+  },
+  "boundaries": [
+    "初始化与动作场景在stage5受控结束，over=2不是生产自然胜负证据。",
+    "技能命中/失败由生产showSkill钩子固定分支；MP、伤害、状态与经验仍由生产引擎计算，不作为自然概率golden。",
+    "首个AI动作受控，其余AI武将待机；不作为战术AI等价证据。",
+    "auto-npc不进入交互战场是生产FGT_AUTO路径，不是捕获失败。"
+  ],
+  "scenarios": [
+    {
+      "name": "initialize",
+      "action": null,
+      "fixture": "生产S3写入真实FIGHTERS/出征订单，经BattleDrv/GamFight；受控坐标与showSkill分支，伤害/状态/经验由生产引擎计算",
+      "stages": [
+        {
+          "stage": "enterBattle",
+          "rng": 273505290,
+          "over": 0,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 1,
+            "Way": 2,
+            "CityIndex": 4,
+            "MapId": 113,
+            "MProvender": 100,
+            "EProvender": 428
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            79,
+            80,
+            81,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 29,
+              "y": 16,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 29,
+              "y": 17,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 28,
+              "y": 16,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 9,
+              "x": 14,
+              "y": 17,
+              "hp": 65,
+              "mp": 48,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 78,
+              "x": 14,
+              "y": 18,
+              "hp": 70,
+              "mp": 68,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 79,
+              "x": 13,
+              "y": 17,
+              "hp": 67,
+              "mp": 21,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 80,
+              "x": 15,
+              "y": 17,
+              "hp": 76,
+              "mp": 35,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage1",
+          "rng": 273505290,
+          "over": 0,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 1,
+            "Way": 2,
+            "CityIndex": 4,
+            "MapId": 113,
+            "MProvender": 100,
+            "EProvender": 428
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            79,
+            80,
+            81,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 29,
+              "y": 16,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 29,
+              "y": 17,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 28,
+              "y": 16,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 9,
+              "x": 14,
+              "y": 17,
+              "hp": 65,
+              "mp": 48,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 78,
+              "x": 14,
+              "y": 18,
+              "hp": 70,
+              "mp": 68,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 79,
+              "x": 13,
+              "y": 17,
+              "hp": 67,
+              "mp": 21,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 80,
+              "x": 15,
+              "y": 17,
+              "hp": 76,
+              "mp": 35,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage2",
+          "rng": 3571802722,
+          "over": 2,
+          "weather": 5,
+          "day": 1,
+          "params": {
+            "Mode": 1,
+            "Way": 2,
+            "CityIndex": 4,
+            "MapId": 113,
+            "MProvender": 100,
+            "EProvender": 428
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            79,
+            80,
+            81,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 29,
+              "y": 16,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 29,
+              "y": 17,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 28,
+              "y": 16,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 9,
+              "x": 14,
+              "y": 17,
+              "hp": 65,
+              "mp": 48,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 78,
+              "x": 14,
+              "y": 18,
+              "hp": 70,
+              "mp": 68,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 79,
+              "x": 13,
+              "y": 17,
+              "hp": 67,
+              "mp": 21,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 80,
+              "x": 15,
+              "y": 17,
+              "hp": 76,
+              "mp": 35,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "exitBattle",
+          "rng": 3571802722,
+          "over": 2,
+          "weather": 5,
+          "day": 1,
+          "params": {
+            "Mode": 1,
+            "Way": 2,
+            "CityIndex": 4,
+            "MapId": 113,
+            "MProvender": 100,
+            "EProvender": 428
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            79,
+            80,
+            81,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 29,
+              "y": 16,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 29,
+              "y": 17,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 28,
+              "y": 16,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 9,
+              "x": 14,
+              "y": 17,
+              "hp": 65,
+              "mp": 48,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 78,
+              "x": 14,
+              "y": 18,
+              "hp": 70,
+              "mp": 68,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 79,
+              "x": 13,
+              "y": 17,
+              "hp": 67,
+              "mp": 21,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 80,
+              "x": 15,
+              "y": 17,
+              "hp": 76,
+              "mp": 35,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "afterResolve",
+          "rng": 467868636,
+          "over": 2,
+          "weather": 5,
+          "day": 1,
+          "params": {
+            "Mode": 1,
+            "Way": 2,
+            "CityIndex": 4,
+            "MapId": 113,
+            "MProvender": 100,
+            "EProvender": 428
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            79,
+            80,
+            81,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 29,
+              "y": 16,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 29,
+              "y": 17,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 28,
+              "y": 16,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 9,
+              "x": 14,
+              "y": 17,
+              "hp": 65,
+              "mp": 48,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 78,
+              "x": 14,
+              "y": 18,
+              "hp": 70,
+              "mp": 68,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 79,
+              "x": 13,
+              "y": 17,
+              "hp": 67,
+              "mp": 21,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 80,
+              "x": 15,
+              "y": 17,
+              "hp": 76,
+              "mp": 35,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1629,
+            "Commerce": 1675,
+            "Money": 186,
+            "Food": 528,
+            "PeopleDevotion": 61
+          }
+        }
+      ]
+    },
+    {
+      "name": "auto-npc",
+      "player": 13,
+      "source": 0,
+      "target": 4,
+      "attackers": [
+        57,
+        58
+      ],
+      "seed": 3,
+      "fixture": "生产S3写入真实FIGHTERS/出征订单，经BattleDrv/GamFight；受控坐标与showSkill分支，伤害/状态/经验由生产引擎计算",
+      "stages": [
+        {
+          "stage": "afterResolve",
+          "rng": 3498995628,
+          "over": 1,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 2,
+            "Way": 8,
+            "CityIndex": 4,
+            "MapId": 113,
+            "MProvender": 100,
+            "EProvender": 428
+          },
+          "genArray": [
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            10,
+            79,
+            80,
+            81,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 56,
+              "x": 0,
+              "y": 0,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 0,
+              "y": 0,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 9,
+              "x": 0,
+              "y": 0,
+              "hp": 65,
+              "mp": 48,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 78,
+              "x": 0,
+              "y": 0,
+              "hp": 70,
+              "mp": 68,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 79,
+              "x": 0,
+              "y": 0,
+              "hp": 67,
+              "mp": 21,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 80,
+              "x": 0,
+              "y": 0,
+              "hp": 76,
+              "mp": 35,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 6,
+            "Farming": 1629,
+            "Commerce": 1675,
+            "Money": 186,
+            "Food": 528,
+            "PeopleDevotion": 61
+          }
+        }
+      ]
+    },
+    {
+      "name": "normal-attack",
+      "action": "attack",
+      "source": 0,
+      "target": 5,
+      "attackers": [
+        57,
+        58
+      ],
+      "actorIq": 255,
+      "targetIq": 0,
+      "fixture": "生产S3写入真实FIGHTERS/出征订单，经BattleDrv/GamFight；受控坐标与showSkill分支，伤害/状态/经验由生产引擎计算",
+      "stages": [
+        {
+          "stage": "enterBattle",
+          "rng": 3498995628,
+          "over": 0,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 29,
+              "y": 29,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage1",
+          "rng": 3498995628,
+          "over": 0,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 29,
+              "y": 29,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage2",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage3",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "aiCommand",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          },
+          "command": {
+            "type": 0,
+            "actorSlot": 10,
+            "targetSlot": 0,
+            "skillId": 4
+          }
+        },
+        {
+          "stage": "stage4",
+          "rng": 2205216755,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 90,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage5",
+          "rng": 2205216755,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 229,
+            "EProvender": 96
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 90,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "exitBattle",
+          "rng": 2205216755,
+          "over": 2,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 229,
+            "EProvender": 96
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 90,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "afterResolve",
+          "rng": 800801454,
+          "over": 2,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 229,
+            "EProvender": 96
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        }
+      ]
+    },
+    {
+      "name": "skill-hit",
+      "action": "skill",
+      "source": 0,
+      "target": 5,
+      "attackers": [
+        57,
+        58
+      ],
+      "actorIq": 255,
+      "targetIq": 0,
+      "fixture": "生产S3写入真实FIGHTERS/出征订单，经BattleDrv/GamFight；受控坐标与showSkill分支，伤害/状态/经验由生产引擎计算",
+      "stages": [
+        {
+          "stage": "enterBattle",
+          "rng": 3498995628,
+          "over": 0,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 29,
+              "y": 29,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage1",
+          "rng": 3498995628,
+          "over": 0,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 29,
+              "y": 29,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage2",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage3",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "aiCommand",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          },
+          "command": {
+            "type": 1,
+            "actorSlot": 10,
+            "targetSlot": 0,
+            "skillId": 4
+          }
+        },
+        {
+          "stage": "stage4",
+          "rng": 2205216755,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 8
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 23,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 0,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage5",
+          "rng": 2205216755,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 230,
+            "EProvender": 96
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 8
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 23,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 0,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "exitBattle",
+          "rng": 2205216755,
+          "over": 2,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 230,
+            "EProvender": 96
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 8
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 23,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 0,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "afterResolve",
+          "rng": 800801454,
+          "over": 2,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 230,
+            "EProvender": 96
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 8
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 23,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        }
+      ]
+    },
+    {
+      "name": "skill-miss",
+      "action": "miss",
+      "source": 0,
+      "target": 5,
+      "attackers": [
+        57,
+        58
+      ],
+      "actorIq": 0,
+      "targetIq": 255,
+      "fixture": "生产S3写入真实FIGHTERS/出征订单，经BattleDrv/GamFight；受控坐标与showSkill分支，伤害/状态/经验由生产引擎计算",
+      "stages": [
+        {
+          "stage": "enterBattle",
+          "rng": 3498995628,
+          "over": 0,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 29,
+              "y": 29,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage1",
+          "rng": 3498995628,
+          "over": 0,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 29,
+              "y": 29,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage2",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage3",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "aiCommand",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          },
+          "command": {
+            "type": 1,
+            "actorSlot": 10,
+            "targetSlot": 0,
+            "skillId": 4
+          }
+        },
+        {
+          "stage": "stage4",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 23,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage5",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 229,
+            "EProvender": 96
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 23,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "exitBattle",
+          "rng": 3228380886,
+          "over": 2,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 229,
+            "EProvender": 96
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 23,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "afterResolve",
+          "rng": 3239669037,
+          "over": 2,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 229,
+            "EProvender": 96
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 6,
+              "y": 5,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 23,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        }
+      ]
+    },
+    {
+      "name": "skill-heal",
+      "action": "heal",
+      "source": 0,
+      "target": 5,
+      "attackers": [
+        57,
+        58
+      ],
+      "actorIq": 255,
+      "targetUnit": 11,
+      "targetArms": 10,
+      "targetIq": 0,
+      "fixture": "生产S3写入真实FIGHTERS/出征订单，经BattleDrv/GamFight；受控坐标与showSkill分支，伤害/状态/经验由生产引擎计算",
+      "stages": [
+        {
+          "stage": "enterBattle",
+          "rng": 3498995628,
+          "over": 0,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 29,
+              "y": 29,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage1",
+          "rng": 3498995628,
+          "over": 0,
+          "weather": 3,
+          "day": 0,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 29,
+              "y": 29,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 29,
+              "y": 30,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 60,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 53,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage2",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 6,
+              "y": 5,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 10,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage3",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 6,
+              "y": 5,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 10,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "aiCommand",
+          "rng": 3228380886,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 53,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 6,
+              "y": 5,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 0,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 10,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          },
+          "command": {
+            "type": 1,
+            "actorSlot": 10,
+            "targetSlot": 11,
+            "skillId": 17
+          }
+        },
+        {
+          "stage": "stage4",
+          "rng": 2205216755,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 234,
+            "EProvender": 100
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 38,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 6,
+              "y": 5,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 810,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "stage5",
+          "rng": 2205216755,
+          "over": 0,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 229,
+            "EProvender": 90
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 38,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 6,
+              "y": 5,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 810,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "exitBattle",
+          "rng": 2205216755,
+          "over": 2,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 229,
+            "EProvender": 90
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 38,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 6,
+              "y": 5,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 810,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 14,
+              "Arms": 100,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        },
+        {
+          "stage": "afterResolve",
+          "rng": 800801454,
+          "over": 2,
+          "weather": 2,
+          "day": 1,
+          "params": {
+            "Mode": 0,
+            "Way": 8,
+            "CityIndex": 5,
+            "MapId": 114,
+            "MProvender": 229,
+            "EProvender": 90
+          },
+          "genArray": [
+            14,
+            90,
+            91,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            57,
+            58,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "units": [
+            {
+              "person": 13,
+              "x": 15,
+              "y": 15,
+              "hp": 91,
+              "mp": 65,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 89,
+              "x": 15,
+              "y": 16,
+              "hp": 109,
+              "mp": 70,
+              "move": 4,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 90,
+              "x": 14,
+              "y": 15,
+              "hp": 106,
+              "mp": 59,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 56,
+              "x": 5,
+              "y": 5,
+              "hp": 75,
+              "mp": 38,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            },
+            {
+              "person": 57,
+              "x": 6,
+              "y": 5,
+              "hp": 94,
+              "mp": 47,
+              "move": 5,
+              "active": 1,
+              "state": 0
+            }
+          ],
+          "persons": [
+            {
+              "index": 13,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 76,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 56,
+              "Belong": 6,
+              "Arms": 100,
+              "IQ": 255,
+              "Level": 1,
+              "Experience": 2
+            },
+            {
+              "index": 57,
+              "Belong": 6,
+              "Arms": 810,
+              "IQ": 0,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 78,
+              "Belong": 10,
+              "Arms": 100,
+              "IQ": 80,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 89,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 81,
+              "Level": 1,
+              "Experience": 0
+            },
+            {
+              "index": 90,
+              "Belong": 65535,
+              "Arms": 0,
+              "IQ": 67,
+              "Level": 1,
+              "Experience": 0
+            }
+          ],
+          "city": {
+            "Belong": 10,
+            "Farming": 1714,
+            "Commerce": 1763,
+            "Money": 195,
+            "Food": 428,
+            "PeopleDevotion": 67
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -47,6 +47,7 @@ internal sealed class CityConnectionDocument
 {
     public int ResourceId { get; set; }
     public List<string> LinkedCityIds { get; set; } = [];
+    public List<string?> DirectionalCityIds { get; set; } = [];
     public List<int> Distances { get; set; } = [];
 }
 

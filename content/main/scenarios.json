@@ -80,6 +80,16 @@
               "linkedCityIds": [
                 "city-003"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-003",
+                null,
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -95,6 +105,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-003"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-003",
+                null,
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -165,6 +185,16 @@
                 "city-007",
                 "city-006"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-002",
+                "city-007",
+                null,
+                "city-006",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -182,6 +212,16 @@
                 "city-006",
                 "city-007",
                 "city-002"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-006",
+                "city-007",
+                null,
+                "city-002",
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -247,6 +287,16 @@
               "linkedCityIds": [
                 "city-001"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-001",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -263,6 +313,16 @@
               "linkedCityIds": [
                 "city-001",
                 "city-007"
+              ],
+              "directionalCityIds": [
+                "city-001",
+                "city-007",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
               ],
               "distances": [
                 3,
@@ -324,6 +384,16 @@
                 "city-008",
                 "city-000"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-008",
+                null,
+                null,
+                null,
+                "city-000"
+              ],
               "distances": [
                 0,
                 0,
@@ -339,6 +409,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-008",
+                "city-000"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-008",
+                null,
+                null,
+                null,
                 "city-000"
               ],
               "distances": [
@@ -407,6 +487,16 @@
                 "city-005",
                 "city-010"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-005",
+                null,
+                "city-010",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -424,6 +514,16 @@
                 "city-009",
                 "city-010",
                 "city-005"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-009",
+                "city-010",
+                null,
+                "city-005",
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -486,6 +586,16 @@
                 "city-011",
                 "city-004"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-006",
+                null,
+                "city-011",
+                null,
+                "city-004",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -504,6 +614,16 @@
                 "city-011",
                 "city-012",
                 "city-006"
+              ],
+              "directionalCityIds": [
+                "city-004",
+                null,
+                "city-011",
+                "city-012",
+                "city-006",
+                null,
+                null,
+                null
               ],
               "distances": [
                 3,
@@ -574,6 +694,16 @@
                 "city-012",
                 "city-005"
               ],
+              "directionalCityIds": [
+                null,
+                "city-001",
+                null,
+                null,
+                "city-012",
+                null,
+                "city-005",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -594,6 +724,16 @@
                 "city-013",
                 "city-007",
                 "city-001"
+              ],
+              "directionalCityIds": [
+                "city-005",
+                "city-011",
+                "city-012",
+                "city-013",
+                "city-007",
+                "city-001",
+                null,
+                null
               ],
               "distances": [
                 2,
@@ -653,6 +793,16 @@
                 "city-013",
                 "city-001"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-013",
+                null,
+                "city-001"
+              ],
               "distances": [
                 0,
                 0,
@@ -670,6 +820,16 @@
                 "city-006",
                 "city-013",
                 "city-002",
+                "city-001"
+              ],
+              "directionalCityIds": [
+                "city-006",
+                "city-013",
+                null,
+                null,
+                null,
+                "city-002",
+                null,
                 "city-001"
               ],
               "distances": [
@@ -736,6 +896,16 @@
                 "city-014",
                 "city-003"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-009",
+                null,
+                "city-014",
+                null,
+                null,
+                "city-003"
+              ],
               "distances": [
                 0,
                 0,
@@ -752,6 +922,16 @@
               "linkedCityIds": [
                 "city-014",
                 "city-009",
+                "city-003"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-014",
+                null,
+                "city-009",
+                null,
+                null,
                 "city-003"
               ],
               "distances": [
@@ -821,6 +1001,16 @@
                 "city-010",
                 "city-008"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-010",
+                null,
+                null,
+                null,
+                "city-008",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -839,6 +1029,16 @@
                 "city-014",
                 "city-010",
                 "city-004"
+              ],
+              "directionalCityIds": [
+                "city-008",
+                "city-014",
+                null,
+                null,
+                "city-010",
+                "city-004",
+                null,
+                null
               ],
               "distances": [
                 2,
@@ -902,6 +1102,16 @@
                 "city-014",
                 "city-009"
               ],
+              "directionalCityIds": [
+                "city-004",
+                null,
+                null,
+                "city-015",
+                "city-020",
+                "city-014",
+                "city-009",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -919,6 +1129,16 @@
                 "city-009",
                 "city-011",
                 "city-004"
+              ],
+              "directionalCityIds": [
+                "city-009",
+                null,
+                null,
+                null,
+                "city-011",
+                null,
+                "city-004",
+                null
               ],
               "distances": [
                 2,
@@ -985,6 +1205,16 @@
                 "city-012",
                 "city-015"
               ],
+              "directionalCityIds": [
+                "city-005",
+                null,
+                "city-012",
+                null,
+                "city-015",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -1005,6 +1235,16 @@
                 "city-012",
                 "city-006",
                 "city-005"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-010",
+                "city-015",
+                "city-016",
+                "city-012",
+                "city-006",
+                "city-005",
+                null
               ],
               "distances": [
                 0,
@@ -1086,6 +1326,16 @@
                 "city-016",
                 "city-011"
               ],
+              "directionalCityIds": [
+                "city-006",
+                null,
+                "city-013",
+                null,
+                "city-016",
+                null,
+                "city-011",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -1105,6 +1355,16 @@
                 "city-016",
                 "city-017",
                 "city-013",
+                "city-006",
+                "city-005"
+              ],
+              "directionalCityIds": [
+                "city-011",
+                "city-015",
+                "city-016",
+                "city-017",
+                "city-013",
+                null,
                 "city-006",
                 "city-005"
               ],
@@ -1169,6 +1429,16 @@
                 "city-017",
                 "city-012"
               ],
+              "directionalCityIds": [
+                null,
+                "city-007",
+                null,
+                "city-018",
+                "city-017",
+                null,
+                "city-012",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -1188,6 +1458,16 @@
                 "city-017",
                 "city-018",
                 "city-007",
+                "city-006"
+              ],
+              "directionalCityIds": [
+                "city-012",
+                "city-016",
+                "city-017",
+                "city-018",
+                null,
+                "city-007",
+                null,
                 "city-006"
               ],
               "distances": [
@@ -1259,6 +1539,16 @@
                 "city-020",
                 "city-019"
               ],
+              "directionalCityIds": [
+                "city-008",
+                "city-010",
+                null,
+                "city-020",
+                null,
+                "city-019",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -1279,6 +1569,16 @@
                 "city-015",
                 "city-009",
                 "city-008"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-019",
+                "city-025",
+                "city-026",
+                "city-015",
+                "city-009",
+                "city-008",
+                null
               ],
               "distances": [
                 0,
@@ -1346,6 +1646,16 @@
                 "city-021",
                 "city-010"
               ],
+              "directionalCityIds": [
+                "city-011",
+                null,
+                "city-016",
+                null,
+                "city-021",
+                null,
+                null,
+                "city-010"
+              ],
               "distances": [
                 0,
                 0,
@@ -1365,6 +1675,16 @@
                 "city-016",
                 "city-012",
                 "city-011"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-020",
+                "city-021",
+                null,
+                "city-016",
+                "city-012",
+                "city-011",
+                null
               ],
               "distances": [
                 0,
@@ -1445,6 +1765,16 @@
                 "city-022",
                 "city-015"
               ],
+              "directionalCityIds": [
+                "city-012",
+                null,
+                null,
+                "city-022",
+                null,
+                null,
+                "city-015",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -1459,6 +1789,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-015",
+                "city-021",
+                "city-028",
+                "city-022",
+                "city-017",
+                "city-013",
+                "city-012",
+                "city-011"
+              ],
+              "directionalCityIds": [
                 "city-015",
                 "city-021",
                 "city-028",
@@ -1539,6 +1879,16 @@
                 "city-018",
                 "city-022"
               ],
+              "directionalCityIds": [
+                "city-013",
+                null,
+                "city-018",
+                null,
+                "city-022",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -1557,6 +1907,16 @@
                 "city-022",
                 "city-023",
                 "city-018",
+                "city-013",
+                "city-012"
+              ],
+              "directionalCityIds": [
+                "city-016",
+                null,
+                "city-022",
+                "city-023",
+                "city-018",
+                null,
                 "city-013",
                 "city-012"
               ],
@@ -1617,6 +1977,16 @@
                 "city-017",
                 "city-013"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-017",
+                "city-013"
+              ],
               "distances": [
                 0,
                 0,
@@ -1634,6 +2004,16 @@
                 "city-017",
                 "city-022",
                 "city-023",
+                "city-013"
+              ],
+              "directionalCityIds": [
+                "city-017",
+                "city-022",
+                "city-023",
+                null,
+                null,
+                null,
+                null,
                 "city-013"
               ],
               "distances": [
@@ -1692,6 +2072,16 @@
                 "city-014",
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                "city-014",
+                null,
+                null,
+                "city-024",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -1710,6 +2100,16 @@
                 "city-025",
                 "city-020",
                 "city-014"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-024",
+                "city-025",
+                "city-020",
+                "city-014",
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -1770,6 +2170,16 @@
                 "city-026",
                 "city-014"
               ],
+              "directionalCityIds": [
+                "city-010",
+                null,
+                "city-021",
+                null,
+                "city-026",
+                null,
+                null,
+                "city-014"
+              ],
               "distances": [
                 0,
                 0,
@@ -1790,6 +2200,16 @@
                 "city-027",
                 "city-021",
                 "city-015",
+                "city-009"
+              ],
+              "directionalCityIds": [
+                "city-019",
+                "city-032",
+                "city-026",
+                "city-027",
+                "city-021",
+                "city-015",
+                null,
                 "city-009"
               ],
               "distances": [
@@ -1853,6 +2273,16 @@
                 "city-022",
                 "city-020"
               ],
+              "directionalCityIds": [
+                "city-015",
+                null,
+                "city-022",
+                null,
+                null,
+                null,
+                "city-020",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -1867,6 +2297,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-020",
+                "city-026",
+                "city-027",
+                "city-028",
+                "city-022",
+                "city-016",
+                "city-015",
+                "city-010"
+              ],
+              "directionalCityIds": [
                 "city-020",
                 "city-026",
                 "city-027",
@@ -1945,6 +2385,16 @@
                 "city-021",
                 "city-016"
               ],
+              "directionalCityIds": [
+                "city-017",
+                null,
+                "city-023",
+                "city-029",
+                null,
+                "city-028",
+                "city-021",
+                "city-016"
+              ],
               "distances": [
                 0,
                 0,
@@ -1959,6 +2409,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-021",
+                "city-028",
+                "city-034",
+                "city-029",
+                "city-023",
+                "city-018",
+                "city-017",
+                "city-016"
+              ],
+              "directionalCityIds": [
                 "city-021",
                 "city-028",
                 "city-034",
@@ -2023,6 +2483,16 @@
               "linkedCityIds": [
                 "city-022"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-022",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -2039,6 +2509,16 @@
               "linkedCityIds": [
                 "city-022",
                 "city-029",
+                "city-018",
+                "city-017"
+              ],
+              "directionalCityIds": [
+                "city-022",
+                null,
+                "city-029",
+                null,
+                null,
+                null,
                 "city-018",
                 "city-017"
               ],
@@ -2104,6 +2584,16 @@
                 "city-031",
                 "city-030"
               ],
+              "directionalCityIds": [
+                "city-019",
+                null,
+                "city-025",
+                "city-031",
+                null,
+                "city-030",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -2123,6 +2613,16 @@
                 "city-025",
                 "city-010",
                 "city-019"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-030",
+                null,
+                "city-031",
+                "city-025",
+                "city-010",
+                "city-019",
+                null
               ],
               "distances": [
                 0,
@@ -2179,6 +2679,16 @@
               "linkedCityIds": [
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-024",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -2194,6 +2704,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-024",
+                "city-031",
+                "city-032",
+                "city-026",
+                "city-010",
+                "city-014",
+                "city-019"
+              ],
+              "directionalCityIds": [
+                "city-024",
+                null,
                 "city-031",
                 "city-032",
                 "city-026",
@@ -2265,6 +2785,16 @@
                 "city-033",
                 "city-032"
               ],
+              "directionalCityIds": [
+                "city-020",
+                null,
+                "city-027",
+                "city-033",
+                null,
+                "city-032",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -2281,6 +2811,16 @@
               "linkedCityIds": [
                 "city-025",
                 "city-032",
+                "city-033",
+                "city-027",
+                "city-021",
+                "city-020",
+                "city-009"
+              ],
+              "directionalCityIds": [
+                "city-025",
+                "city-032",
+                null,
                 "city-033",
                 "city-027",
                 "city-021",
@@ -2358,6 +2898,16 @@
                 "city-033",
                 "city-026"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-028",
+                null,
+                "city-033",
+                null,
+                "city-026",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -2373,6 +2923,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-026",
+                "city-033",
+                "city-034",
+                "city-028",
+                "city-017",
+                "city-021",
+                "city-020"
+              ],
+              "directionalCityIds": [
+                "city-026",
+                null,
                 "city-033",
                 "city-034",
                 "city-028",
@@ -2449,6 +3009,16 @@
                 "city-034",
                 "city-027"
               ],
+              "directionalCityIds": [
+                null,
+                "city-022",
+                null,
+                "city-034",
+                null,
+                null,
+                "city-027",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -2465,6 +3035,16 @@
               "linkedCityIds": [
                 "city-027",
                 "city-033",
+                "city-034",
+                "city-029",
+                "city-022",
+                "city-016",
+                "city-021"
+              ],
+              "directionalCityIds": [
+                "city-027",
+                "city-033",
+                null,
                 "city-034",
                 "city-029",
                 "city-022",
@@ -2534,6 +3114,16 @@
                 "city-034",
                 "city-022"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-034",
+                null,
+                "city-022"
+              ],
               "distances": [
                 0,
                 0,
@@ -2550,6 +3140,16 @@
               "linkedCityIds": [
                 "city-028",
                 "city-034",
+                "city-023",
+                "city-022"
+              ],
+              "directionalCityIds": [
+                "city-028",
+                "city-034",
+                null,
+                null,
+                null,
+                null,
                 "city-023",
                 "city-022"
               ],
@@ -2611,6 +3211,16 @@
               "linkedCityIds": [
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                "city-024",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -2626,6 +3236,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-030"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-030",
+                null
               ],
               "distances": [
                 0,
@@ -2684,6 +3304,16 @@
                 "city-032",
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-032",
+                null,
+                null,
+                null,
+                null,
+                "city-024"
+              ],
               "distances": [
                 0,
                 0,
@@ -2698,6 +3328,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-032",
+                "city-020",
+                "city-025",
+                "city-024"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
                 "city-032",
                 "city-020",
                 "city-025",
@@ -2760,6 +3400,16 @@
                 "city-035",
                 "city-031"
               ],
+              "directionalCityIds": [
+                null,
+                "city-026",
+                null,
+                "city-035",
+                null,
+                null,
+                "city-031",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -2775,6 +3425,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-031",
+                "city-035",
+                "city-033",
+                "city-020",
+                "city-009",
+                "city-025"
+              ],
+              "directionalCityIds": [
+                "city-031",
+                null,
+                null,
                 "city-035",
                 "city-033",
                 "city-020",
@@ -2844,6 +3504,16 @@
                 "city-036",
                 "city-026"
               ],
+              "directionalCityIds": [
+                "city-027",
+                null,
+                "city-034",
+                null,
+                "city-036",
+                null,
+                null,
+                "city-026"
+              ],
               "distances": [
                 0,
                 0,
@@ -2860,6 +3530,16 @@
               "linkedCityIds": [
                 "city-032",
                 "city-036",
+                "city-034",
+                "city-028",
+                "city-027",
+                "city-026"
+              ],
+              "directionalCityIds": [
+                "city-032",
+                null,
+                "city-036",
+                null,
                 "city-034",
                 "city-028",
                 "city-027",
@@ -2924,6 +3604,16 @@
                 "city-033",
                 "city-028"
               ],
+              "directionalCityIds": [
+                null,
+                "city-029",
+                null,
+                null,
+                "city-037",
+                null,
+                "city-033",
+                "city-028"
+              ],
               "distances": [
                 0,
                 0,
@@ -2940,6 +3630,16 @@
               "linkedCityIds": [
                 "city-033",
                 "city-037",
+                "city-029",
+                "city-022",
+                "city-028"
+              ],
+              "directionalCityIds": [
+                "city-033",
+                null,
+                "city-037",
+                null,
+                null,
                 "city-029",
                 "city-022",
                 "city-028"
@@ -3010,6 +3710,16 @@
                 "city-036",
                 "city-032"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-036",
+                null,
+                null,
+                null,
+                null,
+                "city-032"
+              ],
               "distances": [
                 0,
                 0,
@@ -3026,6 +3736,16 @@
               "linkedCityIds": [
                 "city-036",
                 "city-027",
+                "city-032"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                "city-036",
+                "city-027",
+                null,
                 "city-032"
               ],
               "distances": [
@@ -3097,6 +3817,16 @@
                 "city-037",
                 "city-035"
               ],
+              "directionalCityIds": [
+                "city-033",
+                null,
+                "city-037",
+                null,
+                null,
+                null,
+                "city-035",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -3114,6 +3844,16 @@
                 "city-035",
                 "city-037",
                 "city-033"
+              ],
+              "directionalCityIds": [
+                "city-035",
+                null,
+                null,
+                null,
+                "city-037",
+                null,
+                "city-033",
+                null
               ],
               "distances": [
                 3,
@@ -3173,6 +3913,16 @@
                 "city-034",
                 "city-036"
               ],
+              "directionalCityIds": [
+                "city-034",
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-036",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -3188,6 +3938,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-036",
+                "city-034",
+                "city-027"
+              ],
+              "directionalCityIds": [
+                "city-036",
+                null,
+                null,
+                null,
+                null,
+                null,
                 "city-034",
                 "city-027"
               ],
@@ -15314,6 +16074,16 @@
               "linkedCityIds": [
                 "city-003"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-003",
+                null,
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -15329,6 +16099,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-003"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-003",
+                null,
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -15400,6 +16180,16 @@
                 "city-007",
                 "city-006"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-002",
+                "city-007",
+                null,
+                "city-006",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -15417,6 +16207,16 @@
                 "city-006",
                 "city-007",
                 "city-002"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-006",
+                "city-007",
+                null,
+                "city-002",
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -15476,6 +16276,16 @@
               "linkedCityIds": [
                 "city-001"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-001",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -15492,6 +16302,16 @@
               "linkedCityIds": [
                 "city-001",
                 "city-007"
+              ],
+              "directionalCityIds": [
+                "city-001",
+                "city-007",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
               ],
               "distances": [
                 3,
@@ -15558,6 +16378,16 @@
                 "city-008",
                 "city-000"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-008",
+                null,
+                null,
+                null,
+                "city-000"
+              ],
               "distances": [
                 0,
                 0,
@@ -15573,6 +16403,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-008",
+                "city-000"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-008",
+                null,
+                null,
+                null,
                 "city-000"
               ],
               "distances": [
@@ -15641,6 +16481,16 @@
                 "city-005",
                 "city-010"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-005",
+                null,
+                "city-010",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -15658,6 +16508,16 @@
                 "city-009",
                 "city-010",
                 "city-005"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-009",
+                "city-010",
+                null,
+                "city-005",
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -15719,6 +16579,16 @@
                 "city-011",
                 "city-004"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-006",
+                null,
+                "city-011",
+                null,
+                "city-004",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -15737,6 +16607,16 @@
                 "city-011",
                 "city-012",
                 "city-006"
+              ],
+              "directionalCityIds": [
+                "city-004",
+                null,
+                "city-011",
+                "city-012",
+                "city-006",
+                null,
+                null,
+                null
               ],
               "distances": [
                 3,
@@ -15800,6 +16680,16 @@
                 "city-012",
                 "city-005"
               ],
+              "directionalCityIds": [
+                null,
+                "city-001",
+                null,
+                null,
+                "city-012",
+                null,
+                "city-005",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -15820,6 +16710,16 @@
                 "city-013",
                 "city-007",
                 "city-001"
+              ],
+              "directionalCityIds": [
+                "city-005",
+                "city-011",
+                "city-012",
+                "city-013",
+                "city-007",
+                "city-001",
+                null,
+                null
               ],
               "distances": [
                 2,
@@ -15879,6 +16779,16 @@
                 "city-013",
                 "city-001"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-013",
+                null,
+                "city-001"
+              ],
               "distances": [
                 0,
                 0,
@@ -15896,6 +16806,16 @@
                 "city-006",
                 "city-013",
                 "city-002",
+                "city-001"
+              ],
+              "directionalCityIds": [
+                "city-006",
+                "city-013",
+                null,
+                null,
+                null,
+                "city-002",
+                null,
                 "city-001"
               ],
               "distances": [
@@ -15961,6 +16881,16 @@
                 "city-014",
                 "city-003"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-009",
+                null,
+                "city-014",
+                null,
+                null,
+                "city-003"
+              ],
               "distances": [
                 0,
                 0,
@@ -15977,6 +16907,16 @@
               "linkedCityIds": [
                 "city-014",
                 "city-009",
+                "city-003"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-014",
+                null,
+                "city-009",
+                null,
+                null,
                 "city-003"
               ],
               "distances": [
@@ -16043,6 +16983,16 @@
                 "city-010",
                 "city-008"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-010",
+                null,
+                null,
+                null,
+                "city-008",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -16061,6 +17011,16 @@
                 "city-014",
                 "city-010",
                 "city-004"
+              ],
+              "directionalCityIds": [
+                "city-008",
+                "city-014",
+                null,
+                null,
+                "city-010",
+                "city-004",
+                null,
+                null
               ],
               "distances": [
                 2,
@@ -16124,6 +17084,16 @@
                 "city-014",
                 "city-009"
               ],
+              "directionalCityIds": [
+                "city-004",
+                null,
+                null,
+                "city-015",
+                "city-020",
+                "city-014",
+                "city-009",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -16141,6 +17111,16 @@
                 "city-009",
                 "city-011",
                 "city-004"
+              ],
+              "directionalCityIds": [
+                "city-009",
+                null,
+                null,
+                null,
+                "city-011",
+                null,
+                "city-004",
+                null
               ],
               "distances": [
                 2,
@@ -16216,6 +17196,16 @@
                 "city-012",
                 "city-015"
               ],
+              "directionalCityIds": [
+                "city-005",
+                null,
+                "city-012",
+                null,
+                "city-015",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -16236,6 +17226,16 @@
                 "city-012",
                 "city-006",
                 "city-005"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-010",
+                "city-015",
+                "city-016",
+                "city-012",
+                "city-006",
+                "city-005",
+                null
               ],
               "distances": [
                 0,
@@ -16304,6 +17304,16 @@
                 "city-016",
                 "city-011"
               ],
+              "directionalCityIds": [
+                "city-006",
+                null,
+                "city-013",
+                null,
+                "city-016",
+                null,
+                "city-011",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -16323,6 +17333,16 @@
                 "city-016",
                 "city-017",
                 "city-013",
+                "city-006",
+                "city-005"
+              ],
+              "directionalCityIds": [
+                "city-011",
+                "city-015",
+                "city-016",
+                "city-017",
+                "city-013",
+                null,
                 "city-006",
                 "city-005"
               ],
@@ -16396,6 +17416,16 @@
                 "city-017",
                 "city-012"
               ],
+              "directionalCityIds": [
+                null,
+                "city-007",
+                null,
+                "city-018",
+                "city-017",
+                null,
+                "city-012",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -16415,6 +17445,16 @@
                 "city-017",
                 "city-018",
                 "city-007",
+                "city-006"
+              ],
+              "directionalCityIds": [
+                "city-012",
+                "city-016",
+                "city-017",
+                "city-018",
+                null,
+                "city-007",
+                null,
                 "city-006"
               ],
               "distances": [
@@ -16480,6 +17520,16 @@
                 "city-020",
                 "city-019"
               ],
+              "directionalCityIds": [
+                "city-008",
+                "city-010",
+                null,
+                "city-020",
+                null,
+                "city-019",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -16500,6 +17550,16 @@
                 "city-015",
                 "city-009",
                 "city-008"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-019",
+                "city-025",
+                "city-026",
+                "city-015",
+                "city-009",
+                "city-008",
+                null
               ],
               "distances": [
                 0,
@@ -16566,6 +17626,16 @@
                 "city-021",
                 "city-010"
               ],
+              "directionalCityIds": [
+                "city-011",
+                null,
+                "city-016",
+                null,
+                "city-021",
+                null,
+                null,
+                "city-010"
+              ],
               "distances": [
                 0,
                 0,
@@ -16585,6 +17655,16 @@
                 "city-016",
                 "city-012",
                 "city-011"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-020",
+                "city-021",
+                null,
+                "city-016",
+                "city-012",
+                "city-011",
+                null
               ],
               "distances": [
                 0,
@@ -16657,6 +17737,16 @@
                 "city-022",
                 "city-015"
               ],
+              "directionalCityIds": [
+                "city-012",
+                null,
+                null,
+                "city-022",
+                null,
+                null,
+                "city-015",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -16671,6 +17761,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-015",
+                "city-021",
+                "city-028",
+                "city-022",
+                "city-017",
+                "city-013",
+                "city-012",
+                "city-011"
+              ],
+              "directionalCityIds": [
                 "city-015",
                 "city-021",
                 "city-028",
@@ -16754,6 +17854,16 @@
                 "city-018",
                 "city-022"
               ],
+              "directionalCityIds": [
+                "city-013",
+                null,
+                "city-018",
+                null,
+                "city-022",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -16772,6 +17882,16 @@
                 "city-022",
                 "city-023",
                 "city-018",
+                "city-013",
+                "city-012"
+              ],
+              "directionalCityIds": [
+                "city-016",
+                null,
+                "city-022",
+                "city-023",
+                "city-018",
+                null,
                 "city-013",
                 "city-012"
               ],
@@ -16850,6 +17970,16 @@
                 "city-017",
                 "city-013"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-017",
+                "city-013"
+              ],
               "distances": [
                 0,
                 0,
@@ -16867,6 +17997,16 @@
                 "city-017",
                 "city-022",
                 "city-023",
+                "city-013"
+              ],
+              "directionalCityIds": [
+                "city-017",
+                "city-022",
+                "city-023",
+                null,
+                null,
+                null,
+                null,
                 "city-013"
               ],
               "distances": [
@@ -16936,6 +18076,16 @@
                 "city-014",
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                "city-014",
+                null,
+                null,
+                "city-024",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -16954,6 +18104,16 @@
                 "city-025",
                 "city-020",
                 "city-014"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-024",
+                "city-025",
+                "city-020",
+                "city-014",
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -17023,6 +18183,16 @@
                 "city-026",
                 "city-014"
               ],
+              "directionalCityIds": [
+                "city-010",
+                null,
+                "city-021",
+                null,
+                "city-026",
+                null,
+                null,
+                "city-014"
+              ],
               "distances": [
                 0,
                 0,
@@ -17043,6 +18213,16 @@
                 "city-027",
                 "city-021",
                 "city-015",
+                "city-009"
+              ],
+              "directionalCityIds": [
+                "city-019",
+                "city-032",
+                "city-026",
+                "city-027",
+                "city-021",
+                "city-015",
+                null,
                 "city-009"
               ],
               "distances": [
@@ -17117,6 +18297,16 @@
                 "city-022",
                 "city-020"
               ],
+              "directionalCityIds": [
+                "city-015",
+                null,
+                "city-022",
+                null,
+                null,
+                null,
+                "city-020",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -17131,6 +18321,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-020",
+                "city-026",
+                "city-027",
+                "city-028",
+                "city-022",
+                "city-016",
+                "city-015",
+                "city-010"
+              ],
+              "directionalCityIds": [
                 "city-020",
                 "city-026",
                 "city-027",
@@ -17214,6 +18414,16 @@
                 "city-021",
                 "city-016"
               ],
+              "directionalCityIds": [
+                "city-017",
+                null,
+                "city-023",
+                "city-029",
+                null,
+                "city-028",
+                "city-021",
+                "city-016"
+              ],
               "distances": [
                 0,
                 0,
@@ -17228,6 +18438,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-021",
+                "city-028",
+                "city-034",
+                "city-029",
+                "city-023",
+                "city-018",
+                "city-017",
+                "city-016"
+              ],
+              "directionalCityIds": [
                 "city-021",
                 "city-028",
                 "city-034",
@@ -17297,6 +18517,16 @@
               "linkedCityIds": [
                 "city-022"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-022",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -17313,6 +18543,16 @@
               "linkedCityIds": [
                 "city-022",
                 "city-029",
+                "city-018",
+                "city-017"
+              ],
+              "directionalCityIds": [
+                "city-022",
+                null,
+                "city-029",
+                null,
+                null,
+                null,
                 "city-018",
                 "city-017"
               ],
@@ -17377,6 +18617,16 @@
                 "city-031",
                 "city-030"
               ],
+              "directionalCityIds": [
+                "city-019",
+                null,
+                "city-025",
+                "city-031",
+                null,
+                "city-030",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -17396,6 +18646,16 @@
                 "city-025",
                 "city-010",
                 "city-019"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-030",
+                null,
+                "city-031",
+                "city-025",
+                "city-010",
+                "city-019",
+                null
               ],
               "distances": [
                 0,
@@ -17452,6 +18712,16 @@
               "linkedCityIds": [
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-024",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -17467,6 +18737,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-024",
+                "city-031",
+                "city-032",
+                "city-026",
+                "city-010",
+                "city-014",
+                "city-019"
+              ],
+              "directionalCityIds": [
+                "city-024",
+                null,
                 "city-031",
                 "city-032",
                 "city-026",
@@ -17546,6 +18826,16 @@
                 "city-033",
                 "city-032"
               ],
+              "directionalCityIds": [
+                "city-020",
+                null,
+                "city-027",
+                "city-033",
+                null,
+                "city-032",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -17562,6 +18852,16 @@
               "linkedCityIds": [
                 "city-025",
                 "city-032",
+                "city-033",
+                "city-027",
+                "city-021",
+                "city-020",
+                "city-009"
+              ],
+              "directionalCityIds": [
+                "city-025",
+                "city-032",
+                null,
                 "city-033",
                 "city-027",
                 "city-021",
@@ -17636,6 +18936,16 @@
                 "city-033",
                 "city-026"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-028",
+                null,
+                "city-033",
+                null,
+                "city-026",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -17651,6 +18961,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-026",
+                "city-033",
+                "city-034",
+                "city-028",
+                "city-017",
+                "city-021",
+                "city-020"
+              ],
+              "directionalCityIds": [
+                "city-026",
+                null,
                 "city-033",
                 "city-034",
                 "city-028",
@@ -17727,6 +19047,16 @@
                 "city-034",
                 "city-027"
               ],
+              "directionalCityIds": [
+                null,
+                "city-022",
+                null,
+                "city-034",
+                null,
+                null,
+                "city-027",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -17743,6 +19073,16 @@
               "linkedCityIds": [
                 "city-027",
                 "city-033",
+                "city-034",
+                "city-029",
+                "city-022",
+                "city-016",
+                "city-021"
+              ],
+              "directionalCityIds": [
+                "city-027",
+                "city-033",
+                null,
                 "city-034",
                 "city-029",
                 "city-022",
@@ -17803,6 +19143,16 @@
                 "city-034",
                 "city-022"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-034",
+                null,
+                "city-022"
+              ],
               "distances": [
                 0,
                 0,
@@ -17819,6 +19169,16 @@
               "linkedCityIds": [
                 "city-028",
                 "city-034",
+                "city-023",
+                "city-022"
+              ],
+              "directionalCityIds": [
+                "city-028",
+                "city-034",
+                null,
+                null,
+                null,
+                null,
                 "city-023",
                 "city-022"
               ],
@@ -17875,6 +19235,16 @@
               "linkedCityIds": [
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                "city-024",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -17890,6 +19260,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-030"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-030",
+                null
               ],
               "distances": [
                 0,
@@ -17950,6 +19330,16 @@
                 "city-032",
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-032",
+                null,
+                null,
+                null,
+                null,
+                "city-024"
+              ],
               "distances": [
                 0,
                 0,
@@ -17964,6 +19354,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-032",
+                "city-020",
+                "city-025",
+                "city-024"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
                 "city-032",
                 "city-020",
                 "city-025",
@@ -18026,6 +19426,16 @@
                 "city-035",
                 "city-031"
               ],
+              "directionalCityIds": [
+                null,
+                "city-026",
+                null,
+                "city-035",
+                null,
+                null,
+                "city-031",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -18041,6 +19451,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-031",
+                "city-035",
+                "city-033",
+                "city-020",
+                "city-009",
+                "city-025"
+              ],
+              "directionalCityIds": [
+                "city-031",
+                null,
+                null,
                 "city-035",
                 "city-033",
                 "city-020",
@@ -18115,6 +19535,16 @@
                 "city-036",
                 "city-026"
               ],
+              "directionalCityIds": [
+                "city-027",
+                null,
+                "city-034",
+                null,
+                "city-036",
+                null,
+                null,
+                "city-026"
+              ],
               "distances": [
                 0,
                 0,
@@ -18131,6 +19561,16 @@
               "linkedCityIds": [
                 "city-032",
                 "city-036",
+                "city-034",
+                "city-028",
+                "city-027",
+                "city-026"
+              ],
+              "directionalCityIds": [
+                "city-032",
+                null,
+                "city-036",
+                null,
                 "city-034",
                 "city-028",
                 "city-027",
@@ -18194,6 +19634,16 @@
                 "city-033",
                 "city-028"
               ],
+              "directionalCityIds": [
+                null,
+                "city-029",
+                null,
+                null,
+                "city-037",
+                null,
+                "city-033",
+                "city-028"
+              ],
               "distances": [
                 0,
                 0,
@@ -18210,6 +19660,16 @@
               "linkedCityIds": [
                 "city-033",
                 "city-037",
+                "city-029",
+                "city-022",
+                "city-028"
+              ],
+              "directionalCityIds": [
+                "city-033",
+                null,
+                "city-037",
+                null,
+                null,
                 "city-029",
                 "city-022",
                 "city-028"
@@ -18277,6 +19737,16 @@
                 "city-036",
                 "city-032"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-036",
+                null,
+                null,
+                null,
+                null,
+                "city-032"
+              ],
               "distances": [
                 0,
                 0,
@@ -18293,6 +19763,16 @@
               "linkedCityIds": [
                 "city-036",
                 "city-027",
+                "city-032"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                "city-036",
+                "city-027",
+                null,
                 "city-032"
               ],
               "distances": [
@@ -18357,6 +19837,16 @@
                 "city-037",
                 "city-035"
               ],
+              "directionalCityIds": [
+                "city-033",
+                null,
+                "city-037",
+                null,
+                null,
+                null,
+                "city-035",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -18374,6 +19864,16 @@
                 "city-035",
                 "city-037",
                 "city-033"
+              ],
+              "directionalCityIds": [
+                "city-035",
+                null,
+                null,
+                null,
+                "city-037",
+                null,
+                "city-033",
+                null
               ],
               "distances": [
                 3,
@@ -18433,6 +19933,16 @@
                 "city-034",
                 "city-036"
               ],
+              "directionalCityIds": [
+                "city-034",
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-036",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -18448,6 +19958,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-036",
+                "city-034",
+                "city-027"
+              ],
+              "directionalCityIds": [
+                "city-036",
+                null,
+                null,
+                null,
+                null,
+                null,
                 "city-034",
                 "city-027"
               ],
@@ -30572,6 +32092,16 @@
               "linkedCityIds": [
                 "city-003"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-003",
+                null,
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -30587,6 +32117,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-003"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-003",
+                null,
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -30652,6 +32192,16 @@
                 "city-007",
                 "city-006"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-002",
+                "city-007",
+                null,
+                "city-006",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -30669,6 +32219,16 @@
                 "city-006",
                 "city-007",
                 "city-002"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-006",
+                "city-007",
+                null,
+                "city-002",
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -30749,6 +32309,16 @@
               "linkedCityIds": [
                 "city-001"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-001",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -30765,6 +32335,16 @@
               "linkedCityIds": [
                 "city-001",
                 "city-007"
+              ],
+              "directionalCityIds": [
+                "city-001",
+                "city-007",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
               ],
               "distances": [
                 3,
@@ -30830,6 +32410,16 @@
                 "city-008",
                 "city-000"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-008",
+                null,
+                null,
+                null,
+                "city-000"
+              ],
               "distances": [
                 0,
                 0,
@@ -30845,6 +32435,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-008",
+                "city-000"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-008",
+                null,
+                null,
+                null,
                 "city-000"
               ],
               "distances": [
@@ -30905,6 +32505,16 @@
                 "city-005",
                 "city-010"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-005",
+                null,
+                "city-010",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -30922,6 +32532,16 @@
                 "city-009",
                 "city-010",
                 "city-005"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-009",
+                "city-010",
+                null,
+                "city-005",
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -30978,6 +32598,16 @@
                 "city-011",
                 "city-004"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-006",
+                null,
+                "city-011",
+                null,
+                "city-004",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -30996,6 +32626,16 @@
                 "city-011",
                 "city-012",
                 "city-006"
+              ],
+              "directionalCityIds": [
+                "city-004",
+                null,
+                "city-011",
+                "city-012",
+                "city-006",
+                null,
+                null,
+                null
               ],
               "distances": [
                 3,
@@ -31062,6 +32702,16 @@
                 "city-012",
                 "city-005"
               ],
+              "directionalCityIds": [
+                null,
+                "city-001",
+                null,
+                null,
+                "city-012",
+                null,
+                "city-005",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -31082,6 +32732,16 @@
                 "city-013",
                 "city-007",
                 "city-001"
+              ],
+              "directionalCityIds": [
+                "city-005",
+                "city-011",
+                "city-012",
+                "city-013",
+                "city-007",
+                "city-001",
+                null,
+                null
               ],
               "distances": [
                 2,
@@ -31149,6 +32809,16 @@
                 "city-013",
                 "city-001"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-013",
+                null,
+                "city-001"
+              ],
               "distances": [
                 0,
                 0,
@@ -31166,6 +32836,16 @@
                 "city-006",
                 "city-013",
                 "city-002",
+                "city-001"
+              ],
+              "directionalCityIds": [
+                "city-006",
+                "city-013",
+                null,
+                null,
+                null,
+                "city-002",
+                null,
                 "city-001"
               ],
               "distances": [
@@ -31233,6 +32913,16 @@
                 "city-014",
                 "city-003"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-009",
+                null,
+                "city-014",
+                null,
+                null,
+                "city-003"
+              ],
               "distances": [
                 0,
                 0,
@@ -31249,6 +32939,16 @@
               "linkedCityIds": [
                 "city-014",
                 "city-009",
+                "city-003"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-014",
+                null,
+                "city-009",
+                null,
+                null,
                 "city-003"
               ],
               "distances": [
@@ -31309,6 +33009,16 @@
                 "city-010",
                 "city-008"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-010",
+                null,
+                null,
+                null,
+                "city-008",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -31327,6 +33037,16 @@
                 "city-014",
                 "city-010",
                 "city-004"
+              ],
+              "directionalCityIds": [
+                "city-008",
+                "city-014",
+                null,
+                null,
+                "city-010",
+                "city-004",
+                null,
+                null
               ],
               "distances": [
                 2,
@@ -31391,6 +33111,16 @@
                 "city-014",
                 "city-009"
               ],
+              "directionalCityIds": [
+                "city-004",
+                null,
+                null,
+                "city-015",
+                "city-020",
+                "city-014",
+                "city-009",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -31408,6 +33138,16 @@
                 "city-009",
                 "city-011",
                 "city-004"
+              ],
+              "directionalCityIds": [
+                "city-009",
+                null,
+                null,
+                null,
+                "city-011",
+                null,
+                "city-004",
+                null
               ],
               "distances": [
                 2,
@@ -31467,6 +33207,16 @@
                 "city-012",
                 "city-015"
               ],
+              "directionalCityIds": [
+                "city-005",
+                null,
+                "city-012",
+                null,
+                "city-015",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -31487,6 +33237,16 @@
                 "city-012",
                 "city-006",
                 "city-005"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-010",
+                "city-015",
+                "city-016",
+                "city-012",
+                "city-006",
+                "city-005",
+                null
               ],
               "distances": [
                 0,
@@ -31550,6 +33310,16 @@
                 "city-016",
                 "city-011"
               ],
+              "directionalCityIds": [
+                "city-006",
+                null,
+                "city-013",
+                null,
+                "city-016",
+                null,
+                "city-011",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -31569,6 +33339,16 @@
                 "city-016",
                 "city-017",
                 "city-013",
+                "city-006",
+                "city-005"
+              ],
+              "directionalCityIds": [
+                "city-011",
+                "city-015",
+                "city-016",
+                "city-017",
+                "city-013",
+                null,
                 "city-006",
                 "city-005"
               ],
@@ -31631,6 +33411,16 @@
                 "city-017",
                 "city-012"
               ],
+              "directionalCityIds": [
+                null,
+                "city-007",
+                null,
+                "city-018",
+                "city-017",
+                null,
+                "city-012",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -31650,6 +33440,16 @@
                 "city-017",
                 "city-018",
                 "city-007",
+                "city-006"
+              ],
+              "directionalCityIds": [
+                "city-012",
+                "city-016",
+                "city-017",
+                "city-018",
+                null,
+                "city-007",
+                null,
                 "city-006"
               ],
               "distances": [
@@ -31721,6 +33521,16 @@
                 "city-020",
                 "city-019"
               ],
+              "directionalCityIds": [
+                "city-008",
+                "city-010",
+                null,
+                "city-020",
+                null,
+                "city-019",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -31741,6 +33551,16 @@
                 "city-015",
                 "city-009",
                 "city-008"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-019",
+                "city-025",
+                "city-026",
+                "city-015",
+                "city-009",
+                "city-008",
+                null
               ],
               "distances": [
                 0,
@@ -31802,6 +33622,16 @@
                 "city-021",
                 "city-010"
               ],
+              "directionalCityIds": [
+                "city-011",
+                null,
+                "city-016",
+                null,
+                "city-021",
+                null,
+                null,
+                "city-010"
+              ],
               "distances": [
                 0,
                 0,
@@ -31821,6 +33651,16 @@
                 "city-016",
                 "city-012",
                 "city-011"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-020",
+                "city-021",
+                null,
+                "city-016",
+                "city-012",
+                "city-011",
+                null
               ],
               "distances": [
                 0,
@@ -31899,6 +33739,16 @@
                 "city-022",
                 "city-015"
               ],
+              "directionalCityIds": [
+                "city-012",
+                null,
+                null,
+                "city-022",
+                null,
+                null,
+                "city-015",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -31913,6 +33763,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-015",
+                "city-021",
+                "city-028",
+                "city-022",
+                "city-017",
+                "city-013",
+                "city-012",
+                "city-011"
+              ],
+              "directionalCityIds": [
                 "city-015",
                 "city-021",
                 "city-028",
@@ -31984,6 +33844,16 @@
                 "city-018",
                 "city-022"
               ],
+              "directionalCityIds": [
+                "city-013",
+                null,
+                "city-018",
+                null,
+                "city-022",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -32002,6 +33872,16 @@
                 "city-022",
                 "city-023",
                 "city-018",
+                "city-013",
+                "city-012"
+              ],
+              "directionalCityIds": [
+                "city-016",
+                null,
+                "city-022",
+                "city-023",
+                "city-018",
+                null,
                 "city-013",
                 "city-012"
               ],
@@ -32062,6 +33942,16 @@
                 "city-017",
                 "city-013"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-017",
+                "city-013"
+              ],
               "distances": [
                 0,
                 0,
@@ -32079,6 +33969,16 @@
                 "city-017",
                 "city-022",
                 "city-023",
+                "city-013"
+              ],
+              "directionalCityIds": [
+                "city-017",
+                "city-022",
+                "city-023",
+                null,
+                null,
+                null,
+                null,
                 "city-013"
               ],
               "distances": [
@@ -32139,6 +34039,16 @@
                 "city-014",
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                "city-014",
+                null,
+                null,
+                "city-024",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -32157,6 +34067,16 @@
                 "city-025",
                 "city-020",
                 "city-014"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-024",
+                "city-025",
+                "city-020",
+                "city-014",
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -32219,6 +34139,16 @@
                 "city-026",
                 "city-014"
               ],
+              "directionalCityIds": [
+                "city-010",
+                null,
+                "city-021",
+                null,
+                "city-026",
+                null,
+                null,
+                "city-014"
+              ],
               "distances": [
                 0,
                 0,
@@ -32239,6 +34169,16 @@
                 "city-027",
                 "city-021",
                 "city-015",
+                "city-009"
+              ],
+              "directionalCityIds": [
+                "city-019",
+                "city-032",
+                "city-026",
+                "city-027",
+                "city-021",
+                "city-015",
+                null,
                 "city-009"
               ],
               "distances": [
@@ -32308,6 +34248,16 @@
                 "city-022",
                 "city-020"
               ],
+              "directionalCityIds": [
+                "city-015",
+                null,
+                "city-022",
+                null,
+                null,
+                null,
+                "city-020",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -32322,6 +34272,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-020",
+                "city-026",
+                "city-027",
+                "city-028",
+                "city-022",
+                "city-016",
+                "city-015",
+                "city-010"
+              ],
+              "directionalCityIds": [
                 "city-020",
                 "city-026",
                 "city-027",
@@ -32414,6 +34374,16 @@
                 "city-021",
                 "city-016"
               ],
+              "directionalCityIds": [
+                "city-017",
+                null,
+                "city-023",
+                "city-029",
+                null,
+                "city-028",
+                "city-021",
+                "city-016"
+              ],
               "distances": [
                 0,
                 0,
@@ -32428,6 +34398,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-021",
+                "city-028",
+                "city-034",
+                "city-029",
+                "city-023",
+                "city-018",
+                "city-017",
+                "city-016"
+              ],
+              "directionalCityIds": [
                 "city-021",
                 "city-028",
                 "city-034",
@@ -32501,6 +34481,16 @@
               "linkedCityIds": [
                 "city-022"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-022",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -32517,6 +34507,16 @@
               "linkedCityIds": [
                 "city-022",
                 "city-029",
+                "city-018",
+                "city-017"
+              ],
+              "directionalCityIds": [
+                "city-022",
+                null,
+                "city-029",
+                null,
+                null,
+                null,
                 "city-018",
                 "city-017"
               ],
@@ -32584,6 +34584,16 @@
                 "city-031",
                 "city-030"
               ],
+              "directionalCityIds": [
+                "city-019",
+                null,
+                "city-025",
+                "city-031",
+                null,
+                "city-030",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -32603,6 +34613,16 @@
                 "city-025",
                 "city-010",
                 "city-019"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-030",
+                null,
+                "city-031",
+                "city-025",
+                "city-010",
+                "city-019",
+                null
               ],
               "distances": [
                 0,
@@ -32673,6 +34693,16 @@
               "linkedCityIds": [
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-024",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -32688,6 +34718,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-024",
+                "city-031",
+                "city-032",
+                "city-026",
+                "city-010",
+                "city-014",
+                "city-019"
+              ],
+              "directionalCityIds": [
+                "city-024",
+                null,
                 "city-031",
                 "city-032",
                 "city-026",
@@ -32772,6 +34812,16 @@
                 "city-033",
                 "city-032"
               ],
+              "directionalCityIds": [
+                "city-020",
+                null,
+                "city-027",
+                "city-033",
+                null,
+                "city-032",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -32788,6 +34838,16 @@
               "linkedCityIds": [
                 "city-025",
                 "city-032",
+                "city-033",
+                "city-027",
+                "city-021",
+                "city-020",
+                "city-009"
+              ],
+              "directionalCityIds": [
+                "city-025",
+                "city-032",
+                null,
                 "city-033",
                 "city-027",
                 "city-021",
@@ -32864,6 +34924,16 @@
                 "city-033",
                 "city-026"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-028",
+                null,
+                "city-033",
+                null,
+                "city-026",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -32879,6 +34949,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-026",
+                "city-033",
+                "city-034",
+                "city-028",
+                "city-017",
+                "city-021",
+                "city-020"
+              ],
+              "directionalCityIds": [
+                "city-026",
+                null,
                 "city-033",
                 "city-034",
                 "city-028",
@@ -32958,6 +35038,16 @@
                 "city-034",
                 "city-027"
               ],
+              "directionalCityIds": [
+                null,
+                "city-022",
+                null,
+                "city-034",
+                null,
+                null,
+                "city-027",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -32974,6 +35064,16 @@
               "linkedCityIds": [
                 "city-027",
                 "city-033",
+                "city-034",
+                "city-029",
+                "city-022",
+                "city-016",
+                "city-021"
+              ],
+              "directionalCityIds": [
+                "city-027",
+                "city-033",
+                null,
                 "city-034",
                 "city-029",
                 "city-022",
@@ -33036,6 +35136,16 @@
                 "city-034",
                 "city-022"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-034",
+                null,
+                "city-022"
+              ],
               "distances": [
                 0,
                 0,
@@ -33052,6 +35162,16 @@
               "linkedCityIds": [
                 "city-028",
                 "city-034",
+                "city-023",
+                "city-022"
+              ],
+              "directionalCityIds": [
+                "city-028",
+                "city-034",
+                null,
+                null,
+                null,
+                null,
                 "city-023",
                 "city-022"
               ],
@@ -33115,6 +35235,16 @@
               "linkedCityIds": [
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                "city-024",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -33130,6 +35260,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-030"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-030",
+                null
               ],
               "distances": [
                 0,
@@ -33193,6 +35333,16 @@
                 "city-032",
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-032",
+                null,
+                null,
+                null,
+                null,
+                "city-024"
+              ],
               "distances": [
                 0,
                 0,
@@ -33207,6 +35357,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-032",
+                "city-020",
+                "city-025",
+                "city-024"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
                 "city-032",
                 "city-020",
                 "city-025",
@@ -33283,6 +35443,16 @@
                 "city-035",
                 "city-031"
               ],
+              "directionalCityIds": [
+                null,
+                "city-026",
+                null,
+                "city-035",
+                null,
+                null,
+                "city-031",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -33298,6 +35468,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-031",
+                "city-035",
+                "city-033",
+                "city-020",
+                "city-009",
+                "city-025"
+              ],
+              "directionalCityIds": [
+                "city-031",
+                null,
+                null,
                 "city-035",
                 "city-033",
                 "city-020",
@@ -33366,6 +35546,16 @@
                 "city-036",
                 "city-026"
               ],
+              "directionalCityIds": [
+                "city-027",
+                null,
+                "city-034",
+                null,
+                "city-036",
+                null,
+                null,
+                "city-026"
+              ],
               "distances": [
                 0,
                 0,
@@ -33382,6 +35572,16 @@
               "linkedCityIds": [
                 "city-032",
                 "city-036",
+                "city-034",
+                "city-028",
+                "city-027",
+                "city-026"
+              ],
+              "directionalCityIds": [
+                "city-032",
+                null,
+                "city-036",
+                null,
                 "city-034",
                 "city-028",
                 "city-027",
@@ -33454,6 +35654,16 @@
                 "city-033",
                 "city-028"
               ],
+              "directionalCityIds": [
+                null,
+                "city-029",
+                null,
+                null,
+                "city-037",
+                null,
+                "city-033",
+                "city-028"
+              ],
               "distances": [
                 0,
                 0,
@@ -33470,6 +35680,16 @@
               "linkedCityIds": [
                 "city-033",
                 "city-037",
+                "city-029",
+                "city-022",
+                "city-028"
+              ],
+              "directionalCityIds": [
+                "city-033",
+                null,
+                "city-037",
+                null,
+                null,
                 "city-029",
                 "city-022",
                 "city-028"
@@ -33533,6 +35753,16 @@
                 "city-036",
                 "city-032"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-036",
+                null,
+                null,
+                null,
+                null,
+                "city-032"
+              ],
               "distances": [
                 0,
                 0,
@@ -33549,6 +35779,16 @@
               "linkedCityIds": [
                 "city-036",
                 "city-027",
+                "city-032"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                "city-036",
+                "city-027",
+                null,
                 "city-032"
               ],
               "distances": [
@@ -33610,6 +35850,16 @@
                 "city-037",
                 "city-035"
               ],
+              "directionalCityIds": [
+                "city-033",
+                null,
+                "city-037",
+                null,
+                null,
+                null,
+                "city-035",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -33627,6 +35877,16 @@
                 "city-035",
                 "city-037",
                 "city-033"
+              ],
+              "directionalCityIds": [
+                "city-035",
+                null,
+                null,
+                null,
+                "city-037",
+                null,
+                "city-033",
+                null
               ],
               "distances": [
                 3,
@@ -33684,6 +35944,16 @@
                 "city-034",
                 "city-036"
               ],
+              "directionalCityIds": [
+                "city-034",
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-036",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -33699,6 +35969,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-036",
+                "city-034",
+                "city-027"
+              ],
+              "directionalCityIds": [
+                "city-036",
+                null,
+                null,
+                null,
+                null,
+                null,
                 "city-034",
                 "city-027"
               ],
@@ -45828,6 +48108,16 @@
               "linkedCityIds": [
                 "city-003"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-003",
+                null,
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -45843,6 +48133,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-003"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-003",
+                null,
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -45911,6 +48211,16 @@
                 "city-007",
                 "city-006"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-002",
+                "city-007",
+                null,
+                "city-006",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -45928,6 +48238,16 @@
                 "city-006",
                 "city-007",
                 "city-002"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-006",
+                "city-007",
+                null,
+                "city-002",
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -45986,6 +48306,16 @@
               "linkedCityIds": [
                 "city-001"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-001",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -46002,6 +48332,16 @@
               "linkedCityIds": [
                 "city-001",
                 "city-007"
+              ],
+              "directionalCityIds": [
+                "city-001",
+                "city-007",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
               ],
               "distances": [
                 3,
@@ -46066,6 +48406,16 @@
                 "city-008",
                 "city-000"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-008",
+                null,
+                null,
+                null,
+                "city-000"
+              ],
               "distances": [
                 0,
                 0,
@@ -46081,6 +48431,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-008",
+                "city-000"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                "city-008",
+                null,
+                null,
+                null,
                 "city-000"
               ],
               "distances": [
@@ -46142,6 +48502,16 @@
                 "city-005",
                 "city-010"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-005",
+                null,
+                "city-010",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -46159,6 +48529,16 @@
                 "city-009",
                 "city-010",
                 "city-005"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-009",
+                "city-010",
+                null,
+                "city-005",
+                null,
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -46219,6 +48599,16 @@
                 "city-011",
                 "city-004"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-006",
+                null,
+                "city-011",
+                null,
+                "city-004",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -46237,6 +48627,16 @@
                 "city-011",
                 "city-012",
                 "city-006"
+              ],
+              "directionalCityIds": [
+                "city-004",
+                null,
+                "city-011",
+                "city-012",
+                "city-006",
+                null,
+                null,
+                null
               ],
               "distances": [
                 3,
@@ -46306,6 +48706,16 @@
                 "city-012",
                 "city-005"
               ],
+              "directionalCityIds": [
+                null,
+                "city-001",
+                null,
+                null,
+                "city-012",
+                null,
+                "city-005",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -46326,6 +48736,16 @@
                 "city-013",
                 "city-007",
                 "city-001"
+              ],
+              "directionalCityIds": [
+                "city-005",
+                "city-011",
+                "city-012",
+                "city-013",
+                "city-007",
+                "city-001",
+                null,
+                null
               ],
               "distances": [
                 2,
@@ -46388,6 +48808,16 @@
                 "city-013",
                 "city-001"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-013",
+                null,
+                "city-001"
+              ],
               "distances": [
                 0,
                 0,
@@ -46405,6 +48835,16 @@
                 "city-006",
                 "city-013",
                 "city-002",
+                "city-001"
+              ],
+              "directionalCityIds": [
+                "city-006",
+                "city-013",
+                null,
+                null,
+                null,
+                "city-002",
+                null,
                 "city-001"
               ],
               "distances": [
@@ -46472,6 +48912,16 @@
                 "city-014",
                 "city-003"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-009",
+                null,
+                "city-014",
+                null,
+                null,
+                "city-003"
+              ],
               "distances": [
                 0,
                 0,
@@ -46488,6 +48938,16 @@
               "linkedCityIds": [
                 "city-014",
                 "city-009",
+                "city-003"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-014",
+                null,
+                "city-009",
+                null,
+                null,
                 "city-003"
               ],
               "distances": [
@@ -46563,6 +49023,16 @@
                 "city-010",
                 "city-008"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-010",
+                null,
+                null,
+                null,
+                "city-008",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -46581,6 +49051,16 @@
                 "city-014",
                 "city-010",
                 "city-004"
+              ],
+              "directionalCityIds": [
+                "city-008",
+                "city-014",
+                null,
+                null,
+                "city-010",
+                "city-004",
+                null,
+                null
               ],
               "distances": [
                 2,
@@ -46646,6 +49126,16 @@
                 "city-014",
                 "city-009"
               ],
+              "directionalCityIds": [
+                "city-004",
+                null,
+                null,
+                "city-015",
+                "city-020",
+                "city-014",
+                "city-009",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -46663,6 +49153,16 @@
                 "city-009",
                 "city-011",
                 "city-004"
+              ],
+              "directionalCityIds": [
+                "city-009",
+                null,
+                null,
+                null,
+                "city-011",
+                null,
+                "city-004",
+                null
               ],
               "distances": [
                 2,
@@ -46723,6 +49223,16 @@
                 "city-012",
                 "city-015"
               ],
+              "directionalCityIds": [
+                "city-005",
+                null,
+                "city-012",
+                null,
+                "city-015",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -46743,6 +49253,16 @@
                 "city-012",
                 "city-006",
                 "city-005"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-010",
+                "city-015",
+                "city-016",
+                "city-012",
+                "city-006",
+                "city-005",
+                null
               ],
               "distances": [
                 0,
@@ -46803,6 +49323,16 @@
                 "city-016",
                 "city-011"
               ],
+              "directionalCityIds": [
+                "city-006",
+                null,
+                "city-013",
+                null,
+                "city-016",
+                null,
+                "city-011",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -46822,6 +49352,16 @@
                 "city-016",
                 "city-017",
                 "city-013",
+                "city-006",
+                "city-005"
+              ],
+              "directionalCityIds": [
+                "city-011",
+                "city-015",
+                "city-016",
+                "city-017",
+                "city-013",
+                null,
                 "city-006",
                 "city-005"
               ],
@@ -46887,6 +49427,16 @@
                 "city-017",
                 "city-012"
               ],
+              "directionalCityIds": [
+                null,
+                "city-007",
+                null,
+                "city-018",
+                "city-017",
+                null,
+                "city-012",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -46906,6 +49456,16 @@
                 "city-017",
                 "city-018",
                 "city-007",
+                "city-006"
+              ],
+              "directionalCityIds": [
+                "city-012",
+                "city-016",
+                "city-017",
+                "city-018",
+                null,
+                "city-007",
+                null,
                 "city-006"
               ],
               "distances": [
@@ -46974,6 +49534,16 @@
                 "city-020",
                 "city-019"
               ],
+              "directionalCityIds": [
+                "city-008",
+                "city-010",
+                null,
+                "city-020",
+                null,
+                "city-019",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -46994,6 +49564,16 @@
                 "city-015",
                 "city-009",
                 "city-008"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-019",
+                "city-025",
+                "city-026",
+                "city-015",
+                "city-009",
+                "city-008",
+                null
               ],
               "distances": [
                 0,
@@ -47059,6 +49639,16 @@
                 "city-021",
                 "city-010"
               ],
+              "directionalCityIds": [
+                "city-011",
+                null,
+                "city-016",
+                null,
+                "city-021",
+                null,
+                null,
+                "city-010"
+              ],
               "distances": [
                 0,
                 0,
@@ -47078,6 +49668,16 @@
                 "city-016",
                 "city-012",
                 "city-011"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-020",
+                "city-021",
+                null,
+                "city-016",
+                "city-012",
+                "city-011",
+                null
               ],
               "distances": [
                 0,
@@ -47145,6 +49745,16 @@
                 "city-022",
                 "city-015"
               ],
+              "directionalCityIds": [
+                "city-012",
+                null,
+                null,
+                "city-022",
+                null,
+                null,
+                "city-015",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -47159,6 +49769,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-015",
+                "city-021",
+                "city-028",
+                "city-022",
+                "city-017",
+                "city-013",
+                "city-012",
+                "city-011"
+              ],
+              "directionalCityIds": [
                 "city-015",
                 "city-021",
                 "city-028",
@@ -47230,6 +49850,16 @@
                 "city-018",
                 "city-022"
               ],
+              "directionalCityIds": [
+                "city-013",
+                null,
+                "city-018",
+                null,
+                "city-022",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -47248,6 +49878,16 @@
                 "city-022",
                 "city-023",
                 "city-018",
+                "city-013",
+                "city-012"
+              ],
+              "directionalCityIds": [
+                "city-016",
+                null,
+                "city-022",
+                "city-023",
+                "city-018",
+                null,
                 "city-013",
                 "city-012"
               ],
@@ -47305,6 +49945,16 @@
                 "city-017",
                 "city-013"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-017",
+                "city-013"
+              ],
               "distances": [
                 0,
                 0,
@@ -47322,6 +49972,16 @@
                 "city-017",
                 "city-022",
                 "city-023",
+                "city-013"
+              ],
+              "directionalCityIds": [
+                "city-017",
+                "city-022",
+                "city-023",
+                null,
+                null,
+                null,
+                null,
                 "city-013"
               ],
               "distances": [
@@ -47389,6 +50049,16 @@
                 "city-014",
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                "city-014",
+                null,
+                null,
+                "city-024",
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -47407,6 +50077,16 @@
                 "city-025",
                 "city-020",
                 "city-014"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-024",
+                "city-025",
+                "city-020",
+                "city-014",
+                null,
+                null
               ],
               "distances": [
                 0,
@@ -47471,6 +50151,16 @@
                 "city-026",
                 "city-014"
               ],
+              "directionalCityIds": [
+                "city-010",
+                null,
+                "city-021",
+                null,
+                "city-026",
+                null,
+                null,
+                "city-014"
+              ],
               "distances": [
                 0,
                 0,
@@ -47491,6 +50181,16 @@
                 "city-027",
                 "city-021",
                 "city-015",
+                "city-009"
+              ],
+              "directionalCityIds": [
+                "city-019",
+                "city-032",
+                "city-026",
+                "city-027",
+                "city-021",
+                "city-015",
+                null,
                 "city-009"
               ],
               "distances": [
@@ -47560,6 +50260,16 @@
                 "city-022",
                 "city-020"
               ],
+              "directionalCityIds": [
+                "city-015",
+                null,
+                "city-022",
+                null,
+                null,
+                null,
+                "city-020",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -47574,6 +50284,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-020",
+                "city-026",
+                "city-027",
+                "city-028",
+                "city-022",
+                "city-016",
+                "city-015",
+                "city-010"
+              ],
+              "directionalCityIds": [
                 "city-020",
                 "city-026",
                 "city-027",
@@ -47663,6 +50383,16 @@
                 "city-021",
                 "city-016"
               ],
+              "directionalCityIds": [
+                "city-017",
+                null,
+                "city-023",
+                "city-029",
+                null,
+                "city-028",
+                "city-021",
+                "city-016"
+              ],
               "distances": [
                 0,
                 0,
@@ -47677,6 +50407,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-021",
+                "city-028",
+                "city-034",
+                "city-029",
+                "city-023",
+                "city-018",
+                "city-017",
+                "city-016"
+              ],
+              "directionalCityIds": [
                 "city-021",
                 "city-028",
                 "city-034",
@@ -47755,6 +50495,16 @@
               "linkedCityIds": [
                 "city-022"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-022",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -47771,6 +50521,16 @@
               "linkedCityIds": [
                 "city-022",
                 "city-029",
+                "city-018",
+                "city-017"
+              ],
+              "directionalCityIds": [
+                "city-022",
+                null,
+                "city-029",
+                null,
+                null,
+                null,
                 "city-018",
                 "city-017"
               ],
@@ -47857,6 +50617,16 @@
                 "city-031",
                 "city-030"
               ],
+              "directionalCityIds": [
+                "city-019",
+                null,
+                "city-025",
+                "city-031",
+                null,
+                "city-030",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -47876,6 +50646,16 @@
                 "city-025",
                 "city-010",
                 "city-019"
+              ],
+              "directionalCityIds": [
+                null,
+                "city-030",
+                null,
+                "city-031",
+                "city-025",
+                "city-010",
+                "city-019",
+                null
               ],
               "distances": [
                 0,
@@ -47938,6 +50718,16 @@
               "linkedCityIds": [
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-024",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -47953,6 +50743,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-024",
+                "city-031",
+                "city-032",
+                "city-026",
+                "city-010",
+                "city-014",
+                "city-019"
+              ],
+              "directionalCityIds": [
+                "city-024",
+                null,
                 "city-031",
                 "city-032",
                 "city-026",
@@ -48021,6 +50821,16 @@
                 "city-033",
                 "city-032"
               ],
+              "directionalCityIds": [
+                "city-020",
+                null,
+                "city-027",
+                "city-033",
+                null,
+                "city-032",
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -48037,6 +50847,16 @@
               "linkedCityIds": [
                 "city-025",
                 "city-032",
+                "city-033",
+                "city-027",
+                "city-021",
+                "city-020",
+                "city-009"
+              ],
+              "directionalCityIds": [
+                "city-025",
+                "city-032",
+                null,
                 "city-033",
                 "city-027",
                 "city-021",
@@ -48115,6 +50935,16 @@
                 "city-033",
                 "city-026"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-028",
+                null,
+                "city-033",
+                null,
+                "city-026",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -48130,6 +50960,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-026",
+                "city-033",
+                "city-034",
+                "city-028",
+                "city-017",
+                "city-021",
+                "city-020"
+              ],
+              "directionalCityIds": [
+                "city-026",
+                null,
                 "city-033",
                 "city-034",
                 "city-028",
@@ -48204,6 +51044,16 @@
                 "city-034",
                 "city-027"
               ],
+              "directionalCityIds": [
+                null,
+                "city-022",
+                null,
+                "city-034",
+                null,
+                null,
+                "city-027",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -48220,6 +51070,16 @@
               "linkedCityIds": [
                 "city-027",
                 "city-033",
+                "city-034",
+                "city-029",
+                "city-022",
+                "city-016",
+                "city-021"
+              ],
+              "directionalCityIds": [
+                "city-027",
+                "city-033",
+                null,
                 "city-034",
                 "city-029",
                 "city-022",
@@ -48284,6 +51144,16 @@
                 "city-034",
                 "city-022"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-034",
+                null,
+                "city-022"
+              ],
               "distances": [
                 0,
                 0,
@@ -48300,6 +51170,16 @@
               "linkedCityIds": [
                 "city-028",
                 "city-034",
+                "city-023",
+                "city-022"
+              ],
+              "directionalCityIds": [
+                "city-028",
+                "city-034",
+                null,
+                null,
+                null,
+                null,
                 "city-023",
                 "city-022"
               ],
@@ -48368,6 +51248,16 @@
               "linkedCityIds": [
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                "city-024",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -48383,6 +51273,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-030"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-030",
+                null
               ],
               "distances": [
                 0,
@@ -48464,6 +51364,16 @@
                 "city-032",
                 "city-024"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-032",
+                null,
+                null,
+                null,
+                null,
+                "city-024"
+              ],
               "distances": [
                 0,
                 0,
@@ -48478,6 +51388,16 @@
             {
               "resourceId": 60,
               "linkedCityIds": [
+                "city-032",
+                "city-020",
+                "city-025",
+                "city-024"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
                 "city-032",
                 "city-020",
                 "city-025",
@@ -48544,6 +51464,16 @@
                 "city-035",
                 "city-031"
               ],
+              "directionalCityIds": [
+                null,
+                "city-026",
+                null,
+                "city-035",
+                null,
+                null,
+                "city-031",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -48559,6 +51489,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-031",
+                "city-035",
+                "city-033",
+                "city-020",
+                "city-009",
+                "city-025"
+              ],
+              "directionalCityIds": [
+                "city-031",
+                null,
+                null,
                 "city-035",
                 "city-033",
                 "city-020",
@@ -48623,6 +51563,16 @@
                 "city-036",
                 "city-026"
               ],
+              "directionalCityIds": [
+                "city-027",
+                null,
+                "city-034",
+                null,
+                "city-036",
+                null,
+                null,
+                "city-026"
+              ],
               "distances": [
                 0,
                 0,
@@ -48639,6 +51589,16 @@
               "linkedCityIds": [
                 "city-032",
                 "city-036",
+                "city-034",
+                "city-028",
+                "city-027",
+                "city-026"
+              ],
+              "directionalCityIds": [
+                "city-032",
+                null,
+                "city-036",
+                null,
                 "city-034",
                 "city-028",
                 "city-027",
@@ -48713,6 +51673,16 @@
                 "city-033",
                 "city-028"
               ],
+              "directionalCityIds": [
+                null,
+                "city-029",
+                null,
+                null,
+                "city-037",
+                null,
+                "city-033",
+                "city-028"
+              ],
               "distances": [
                 0,
                 0,
@@ -48729,6 +51699,16 @@
               "linkedCityIds": [
                 "city-033",
                 "city-037",
+                "city-029",
+                "city-022",
+                "city-028"
+              ],
+              "directionalCityIds": [
+                "city-033",
+                null,
+                "city-037",
+                null,
+                null,
                 "city-029",
                 "city-022",
                 "city-028"
@@ -48790,6 +51770,16 @@
                 "city-036",
                 "city-032"
               ],
+              "directionalCityIds": [
+                null,
+                null,
+                "city-036",
+                null,
+                null,
+                null,
+                null,
+                "city-032"
+              ],
               "distances": [
                 0,
                 0,
@@ -48806,6 +51796,16 @@
               "linkedCityIds": [
                 "city-036",
                 "city-027",
+                "city-032"
+              ],
+              "directionalCityIds": [
+                null,
+                null,
+                null,
+                null,
+                "city-036",
+                "city-027",
+                null,
                 "city-032"
               ],
               "distances": [
@@ -48866,6 +51866,16 @@
                 "city-037",
                 "city-035"
               ],
+              "directionalCityIds": [
+                "city-033",
+                null,
+                "city-037",
+                null,
+                null,
+                null,
+                "city-035",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -48883,6 +51893,16 @@
                 "city-035",
                 "city-037",
                 "city-033"
+              ],
+              "directionalCityIds": [
+                "city-035",
+                null,
+                null,
+                null,
+                "city-037",
+                null,
+                "city-033",
+                null
               ],
               "distances": [
                 3,
@@ -48945,6 +51965,16 @@
                 "city-034",
                 "city-036"
               ],
+              "directionalCityIds": [
+                "city-034",
+                null,
+                null,
+                null,
+                null,
+                null,
+                "city-036",
+                null
+              ],
               "distances": [
                 0,
                 0,
@@ -48960,6 +51990,16 @@
               "resourceId": 60,
               "linkedCityIds": [
                 "city-036",
+                "city-034",
+                "city-027"
+              ],
+              "directionalCityIds": [
+                "city-036",
+                null,
+                null,
+                null,
+                null,
+                null,
                 "city-034",
                 "city-027"
               ],

@@ -4,9 +4,9 @@
 
 ## 状态
 
-**Main-M3-B 已完成。**
+**Main-M3-C 已完成，MG3 验收通过。**
 
-Main-M3-A 已打通出征编队、真实地形战场和战略结算；Main-M3-B 进一步支持 AI 出征、非玩家自动结算、玩家守城、技能命中/治疗/特殊状态、逐日恢复和阵营 UI。122 项测试、双主题及独立 macOS 应用验收已完成，见 `docs/28-main-m3-b.md`；生产战斗 golden 与完整 MG3 精修对照尚未完成。
+Main-M3-A/B 已打通出征编队、真实地形战场、战略结算、AI 出征、玩家守城和技能状态；Main-M3-C 捕获生产初始化、自动结算、普通攻击及技能 golden，并修复方向槽、初始站位、兵力/HP 和技能经验差异。127 项测试、双主题及独立 macOS 应用验收已完成，见 `docs/29-main-m3-c.md`。
 
 现有 Godot 分层工程、双主题地图、规则测试、快照存档和 macOS 导出链继续复用。R0 的虚构内容与自动战斗仅保留为历史技术验证，不再限制 main 的属性范围和战术战斗目标。
 
@@ -55,6 +55,7 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 | [docs/26-main-m2d-b.md](docs/26-main-m2d-b.md) | Main-M2D-B 非战斗 AI 与势力闭环 |
 | [docs/27-main-m3-a.md](docs/27-main-m3-a.md) | Main-M3-A 出征与首个战术切片 |
 | [docs/28-main-m3-b.md](docs/28-main-m3-b.md) | Main-M3-B 非玩家战斗、守城与技能状态 |
+| [docs/29-main-m3-c.md](docs/29-main-m3-c.md) | Main-M3-C 生产战斗 golden 与 MG3 验收 |
 | [docs/provenance.md](docs/provenance.md) | 实际内容与资产来源记录 |
 
 ## 构建与验证
@@ -62,7 +63,7 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 本地工具链位于 `.tools/`（不入库）。macOS 上执行：
 
 ```bash
-scripts/verify.sh        # 导入校验、122 项测试、R0 回归、Godot 冒烟
+scripts/verify.sh        # 导入校验、127 项测试、R0 回归、Godot 冒烟
 scripts/export-macos.sh # 导出并运行独立 macOS 应用冒烟
 scripts/capture-ui.sh   # 构建并重新生成深色、浅色和对比样片
 ```
@@ -71,7 +72,7 @@ Godot 编辑器打开根目录 `project.godot`。main 内容导入命令见 `too
 
 ## 下一步
 
-进入 M3-C：可靠生产战斗 golden、精修版逐项对照和完整 MG3 验收；另行补录原生赏赐 UI golden。
+进入 M4 打磨与发行技术验证；完整战术 AI、更多技能的自然概率及原生赏赐 UI golden 可作为精修补充。
 
 ## 注意
 

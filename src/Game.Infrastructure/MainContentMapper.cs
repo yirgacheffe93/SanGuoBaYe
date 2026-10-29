@@ -31,6 +31,7 @@ internal static class MainContentMapper
             Id = item.Id, SourceIndex = item.Index, Name = item.Name, State = item.Raw.State,
             NativeX = item.NativePosition.X, NativeY = item.NativePosition.Y,
             Connections = item.Connections.Single(connection => connection.ResourceId == 59).LinkedCityIds,
+            DirectionalConnectionIds = item.Connections.Single(connection => connection.ResourceId == 59).DirectionalCityIds.Select(id => id ?? "").ToList(),
             Belong = item.OwnerPersonId ?? "", SatrapId = item.SatrapPersonId ?? "",
             FarmingLimit = item.Raw.FarmingLimit, Farming = item.Raw.Farming,
             CommerceLimit = item.Raw.CommerceLimit, Commerce = item.Raw.Commerce,
