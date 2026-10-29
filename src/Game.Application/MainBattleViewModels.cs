@@ -14,6 +14,7 @@ public sealed record MainBattleView(
     int Day,
     int MaxDays,
     MainBattleResult Result,
+    bool PlayerIsAttacker,
     int MapWidth,
     int MapHeight,
     IReadOnlyList<int> Terrains,
@@ -28,7 +29,7 @@ public static class MainBattleViewFactory
         var city = world.Cities.Single(city => city.Id == battle.TargetCityId);
         var map = content.Battle.Maps.Single(map => map.CityId == city.Id);
         return new MainBattleView(city.Name, battle.AttackerFood, battle.DefenderFood, battle.Weather, battle.Day,
-            battle.MaxDays, battle.Result, map.Width, map.Height, map.Terrains,
+            battle.MaxDays, battle.Result, battle.PlayerIsAttacker, map.Width, map.Height, map.Terrains,
             battle.Units.Select(unit =>
             {
                 var person = world.Persons.Single(person => person.Id == unit.PersonId);

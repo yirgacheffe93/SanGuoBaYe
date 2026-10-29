@@ -50,6 +50,13 @@ public sealed class MainGameSession
         if (World.Outcome != MainGameOutcome.InProgress) return [];
         MainFactionRules.UpdateSatraps(World);
         if (runAi) MainAiPlanner.Plan(World);
+        var defensiveOrder = World.Orders.FirstOrDefault(order => order.OrderId == MainCommandCatalog.BattleOrderId &&
+            World.Cities.Single(city => city.Id == order.ObjectId).Belong == World.PlayerRulerId);
+        if (defensiveOrder is not null)
+        {
+            MainBattleService.Begin(World, Content, defensiveOrder.Id);
+            return ["敌军来袭，进入守城战。"];
+        }
         var messages = MainOrderExecutor.Execute(World, Content).ToList();
         messages.AddRange(MainMonthService.Update(World, Content));
         var outcome = MainFactionRules.EvaluateOutcome(World);

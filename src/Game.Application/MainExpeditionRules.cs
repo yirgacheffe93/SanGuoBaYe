@@ -11,7 +11,7 @@ public static class MainExpeditionRules
         {
             Id = $"main.order.{world.NextSequence++}", OrderId = MainCommandCatalog.BattleOrderId,
             CityId = source.Id, ObjectId = request.TargetCityId!, PersonId = request.PersonId,
-            ParticipantIds = request.ParticipantIds ?? [request.PersonId], Food = request.Food, TimeCount = 0
+            ParticipantIds = request.ParticipantIds ?? [request.PersonId], Food = request.Food, FoodPaid = true, TimeCount = 0
         };
         order.TimeCount = Math.Abs(source.NativeX - world.Cities.Single(city => city.Id == order.ObjectId).NativeX) +
             Math.Abs(source.NativeY - world.Cities.Single(city => city.Id == order.ObjectId).NativeY);

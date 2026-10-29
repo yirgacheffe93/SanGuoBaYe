@@ -27,8 +27,10 @@ public static class MainBattleService
         var state = new MainBattleState
         {
             SourceCityId = source.Id, TargetCityId = target.Id, AttackerRulerId = source.Belong,
-            DefenderRulerId = target.Belong, AttackerFood = order.Food, DefenderFood = target.Food
+            DefenderRulerId = target.Belong, AttackerFood = order.Food, DefenderFood = target.Food,
+            PlayerIsAttacker = source.Belong == world.PlayerRulerId
         };
+        if (!order.FoodPaid) source.Food = Math.Max(0, source.Food - order.Food);
         var attackPositions = content.Battle.InitialPositions[way];
         var defencePositions = content.Battle.InitialPositions[8];
         var (ax, ay) = AttackBase(map, way);
@@ -50,6 +52,48 @@ public static class MainBattleService
         world.Orders.Remove(order);
         CheckEnd(world, content, state);
         return state;
+    }
+
+    public static string ResolveAuto(MainWorld world, MainContent content, MainOrder order)
+    {
+        var source = world.Cities.Single(city => city.Id == order.CityId);
+        var target = world.Cities.Single(city => city.Id == order.ObjectId);
+        if (!order.FoodPaid) source.Food = Math.Max(0, source.Food - order.Food);
+        var defenders = target.PersonIds.Select(id => world.Persons.Single(person => person.Id == id))
+            .Where(person => person.Belong == target.Belong && person.Status == MainPersonStatus.Active)
+            .OrderByDescending(person => person.Arms).ThenBy(person => person.SourceIndex).Take(10).ToList();
+        var state = new MainBattleState
+        {
+            SourceCityId = source.Id, TargetCityId = target.Id, AttackerRulerId = source.Belong,
+            DefenderRulerId = target.Belong, AttackerFood = order.Food, DefenderFood = target.Food,
+            PlayerIsAttacker = source.Belong == world.PlayerRulerId
+        };
+        foreach (var person in order.ParticipantIds.Select(id => world.Persons.Single(person => person.Id == id)))
+            state.Units.Add(CreateUnit(content, person, true, 0, 0));
+        foreach (var person in defenders)
+        {
+            target.PersonIds.Remove(person.Id);
+            person.CityId = "";
+            state.Units.Add(CreateUnit(content, person, false, 0, 0));
+        }
+        var attackArms = state.Units.Where(unit => unit.IsAttacker).Sum(unit => world.Persons.Single(person => person.Id == unit.PersonId).Arms);
+        var defenceArms = state.Units.Where(unit => !unit.IsAttacker).Sum(unit => world.Persons.Single(person => person.Id == unit.PersonId).Arms);
+        var roll = MainRandom.Next(world, 101);
+        if (attackArms == 0) state.Result = MainBattleResult.DefenderWon;
+        else if (defenceArms == 0) state.Result = MainBattleResult.AttackerWon;
+        else if (attackArms > defenceArms)
+        {
+            var threshold = attackArms >> 1 > defenceArms ? 30 : state.AttackerFood > state.DefenderFood ? 40 : 60;
+            state.Result = roll < threshold ? MainBattleResult.AttackerWon : MainBattleResult.DefenderWon;
+        }
+        else
+        {
+            var threshold = attackArms < defenceArms >> 1 ? 2 : state.AttackerFood > state.DefenderFood ? 30 : 10;
+            state.Result = roll > threshold ? MainBattleResult.AttackerWon : MainBattleResult.DefenderWon;
+        }
+        world.ActiveBattle = state;
+        world.Orders.Remove(order);
+        return Resolve(world);
     }
 
     public static IReadOnlyList<string> GetSkills(MainWorld world, MainContent content, string personId)
@@ -80,7 +124,8 @@ public static class MainBattleService
         var battle = Required(world);
         var actor = Unit(battle, personId);
         var target = Unit(battle, targetId);
-        if (!CanAct(actor) || target.State == 8 || actor.IsAttacker == target.IsAttacker || !InAttackRange(world, actor, target)) return false;
+        if (!CanAct(actor) || target.State == 8 || actor.IsAttacker == target.IsAttacker || !InAttackRange(world, actor, target) ||
+            !CoordinatesValid(content, battle, actor) || !CoordinatesValid(content, battle, target)) return false;
         ApplyAttack(world, content, battle, actor, target);
         actor.HasActed = true;
         CheckEnd(world, content, battle);
@@ -93,20 +138,42 @@ public static class MainBattleService
         var actor = Unit(battle, personId);
         var target = Unit(battle, targetId);
         var skill = content.Skills.SingleOrDefault(item => item.Id == skillId);
-        if (!CanAct(actor) || target.State == 8 || skill is null || !GetSkills(world, content, personId).Contains(skillId) || actor.Mp < skill.UseMp) return false;
+        if (!CanAct(actor) || actor.State == 2 || target.State == 8 || skill is null ||
+            !GetSkills(world, content, personId).Contains(skillId) || actor.Mp < skill.UseMp) return false;
         if (skill.Aim == 0 && actor.IsAttacker == target.IsAttacker || skill.Aim == 1 && actor.IsAttacker != target.IsAttacker) return false;
-        if (skill.Weather[battle.Weather - 1] <= 0) return false;
+        if (skill.Weather[battle.Weather - 1] <= 0 || Distance(actor, target) > 3 ||
+            !CoordinatesValid(content, battle, actor) || !CoordinatesValid(content, battle, target)) return false;
+        var actorPerson = world.Persons.Single(person => person.Id == actor.PersonId);
+        var targetPerson = world.Persons.Single(person => person.Id == target.PersonId);
         actor.Mp -= skill.UseMp;
-        var hurt = Scale(world, content, skill.Power, skill, battle, actor, target);
-        var destroy = Scale(world, content, skill.Destroy, skill, battle, actor, target);
-        var person = world.Persons.Single(person => person.Id == target.PersonId);
-        person.Arms = Math.Max(0, person.Arms - hurt);
-        if (target.IsAttacker) battle.AttackerFood = Math.Max(0, battle.AttackerFood - destroy);
-        else battle.DefenderFood = Math.Max(0, battle.DefenderFood - destroy);
-        if (skill.State != 0) target.State = skill.State;
-        if (person.Arms == 0) target.State = 8;
+        var hit = MainRandom.Next(world, targetPerson.Iq + targetPerson.Level + 25) <= (actorPerson.Iq + actorPerson.Level + 5) / 2;
         actor.HasActed = true;
-        battle.Logs.Add($"{Name(world, actor)}使用{skill.Name}，兵力伤害 {hurt}，粮草伤害 {destroy}。");
+        if (!hit)
+        {
+            battle.Logs.Add($"{actorPerson.Name}的{skill.Name}未命中。");
+            return true;
+        }
+        switch (skill.SourceIndex)
+        {
+            case 21:
+                battle.Weather = 1 + MainRandom.Next(world, 5);
+                battle.Logs.Add($"{actorPerson.Name}改变天气。");
+                break;
+            case 26:
+                foreach (var enemy in battle.Units.Where(unit => unit.IsAttacker != actor.IsAttacker && unit.State != 8 && Distance(actor, unit) <= 1).Take(4))
+                    ApplyAttack(world, content, battle, actor, enemy);
+                break;
+            case 27:
+                actor.Move = Math.Min(8, actor.Move + 2);
+                battle.Logs.Add($"{actorPerson.Name}移动力提升。");
+                break;
+            case 29:
+                battle.Logs.Add($"谍报{targetPerson.Name}：兵力 {targetPerson.Arms}，HP {target.Hp}，MP {target.Mp}，状态 {target.State}。");
+                break;
+            default:
+                ApplySkillEffect(world, content, battle, actor, target, skill);
+                break;
+        }
         CheckEnd(world, content, battle);
         return true;
     }
@@ -122,41 +189,86 @@ public static class MainBattleService
     public static void EndTurn(MainWorld world, MainContent content)
     {
         var battle = Required(world);
-        foreach (var defender in battle.Units.Where(unit => !unit.IsAttacker && CanAct(unit)).ToList())
+        foreach (var unit in battle.Units.Where(unit => unit.IsAttacker != battle.PlayerIsAttacker && CanAct(unit)).ToList())
         {
-            var targets = battle.Units.Where(unit => unit.IsAttacker && unit.State != 8)
-                .OrderBy(target => Distance(defender, target)).ThenBy(target => target.PersonId, StringComparer.Ordinal).ToList();
-            if (targets.Count == 0) break;
-            var target = targets[0];
-            if (!InAttackRange(world, defender, target))
-            {
-                var x = defender.X + Math.Sign(target.X - defender.X);
-                var y = defender.Y + Math.Sign(target.Y - defender.Y);
-                if (CanMoveTo(world, content, battle, defender, x, y))
-                {
-                    defender.X = x;
-                    defender.Y = y;
-                }
-            }
-            if (InAttackRange(world, defender, target)) ApplyAttack(world, content, battle, defender, target);
-            defender.HasActed = true;
+            RunUnitAi(world, content, battle, unit);
             CheckEnd(world, content, battle);
-            if (battle.Result != MainBattleResult.Ongoing) break;
+            if (battle.Result != MainBattleResult.Ongoing) return;
         }
-        if (battle.Result != MainBattleResult.Ongoing) return;
         battle.AttackerFood = Math.Max(0, battle.AttackerFood - (int)Math.Sqrt(TotalArms(world, battle, true)) / 3);
         battle.DefenderFood = Math.Max(0, battle.DefenderFood - (int)Math.Sqrt(TotalArms(world, battle, false)) / 3);
         battle.Day++;
+        foreach (var unit in battle.Units.Where(unit => unit.State != 8))
+        {
+            var person = world.Persons.Single(person => person.Id == unit.PersonId);
+            var recovered = MainRandom.Next(world, 60) < person.Iq / 2;
+            if (unit.State == 6)
+            {
+                person.Arms = Math.Max(0, person.Arms - (person.Arms >> 3));
+                if (recovered) unit.State = 0;
+            }
+            else if (unit.State is 1 or 2 or 3)
+            {
+                if (recovered) unit.State = 0;
+            }
+            else if (unit.State is 4 or 7 && !recovered) unit.State = 0;
+            if (person.Arms == 0) unit.State = 8;
+            if (unit.State != 3) unit.Move = Math.Min(8, unit.BaseMove == 0 ? unit.Move : unit.BaseMove);
+            unit.Mp = Math.Min(unit.MaxMp, unit.Mp + 1);
+            unit.HasActed = false;
+        }
         battle.Weather = 1 + MainRandom.Next(world, 5);
-        foreach (var unit in battle.Units) unit.HasActed = false;
         CheckEnd(world, content, battle);
+    }
+
+    private static void RunUnitAi(MainWorld world, MainContent content, MainBattleState battle, MainBattleUnit actor)
+    {
+        var targets = battle.Units.Where(unit => unit.IsAttacker != actor.IsAttacker && unit.State != 8)
+            .OrderBy(target => Distance(actor, target)).ThenBy(target => target.PersonId, StringComparer.Ordinal).ToList();
+        if (targets.Count == 0) return;
+        if (actor.State != 2)
+        {
+            foreach (var skillId in GetSkills(world, content, actor.PersonId))
+            {
+                var skill = content.Skills.Single(skill => skill.Id == skillId);
+                var candidates = skill.Aim == 0 ? targets : battle.Units.Where(unit => unit.IsAttacker == actor.IsAttacker && unit.State != 8).ToList();
+                var target = candidates.FirstOrDefault(target => Distance(actor, target) <= 3);
+                if (target is not null && actor.Mp >= skill.UseMp && skill.Weather[battle.Weather - 1] > 0 &&
+                    UseSkill(world, content, actor.PersonId, skillId, target.PersonId)) return;
+            }
+        }
+        var nearest = targets[0];
+        if (!InAttackRange(world, actor, nearest))
+        {
+            for (var step = 0; step < actor.Move; step++)
+            {
+                var candidates = new[]
+                {
+                    (X: actor.X + Math.Sign(nearest.X - actor.X), Y: actor.Y),
+                    (X: actor.X, Y: actor.Y + Math.Sign(nearest.Y - actor.Y))
+                };
+                var moved = false;
+                foreach (var candidate in candidates.Where(candidate => CanMoveTo(world, content, battle, actor, candidate.X, candidate.Y))
+                             .OrderBy(candidate => Math.Abs(nearest.X - candidate.X) + Math.Abs(nearest.Y - candidate.Y)))
+                {
+                    actor.X = candidate.X;
+                    actor.Y = candidate.Y;
+                    moved = true;
+                    break;
+                }
+                if (!moved) break;
+                if (InAttackRange(world, actor, nearest)) break;
+            }
+        }
+        if (InAttackRange(world, actor, nearest)) ApplyAttack(world, content, battle, actor, nearest);
+        actor.HasActed = true;
     }
 
     public static void Retreat(MainWorld world)
     {
         var battle = Required(world);
-        battle.Result = MainBattleResult.DefenderWon;
-        battle.Logs.Add("进攻方全军撤退。");
+        battle.Result = battle.PlayerIsAttacker ? MainBattleResult.DefenderWon : MainBattleResult.AttackerWon;
+        battle.Logs.Add("玩家全军撤退。");
     }
 
     public static string Resolve(MainWorld world)
@@ -205,10 +317,31 @@ public static class MainBattleService
             .Select(id => content.Tools.Single(tool => tool.Id == id)).Sum(tool => tool.Move);
         return new MainBattleUnit
         {
-            PersonId = person.Id, IsAttacker = attacker, X = x, Y = y, Move = Math.Min(8, move),
+            PersonId = person.Id, IsAttacker = attacker, X = x, Y = y, Move = Math.Min(8, move), BaseMove = Math.Min(8, move),
             Hp = (person.Force * 80 / 100 + person.Iq * 30 / 100 + person.Level) * person.Thew / 100,
-            Mp = (person.Iq * 80 / 100 + (int)Math.Sqrt(person.Force) / 2 + person.Level) * person.Thew / 100
+            Mp = (person.Iq * 80 / 100 + (int)Math.Sqrt(person.Force) / 2 + person.Level) * person.Thew / 100,
+            MaxMp = (person.Iq * 80 / 100 + (int)Math.Sqrt(person.Force) / 2 + person.Level) * person.Thew / 100
         };
+    }
+
+    private static void ApplySkillEffect(MainWorld world, MainContent content, MainBattleState battle, MainBattleUnit actor, MainBattleUnit target, MainSkill skill)
+    {
+        var hurt = Scale(world, content, skill.Power, skill, battle, actor, target);
+        var destroy = Scale(world, content, skill.Destroy, skill, battle, actor, target);
+        var person = world.Persons.Single(person => person.Id == target.PersonId);
+        if (skill.Aim == 1)
+        {
+            var maximum = person.Level * 100 + person.Force * 10 + person.Iq * 10;
+            person.Arms = Math.Min(maximum, person.Arms + hurt);
+        }
+        else person.Arms = Math.Max(0, person.Arms - hurt);
+        if (target.IsAttacker) battle.AttackerFood = Math.Max(0, battle.AttackerFood - destroy);
+        else battle.DefenderFood = Math.Max(0, battle.DefenderFood - destroy);
+        if (skill.SourceIndex == 24) target.State = 0;
+        else if (skill.State != 0) target.State = skill.State;
+        if (target.State == 3) target.Move = 1;
+        if (person.Arms == 0 && skill.Aim == 0) target.State = 8;
+        battle.Logs.Add($"{Name(world, actor)}使用{skill.Name}，兵力变化 {hurt}，粮草变化 {destroy}。");
     }
 
     private static void ApplyAttack(MainWorld world, MainContent content, MainBattleState battle, MainBattleUnit actor, MainBattleUnit target)
@@ -252,6 +385,12 @@ public static class MainBattleService
         Distance(actor, target) <= (world.Persons.Single(person => person.Id == actor.PersonId).ArmsType == 2 ? 2 : 1);
     private static int Distance(MainBattleUnit a, MainBattleUnit b) => Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
     private static string Name(MainWorld world, MainBattleUnit unit) => world.Persons.Single(person => person.Id == unit.PersonId).Name;
+
+    private static bool CoordinatesValid(MainContent content, MainBattleState battle, MainBattleUnit unit)
+    {
+        var map = content.Battle.Maps.Single(map => map.CityId == battle.TargetCityId);
+        return unit.X >= 0 && unit.Y >= 0 && unit.X < map.Width && unit.Y < map.Height;
+    }
 
     private static bool CanMoveTo(MainWorld world, MainContent content, MainBattleState battle, MainBattleUnit unit, int x, int y)
     {

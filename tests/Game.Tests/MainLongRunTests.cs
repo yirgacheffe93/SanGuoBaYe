@@ -33,6 +33,8 @@ public sealed class MainLongRunTests
                 }
                 continuous.EndMonth();
                 restored.EndMonth();
+                ResolveDefensiveBattle(continuous);
+                ResolveDefensiveBattle(restored);
                 AssertInvariants(continuous.World);
                 AssertInvariants(restored.World);
                 Assert.Equal(continuous.GetStateHash(), restored.GetStateHash());
@@ -74,6 +76,13 @@ public sealed class MainLongRunTests
         {
             if (person.OrderId is not null) Assert.Contains(world.Orders, order => order.Id == person.OrderId);
         });
+    }
+
+    private static void ResolveDefensiveBattle(MainGameSession session)
+    {
+        if (session.World.ActiveBattle is null) return;
+        MainBattleService.Retreat(session.World);
+        session.ResolveBattle();
     }
 
     private static MainContent LoadContent() => MainContentLoader.Load(

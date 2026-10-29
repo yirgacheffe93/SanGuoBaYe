@@ -29,6 +29,9 @@ public static class MainOrderExecutor
                     messages.Add(MainDiplomacyRules.Execute(world, order));
                     ReturnPerson(world, order, order.CityId);
                     break;
+                case MainCommandCatalog.BattleOrderId:
+                    messages.Add(MainBattleService.ResolveAuto(world, content, order));
+                    break;
                 case MainCommandCatalog.PlunderOrderId:
                     var city = world.Cities.Single(city => city.Id == order.CityId);
                     messages.Add(MainMilitaryRules.Plunder(city, world.Persons.Single(person => person.Id == order.PersonId)));

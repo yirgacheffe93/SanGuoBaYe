@@ -25,7 +25,7 @@ public partial class MainStartScreen : PanelContainer
         var title = new Label { Text = "三国霸业", HorizontalAlignment = HorizontalAlignment.Center };
         title.AddThemeFontSizeOverride("font_size", 36);
         content.AddChild(title);
-        var subtitle = new Label { Text = "Godot 重写 · Main-M3-A", HorizontalAlignment = HorizontalAlignment.Center };
+        var subtitle = new Label { Text = "Godot 重写 · Main-M3-B", HorizontalAlignment = HorizontalAlignment.Center };
         subtitle.AddThemeFontSizeOverride("font_size", 17);
         content.AddChild(subtitle);
         content.AddChild(new Label { Text = "选择时期" });

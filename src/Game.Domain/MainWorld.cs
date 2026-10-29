@@ -135,6 +135,7 @@ public sealed class MainOrder
     public int Consume { get; set; }
     public int TimeCount { get; set; }
     public List<string> ParticipantIds { get; set; } = [];
+    public bool FoodPaid { get; set; }
 }
 
 public enum MainGameOutcome { InProgress, Won, Lost }

@@ -448,6 +448,7 @@ public partial class Main : Control
             RunDiplomacySmoke();
             RunFactionSmoke();
             RunBattleSmoke();
+            RunAdvancedBattleSmoke();
             GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=17 hash={expected}");
             GD.Print("MAIN_M2C_SMOKE_OK conscript=1000 execute+exile=equipment-preserved");
             GD.Print("MAIN_M2C_C_SMOKE_OK native-route use-item annual=191");
@@ -458,6 +459,49 @@ public partial class Main : Control
             GD.PushError($"MAIN_M2B_SMOKE_FAILED: {error}");
             GetTree().Quit(1);
         }
+    }
+
+    private void RunAdvancedBattleSmoke()
+    {
+        StartGame(1, "person-013");
+        session.World.Orders.Add(new MainOrder
+        {
+            Id = "defensive-smoke", OrderId = 27, CityId = "city-000", ObjectId = "city-005", PersonId = "person-056",
+            ParticipantIds = ["person-056"], Food = 50
+        });
+        OnEndMonth(false);
+        var battle = session.World.ActiveBattle ?? throw new InvalidOperationException("守城战未进入。");
+        if (battle.PlayerIsAttacker) throw new InvalidOperationException("守城阵营错误。");
+        content.Battle.SpecialSkills[0][89] = "skill-013";
+        var actor = battle.Units.First(unit => unit.PersonId == "person-089");
+        var target = battle.Units.First(unit => unit.PersonId == "person-056");
+        session.World.Persons[89].Iq = 255;
+        session.World.Persons[56].Iq = 0;
+        actor.X = 5;
+        actor.Y = 5;
+        target.X = 6;
+        target.Y = 5;
+        OnBattleCommand(MainBattleUiAction.Skill, actor.PersonId, target.PersonId, "skill-013", 0, 0);
+        if (target.State != 2) throw new InvalidOperationException("技能状态未生效。");
+        OnBattleCommand(MainBattleUiAction.EndTurn, null, null, null, 0, 0);
+        OnBattleCommand(MainBattleUiAction.Retreat, null, null, null, 0, 0);
+        OnBattleCommand(MainBattleUiAction.Resolve, null, null, null, 0, 0);
+        OnEndMonth(false);
+        if (session.World.ActiveBattle is not null || session.World.Month != 2) throw new InvalidOperationException("守城后月度续跑失败。");
+        var source = session.World.Cities[0];
+        source.Food = 500;
+        var order = new MainOrder
+        {
+            Id = "auto-smoke", OrderId = 27, CityId = source.Id, ObjectId = "city-004", PersonId = "person-056",
+            ParticipantIds = ["person-056", "person-057"], Food = 100
+        };
+        session.World.Persons[56].Arms = 1000;
+        session.World.Persons[57].Arms = 1000;
+        session.World.Orders.Add(order);
+        session.World.RandomState = 3;
+        var result = MainBattleService.ResolveAuto(session.World, content, order);
+        if (!result.Contains("攻下") || source.Food != 400) throw new InvalidOperationException("非玩家自动结算失败。");
+        GD.Print("MAIN_M3_B_SMOKE_OK defensive skill-state auto-resolve month-continued");
     }
 
     private void RunBattleSmoke()
@@ -558,11 +602,12 @@ public partial class Main : Control
         try
         {
             StartGame(1, "person-013");
-            selectedPersonId = "person-089";
-            detailPanel.SelectCommand(22);
-            detailPanel.SetTransportAmounts(100, 0, 0);
-            Refresh();
-            OnCommand();
+            session.World.Orders.Add(new MainOrder
+            {
+                Id = "capture-defence", OrderId = 27, CityId = "city-000", ObjectId = "city-005", PersonId = "person-056",
+                ParticipantIds = ["person-056"], Food = 50
+            });
+            OnEndMonth(false);
             var argument = OS.GetCmdlineUserArgs().FirstOrDefault(value => value.StartsWith("--capture-dir=", StringComparison.Ordinal));
             var directory = argument is null ? "build/ui" : argument["--capture-dir=".Length..];
             Directory.CreateDirectory(directory);

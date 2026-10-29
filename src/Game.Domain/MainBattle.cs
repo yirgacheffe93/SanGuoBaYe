@@ -34,6 +34,7 @@ public sealed class MainBattleState
     public int Day { get; set; }
     public int MaxDays { get; set; } = 30;
     public MainBattleResult Result { get; set; }
+    public bool PlayerIsAttacker { get; set; } = true;
     public List<MainBattleUnit> Units { get; set; } = [];
     public List<string> Logs { get; set; } = [];
 }
@@ -46,7 +47,9 @@ public sealed class MainBattleUnit
     public int Y { get; set; }
     public int Hp { get; set; }
     public int Mp { get; set; }
+    public int MaxMp { get; set; }
     public int Move { get; set; }
+    public int BaseMove { get; set; }
     public bool HasActed { get; set; }
     public int State { get; set; }
 }

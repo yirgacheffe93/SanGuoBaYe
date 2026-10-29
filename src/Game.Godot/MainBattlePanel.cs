@@ -65,7 +65,7 @@ public partial class MainBattlePanel : PanelContainer
     {
         view = value;
         if (selectedPersonId is null || value.Units.All(unit => unit.PersonId != selectedPersonId || unit.State == 8))
-            selectedPersonId = value.Units.FirstOrDefault(unit => unit.IsAttacker && unit.State != 8 && !unit.HasActed)?.PersonId;
+            selectedPersonId = value.Units.FirstOrDefault(unit => unit.IsAttacker == value.PlayerIsAttacker && unit.State != 8 && !unit.HasActed)?.PersonId;
         if (selectedTargetId is not null && value.Units.All(unit => unit.PersonId != selectedTargetId || unit.State == 8)) selectedTargetId = null;
         grid.SelectedPersonId = selectedPersonId;
         grid.SetView(value);
@@ -91,7 +91,7 @@ public partial class MainBattlePanel : PanelContainer
         var target = view.Units.FirstOrDefault(unit => unit.State != 8 && unit.X == x && unit.Y == y);
         if (target is not null)
         {
-            if (target.IsAttacker)
+            if (target.IsAttacker == view.PlayerIsAttacker)
             {
                 selectedPersonId = target.PersonId;
                 selectedTargetId = null;

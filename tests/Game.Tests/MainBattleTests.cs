@@ -53,6 +53,10 @@ public sealed class MainBattleTests
         var magical = CreateBattle();
         actor = magical.World.ActiveBattle!.Units.First(unit => unit.PersonId == "person-089");
         target = magical.World.ActiveBattle.Units.First(unit => !unit.IsAttacker);
+        actor.X = 5;
+        actor.Y = 5;
+        target.X = 6;
+        target.Y = 5;
         var mp = actor.Mp;
         arms = magical.World.Persons.Single(person => person.Id == target.PersonId).Arms;
         Assert.True(MainBattleService.UseSkill(magical.World, magical.Content, actor.PersonId, "skill-004", target.PersonId));

@@ -137,6 +137,10 @@ public static class MainAiPlanner
                 if (MainRandom.Next(world, enemies.Count * 2) >= enemies.Count) continue;
                 var strongest = officers.OrderByDescending(person => person.Arms).ThenBy(person => person.SourceIndex).ToList();
                 if (strongest[0].Arms < 1000 || strongest.Count < 4) continue;
+                var target = enemies.OrderBy(item => item.PersonIds.Sum(id => world.Persons.Single(person => person.Id == id).Arms))
+                    .ThenBy(item => item.SourceIndex).First();
+                QueueBattle(world, city, officers, target);
+                return;
             }
         }
     }
@@ -171,6 +175,24 @@ public static class MainAiPlanner
     }
 
     private static int MaxArms(MainPerson person) => person.Level * 100 + person.Force * 10 + person.Iq * 10;
+
+    private static void QueueBattle(MainWorld world, MainCity city, List<MainPerson> officers, MainCity target)
+    {
+        var participants = officers.OrderByDescending(person => person.Arms).ThenBy(person => person.SourceIndex).Take(10).ToList();
+        var order = new MainOrder
+        {
+            Id = $"main.order.{world.NextSequence++}", OrderId = MainCommandCatalog.BattleOrderId,
+            CityId = city.Id, ObjectId = target.Id, PersonId = participants[0].Id,
+            ParticipantIds = participants.Select(person => person.Id).ToList(), Food = city.Food, TimeCount = 0
+        };
+        foreach (var person in participants)
+        {
+            person.OrderId = order.Id;
+            person.CityId = "";
+            city.PersonIds.Remove(person.Id);
+        }
+        world.Orders.Add(order);
+    }
 
     private static void Queue(MainWorld world, MainCity city, MainPerson person, int commandId, string objectId)
     {
