@@ -1,0 +1,453 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "branch": "main",
+    "commit": "eba4a77bcf675eb8250306172a24c68c6954f21a",
+    "library": "libs/SGBY.lib",
+    "libraryBytes": 615415,
+    "librarySha256": "e7c2d1eb12f9ec50c8ef69fdbf73688240ea7f2cc8c946e4826cc260b05f4e5b",
+    "engine": "js/baye.js",
+    "engineSha256": "00b1969aae22cd68f03fbfc51c53f6da0adf7b52e44e0db23fe8fee4e118ce69",
+    "bridge": "js/bridge.js",
+    "bridgeSha256": "814a0adef77cddb8c039c17b4a261d269bcd6f3a634c2daede2594edddd79e19",
+    "wasm": "js/baye.wasm",
+    "wasmSha256": "b933531e6ee5dbc0b491d9c0874027d7c80bc8ab32ff846c379d0f08e446cf7e",
+    "decoding": "Node.js 26 native TextDecoder(GBK)"
+  },
+  "boundaries": [
+    "通过真实地图/命令/道具/人物菜单并注入确认键；cityMakeCommand仅指定赏赐入口，willGiveTool不改结果。",
+    "属性、装备槽和城内道具是受控初始条件；实际阈值、装备和消耗由生产LargessMake/AddGoodsPerson执行。"
+  ],
+  "scenarios": [
+    {
+      "scenario": {
+        "name": "ordinary-empty",
+        "tool": 0,
+        "force": 110,
+        "iq": 110,
+        "full": false
+      },
+      "before": {
+        "force": 110,
+        "iq": 110,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": [
+          32768
+        ]
+      },
+      "after": {
+        "force": 120,
+        "iq": 110,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          1,
+          0
+        ],
+        "tools": []
+      },
+      "accepted": true,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    },
+    {
+      "scenario": {
+        "name": "ordinary-full",
+        "tool": 0,
+        "force": 110,
+        "iq": 110,
+        "full": true
+      },
+      "before": {
+        "force": 110,
+        "iq": 110,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          1,
+          2
+        ],
+        "tools": [
+          32768
+        ]
+      },
+      "after": {
+        "force": 110,
+        "iq": 110,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          1,
+          2
+        ],
+        "tools": [
+          32768
+        ]
+      },
+      "accepted": false,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    },
+    {
+      "scenario": {
+        "name": "tool-30-empty",
+        "tool": 30,
+        "force": 106,
+        "iq": 106,
+        "full": false
+      },
+      "before": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": [
+          32798
+        ]
+      },
+      "after": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 4,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": []
+      },
+      "accepted": true,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    },
+    {
+      "scenario": {
+        "name": "tool-30-full",
+        "tool": 30,
+        "force": 106,
+        "iq": 106,
+        "full": true
+      },
+      "before": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          1,
+          2
+        ],
+        "tools": [
+          32798
+        ]
+      },
+      "after": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          1,
+          2
+        ],
+        "tools": [
+          32798
+        ]
+      },
+      "accepted": false,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    },
+    {
+      "scenario": {
+        "name": "tool-30-threshold",
+        "tool": 30,
+        "force": 105,
+        "iq": 105,
+        "full": false
+      },
+      "before": {
+        "force": 105,
+        "iq": 105,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": [
+          32798
+        ]
+      },
+      "after": {
+        "force": 105,
+        "iq": 105,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": [
+          32798
+        ]
+      },
+      "accepted": false,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    },
+    {
+      "scenario": {
+        "name": "tool-31-empty",
+        "tool": 31,
+        "force": 106,
+        "iq": 106,
+        "full": false
+      },
+      "before": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": [
+          32799
+        ]
+      },
+      "after": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 5,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": []
+      },
+      "accepted": true,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    },
+    {
+      "scenario": {
+        "name": "tool-31-full",
+        "tool": 31,
+        "force": 106,
+        "iq": 106,
+        "full": true
+      },
+      "before": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          1,
+          2
+        ],
+        "tools": [
+          32799
+        ]
+      },
+      "after": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          1,
+          2
+        ],
+        "tools": [
+          32799
+        ]
+      },
+      "accepted": false,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    },
+    {
+      "scenario": {
+        "name": "tool-31-threshold",
+        "tool": 31,
+        "force": 105,
+        "iq": 105,
+        "full": false
+      },
+      "before": {
+        "force": 105,
+        "iq": 105,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": [
+          32799
+        ]
+      },
+      "after": {
+        "force": 105,
+        "iq": 105,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": [
+          32799
+        ]
+      },
+      "accepted": false,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    },
+    {
+      "scenario": {
+        "name": "tool-32-empty",
+        "tool": 32,
+        "force": 106,
+        "iq": 106,
+        "full": false
+      },
+      "before": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": [
+          32800
+        ]
+      },
+      "after": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 3,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": []
+      },
+      "accepted": true,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    },
+    {
+      "scenario": {
+        "name": "tool-32-full",
+        "tool": 32,
+        "force": 106,
+        "iq": 106,
+        "full": true
+      },
+      "before": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          1,
+          2
+        ],
+        "tools": [
+          32800
+        ]
+      },
+      "after": {
+        "force": 106,
+        "iq": 106,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          1,
+          2
+        ],
+        "tools": [
+          32800
+        ]
+      },
+      "accepted": false,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    },
+    {
+      "scenario": {
+        "name": "tool-32-threshold",
+        "tool": 32,
+        "force": 105,
+        "iq": 105,
+        "full": false
+      },
+      "before": {
+        "force": 105,
+        "iq": 105,
+        "armsType": 0,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": [
+          32800
+        ]
+      },
+      "after": {
+        "force": 105,
+        "iq": 105,
+        "armsType": 3,
+        "devotion": 100,
+        "equipment": [
+          0,
+          0
+        ],
+        "tools": []
+      },
+      "accepted": true,
+      "events": [
+        "native-reward-command",
+        "native-willGiveTool"
+      ]
+    }
+  ]
+}

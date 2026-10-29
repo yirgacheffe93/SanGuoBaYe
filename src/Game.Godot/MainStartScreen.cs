@@ -10,7 +10,12 @@ public partial class MainStartScreen : PanelContainer
     private OptionButton rulerOptions = null!;
     private Button startButton = null!;
 
+    private Button continueButton = null!;
+    private Button resumeButton = null!;
     public event Action<int, string>? StartRequested;
+    public event Action? ContinueRequested;
+    public event Action? LoadRequested;
+    public event Action? ResumeRequested;
 
     public override void _Ready()
     {
@@ -25,7 +30,7 @@ public partial class MainStartScreen : PanelContainer
         var title = new Label { Text = "三国霸业", HorizontalAlignment = HorizontalAlignment.Center };
         title.AddThemeFontSizeOverride("font_size", 36);
         content.AddChild(title);
-        var subtitle = new Label { Text = "Godot 重写 · Main-M3-D", HorizontalAlignment = HorizontalAlignment.Center };
+        var subtitle = new Label { Text = "单机策略 · 四时期征战", HorizontalAlignment = HorizontalAlignment.Center };
         subtitle.AddThemeFontSizeOverride("font_size", 17);
         content.AddChild(subtitle);
         content.AddChild(new Label { Text = "选择时期" });
@@ -38,9 +43,18 @@ public partial class MainStartScreen : PanelContainer
         startButton = new Button { Text = "开始游戏" };
         startButton.Pressed += OnStart;
         content.AddChild(startButton);
+        continueButton = new Button { Text = "继续最近存档", Disabled = true };
+        continueButton.Pressed += () => ContinueRequested?.Invoke();
+        content.AddChild(continueButton);
+        var load = new Button { Text = "读取存档" };
+        load.Pressed += () => LoadRequested?.Invoke();
+        content.AddChild(load);
+        resumeButton = new Button { Text = "返回当前游戏", Visible = false };
+        resumeButton.Pressed += () => ResumeRequested?.Invoke();
+        content.AddChild(resumeButton);
         content.AddChild(new Label
         {
-            Text = "当前：四时期、38 城、战略 AI、出征守城与独立战术战斗。\n真实射程、移动后行动与生产 golden 已验收，后续优先 UI 与交互打磨。",
+            Text = "选择时期与君主开始征战，\n或读取存档继续未完的战局。",
             HorizontalAlignment = HorizontalAlignment.Center,
             AutowrapMode = TextServer.AutowrapMode.WordSmart
         });
@@ -53,6 +67,12 @@ public partial class MainStartScreen : PanelContainer
         foreach (var period in periods) periodOptions.AddItem($"{period.Year} 年 · {period.RulerIds.Count} 位君主", period.Period);
         periodOptions.Select(0);
         PopulateRulers();
+    }
+
+    public void SetContinue(bool available, bool hasSession)
+    {
+        continueButton.Disabled = !available;
+        resumeButton.Visible = hasSession;
     }
 
     private void PopulateRulers()

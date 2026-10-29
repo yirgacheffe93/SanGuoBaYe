@@ -75,6 +75,18 @@ node tools/main-import/capture-m2c-c.mjs
 
 输出为 `content/main/golden-m2c-c.json`。阶段 hook 注入属于受控 fixture，不冒充 UI 接受测试；原生赏赐 UI 自动驱动尚不可靠，特殊道具项明确保留 `not-captured`。
 
+## M4-A 自然技能与原生赏赐菜单
+
+```bash
+node tools/main-import/capture-skill-natural.mjs
+node tools/main-import/capture-reward-ui.mjs
+# 重新捕获并逐字节校验，不覆盖已有文件
+node tools/main-import/capture-skill-natural.mjs --check
+node tools/main-import/capture-reward-ui.mjs --check
+```
+
+输出为 `golden-skill-natural.json`（62 场景）和 `golden-reward-ui.json`（11 场景）。技能不覆盖 showSkill 的命中结果；赏赐不覆盖 willGiveTool 的实际结果。受控条件、生产 UI 随机数和验收范围见 `docs/31-main-m4-a.md`。旧 M2C-C 的赏赐 not-captured 已由此处独立产物补齐，历史文件保留。
+
 ## 道具发现位诊断
 
 ```bash

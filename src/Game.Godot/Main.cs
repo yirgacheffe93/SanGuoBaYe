@@ -11,6 +11,8 @@ public partial class Main : Control
     private MainGameSession session = null!;
     private MainGameView currentView = null!;
     private MainStartScreen startScreen = null!;
+    private MainSavePanel savePanel = null!;
+    private MainSaveCatalog saveCatalog = null!;
     private MainCityListPanel cityListPanel = null!;
     private MainCityDetailPanel detailPanel = null!;
     private MainOrderReportPanel orderReportPanel = null!;
@@ -27,7 +29,9 @@ public partial class Main : Control
     private Label feedback = null!;
     private Button themeButton = null!;
     private Button endMonthButton = null!;
-    private string SavePath => ProjectSettings.GlobalizePath("user://main-m2a-save.json");
+    private string SaveRoot => OS.GetCmdlineUserArgs().Any(argument => argument is "--spike-smoke" or "--main-smoke" or "--capture-ui")
+        ? Path.Combine(Path.GetTempPath(), $"sgby-verify-{System.Environment.ProcessId}") : ProjectSettings.GlobalizePath("user://");
+    private string SavePath => Path.Combine(SaveRoot, "main-m2a-save.json");
 
     public override void _Ready()
     {
@@ -47,9 +51,15 @@ public partial class Main : Control
         {
             feedback.Text = error.Message;
             GD.PushError(error);
+            return;
         }
         startScreen.Configure(content.Periods);
         startScreen.StartRequested += StartGame;
+        saveCatalog = new MainSaveCatalog(Path.Combine(SaveRoot, "saves"), content);
+        startScreen.ContinueRequested += ContinueGame;
+        startScreen.LoadRequested += ShowSaves;
+        startScreen.ResumeRequested += () => { startScreen.Hide(); Refresh(); };
+        startScreen.SetContinue(saveCatalog.List().Any(slot => slot.CanLoad), false);
         var arguments = OS.GetCmdlineUserArgs();
         if (arguments.Contains("--spike-smoke") || arguments.Contains("--main-smoke")) CallDeferred(nameof(RunSmoke));
         else if (arguments.Contains("--capture-ui")) CallDeferred(nameof(RunCapture));
@@ -113,11 +123,14 @@ public partial class Main : Control
         feedback = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, SizeFlagsHorizontal = SizeFlags.ExpandFill };
         actions.AddChild(feedback);
         var save = new Button { Text = "存档" };
-        save.Pressed += OnSave;
+        save.Pressed += ShowSaves;
         actions.AddChild(save);
         var load = new Button { Text = "读档" };
-        load.Pressed += OnLoad;
+        load.Pressed += ShowSaves;
         actions.AddChild(load);
+        var menu = new Button { Text = "主菜单" };
+        menu.Pressed += ShowTitle;
+        actions.AddChild(menu);
         endMonthButton = new Button { Text = "策略结束  →" };
         endMonthButton.Pressed += () => OnEndMonth();
         actions.AddChild(endMonthButton);
@@ -125,21 +138,79 @@ public partial class Main : Control
         battlePanel.SkillProvider = personId => session.GetBattleSkills(personId)
             .Select(id => (id, content.Skills.Single(skill => skill.Id == id).Name)).ToList();
         battlePanel.CommandRequested += OnBattleCommand;
+        battlePanel.SaveRequested += ShowSaves;
+        battlePanel.MenuRequested += ShowTitle;
+        battlePanel.MovementProvider = personId => MainBattleService.GetReachableCells(session.World, content, personId)
+            .Select(cell => (cell.X, cell.Y)).ToList();
+        battlePanel.RangeProvider = (personId, skillId) => MainBattleService.GetActionRange(session.World, content, personId, skillId);
+        battlePanel.AttackFailure = (personId, targetId) => MainBattleService.AttackFailure(session.World, content, personId, targetId);
+        battlePanel.SkillFailure = (personId, skillId, targetId) => MainBattleService.SkillFailure(session.World, content, personId, skillId, targetId);
         battlePanel.Hide();
         AddChild(battlePanel);
         startScreen = new MainStartScreen();
         AddChild(startScreen);
+        savePanel = new MainSavePanel();
+        AddChild(savePanel);
+        savePanel.Hide();
+        savePanel.SaveRequested += slot =>
+        {
+            try { saveCatalog.Save(session, slot); savePanel.SetSlots(saveCatalog.List(), true); savePanel.SetMessage($"已保存到存档 {slot}。"); }
+            catch (Exception error) { savePanel.SetMessage($"保存失败：{error.Message}"); }
+        };
+        savePanel.LoadRequested += LoadSlot;
+        savePanel.Closed += () => startScreen.SetContinue(saveCatalog.List().Any(slot => slot.CanLoad), session is not null);
         ApplyTheme();
     }
 
     private void StartGame(int period, string rulerId)
     {
         session = MainContentLoader.CreateSession(content, period, rulerId);
+        battlePanel.ResetSelection();
         selectedCityId = session.GetView().Cities.First(city => city.Belong == rulerId).Id;
         selectedPersonId = session.GetView().Persons.FirstOrDefault(person => person.CityId == selectedCityId && person.Belong == rulerId)?.Id ?? "";
         startScreen.Hide();
         gameRoot.Show();
         Refresh();
+    }
+
+    private void ShowTitle()
+    {
+        gameRoot.Hide();
+        battlePanel.Hide();
+        startScreen.SetContinue(saveCatalog.List().Any(slot => slot.CanLoad), session is not null);
+        startScreen.Show();
+    }
+
+    private void ShowSaves()
+    {
+        savePanel.SetSlots(saveCatalog.List(), session is not null);
+        savePanel.Show();
+    }
+
+    private void ContinueGame()
+    {
+        var slot = saveCatalog.List().Where(slot => slot.CanLoad).OrderByDescending(slot => slot.LastWriteUtc).FirstOrDefault();
+        if (slot is not null) LoadSlot(slot);
+        else ShowSaves();
+    }
+
+    private void LoadSlot(MainSaveSlot slot)
+    {
+        try
+        {
+            var restored = saveCatalog.Load(slot);
+            session = restored;
+            startScreen.Hide();
+            savePanel.Hide();
+            battlePanel.ResetSelection();
+            Refresh();
+            feedback.Text = "读档成功。";
+        }
+        catch (Exception error)
+        {
+            ShowSaves();
+            savePanel.SetMessage($"读档失败：{error.Message}");
+        }
     }
 
     private void ApplyTheme()
@@ -430,13 +501,13 @@ public partial class Main : Control
             var useCity = session.World.Cities.Single(item => item.Id == "city-005");
             var usePerson = session.World.Persons.Single(item => item.Id == "person-089");
             usePerson.Tool1Id = "tool-000";
-            usePerson.Tool2Id = "tool-001";
+            usePerson.Tool2Id = "";
             usePerson.EquipIds = [usePerson.Tool1Id, usePerson.Tool2Id];
             useCity.ToolEntries.Add(new MainCityToolEntry { ToolId = "tool-032", Discovered = true });
             detailPanel.SelectCommand(11);
             Refresh();
             OnCommand();
-            if (usePerson.ArmsType != 3 || usePerson.EquipIds.SequenceEqual(new[] { "tool-000", "tool-001" }) == false ||
+            if (usePerson.ArmsType != 3 || usePerson.EquipIds.SequenceEqual(new[] { "tool-000", "" }) == false ||
                 useCity.ToolEntries.Any(entry => entry.ToolId == "tool-032"))
                 throw new InvalidOperationException("兵符消耗或装备槽边界失败。");
             session.World.Month = 12;
@@ -481,7 +552,7 @@ public partial class Main : Control
 
         actor.HasActed = false;
         content.Battle.SpecialSkills[0][89] = "skill-016";
-        session.World.Persons[89].Iq = 255;
+        session.World.Persons[89].Iq = 200;
         session.World.Persons[89].Arms = 10;
         session.World.RandomState = 1;
         OnBattleCommand(MainBattleUiAction.Skill, actor.PersonId, actor.PersonId, "skill-016", 0, 0);
@@ -496,6 +567,7 @@ public partial class Main : Control
     private void RunAdvancedBattleSmoke()
     {
         StartGame(1, "person-013");
+        session.World.Cities[6].Belong = session.World.PlayerRulerId;
         session.World.Orders.Add(new MainOrder
         {
             Id = "defensive-smoke", OrderId = 27, CityId = "city-000", ObjectId = "city-005", PersonId = "person-056",
@@ -507,7 +579,7 @@ public partial class Main : Control
         content.Battle.SpecialSkills[0][89] = "skill-013";
         var actor = battle.Units.First(unit => unit.PersonId == "person-089");
         var target = battle.Units.First(unit => unit.PersonId == "person-056");
-        session.World.Persons[89].Iq = 255;
+        session.World.Persons[89].Iq = 200;
         session.World.Persons[56].Iq = 0;
         actor.X = 5;
         actor.Y = 5;
@@ -534,6 +606,28 @@ public partial class Main : Control
         var result = MainBattleService.ResolveAuto(session.World, content, order);
         if (!result.Contains("攻下") || source.Food != 400) throw new InvalidOperationException("非玩家自动结算失败。");
         GD.Print("MAIN_M3_B_SMOKE_OK defensive skill-state auto-resolve month-continued");
+        RunSaveMenuSmoke();
+    }
+
+    private void RunSaveMenuSmoke()
+    {
+        StartGame(1, "person-013");
+        var order = session.IssueCommand(new MainCommandRequest(27, "city-005", "person-089", TargetCityId: "city-004", Food: 100,
+            ParticipantIds: ["person-013", "person-089", "person-090"]));
+        session.EnterBattle(order.OrderId!);
+        Refresh();
+        var hash = session.GetStateHash();
+        ShowSaves();
+        saveCatalog.Save(session, 1);
+        savePanel.SetSlots(saveCatalog.List(), true);
+        savePanel.Hide();
+        ShowTitle();
+        ContinueGame();
+        if (session.GetStateHash() != hash || !battlePanel.Visible || startScreen.Visible)
+            throw new InvalidOperationException("标题继续战斗存档失败。");
+        ShowSaves();
+        savePanel.Hide();
+        GD.Print("MAIN_M4_SAVE_SMOKE_OK slots title-continue battle-load");
     }
 
     private void RunBattleSmoke()
@@ -656,6 +750,15 @@ public partial class Main : Control
             comparison.BlitRect(dark, new Rect2I(Vector2I.Zero, dark.GetSize()), Vector2I.Zero);
             comparison.BlitRect(light, new Rect2I(Vector2I.Zero, light.GetSize()), new Vector2I(dark.GetWidth(), 0));
             comparison.SavePng(Path.Combine(directory, "ui-comparison.png"));
+            ShowTitle();
+            await ToSignal(GetTree().CreateTimer(0.15), SceneTreeTimer.SignalName.Timeout);
+            await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
+            GetViewport().GetTexture().GetImage().SavePng(Path.Combine(directory, "ui-title.png"));
+            saveCatalog.Save(session, 1);
+            ShowSaves();
+            await ToSignal(GetTree().CreateTimer(0.15), SceneTreeTimer.SignalName.Timeout);
+            await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
+            GetViewport().GetTexture().GetImage().SavePng(Path.Combine(directory, "ui-saves.png"));
             GD.Print($"UI_CAPTURE_OK {Path.GetFullPath(directory)}");
             GetTree().Quit(0);
         }

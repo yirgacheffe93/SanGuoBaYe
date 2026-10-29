@@ -50,7 +50,7 @@ public sealed class MainBattleFlowTests
         var session = CreateBattle();
         var (actor, target) = Place(session, 5, 6);
         session.Content.Battle.SpecialSkills[0][89] = "skill-003";
-        session.World.Persons[89].Iq = 255;
+        session.World.Persons[89].Iq = 200;
         session.World.Persons.Single(person => person.Id == target.PersonId).Iq = 0;
         var mp = actor.Mp;
         Assert.False(MainBattleService.UseSkill(session.World, session.Content, actor.PersonId, "skill-003", target.PersonId));
@@ -73,7 +73,7 @@ public sealed class MainBattleFlowTests
         var session = CreateBattle();
         var (actor, _) = Place(session, 5, 6);
         session.Content.Battle.SpecialSkills[0][89] = "skill-016";
-        session.World.Persons[89].Iq = 255;
+        session.World.Persons[89].Iq = 200;
         session.World.Persons[89].Arms = 10;
         session.World.RandomState = 1;
         Assert.True(MainBattleService.UseSkill(session.World, session.Content, actor.PersonId, "skill-016", actor.PersonId));

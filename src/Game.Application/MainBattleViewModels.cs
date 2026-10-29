@@ -4,7 +4,7 @@ namespace Game.Application;
 
 public sealed record MainBattleUnitView(
     string PersonId, string Name, bool IsAttacker, int X, int Y, int Hp, int Mp, int Move,
-    bool HasActed, int State, int Arms, int ArmsType);
+    bool HasActed, int State, int Arms, int ArmsType, bool HasMoved = false);
 
 public sealed record MainBattleView(
     string TargetCityName,
@@ -19,7 +19,8 @@ public sealed record MainBattleView(
     int MapHeight,
     IReadOnlyList<int> Terrains,
     IReadOnlyList<MainBattleUnitView> Units,
-    IReadOnlyList<string> Logs);
+    IReadOnlyList<string> Logs,
+    IReadOnlyList<int> TerrainKinds, int CityX, int CityY);
 
 public static class MainBattleViewFactory
 {
@@ -34,7 +35,7 @@ public static class MainBattleViewFactory
             {
                 var person = world.Persons.Single(person => person.Id == unit.PersonId);
                 return new MainBattleUnitView(person.Id, person.Name, unit.IsAttacker, unit.X, unit.Y, unit.Hp, unit.Mp,
-                    unit.Move, unit.HasActed, unit.State, person.Arms, person.ArmsType);
-            }).ToList(), battle.Logs);
+                    unit.Move, unit.HasActed, unit.State, person.Arms, person.ArmsType, unit.HasMoved);
+            }).ToList(), battle.Logs, map.TerrainKinds, map.CityX, map.CityY);
     }
 }

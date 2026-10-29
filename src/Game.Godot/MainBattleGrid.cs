@@ -8,6 +8,10 @@ public partial class MainBattleGrid : Control
     private MainBattleView? view;
     public UiPalette Palette { get; set; } = UiThemes.Get(UiThemeMode.Dark);
     public string? SelectedPersonId { get; set; }
+    public string? SelectedTargetId { get; set; }
+    public IReadOnlyList<(int X, int Y)> MovementCells { get; set; } = [];
+    public IReadOnlyList<(int X, int Y)> ActionCells { get; set; } = [];
+    public bool SkillRange { get; set; }
     public event Action<int, int>? CellSelected;
 
     public override void _Ready()
@@ -42,15 +46,22 @@ public partial class MainBattleGrid : Control
         for (var y = 0; y < view.MapHeight; y++)
         for (var x = 0; x < view.MapWidth; x++)
         {
-            var terrain = view.Terrains[y * view.MapWidth + x];
+            var terrain = view.TerrainKinds[y * view.MapWidth + x];
             DrawRect(new Rect2(x * 16, y * 16, 16, 16), colors[terrain % colors.Length]);
             DrawRect(new Rect2(x * 16, y * 16, 16, 16), Palette.Border, false, 0.35f);
-            if (terrain == 3) DrawRect(new Rect2(x * 16 + 4, y * 16 + 4, 8, 8), Palette.City);
+            if (x == view.CityX && y == view.CityY) DrawRect(new Rect2(x * 16 + 4, y * 16 + 4, 8, 8), Palette.City);
         }
+        foreach (var cell in MovementCells)
+            DrawRect(new Rect2(cell.X * 16 + 1, cell.Y * 16 + 1, 14, 14), new Color(0.2f, 0.95f, 0.45f, 0.45f));
+        foreach (var cell in ActionCells)
+            DrawRect(new Rect2(cell.X * 16 + 1, cell.Y * 16 + 1, 14, 14), SkillRange ? new Color("70CFFF") : new Color("FFE277"), false, 1.5f);
         foreach (var unit in view.Units.Where(unit => unit.State != 8))
         {
             var center = new Vector2(unit.X * 16 + 8, unit.Y * 16 + 8);
-            DrawCircle(center, 6, unit.IsAttacker ? Palette.Accent : new Color("47758C"));
+            DrawCircle(center, 7, unit.IsAttacker == view.PlayerIsAttacker ? new Color("236F3D") : new Color("A53632"));
+            DrawString(ThemeDB.FallbackFont, center + new Vector2(-6, 4), unit.Name.Length > 0 ? unit.Name[..1] : "?", fontSize: 12, modulate: Colors.White);
+            if (unit.HasActed) DrawLine(center + new Vector2(-5, 6), center + new Vector2(5, -6), new Color("F3D2CD"), 1.5f);
+            if (unit.PersonId == SelectedTargetId) DrawRect(new Rect2(unit.X * 16, unit.Y * 16, 16, 16), new Color("FF8F73"), false, 2);
             if (unit.PersonId == SelectedPersonId) DrawArc(center, 8, 0, Mathf.Tau, 20, Palette.Selection, 2, true);
         }
     }

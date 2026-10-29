@@ -36,13 +36,13 @@ public sealed class MainTravelAndEquipmentTests
     }
 
     [Fact]
-    public void Use_item_consumes_without_occupying_full_equipment_slots()
+    public void Use_item_consumes_without_occupying_the_available_equipment_slot()
     {
         var session = CreateLiuBei();
         var city = session.World.Cities.Single(city => city.Id == "city-005");
         var person = session.World.Persons.Single(person => person.Id == "person-089");
         person.Tool1Id = "tool-000";
-        person.Tool2Id = "tool-001";
+        person.Tool2Id = "";
         person.EquipIds = [person.Tool1Id, person.Tool2Id];
         person.Devotion = 90;
         city.ToolEntries.Add(new MainCityToolEntry { ToolId = "tool-032", Discovered = true });
@@ -52,7 +52,7 @@ public sealed class MainTravelAndEquipmentTests
         Assert.Equal(106, person.Force);
         Assert.Equal(81, person.Iq);
         Assert.Equal(98, person.Devotion);
-        Assert.Equal(["tool-000", "tool-001"], person.EquipIds);
+        Assert.Equal(["tool-000", ""], person.EquipIds);
         Assert.DoesNotContain(city.ToolEntries, entry => entry.ToolId == "tool-032");
         session.IssueCommand(new MainCommandRequest(10, city.Id, person.Id));
         Assert.Equal(96, person.Force);

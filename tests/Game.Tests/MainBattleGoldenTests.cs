@@ -27,7 +27,7 @@ public sealed class MainBattleGoldenTests
     {
         var session = CreateDefenceBattle();
         var (actor, target) = PlaceAdjacent(session, "person-056", "person-013");
-        session.World.Persons[56].Iq = 255;
+        session.World.Persons[56].Iq = 200;
         session.World.Persons[13].Iq = 0;
 
         Assert.True(MainBattleService.Attack(session.World, session.Content, actor.PersonId, target.PersonId));
@@ -43,7 +43,7 @@ public sealed class MainBattleGoldenTests
         var session = CreateDefenceBattle();
         var (actor, target) = PlaceAdjacent(session, "person-056", "person-013", 3);
         session.Content.Battle.SpecialSkills[0][56] = "skill-003";
-        session.World.Persons[56].Iq = 255;
+        session.World.Persons[56].Iq = 200;
         session.World.Persons[13].Iq = 0;
         session.World.RandomState = 3228380886;
 
@@ -79,7 +79,7 @@ public sealed class MainBattleGoldenTests
         var session = CreateDefenceBattle();
         var (actor, target) = PlaceAdjacent(session, "person-056", "person-057");
         session.Content.Battle.SpecialSkills[0][56] = "skill-016";
-        session.World.Persons[56].Iq = 255;
+        session.World.Persons[56].Iq = 200;
         session.World.Persons[57].Iq = 0;
         session.World.Persons[57].Arms = 10;
         session.World.RandomState = 3228380886;

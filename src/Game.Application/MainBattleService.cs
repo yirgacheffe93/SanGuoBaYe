@@ -112,10 +112,11 @@ public static class MainBattleService
     {
         var battle = Required(world);
         var unit = Unit(battle, personId);
-        if (!CanAct(unit) || unit.HasMoved || !CanMoveTo(world, content, battle, unit, x, y)) return false;
+        if (battle.Result != MainBattleResult.Ongoing || !CanAct(unit) || unit.HasMoved || !CanMoveTo(world, content, battle, unit, x, y)) return false;
         unit.X = x;
         unit.Y = y;
         unit.HasMoved = true;
+        CheckEnd(world, content, battle);
         return true;
     }
 
@@ -124,8 +125,7 @@ public static class MainBattleService
         var battle = Required(world);
         var actor = Unit(battle, personId);
         var target = Unit(battle, targetId);
-        if (!CanAct(actor) || target.State == 8 || actor.IsAttacker == target.IsAttacker || !InAttackRange(world, content, actor, target) ||
-            !CoordinatesValid(content, battle, actor) || !CoordinatesValid(content, battle, target)) return false;
+        if (AttackFailure(world, content, personId, targetId) is not null) return false;
         ApplyAttack(world, content, battle, actor, target);
         actor.HasActed = true;
         CheckEnd(world, content, battle);
@@ -138,19 +138,13 @@ public static class MainBattleService
         var actor = Unit(battle, personId);
         var target = Unit(battle, targetId);
         var skill = content.Skills.SingleOrDefault(item => item.Id == skillId);
-        if (!CanAct(actor) || actor.State == 2 || target.State == 8 || skill is null ||
-            !GetSkills(world, content, personId).Contains(skillId) || actor.Mp < skill.UseMp) return false;
-        if (skill.Aim == 0 && actor.IsAttacker == target.IsAttacker || skill.Aim == 1 && actor.IsAttacker != target.IsAttacker) return false;
-        if (skill.Weather[battle.Weather - 1] <= 0 || !InSkillRange(content, skill, actor, target) ||
-            !CoordinatesValid(content, battle, actor) || !CoordinatesValid(content, battle, target)) return false;
-        var map = content.Battle.Maps.Single(map => map.CityId == battle.TargetCityId);
-        var actorTerrain = map.TerrainKinds[actor.Y * map.Width + actor.X];
-        var targetTerrain = map.TerrainKinds[target.Y * map.Width + target.X];
+        if (skill is null || SkillFailure(world, content, personId, skillId, targetId) is not null) return false;
         var targetPerson = world.Persons.Single(person => person.Id == target.PersonId);
-        if (skill.Oland[actorTerrain] <= 0 || skill.Eland[targetTerrain] <= 0 || skill.Earm[targetPerson.ArmsType] <= 0) return false;
         var actorPerson = world.Persons.Single(person => person.Id == actor.PersonId);
         actor.Mp -= skill.UseMp;
-        var hit = MainRandom.Next(world, targetPerson.Iq + targetPerson.Level + 25) <= (actorPerson.Iq + actorPerson.Level + 5) / 2;
+        var attackerCanny = (actorPerson.Iq + actorPerson.Level + 5) & 0xff;
+        var defenderCanny = (targetPerson.Iq + targetPerson.Level + 5) & 0xff;
+        var hit = (MainRandom.Next(world, defenderCanny + 20) & 0xff) <= attackerCanny / 2;
         actor.HasActed = true;
         if (!hit)
         {
@@ -162,17 +156,21 @@ public static class MainBattleService
             case 21:
                 battle.Weather = 1 + MainRandom.Next(world, 5);
                 battle.Logs.Add($"{actorPerson.Name}改变天气。");
+                AddExperience(actorPerson, 8);
                 break;
             case 26:
-                foreach (var enemy in battle.Units.Where(unit => unit.IsAttacker != actor.IsAttacker && unit.State != 8 && Distance(actor, unit) <= 1).Take(4))
-                    ApplyAttack(world, content, battle, actor, enemy);
-                break;
-            case 27:
-                actor.Move = Math.Min(8, actor.Move + 2);
-                battle.Logs.Add($"{actorPerson.Name}移动力提升。");
+                var surroundExperience = 0;
+                foreach (var ally in battle.Units.Where(unit => unit.IsAttacker == actor.IsAttacker && unit.State != 8 && Distance(unit, target) == 1).ToList())
+                {
+                    if (target.State == 8) break;
+                    ApplyAttack(world, content, battle, ally, target, false);
+                    surroundExperience += 2;
+                }
+                AddExperience(actorPerson, surroundExperience / 2);
                 break;
             case 29:
                 battle.Logs.Add($"谍报{targetPerson.Name}：兵力 {targetPerson.Arms}，HP {target.Hp}，MP {target.Mp}，状态 {target.State}。");
+                AddExperience(actorPerson, 8);
                 break;
             default:
                 ApplySkillEffect(world, content, battle, actor, target, skill);
@@ -184,8 +182,9 @@ public static class MainBattleService
 
     public static bool Wait(MainWorld world, string personId)
     {
-        var unit = Unit(Required(world), personId);
-        if (!CanAct(unit)) return false;
+        var battle = Required(world);
+        var unit = Unit(battle, personId);
+        if (battle.Result != MainBattleResult.Ongoing || !CanAct(unit)) return false;
         unit.Mp = Math.Min(unit.MaxMp, unit.Mp + 1);
         unit.HasActed = true;
         return true;
@@ -194,6 +193,7 @@ public static class MainBattleService
     public static void EndTurn(MainWorld world, MainContent content)
     {
         var battle = Required(world);
+        if (battle.Result != MainBattleResult.Ongoing) return;
         foreach (var unit in battle.Units.Where(unit => unit.IsAttacker != battle.PlayerIsAttacker && CanAct(unit)).ToList())
         {
             RunUnitAi(world, content, battle, unit);
@@ -226,57 +226,106 @@ public static class MainBattleService
         CheckEnd(world, content, battle);
     }
 
+    // Both sides use the same legal destinations and action validation. Planning never consumes RNG.
+    public static void RunAiTurn(MainWorld world, MainContent content, bool attacker)
+    {
+        var battle = Required(world);
+        foreach (var unit in battle.Units.Where(unit => unit.IsAttacker == attacker && CanAct(unit)).ToList())
+        {
+            if (battle.Result != MainBattleResult.Ongoing) break;
+            RunUnitAi(world, content, battle, unit);
+        }
+    }
+
     private static void RunUnitAi(MainWorld world, MainContent content, MainBattleState battle, MainBattleUnit actor)
     {
+        if (battle.Result != MainBattleResult.Ongoing || !CanAct(actor)) return;
+        if (TryAiSkill(world, content, battle, actor)) return;
         var targets = battle.Units.Where(unit => unit.IsAttacker != actor.IsAttacker && unit.State != 8)
-            .OrderBy(target => Distance(actor, target)).ThenBy(target => target.PersonId, StringComparer.Ordinal).ToList();
-        if (targets.Count == 0) return;
-        if (actor.State != 2)
+            .OrderBy(target => world.Persons.Single(person => person.Id == target.PersonId).Arms)
+            .ThenBy(target => target.PersonId, StringComparer.Ordinal).ToList();
+        var target = targets.FirstOrDefault(target => AttackFailure(world, content, actor.PersonId, target.PersonId) is null);
+        if (target is not null) { Attack(world, content, actor.PersonId, target.PersonId); return; }
+        if (!actor.HasMoved)
         {
-            foreach (var skillId in GetSkills(world, content, actor.PersonId))
+            var reachable = GetReachableCells(world, content, actor.PersonId);
+            var map = content.Battle.Maps.Single(map => map.CityId == battle.TargetCityId);
+            // A distance field permits detours around walls and units, even if the first step moves away.
+            var goals = new HashSet<(int X, int Y)>();
+            if (actor.IsAttacker) goals.Add((map.CityX, map.CityY));
+            for (var y = 0; y < map.Height; y++)
+            for (var x = 0; x < map.Width; x++)
             {
-                var skill = content.Skills.Single(skill => skill.Id == skillId);
-                var candidates = skill.Aim == 0 ? targets : battle.Units.Where(unit => unit.IsAttacker == actor.IsAttacker && unit.State != 8).ToList();
-                var target = candidates.FirstOrDefault(target => Distance(actor, target) <= 3);
-                if (target is not null && actor.Mp >= skill.UseMp && skill.Weather[battle.Weather - 1] > 0 &&
-                    UseSkill(world, content, actor.PersonId, skillId, target.PersonId)) return;
+                if (battle.Units.Any(unit => unit.State != 8 && unit != actor && unit.X == x && unit.Y == y)) continue;
+                var candidate = new MainBattleUnit { X = x, Y = y };
+                if (targets.Any(enemy => InAttackRange(world, content, actor, candidate, enemy))) goals.Add((x, y));
+            }
+            var distances = new Dictionary<(int X, int Y), int>();
+            var queue = new Queue<(int X, int Y)>();
+            foreach (var goal in goals.OrderBy(cell => cell.Y).ThenBy(cell => cell.X))
+                if (Passable(goal.X, goal.Y)) { distances[goal] = 0; queue.Enqueue(goal); }
+            while (queue.TryDequeue(out var cell))
+            foreach (var next in Neighbours(cell.X, cell.Y))
+                if (Passable(next.X, next.Y) && distances.TryAdd(next, distances[cell] + 1)) queue.Enqueue(next);
+            var destinations = reachable.Where(cell => distances.ContainsKey((cell.X, cell.Y)))
+                .OrderBy(cell => distances[(cell.X, cell.Y)])
+                .ThenByDescending(cell => cell.Remaining).ThenBy(cell => cell.Y).ThenBy(cell => cell.X).ToList();
+            if (destinations.Count > 0)
+            {
+                var best = destinations[0];
+                if (!distances.TryGetValue((actor.X, actor.Y), out var current) || distances[(best.X, best.Y)] < current)
+                    Move(world, content, actor.PersonId, best.X, best.Y);
+            }
+            bool Passable(int x, int y)
+            {
+                if (x < 0 || y < 0 || x >= map.Width || y >= map.Height) return false;
+                var type = world.Persons.Single(person => person.Id == actor.PersonId).ArmsType;
+                var resistance = content.Battle.MovementResistance[type][map.Terrains[y * map.Width + x]];
+                return resistance >= 0x80 && resistance is not (0xfe or 0xff) &&
+                    !battle.Units.Any(unit => unit != actor && unit.State != 8 && unit.X == x && unit.Y == y);
             }
         }
-        var nearest = targets[0];
-        if (!InAttackRange(world, content, actor, nearest))
-        {
-            for (var step = 0; step < actor.Move; step++)
-            {
-                var candidates = new[]
-                {
-                    (X: actor.X + Math.Sign(nearest.X - actor.X), Y: actor.Y),
-                    (X: actor.X, Y: actor.Y + Math.Sign(nearest.Y - actor.Y))
-                };
-                var moved = false;
-                foreach (var candidate in candidates.Where(candidate => CanMoveTo(world, content, battle, actor, candidate.X, candidate.Y))
-                             .OrderBy(candidate => Math.Abs(nearest.X - candidate.X) + Math.Abs(nearest.Y - candidate.Y)))
-                {
-                    actor.X = candidate.X;
-                    actor.Y = candidate.Y;
-                    actor.HasMoved = true;
-                    moved = true;
-                    break;
-                }
-                if (!moved) break;
-                if (InAttackRange(world, content, actor, nearest)) break;
-            }
-        }
-        if (InAttackRange(world, content, actor, nearest))
-        {
-            ApplyAttack(world, content, battle, actor, nearest);
-            actor.HasActed = true;
-        }
+        if (battle.Result != MainBattleResult.Ongoing) return;
+        if (TryAiSkill(world, content, battle, actor)) return;
+        target = targets.FirstOrDefault(target => AttackFailure(world, content, actor.PersonId, target.PersonId) is null);
+        if (target is not null) Attack(world, content, actor.PersonId, target.PersonId);
         else Wait(world, actor.PersonId);
+    }
+
+    private static bool TryAiSkill(MainWorld world, MainContent content, MainBattleState battle, MainBattleUnit actor)
+    {
+        var choices = new List<(string Skill, string Target, int Score)>();
+        foreach (var skillId in GetSkills(world, content, actor.PersonId))
+        foreach (var target in battle.Units.Where(unit => unit.State != 8))
+        {
+            if (SkillFailure(world, content, actor.PersonId, skillId, target.PersonId) is not null) continue;
+            var skill = content.Skills.Single(skill => skill.Id == skillId);
+            var person = world.Persons.Single(person => person.Id == target.PersonId);
+            var score = 0;
+            if (skill.SourceIndex == 24) score = target.State is 2 or 3 or 6 ? 100 : 0;
+            else if (skill.SourceIndex == 26) score = battle.Units.Count(unit => unit.IsAttacker == actor.IsAttacker && unit.State != 8 && Distance(unit, target) == 1) * 200;
+            else if (skill.SourceIndex is 21 or 27 or 29) continue;
+            else if (skill.Aim == 1)
+                score = Math.Max(0, Math.Min(Scale(world, content, skill.Power, skill, battle, actor, target),
+                    person.Level * 100 + person.Force * 10 + person.Iq * 10 - person.Arms));
+            else
+            {
+                score = Math.Min(person.Arms, Scale(world, content, skill.Power, skill, battle, actor, target));
+                if (skill.State != 0 && skill.State != target.State) score += 100;
+                score += Math.Min(target.IsAttacker ? battle.AttackerFood : battle.DefenderFood,
+                    Scale(world, content, skill.Destroy, skill, battle, actor, target));
+            }
+            if (score > 0) choices.Add((skillId, target.PersonId, score));
+        }
+        var best = choices.OrderByDescending(choice => choice.Score).ThenBy(choice => choice.Skill, StringComparer.Ordinal)
+            .ThenBy(choice => choice.Target, StringComparer.Ordinal).FirstOrDefault();
+        return best.Score > 0 && UseSkill(world, content, actor.PersonId, best.Skill, best.Target);
     }
 
     public static void Retreat(MainWorld world)
     {
         var battle = Required(world);
+        if (battle.Result != MainBattleResult.Ongoing) return;
         battle.Result = battle.PlayerIsAttacker ? MainBattleResult.DefenderWon : MainBattleResult.AttackerWon;
         battle.Logs.Add("玩家全军撤退。");
     }
@@ -289,7 +338,7 @@ public static class MainBattleService
         var attackersWin = battle.Result == MainBattleResult.AttackerWon;
         var winnerRuler = attackersWin ? battle.AttackerRulerId : battle.DefenderRulerId;
         city.Belong = winnerRuler;
-        foreach (var unit in battle.Units.Where(unit => unit.IsAttacker == attackersWin && unit.State != 8))
+        foreach (var unit in battle.Units.Where(unit => unit.IsAttacker == attackersWin))
         {
             var person = world.Persons.Single(person => person.Id == unit.PersonId);
             person.Belong = winnerRuler;
@@ -318,6 +367,8 @@ public static class MainBattleService
         var message = attackersWin ? $"攻下{city.Name}，战斗胜利。" : $"进攻{city.Name}失败，守方获胜。";
         world.Reports.Add(new ReportEntry { Turn = world.Year * 12 + world.Month, Message = message });
         world.ActiveBattle = null;
+        MainFactionRules.UpdateSatraps(world);
+        MainFactionRules.UpdateOutcome(world);
         return message;
     }
 
@@ -347,15 +398,14 @@ public static class MainBattleService
         else person.Arms = Math.Max(0, person.Arms - hurt);
         if (target.IsAttacker) battle.AttackerFood = Math.Max(0, battle.AttackerFood - destroy);
         else battle.DefenderFood = Math.Max(0, battle.DefenderFood - destroy);
-        if (skill.SourceIndex == 24) target.State = 0;
-        else if (skill.State != 0) target.State = skill.State;
+        target.State = skill.State;
         if (target.State == 3) target.Move = 1;
         if (person.Arms == 0 && skill.Aim == 0) target.State = 8;
         AddExperience(world.Persons.Single(person => person.Id == actor.PersonId), 2);
         battle.Logs.Add($"{Name(world, actor)}使用{skill.Name}，兵力变化 {hurt}，粮草变化 {destroy}。");
     }
 
-    private static void ApplyAttack(MainWorld world, MainContent content, MainBattleState battle, MainBattleUnit actor, MainBattleUnit target)
+    private static void ApplyAttack(MainWorld world, MainContent content, MainBattleState battle, MainBattleUnit actor, MainBattleUnit target, bool awardExperience = true)
     {
         var attacker = world.Persons.Single(person => person.Id == actor.PersonId);
         var defender = world.Persons.Single(person => person.Id == target.PersonId);
@@ -368,7 +418,7 @@ public static class MainBattleService
             content.Battle.LandFightModifiers[defender.ArmsType][targetTerrain]) * TerrainDefence[targetTerrain]);
         var hurt = df == 0 ? 10 : (int)(at / (double)df * (attacker.Arms >> 3) * Subdue[attacker.ArmsType, defender.ArmsType]) + 10;
         defender.Arms = Math.Max(0, defender.Arms - hurt);
-        AddExperience(attacker, 2);
+        if (awardExperience) AddExperience(attacker, 2);
         if (defender.Arms == 0) target.State = 8;
         battle.Logs.Add($"{Name(world, actor)}攻击{Name(world, target)}，造成 {hurt} 伤害。");
     }
@@ -411,6 +461,12 @@ public static class MainBattleService
         return InRange(content.Battle.AttackRanges[person.ArmsType], 2, actor, target);
     }
 
+    private static bool InAttackRange(MainWorld world, MainContent content, MainBattleUnit actor, MainBattleUnit position, MainBattleUnit target)
+    {
+        var person = world.Persons.Single(person => person.Id == actor.PersonId);
+        return InRange(content.Battle.AttackRanges[person.ArmsType], 2, position, target);
+    }
+
     private static bool InSkillRange(MainContent content, MainSkill skill, MainBattleUnit actor, MainBattleUnit target) =>
         InRange(content.Battle.SkillRanges[skill.SourceIndex], 4, actor, target);
 
@@ -433,28 +489,88 @@ public static class MainBattleService
         return unit.X >= 0 && unit.Y >= 0 && unit.X < map.Width && unit.Y < map.Height;
     }
 
-    private static bool CanMoveTo(MainWorld world, MainContent content, MainBattleState battle, MainBattleUnit unit, int x, int y)
+    public static string? AttackFailure(MainWorld world, MainContent content, string personId, string? targetId)
     {
+        var battle = Required(world);
+        var actor = battle.Units.SingleOrDefault(unit => unit.PersonId == personId);
+        var target = battle.Units.SingleOrDefault(unit => unit.PersonId == targetId);
+        if (battle.Result != MainBattleResult.Ongoing) return "战斗已经结束。";
+        if (actor is null || !CanAct(actor)) return "该武将已行动或已被击溃。";
+        if (target is null || target.State == 8) return "请先选择有效目标。";
+        if (actor.IsAttacker == target.IsAttacker) return "普通攻击只能选择敌军。";
+        if (!CoordinatesValid(content, battle, actor) || !CoordinatesValid(content, battle, target) || !InAttackRange(world, content, actor, target)) return "目标不在攻击范围内。";
+        return null;
+    }
+
+    public static string? SkillFailure(MainWorld world, MainContent content, string personId, string? skillId, string? targetId)
+    {
+        var battle = Required(world);
+        var actor = battle.Units.SingleOrDefault(unit => unit.PersonId == personId);
+        var target = battle.Units.SingleOrDefault(unit => unit.PersonId == targetId);
+        var skill = content.Skills.SingleOrDefault(skill => skill.Id == skillId);
+        if (battle.Result != MainBattleResult.Ongoing) return "战斗已经结束。";
+        if (actor is null || !CanAct(actor)) return "该武将已行动或已被击溃。";
+        if (actor.State == 2) return "当前状态不能使用技能。";
+        if (skill is null || !GetSkills(world, content, personId).Contains(skill.Id)) return "该武将没有此技能。";
+        if (actor.Mp < skill.UseMp) return $"技力不足，需要 {skill.UseMp} MP。";
+        if (skill.Weather[battle.Weather - 1] <= 0) return "当前天气不能使用此技能。";
+        if (target is null || target.State == 8) return "请先选择有效目标。";
+        if (skill.Aim == 0 && actor.IsAttacker == target.IsAttacker) return "此技能只能选择敌军。";
+        if (skill.Aim == 1 && actor.IsAttacker != target.IsAttacker) return "此技能只能选择友军或自身。";
+        if (!CoordinatesValid(content, battle, actor) || !CoordinatesValid(content, battle, target) || !InSkillRange(content, skill, actor, target)) return "目标不在技能范围内。";
         var map = content.Battle.Maps.Single(map => map.CityId == battle.TargetCityId);
-        if (x < 0 || y < 0 || x >= map.Width || y >= map.Height || x == unit.X && y == unit.Y) return false;
-        if (battle.Units.Any(other => other.State != 8 && other.X == x && other.Y == y)) return false;
-        var person = world.Persons.Single(person => person.Id == unit.PersonId);
+        if (skill.Oland[map.TerrainKinds[actor.Y * map.Width + actor.X]] <= 0) return "当前站立地形不能施放此技能。";
+        if (skill.SourceIndex == 29) return null;
+        if (skill.Eland[map.TerrainKinds[target.Y * map.Width + target.X]] <= 0) return "目标地形不符合技能条件。";
+        if (skill.Earm[world.Persons.Single(person => person.Id == target.PersonId).ArmsType] <= 0) return "目标兵种不符合技能条件。";
+        return null;
+    }
+
+    public static IReadOnlyList<(int X, int Y)> GetActionRange(MainWorld world, MainContent content, string personId, string? skillId = null)
+    {
+        var battle = Required(world);
+        var actor = Unit(battle, personId);
+        if (battle.Result != MainBattleResult.Ongoing || !CanAct(actor)) return [];
+        var map = content.Battle.Maps.Single(map => map.CityId == battle.TargetCityId);
+        var skill = content.Skills.SingleOrDefault(skill => skill.Id == skillId);
+        if (skillId is not null && (skill is null || !GetSkills(world, content, personId).Contains(skillId) ||
+            actor.State == 2 || actor.Mp < skill.UseMp || skill.Weather[battle.Weather - 1] <= 0)) return [];
+        var cells = new List<(int X, int Y)>();
+        for (var y = Math.Max(0, actor.Y - 4); y <= Math.Min(map.Height - 1, actor.Y + 4); y++)
+        for (var x = Math.Max(0, actor.X - 4); x <= Math.Min(map.Width - 1, actor.X + 4); x++)
+        {
+            var target = new MainBattleUnit { X = x, Y = y };
+            if (skill is null ? InAttackRange(world, content, actor, target) : InSkillRange(content, skill, actor, target)) cells.Add((x, y));
+        }
+        return cells;
+    }
+
+    private static bool CanMoveTo(MainWorld world, MainContent content, MainBattleState battle, MainBattleUnit unit, int x, int y) =>
+        GetReachableCells(world, content, unit.PersonId).Any(cell => cell.X == x && cell.Y == y);
+
+    private static IEnumerable<(int X, int Y)> Neighbours(int x, int y) => [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)];
+
+    public static IReadOnlyList<(int X, int Y, int Remaining)> GetReachableCells(MainWorld world, MainContent content, string personId)
+    {
+        var battle = Required(world);
+        var unit = Unit(battle, personId);
+        if (battle.Result != MainBattleResult.Ongoing || !CanAct(unit) || unit.HasMoved) return [];
+        var map = content.Battle.Maps.Single(map => map.CityId == battle.TargetCityId);
+        var person = world.Persons.Single(person => person.Id == personId);
+        var occupied = battle.Units.Where(other => other.State != 8 && other != unit).Select(other => (other.X, other.Y)).ToHashSet();
+        var enemies = battle.Units.Where(other => other.State != 8 && other.IsAttacker != unit.IsAttacker).ToList();
         var remaining = new Dictionary<(int X, int Y), int> { [(unit.X, unit.Y)] = unit.Move };
         var queue = new PriorityQueue<(int X, int Y), int>();
         queue.Enqueue((unit.X, unit.Y), -unit.Move);
-        while (queue.Count > 0)
+        while (queue.TryDequeue(out var current, out var priority))
         {
-            var current = queue.Dequeue();
             var power = remaining[current];
-            if (current == (x, y)) return true;
-            foreach (var next in new[] { (X: current.X - 1, Y: current.Y), (X: current.X + 1, Y: current.Y),
-                         (X: current.X, Y: current.Y - 1), (X: current.X, Y: current.Y + 1) })
+            if (-priority != power) continue;
+            foreach (var next in Neighbours(current.X, current.Y))
             {
-                if (next.X < 0 || next.Y < 0 || next.X >= map.Width || next.Y >= map.Height) continue;
-                if (battle.Units.Any(other => other.State != 8 && other.X == next.X && other.Y == next.Y)) continue;
+                if (next.X < 0 || next.Y < 0 || next.X >= map.Width || next.Y >= map.Height || occupied.Contains(next)) continue;
                 var resistance = content.Battle.MovementResistance[person.ArmsType][map.Terrains[next.Y * map.Width + next.X]];
-                if (unit.State != 4 && battle.Units.Any(other => other.State != 8 && other.IsAttacker != unit.IsAttacker &&
-                    Math.Abs(other.X - next.X) + Math.Abs(other.Y - next.Y) == 1)) resistance |= 0xa0;
+                if (unit.State != 4 && enemies.Any(other => Math.Abs(other.X - next.X) + Math.Abs(other.Y - next.Y) == 1)) resistance |= 0xa0;
                 if (resistance < 0x80 || resistance is 0xfe or 0xff) continue;
                 int nextPower;
                 if (resistance > 0xa0)
@@ -473,7 +589,8 @@ public static class MainBattleService
                 queue.Enqueue(next, -nextPower);
             }
         }
-        return false;
+        remaining.Remove((unit.X, unit.Y));
+        return remaining.Select(pair => (pair.Key.X, pair.Key.Y, pair.Value)).ToList();
     }
 
     private static void CheckEnd(MainWorld world, MainContent content, MainBattleState battle)

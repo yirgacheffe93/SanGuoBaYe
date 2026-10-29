@@ -6,7 +6,7 @@ import { loadEngine } from './import.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const options = { reference: path.join(ROOT, '.reference/main'), output: path.join(ROOT, 'content/main/golden-m3-c.json') };
-for (let i = 2; i < process.argv.length; i += 2) {
+for (let i = 2; process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url) && i < process.argv.length; i += 2) {
   const key = process.argv[i].replace(/^--/, '');
   if (!Object.hasOwn(options, key) || !process.argv[i + 1]) throw new Error('参数：--reference <目录> --output <JSON 文件>');
   options[key] = path.resolve(process.argv[i + 1]);
@@ -35,7 +35,7 @@ function scheduler() {
   };
 }
 
-function snapshot(c) {
+function snapshot(c, natural = false) {
   const d = c.baye.data;
   return {
     rng: c._bayeGetSeed() >>> 0,
@@ -49,9 +49,9 @@ function snapshot(c) {
       hp: d.g_GenPos[i].hp, mp: d.g_GenPos[i].mp, move: d.g_GenPos[i].move,
       active: d.g_GenPos[i].active, state: d.g_GenPos[i].state,
     })).filter((unit) => unit.person >= 0),
-    persons: [13, 56, 57, 78, 89, 90].map((index) => {
+    persons: (natural ? [...new Set(Array.from(d.g_FgtParam.GenArray).filter(id => id > 0).map(id => id - 1))] : [13, 56, 57, 78, 89, 90]).map((index) => {
       const person = d.g_Persons[index];
-      return { index, Belong: person.Belong, Arms: person.Arms, IQ: person.IQ, Level: person.Level, Experience: person.Experience };
+      return { index, Belong: person.Belong, Arms: person.Arms, IQ: person.IQ, Level: person.Level, Experience: person.Experience, ...(natural ? { ArmsType: person.ArmsType } : {}) };
     }),
     city: (() => {
       const city = d.g_Cities[4];
@@ -89,7 +89,7 @@ async function run(scenario) {
   const c = engine.context, d = c.baye.data;
   const stages = [];
   let finished = false, positioned = false, battleRounds = 0, refreshCount = 0;
-  const capture = (stage) => stages.push({ stage, ...snapshot(c) });
+  const capture = (stage) => stages.push({ stage, ...snapshot(c, scenario.natural) });
   c.baye.hooks = {
     chooseGameEntry: () => finished ? 3 : 0,
     loadPeriod: () => { c._bayeLoadPeriod(1); return 1; },
@@ -108,14 +108,17 @@ async function run(scenario) {
       if (scenario.action && d.g_GenPos[scenario.actor ?? 10].active === 0) {
         const attacker = scenario.actor ?? 10;
         const target = scenario.targetUnit ?? 0;
-        d.g_GenPos[attacker].x = 5;
-        d.g_GenPos[attacker].y = 5;
-        d.g_GenPos[target].x = 5 + (scenario.targetDistance ?? 1);
-        d.g_GenPos[target].y = 5;
+        d.g_GenPos[attacker].x = scenario.actorX ?? 5;
+        d.g_GenPos[attacker].y = scenario.actorY ?? 5;
+        d.g_GenPos[target].x = scenario.targetX ?? 5 + (scenario.targetDistance ?? 1);
+        d.g_GenPos[target].y = scenario.targetY ?? 5;
+        if (scenario.weather !== undefined) d.g_FgtWeather = scenario.weather;
+        if (scenario.targetState !== undefined) d.g_GenPos[target].state = scenario.targetState;
         d.g_MapSX = 0;
         d.g_MapSY = 0;
         d.g_FoucsX = d.g_GenPos[target].x;
         d.g_FoucsY = 5;
+        if (scenario.targetArmsType !== undefined) d.g_Persons[d.g_FgtParam.GenArray[target] - 1].ArmsType = scenario.targetArmsType;
         if (scenario.targetArms !== undefined) d.g_Persons[d.g_FgtParam.GenArray[target] - 1].Arms = scenario.targetArms;
         if (scenario.actorIq !== undefined) d.g_Persons[d.g_FgtParam.GenArray[attacker] - 1].IQ = scenario.actorIq;
         if (scenario.targetIq !== undefined) d.g_Persons[d.g_FgtParam.GenArray[target] - 1].IQ = scenario.targetIq;
@@ -139,7 +142,7 @@ async function run(scenario) {
       return scenario.action === 'attack' ? 0 : scenario.action === 'skill' || scenario.action === 'heal' || scenario.action === 'miss' ? 1 : 3;
     },
     fightChooseSkill: () => scenario.action === 'heal' ? 17 : 4,
-    showSkill: (ctx) => { ctx.result = scenario.action === 'miss' ? 0 : 1; return 0; },
+    showSkill: (ctx) => { if (scenario.natural) { c._bayeSRand(scenario.skillSeed ?? 1); capture('beforeSkill'); } if (!scenario.natural) ctx.result = scenario.action === 'miss' ? 0 : 1; return -1; },
     fightOpenMainMenu: () => 0,
     aiFightCommand: (ctx) => {
       if (stages.some((stage) => stage.stage === 'aiCommand')) {
@@ -151,7 +154,7 @@ async function run(scenario) {
       ctx.type = scenario.action === 'attack' ? 0 : scenario.action === 'wait' ? 3 : 1;
       ctx.sIdx = scenario.actor ?? 10;
       ctx.aIdx = scenario.targetUnit ?? 0;
-      ctx.skillId = scenario.action === 'heal' ? 17 : 4;
+      ctx.skillId = scenario.skillId ?? (scenario.action === 'heal' ? 17 : 4);
       stages.at(-1).command = { type: ctx.type, actorSlot: ctx.sIdx, targetSlot: ctx.aIdx, skillId: ctx.skillId };
       return 0;
     },
@@ -184,21 +187,23 @@ async function run(scenario) {
       miss: { arms: 100, hp: 91, state: 0, experience: 0, mp: 23 },
       heal: { arms: 810, hp: 94, state: 0, experience: 2, mp: 38 },
     }[scenario.action];
+    if (!scenario.natural) {
     assert.equal(targetAfter.Arms, expected.arms, `${scenario.name} 目标兵力`);
     assert.equal(targetUnitAfter.hp, expected.hp, `${scenario.name} 目标HP`);
     assert.equal(targetUnitAfter.state, expected.state, `${scenario.name} 目标状态`);
     assert.equal(actorAfter.Experience - actorBefore.Experience, expected.experience, `${scenario.name} 经验`);
     const actorUnitAfter = after.units.find((unit) => unit.person === actorIndex);
     assert.equal(actorUnitAfter.mp, expected.mp, `${scenario.name} MP`);
+    }
     if (scenario.action === 'move-attack') {
       const actorUnitBefore = before.units.find((unit) => unit.person === actorIndex);
       assert.notEqual(`${actorUnitAfter.x},${actorUnitAfter.y}`, `${actorUnitBefore.x},${actorUnitBefore.y}`, `${scenario.name} 未发生移动`);
     }
   }
-  return { ...scenario, fixture: '生产S3写入真实FIGHTERS/出征订单，经BattleDrv/GamFight；受控坐标与showSkill分支，伤害/状态/经验由生产引擎计算', stages };
+  return { ...scenario, fixture: scenario.natural ? '生产FgtJNAction自然RNG判定；仅控制命令、属性与坐标，不覆盖showSkill结果；stage5受控结束' : '生产S3写入真实FIGHTERS/出征订单，经BattleDrv/GamFight；受控坐标与showSkill分支，伤害/状态/经验由生产引擎计算', stages };
 }
 
-export { run };
+export { run, scheduler };
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const scenarios = [

@@ -47,7 +47,7 @@ public sealed class MainGameSession
 
     public IReadOnlyList<string> EndMonth(bool runAi = true)
     {
-        if (World.Outcome != MainGameOutcome.InProgress) return [];
+        if (World.Outcome != MainGameOutcome.InProgress || World.ActiveBattle is not null) return [];
         MainFactionRules.UpdateSatraps(World);
         if (runAi) MainAiPlanner.Plan(World);
         var defensiveOrder = World.Orders.FirstOrDefault(order => order.OrderId == MainCommandCatalog.BattleOrderId &&
@@ -59,14 +59,9 @@ public sealed class MainGameSession
         }
         var messages = MainOrderExecutor.Execute(World, Content).ToList();
         messages.AddRange(MainMonthService.Update(World, Content));
-        var outcome = MainFactionRules.EvaluateOutcome(World);
-        if (outcome != World.Outcome)
-        {
-            World.Outcome = outcome;
-            var message = $"战局结束：{MainFactionRules.Name(outcome)}。";
-            World.Reports.Add(new ReportEntry { Turn = World.Year * 12 + World.Month, Message = message });
-            messages.Add(message);
-        }
+        var reportCount = World.Reports.Count;
+        MainFactionRules.UpdateOutcome(World);
+        messages.AddRange(World.Reports.Skip(reportCount).Select(report => report.Message));
         return messages;
     }
 

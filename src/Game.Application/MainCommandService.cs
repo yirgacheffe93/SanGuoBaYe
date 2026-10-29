@@ -72,7 +72,7 @@ public static class MainCommandService
             if (request.ToolId is null || !city.ToolEntries.Any(entry => entry.ToolId == request.ToolId && entry.Discovered))
                 return Preview(false, "tool_unavailable", "没有可赏赐的已发现道具。");
             var tool = content.Tools.FirstOrDefault(tool => tool.Id == request.ToolId);
-            if (tool?.UseFlag == 0 && person.Tool1Id.Length > 0 && person.Tool2Id.Length > 0) return Preview(false, "equipment_full", "装备槽已满。");
+            if (person.Tool1Id.Length > 0 && person.Tool2Id.Length > 0) return Preview(false, "equipment_full", "装备槽已满。");
             if (tool is not null && tool.Arms == 2 && person.Iq <= 105 || tool is not null && tool.Arms == 3 && person.Force <= 105)
                 return Preview(false, "tool_unusable", "该人物无法使用此道具。");
         }

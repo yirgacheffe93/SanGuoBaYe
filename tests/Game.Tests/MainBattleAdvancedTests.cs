@@ -41,6 +41,7 @@ public sealed class MainBattleAdvancedTests
     {
         var session = CreateSession();
         var source = session.World.Cities[0];
+        session.World.Cities[6].Belong = session.World.PlayerRulerId;
         source.Food = 500;
         session.World.Orders.Add(new MainOrder
         {
@@ -67,7 +68,7 @@ public sealed class MainBattleAdvancedTests
         var session = CreateBattle();
         session.Content.Battle.SpecialSkills[0][89] = "skill-013";
         var (actor, target) = PlaceAdjacent(session);
-        session.World.Persons[89].Iq = 255;
+        session.World.Persons[89].Iq = 200;
         session.World.Persons.Single(person => person.Id == target.PersonId).Iq = 0;
         var mp = actor.Mp;
         Assert.True(MainBattleService.UseSkill(session.World, session.Content, actor.PersonId, "skill-013", target.PersonId));
@@ -81,7 +82,7 @@ public sealed class MainBattleAdvancedTests
         var session = CreateBattle();
         session.Content.Battle.SpecialSkills[0][89] = "skill-016";
         var (actor, target) = PlaceAdjacent(session, "person-090");
-        session.World.Persons[89].Iq = 255;
+        session.World.Persons[89].Iq = 200;
         session.World.Persons[90].Iq = 0;
         session.World.Persons[90].Arms = 10;
         Assert.True(MainBattleService.UseSkill(session.World, session.Content, actor.PersonId, "skill-016", target.PersonId));
@@ -90,7 +91,7 @@ public sealed class MainBattleAdvancedTests
     }
 
     [Fact]
-    public void Weather_and_haste_special_skills_change_real_state()
+    public void Weather_changes_and_haste_preserves_production_no_effect_boundary()
     {
         var weather = CreateBattle();
         weather.Content.Battle.SpecialSkills[0][89] = "skill-021";
@@ -103,7 +104,7 @@ public sealed class MainBattleAdvancedTests
         (actor, _) = PlaceAdjacent(haste, "person-090");
         var move = actor.Move;
         Assert.True(MainBattleService.UseSkill(haste.World, haste.Content, actor.PersonId, "skill-027", actor.PersonId));
-        Assert.Equal(Math.Min(8, move + 2), actor.Move);
+        Assert.Equal(move, actor.Move);
     }
 
     [Fact]

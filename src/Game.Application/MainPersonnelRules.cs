@@ -7,7 +7,7 @@ public static class MainPersonnelRules
     public static string Reward(MainWorld world, MainContent content, MainCity city, MainPerson person, string toolId)
     {
         var tool = content.Tools.Single(item => item.Id == toolId);
-        if (!CanUse(tool, person)) return $"{person.Name}无法使用{tool.Name}。";
+        if (person.Tool1Id.Length > 0 && person.Tool2Id.Length > 0 || !CanUse(tool, person)) return $"{person.Name}无法使用{tool.Name}。";
         person.Force = (person.Force + tool.Attack) & 0xff;
         person.Iq = (person.Iq + tool.Iq) & 0xff;
         ApplyArmsType(tool, person);

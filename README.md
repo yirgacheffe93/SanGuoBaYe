@@ -4,9 +4,9 @@
 
 ## 状态
 
-**Main-M3-D 已完成。**
+**Main-M4-A 功能收尾已完成。**
 
-Main-M3-A/B/C 已打通战略与战术主流程并建立生产 golden；Main-M3-D 进一步接入真实地形消耗、兵种/技能射程和地形修正，补齐移动后行动、友军/自身技能目标、待机恢复及搜寻在职状态。132 项测试、生产 golden、双主题及独立 macOS 应用验收已完成，见 `docs/30-main-m3-d.md`。
+战略与战术主流程已打通；M4-A 修复战斗收尾和即时胜负，补齐五槽存档、标题继续、战斗存读档、战术 AI 绕障和范围提示。新增全部 30 个技能的 62 场自然判定对照与 11 场原生赏赐菜单证据，并修复对应规则差异，见 `docs/31-main-m4-a.md`。
 
 现有 Godot 分层工程、双主题地图、规则测试、快照存档和 macOS 导出链继续复用。R0 的虚构内容与自动战斗仅保留为历史技术验证，不再限制 main 的属性范围和战术战斗目标。
 
@@ -57,6 +57,7 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 | [docs/28-main-m3-b.md](docs/28-main-m3-b.md) | Main-M3-B 非玩家战斗、守城与技能状态 |
 | [docs/29-main-m3-c.md](docs/29-main-m3-c.md) | Main-M3-C 生产战斗 golden 与 MG3 验收 |
 | [docs/30-main-m3-d.md](docs/30-main-m3-d.md) | Main-M3-D 战斗操作链与规则数据补齐 |
+| [docs/31-main-m4-a.md](docs/31-main-m4-a.md) | Main-M4-A 功能收尾、存档、AI 与生产规则证据 |
 | [docs/provenance.md](docs/provenance.md) | 实际内容与资产来源记录 |
 
 ## 构建与验证
@@ -64,7 +65,7 @@ main 的 bridge/WASM 只用于只读导入和对照，不作为 Godot 生产运�
 本地工具链位于 `.tools/`（不入库）。macOS 上执行：
 
 ```bash
-scripts/verify.sh        # 导入校验、132 项测试、R0 回归、Godot 冒烟
+scripts/verify.sh        # 导入/golden 校验、221 项测试、R0 回归、Godot 冒烟
 scripts/export-macos.sh # 导出并运行独立 macOS 应用冒烟
 scripts/capture-ui.sh   # 构建并重新生成深色、浅色和对比样片
 ```
@@ -73,7 +74,7 @@ Godot 编辑器打开根目录 `project.godot`。main 内容导入命令见 `too
 
 ## 下一步
 
-优先 UI 与交互打磨，跨平台适配暂缓；完整战术 AI、更多技能的自然概率及原生赏赐 UI golden 可作为精修补充。
+继续 UI 与交互打磨，跨平台适配暂缓。战术 AI 已增强，仍保留完整原版决策等价及更多属性/地形组合的对照边界。
 
 ## 注意
 
