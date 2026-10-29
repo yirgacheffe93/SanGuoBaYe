@@ -55,6 +55,7 @@ public sealed class MainSearchTests
         session.ExecuteOrders();
         var person = session.World.Persons.Single(person => person.Id == "person-172");
         Assert.Equal("person-013", person.Belong);
+        Assert.Equal(MainPersonStatus.Active, person.Status);
         Assert.Equal(91, person.Devotion);
         Assert.Equal(2516284547UL, session.World.RandomState);
         Assert.Equal(93, City(session).Money);
@@ -71,6 +72,7 @@ public sealed class MainSearchTests
         session.ExecuteOrders();
         var person = session.World.Persons.Single(person => person.Id == "person-143");
         Assert.Equal("person-013", person.Belong);
+        Assert.Equal(MainPersonStatus.Active, person.Status);
         Assert.Equal(81, person.Devotion);
         Assert.Equal(886320000UL, session.World.RandomState);
         AssertReturned(session);

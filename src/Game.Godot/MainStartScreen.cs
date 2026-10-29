@@ -25,7 +25,7 @@ public partial class MainStartScreen : PanelContainer
         var title = new Label { Text = "三国霸业", HorizontalAlignment = HorizontalAlignment.Center };
         title.AddThemeFontSizeOverride("font_size", 36);
         content.AddChild(title);
-        var subtitle = new Label { Text = "Godot 重写 · Main-M3-C", HorizontalAlignment = HorizontalAlignment.Center };
+        var subtitle = new Label { Text = "Godot 重写 · Main-M3-D", HorizontalAlignment = HorizontalAlignment.Center };
         subtitle.AddThemeFontSizeOverride("font_size", 17);
         content.AddChild(subtitle);
         content.AddChild(new Label { Text = "选择时期" });
@@ -40,7 +40,7 @@ public partial class MainStartScreen : PanelContainer
         content.AddChild(startButton);
         content.AddChild(new Label
         {
-            Text = "当前：四时期、38 城、战略 AI、出征守城与独立战术战斗。\n生产战斗 golden 与 MG3 验收已完成，后续进入 M4 打磨。",
+            Text = "当前：四时期、38 城、战略 AI、出征守城与独立战术战斗。\n真实射程、移动后行动与生产 golden 已验收，后续优先 UI 与交互打磨。",
             HorizontalAlignment = HorizontalAlignment.Center,
             AutowrapMode = TextServer.AutowrapMode.WordSmart
         });

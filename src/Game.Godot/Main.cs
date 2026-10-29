@@ -449,6 +449,7 @@ public partial class Main : Control
             RunFactionSmoke();
             RunBattleSmoke();
             RunAdvancedBattleSmoke();
+            RunBattleFlowSmoke();
             GD.Print($"MAIN_M2B_SMOKE_OK periods=4 commands=17 hash={expected}");
             GD.Print("MAIN_M2C_SMOKE_OK conscript=1000 execute+exile=equipment-preserved");
             GD.Print("MAIN_M2C_C_SMOKE_OK native-route use-item annual=191");
@@ -459,6 +460,37 @@ public partial class Main : Control
             GD.PushError($"MAIN_M2B_SMOKE_FAILED: {error}");
             GetTree().Quit(1);
         }
+    }
+
+    private void RunBattleFlowSmoke()
+    {
+        StartGame(1, "person-013");
+        var result = session.IssueCommand(new MainCommandRequest(27, "city-005", "person-089", TargetCityId: "city-004", Food: 100,
+            ParticipantIds: ["person-013", "person-089", "person-090"]));
+        var battle = session.EnterBattle(result.OrderId!);
+        var actor = battle.Units.First(unit => unit.PersonId == "person-089");
+        var target = battle.Units.First(unit => !unit.IsAttacker);
+        actor.X = 5;
+        actor.Y = 5;
+        target.X = 7;
+        target.Y = 5;
+        OnBattleCommand(MainBattleUiAction.Move, actor.PersonId, null, null, 6, 5);
+        if (!actor.HasMoved || actor.HasActed) throw new InvalidOperationException("移动后行动状态错误。");
+        OnBattleCommand(MainBattleUiAction.Attack, actor.PersonId, target.PersonId, null, 0, 0);
+        if (!actor.HasActed) throw new InvalidOperationException("移动后普通攻击失败。");
+
+        actor.HasActed = false;
+        content.Battle.SpecialSkills[0][89] = "skill-016";
+        session.World.Persons[89].Iq = 255;
+        session.World.Persons[89].Arms = 10;
+        session.World.RandomState = 1;
+        OnBattleCommand(MainBattleUiAction.Skill, actor.PersonId, actor.PersonId, "skill-016", 0, 0);
+        if (session.World.Persons[89].Arms != 810) throw new InvalidOperationException("自身援兵技能失败。");
+        actor.HasActed = false;
+        actor.Mp = 10;
+        OnBattleCommand(MainBattleUiAction.Wait, actor.PersonId, null, null, 0, 0);
+        if (actor.Mp != 11) throw new InvalidOperationException("待机恢复失败。");
+        GD.Print("MAIN_M3_D_SMOKE_OK move-attack friendly-skill wait");
     }
 
     private void RunAdvancedBattleSmoke()

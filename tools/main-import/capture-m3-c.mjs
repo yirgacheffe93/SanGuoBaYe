@@ -110,15 +110,16 @@ async function run(scenario) {
         const target = scenario.targetUnit ?? 0;
         d.g_GenPos[attacker].x = 5;
         d.g_GenPos[attacker].y = 5;
-        d.g_GenPos[target].x = 6;
+        d.g_GenPos[target].x = 5 + (scenario.targetDistance ?? 1);
         d.g_GenPos[target].y = 5;
         d.g_MapSX = 0;
         d.g_MapSY = 0;
-        d.g_FoucsX = 6;
+        d.g_FoucsX = d.g_GenPos[target].x;
         d.g_FoucsY = 5;
         if (scenario.targetArms !== undefined) d.g_Persons[d.g_FgtParam.GenArray[target] - 1].Arms = scenario.targetArms;
         if (scenario.actorIq !== undefined) d.g_Persons[d.g_FgtParam.GenArray[attacker] - 1].IQ = scenario.actorIq;
         if (scenario.targetIq !== undefined) d.g_Persons[d.g_FgtParam.GenArray[target] - 1].IQ = scenario.targetIq;
+        if (scenario.actorMp !== undefined) d.g_GenPos[attacker].mp = scenario.actorMp;
       }
       capture('stage2');
       if (scenario.action) c._bayeSendKey(0x28);
@@ -146,7 +147,8 @@ async function run(scenario) {
         return 0;
       }
       capture('aiCommand');
-      ctx.type = scenario.action === 'attack' ? 0 : 1;
+      if (scenario.action === 'move-attack') return -1;
+      ctx.type = scenario.action === 'attack' ? 0 : scenario.action === 'wait' ? 3 : 1;
       ctx.sIdx = scenario.actor ?? 10;
       ctx.aIdx = scenario.targetUnit ?? 0;
       ctx.skillId = scenario.action === 'heal' ? 17 : 4;
@@ -175,7 +177,10 @@ async function run(scenario) {
     const targetUnitAfter = after.units.find((unit) => unit.person === targetIndex);
     const expected = {
       attack: { arms: 90, hp: 91, state: 0, experience: 2, mp: 53 },
+      'move-attack': { arms: 90, hp: 91, state: 0, experience: 2, mp: 0 },
+      wait: { arms: 100, hp: 91, state: 0, experience: 0, mp: 53 },
       skill: { arms: 0, hp: 91, state: 8, experience: 2, mp: 23 },
+      'skill-range': { arms: 0, hp: 91, state: 8, experience: 2, mp: 23 },
       miss: { arms: 100, hp: 91, state: 0, experience: 0, mp: 23 },
       heal: { arms: 810, hp: 94, state: 0, experience: 2, mp: 38 },
     }[scenario.action];
@@ -183,32 +188,41 @@ async function run(scenario) {
     assert.equal(targetUnitAfter.hp, expected.hp, `${scenario.name} 目标HP`);
     assert.equal(targetUnitAfter.state, expected.state, `${scenario.name} 目标状态`);
     assert.equal(actorAfter.Experience - actorBefore.Experience, expected.experience, `${scenario.name} 经验`);
-    assert.equal(after.units.find((unit) => unit.person === actorIndex).mp, expected.mp, `${scenario.name} MP`);
+    const actorUnitAfter = after.units.find((unit) => unit.person === actorIndex);
+    assert.equal(actorUnitAfter.mp, expected.mp, `${scenario.name} MP`);
+    if (scenario.action === 'move-attack') {
+      const actorUnitBefore = before.units.find((unit) => unit.person === actorIndex);
+      assert.notEqual(`${actorUnitAfter.x},${actorUnitAfter.y}`, `${actorUnitBefore.x},${actorUnitBefore.y}`, `${scenario.name} 未发生移动`);
+    }
   }
   return { ...scenario, fixture: '生产S3写入真实FIGHTERS/出征订单，经BattleDrv/GamFight；受控坐标与showSkill分支，伤害/状态/经验由生产引擎计算', stages };
 }
 
-const scenarios = [
-  { name: 'initialize', action: null },
-  { name: 'auto-npc', player: 13, source: 0, target: 4, attackers: [57, 58], seed: 3 },
-  { name: 'normal-attack', action: 'attack', source: 0, target: 5, attackers: [57, 58], actorIq: 255, targetIq: 0 },
-  { name: 'skill-hit', action: 'skill', source: 0, target: 5, attackers: [57, 58], actorIq: 255, targetIq: 0 },
-  { name: 'skill-miss', action: 'miss', source: 0, target: 5, attackers: [57, 58], actorIq: 0, targetIq: 255 },
-  { name: 'skill-heal', action: 'heal', source: 0, target: 5, attackers: [57, 58], actorIq: 255, targetUnit: 11, targetArms: 10, targetIq: 0 },
-];
-const results = [];
-for (const scenario of scenarios) results.push(await run(scenario));
-const output = {
-  schemaVersion: 1,
-  kind: 'main-golden-m3-c',
-  source: JSON.parse(readFileSync(path.join(ROOT, 'content/main/import-summary.json'), 'utf8')).source,
-  boundaries: [
-    '初始化与动作场景在stage5受控结束，over=2不是生产自然胜负证据。',
-    '技能命中/失败由生产showSkill钩子固定分支；MP、伤害、状态与经验仍由生产引擎计算，不作为自然概率golden。',
-    '首个AI动作受控，其余AI武将待机；不作为战术AI等价证据。',
-    'auto-npc不进入交互战场是生产FGT_AUTO路径，不是捕获失败。',
-  ],
-  scenarios: results,
-};
-writeFileSync(options.output, `${JSON.stringify(output, null, 2)}\n`);
-console.log(`MAIN_M3_C_GOLDEN_OK scenarios=${results.map((item) => `${item.name}:${item.stages.at(-1).over}`).join(',')}`);
+export { run };
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const scenarios = [
+    { name: 'initialize', action: null },
+    { name: 'auto-npc', player: 13, source: 0, target: 4, attackers: [57, 58], seed: 3 },
+    { name: 'normal-attack', action: 'attack', source: 0, target: 5, attackers: [57, 58], actorIq: 255, targetIq: 0 },
+    { name: 'skill-hit', action: 'skill', source: 0, target: 5, attackers: [57, 58], actorIq: 255, targetIq: 0, targetDistance: 3 },
+    { name: 'skill-miss', action: 'miss', source: 0, target: 5, attackers: [57, 58], actorIq: 0, targetIq: 255, targetDistance: 3 },
+    { name: 'skill-heal', action: 'heal', source: 0, target: 5, attackers: [57, 58], actorIq: 255, targetUnit: 11, targetArms: 10, targetIq: 0 },
+  ];
+  const results = [];
+  for (const scenario of scenarios) results.push(await run(scenario));
+  const output = {
+    schemaVersion: 1,
+    kind: 'main-golden-m3-c',
+    source: JSON.parse(readFileSync(path.join(ROOT, 'content/main/import-summary.json'), 'utf8')).source,
+    boundaries: [
+      '初始化与动作场景在stage5受控结束，over=2不是生产自然胜负证据。',
+      '技能命中/失败由生产showSkill钩子固定分支；MP、伤害、状态与经验仍由生产引擎计算，不作为自然概率golden。',
+      '首个AI动作受控，其余AI武将待机；不作为战术AI等价证据。',
+      'auto-npc不进入交互战场是生产FGT_AUTO路径，不是捕获失败。',
+    ],
+    scenarios: results,
+  };
+  writeFileSync(options.output, `${JSON.stringify(output, null, 2)}\n`);
+  console.log(`MAIN_M3_C_GOLDEN_OK scenarios=${results.map((item) => `${item.name}:${item.stages.at(-1).over}`).join(',')}`);
+}

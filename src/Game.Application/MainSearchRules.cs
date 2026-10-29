@@ -68,6 +68,7 @@ public static class MainSearchRules
         if (success)
         {
             candidate.Belong = person.Belong;
+            candidate.Status = MainPersonStatus.Active;
             candidate.Devotion = 70 + MainRandom.Next(world, 30);
         }
         if (person.Belong == world.PlayerRulerId) MainRandom.Next(world, 4);

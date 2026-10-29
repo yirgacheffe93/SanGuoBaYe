@@ -34,9 +34,11 @@ public sealed class MainBattleTests
         var session = CreateBattle();
         var actor = session.World.ActiveBattle!.Units.First(unit => unit.PersonId == "person-089");
         Assert.False(MainBattleService.Move(session.World, session.Content, actor.PersonId, actor.X, actor.Y));
-        var destination = FreeNeighbor(session, actor);
-        Assert.True(MainBattleService.Move(session.World, session.Content, actor.PersonId, destination.X, destination.Y));
-        Assert.True(actor.HasActed);
+        var destination = MoveToFreeNeighbor(session, actor);
+        Assert.True(destination.HasValue);
+        Assert.False(actor.HasActed);
+        Assert.True(actor.HasMoved);
+        Assert.False(MainBattleService.Move(session.World, session.Content, actor.PersonId, actor.X + 1, actor.Y));
 
         var combat = CreateBattle();
         actor = combat.World.ActiveBattle!.Units.First(unit => unit.PersonId == "person-089");
@@ -162,15 +164,14 @@ public sealed class MainBattleTests
         27, "city-005", "person-089", TargetCityId: "city-004", Food: 100,
         ParticipantIds: ["person-013", "person-089", "person-090"]));
 
-    private static (int X, int Y) FreeNeighbor(MainGameSession session, MainBattleUnit actor)
+    private static (int X, int Y)? MoveToFreeNeighbor(MainGameSession session, MainBattleUnit actor)
     {
         var battle = session.World.ActiveBattle!;
         var map = session.Content.Battle.Maps.Single(map => map.CityId == battle.TargetCityId);
         for (var y = 0; y < map.Height; y++)
         for (var x = 0; x < map.Width; x++)
-            if (Math.Abs(actor.X - x) + Math.Abs(actor.Y - y) <= actor.Move && map.Terrains[y * map.Width + x] != 7 &&
-                battle.Units.All(unit => unit.State == 8 || unit.X != x || unit.Y != y)) return (x, y);
-        throw new InvalidOperationException("没有可移动格。");
+            if (MainBattleService.Move(session.World, session.Content, actor.PersonId, x, y)) return (x, y);
+        return null;
     }
 
     private static MainGameSession CreateSession() => MainContentLoader.CreateSession(MainContentLoader.Load(

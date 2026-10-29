@@ -41,7 +41,7 @@ public sealed class MainBattleGoldenTests
     public void Skill_hit_matches_production_damage_mp_state_and_experience()
     {
         var session = CreateDefenceBattle();
-        var (actor, target) = PlaceAdjacent(session, "person-056", "person-013");
+        var (actor, target) = PlaceAdjacent(session, "person-056", "person-013", 3);
         session.Content.Battle.SpecialSkills[0][56] = "skill-003";
         session.World.Persons[56].Iq = 255;
         session.World.Persons[13].Iq = 0;
@@ -59,7 +59,7 @@ public sealed class MainBattleGoldenTests
     public void Skill_miss_only_consumes_mp_and_matches_production_rng()
     {
         var session = CreateDefenceBattle();
-        var (actor, target) = PlaceAdjacent(session, "person-056", "person-013");
+        var (actor, target) = PlaceAdjacent(session, "person-056", "person-013", 3);
         session.Content.Battle.SpecialSkills[0][56] = "skill-003";
         session.World.Persons[56].Iq = 0;
         session.World.Persons[13].Iq = 255;
@@ -97,13 +97,13 @@ public sealed class MainBattleGoldenTests
         Assert.Equal((x, y, hp, mp, move), (unit.X, unit.Y, unit.Hp, unit.Mp, unit.Move));
     }
 
-    private static (MainBattleUnit Actor, MainBattleUnit Target) PlaceAdjacent(MainGameSession session, string actorId, string targetId)
+    private static (MainBattleUnit Actor, MainBattleUnit Target) PlaceAdjacent(MainGameSession session, string actorId, string targetId, int distance = 1)
     {
         var actor = session.World.ActiveBattle!.Units.Single(unit => unit.PersonId == actorId);
         var target = session.World.ActiveBattle.Units.Single(unit => unit.PersonId == targetId);
         actor.X = 5;
         actor.Y = 5;
-        target.X = 6;
+        target.X = 5 + distance;
         target.Y = 5;
         return (actor, target);
     }

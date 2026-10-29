@@ -11,11 +11,13 @@ public partial class MainBattlePanel : PanelContainer
     private MainBattleView? view;
     private string? selectedPersonId;
     private string? selectedTargetId;
+    private bool targetMode;
     private MainBattleGrid grid = null!;
     private Label summary = null!;
     private Label details = null!;
     private Label feedback = null!;
     private OptionButton skillOptions = null!;
+    private Button targetButton = null!;
     private Button resolveButton = null!;
     public Func<string, IReadOnlyList<(string Id, string Name)>>? SkillProvider { get; set; }
     public event Action<MainBattleUiAction, string?, string?, string?, int, int>? CommandRequested;
@@ -39,6 +41,9 @@ public partial class MainBattlePanel : PanelContainer
         side.AddChild(feedback);
         skillOptions = new OptionButton();
         side.AddChild(skillOptions);
+        targetButton = new Button { Text = "选择目标" };
+        targetButton.Pressed += ToggleTargetMode;
+        side.AddChild(targetButton);
         var attack = new Button { Text = "普通攻击" };
         attack.Pressed += () => Emit(MainBattleUiAction.Attack);
         side.AddChild(attack);
@@ -81,14 +86,35 @@ public partial class MainBattlePanel : PanelContainer
                 skillOptions.SetItemMetadata(skillOptions.ItemCount - 1, skill.Id);
             }
         }
+        targetButton.Text = targetMode ? "取消选择目标" : "选择目标";
     }
 
     public void SetMessage(string message) => feedback.Text = message;
+
+    private void ToggleTargetMode()
+    {
+        if (selectedPersonId is null) return;
+        targetMode = !targetMode;
+        targetButton.Text = targetMode ? "取消选择目标" : "选择目标";
+        feedback.Text = targetMode ? "请点击敌军、友军或当前武将作为目标。" : "已取消目标选择。";
+    }
 
     private void OnCell(int x, int y)
     {
         if (view is null || view.Result != MainBattleResult.Ongoing) return;
         var target = view.Units.FirstOrDefault(unit => unit.State != 8 && unit.X == x && unit.Y == y);
+        if (targetMode)
+        {
+            if (target is null)
+            {
+                feedback.Text = "目标格没有可选择的武将。";
+                return;
+            }
+            selectedTargetId = target.PersonId;
+            targetMode = false;
+            SetView(view);
+            return;
+        }
         if (target is not null)
         {
             if (target.IsAttacker == view.PlayerIsAttacker)
@@ -107,6 +133,15 @@ public partial class MainBattlePanel : PanelContainer
     private void Emit(MainBattleUiAction action)
     {
         if (view is null) return;
+        if (action == MainBattleUiAction.Skill && selectedTargetId is null)
+        {
+            targetMode = true;
+            targetButton.Text = "取消选择目标";
+            feedback.Text = "请先选择技能目标，可以是敌军、友军或当前武将。";
+            return;
+        }
+        targetMode = false;
+        targetButton.Text = "选择目标";
         var skillId = action == MainBattleUiAction.Skill && skillOptions.Selected >= 0
             ? skillOptions.GetItemMetadata(skillOptions.Selected).AsString() : null;
         CommandRequested?.Invoke(action, selectedPersonId, selectedTargetId, skillId, 0, 0);

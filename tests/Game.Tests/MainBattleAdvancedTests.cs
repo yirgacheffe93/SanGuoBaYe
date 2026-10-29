@@ -94,15 +94,15 @@ public sealed class MainBattleAdvancedTests
     {
         var weather = CreateBattle();
         weather.Content.Battle.SpecialSkills[0][89] = "skill-021";
-        var (actor, target) = PlaceAdjacent(weather, "person-090");
-        Assert.True(MainBattleService.UseSkill(weather.World, weather.Content, actor.PersonId, "skill-021", target.PersonId));
+        var (actor, _) = PlaceAdjacent(weather, "person-090");
+        Assert.True(MainBattleService.UseSkill(weather.World, weather.Content, actor.PersonId, "skill-021", actor.PersonId));
         Assert.InRange(weather.World.ActiveBattle!.Weather, 1, 5);
 
         var haste = CreateBattle();
         haste.Content.Battle.SpecialSkills[0][89] = "skill-027";
-        (actor, target) = PlaceAdjacent(haste, "person-090");
+        (actor, _) = PlaceAdjacent(haste, "person-090");
         var move = actor.Move;
-        Assert.True(MainBattleService.UseSkill(haste.World, haste.Content, actor.PersonId, "skill-027", target.PersonId));
+        Assert.True(MainBattleService.UseSkill(haste.World, haste.Content, actor.PersonId, "skill-027", actor.PersonId));
         Assert.Equal(Math.Min(8, move + 2), actor.Move);
     }
 
@@ -116,10 +116,11 @@ public sealed class MainBattleAdvancedTests
         var person = session.World.Persons[89];
         person.Iq = 0;
         person.Arms = 80;
+        foreach (var unit in session.World.ActiveBattle!.Units.Where(unit => unit.IsAttacker != actor.IsAttacker)) unit.HasActed = true;
         MainBattleService.EndTurn(session.World, session.Content);
         Assert.Equal(70, person.Arms);
         Assert.Equal(6, actor.State);
-        Assert.Equal(1, actor.Mp);
+        Assert.Equal(0, actor.Mp);
         Assert.False(actor.HasActed);
     }
 

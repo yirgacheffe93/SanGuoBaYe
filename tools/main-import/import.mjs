@@ -215,6 +215,22 @@ function readBattleContent(library, source) {
   const positions = constants.item(5);
   if (positions.length < 9 * 20) throw new Error('战斗初始站位表不足9组');
   const baseSkills = constants.item(2);
+  const attackRangeData = constants.item(1);
+  const resistanceData = constants.item(3);
+  const landModifierData = constants.item(4);
+  const skillRangeData = loadResource(library, 13).item(1);
+  if (attackRangeData.length < 6 * 25 || resistanceData.length < 6 * 46 || landModifierData.length < 6 * 8 || skillRangeData.length < 30 * 81) {
+    throw new Error('战斗范围或地形常量长度不足');
+  }
+  const terrainKind = (tile) => {
+    if (tile > 15) return tile === 41 ? 6 : 7;
+    if (tile > 5) return 2;
+    if (tile > 4) return 3;
+    if (tile > 3) return 4;
+    if (tile > 2) return 5;
+    if (tile > 1) return 0;
+    return 1;
+  };
   const maps = Array.from({ length: 38 }, (_, index) => {
     const resourceId = 110 + cityMapIds[index];
     const data = loadResource(library, resourceId).item(1);
@@ -222,8 +238,9 @@ function readBattleContent(library, source) {
     const terrains = Array.from(data.subarray(16, 16 + width * height));
     const cityCell = terrains.indexOf(3);
     if (cityCell < 0 || terrains.indexOf(3, cityCell + 1) >= 0) throw new Error(`战斗地图城市格异常: ${resourceId}`);
+    if (terrains.some((tile) => tile >= 46)) throw new Error(`战斗地图图块越界: ${resourceId}`);
     return { cityId: entityId('city', index), mapResourceId: resourceId, width, height,
-      cityX: cityCell % width, cityY: Math.floor(cityCell / width), terrains };
+      cityX: cityCell % width, cityY: Math.floor(cityCell / width), terrains, terrainKinds: terrains.map(terrainKind) };
   });
   return {
     schemaVersion: 1,
@@ -231,6 +248,10 @@ function readBattleContent(library, source) {
     source,
     maps,
     initialPositions: Array.from({ length: 9 }, (_, way) => Array.from(positions.subarray(way * 20, way * 20 + 20))),
+    attackRanges: Array.from({ length: 6 }, (_, arm) => Array.from(attackRangeData.subarray(arm * 25, arm * 25 + 25))),
+    movementResistance: Array.from({ length: 6 }, (_, arm) => Array.from(resistanceData.subarray(arm * 46, arm * 46 + 46))),
+    landFightModifiers: Array.from({ length: 6 }, (_, arm) => Array.from(landModifierData.subarray(arm * 8, arm * 8 + 8), (value) => value > 127 ? value - 256 : value)),
+    skillRanges: Array.from({ length: 30 }, (_, skill) => Array.from(skillRangeData.subarray(skill * 81, skill * 81 + 81))),
     unitSkills: Array.from({ length: 6 }, (_, arm) => Array.from(baseSkills.subarray(arm * 10, arm * 10 + 10)).filter(Boolean).map((id) => entityId('skill', id - 1))),
     unitSkillCounts: [3, 4, 3, 3, 4, 9],
     specialSkills: Array.from({ length: 4 }, (_, period) => {
