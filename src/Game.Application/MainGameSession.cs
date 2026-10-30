@@ -45,37 +45,19 @@ public sealed class MainGameSession
     public MainCommandResult CancelOrder(string orderId) =>
         new(false, "not_supported", "main 命令接受后不能取消；请等待月末归队。");
 
-    public IReadOnlyList<string> EndMonth(bool runAi = true)
-    {
-        if (World.Outcome != MainGameOutcome.InProgress || World.ActiveBattle is not null) return [];
-        MainFactionRules.UpdateSatraps(World);
-        if (runAi) MainAiPlanner.Plan(World);
-        var defensiveOrder = World.Orders.FirstOrDefault(order => order.OrderId == MainCommandCatalog.BattleOrderId &&
-            World.Cities.Single(city => city.Id == order.ObjectId).Belong == World.PlayerRulerId);
-        if (defensiveOrder is not null)
-        {
-            MainBattleService.Begin(World, Content, defensiveOrder.Id);
-            return ["敌军来袭，进入守城战。"];
-        }
-        var messages = MainOrderExecutor.Execute(World, Content).ToList();
-        messages.AddRange(MainMonthService.Update(World, Content));
-        var reportCount = World.Reports.Count;
-        MainFactionRules.UpdateOutcome(World);
-        messages.AddRange(World.Reports.Skip(reportCount).Select(report => report.Message));
-        return messages;
-    }
+    public IReadOnlyList<string> EndMonth(bool runAi = true) => TurnCoordinator.EndMonth(World, Content, runAi);
 
-    public IReadOnlyList<string> ExecuteOrders() => MainOrderExecutor.Execute(World, Content);
+    internal IReadOnlyList<string> ExecuteOrders() => MainOrderExecutor.Execute(World, Content);
 
-    public MainBattleState EnterBattle(string orderId) => MainBattleService.Begin(World, Content, orderId);
+    public MainBattleState EnterBattle(string orderId) => TurnCoordinator.EnterBattle(World, Content, orderId);
 
-    public string ResolveBattle() => MainBattleService.Resolve(World);
+    public string ResolveBattle() => TurnCoordinator.ResolveBattle(World);
 
     public MainBattleView GetBattleView() => MainBattleViewFactory.Create(World, Content);
 
     public IReadOnlyList<string> GetBattleSkills(string personId) => MainBattleService.GetSkills(World, Content, personId);
 
-    public void ConditionUpdate() => MainMonthService.Update(World, Content);
+    internal void ConditionUpdate() => MainMonthService.Update(World, Content);
 
     public MainGameView GetView() => MainViewFactory.Create(World);
 

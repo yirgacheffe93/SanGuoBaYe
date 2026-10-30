@@ -9,6 +9,11 @@ public partial class Main : Control
 {
     private MainContent content = null!;
     private MainGameSession session = null!;
+    private MainGameApplication app = null!;
+    private MainStrategicPresenter strategic = null!;
+    private MainBattlePresenter battle = null!;
+    private MainSaveController saves = null!;
+    private MainScreenNavigator navigator = null!;
     private MainGameView currentView = null!;
     private MainStartScreen startScreen = null!;
     private MainSavePanel savePanel = null!;
@@ -18,6 +23,7 @@ public partial class Main : Control
     private MainOrderReportPanel orderReportPanel = null!;
     private MainBattlePanel battlePanel = null!;
     private Control gameRoot = null!;
+    private bool hasSession;
     private string selectedCityId = "city-005";
     private string selectedPersonId = "person-089";
     private UiThemeMode themeMode = UiThemeMode.Dark;
@@ -53,13 +59,21 @@ public partial class Main : Control
             GD.PushError(error);
             return;
         }
-        startScreen.Configure(content.Periods);
+        startScreen.Configure(content.Periods.Select(period => new MainPeriodOption(period.Period, period.Year, period.Month,
+            period.RulerIds.Select(id => period.Persons.Single(person => person.Id == id))
+                .Select(person => new MainRulerOption(person.Id, person.Name, person.SourceIndex)).ToList())).ToList());
         startScreen.StartRequested += StartGame;
         saveCatalog = new MainSaveCatalog(Path.Combine(SaveRoot, "saves"), content);
+        session = MainContentLoader.CreateSession(content, 1, "person-013");
+        app = new MainGameApplication(session, new MainSaveStore(saveCatalog));
+        strategic = new MainStrategicPresenter(app);
+        battle = new MainBattlePresenter(app);
+        saves = new MainSaveController(app);
+        navigator = new MainScreenNavigator(gameRoot, battlePanel, startScreen, savePanel);
         startScreen.ContinueRequested += ContinueGame;
         startScreen.LoadRequested += ShowSaves;
-        startScreen.ResumeRequested += () => { startScreen.Hide(); Refresh(); };
-        startScreen.SetContinue(saveCatalog.List().Any(slot => slot.CanLoad), false);
+        startScreen.ResumeRequested += () => Refresh();
+        startScreen.SetContinue(saves.CanContinue(), hasSession);
         var arguments = OS.GetCmdlineUserArgs();
         if (arguments.Contains("--spike-smoke") || arguments.Contains("--main-smoke")) CallDeferred(nameof(RunSmoke));
         else if (arguments.Contains("--capture-ui")) CallDeferred(nameof(RunCapture));
@@ -111,7 +125,7 @@ public partial class Main : Control
         map.CitySelected += SelectCity;
         columns.AddChild(map);
         detailPanel = new MainCityDetailPanel { CustomMinimumSize = new Vector2(325, 350) };
-        detailPanel.PersonSelected += personId => { selectedPersonId = personId; RefreshPerson(); };
+        detailPanel.PersonSelected += SelectPerson;
         detailPanel.CommandSelectionChanged += Refresh;
         detailPanel.CommandConfirmed += OnCommand;
         columns.AddChild(detailPanel);
@@ -135,16 +149,14 @@ public partial class Main : Control
         endMonthButton.Pressed += () => OnEndMonth();
         actions.AddChild(endMonthButton);
         battlePanel = new MainBattlePanel();
-        battlePanel.SkillProvider = personId => session.GetBattleSkills(personId)
-            .Select(id => (id, content.Skills.Single(skill => skill.Id == id).Name)).ToList();
+        battlePanel.SkillProvider = personId => battle.Skills(personId);
         battlePanel.CommandRequested += OnBattleCommand;
         battlePanel.SaveRequested += ShowSaves;
         battlePanel.MenuRequested += ShowTitle;
-        battlePanel.MovementProvider = personId => MainBattleService.GetReachableCells(session.World, content, personId)
-            .Select(cell => (cell.X, cell.Y)).ToList();
-        battlePanel.RangeProvider = (personId, skillId) => MainBattleService.GetActionRange(session.World, content, personId, skillId);
-        battlePanel.AttackFailure = (personId, targetId) => MainBattleService.AttackFailure(session.World, content, personId, targetId);
-        battlePanel.SkillFailure = (personId, skillId, targetId) => MainBattleService.SkillFailure(session.World, content, personId, skillId, targetId);
+        battlePanel.MovementProvider = personId => battle.Movement(personId);
+        battlePanel.RangeProvider = (personId, skillId) => battle.Range(personId, skillId);
+        battlePanel.AttackFailure = (personId, targetId) => battle.AttackFailure(personId, targetId);
+        battlePanel.SkillFailure = (personId, skillId, targetId) => battle.SkillFailure(personId, skillId, targetId);
         battlePanel.Hide();
         AddChild(battlePanel);
         startScreen = new MainStartScreen();
@@ -152,65 +164,61 @@ public partial class Main : Control
         savePanel = new MainSavePanel();
         AddChild(savePanel);
         savePanel.Hide();
-        savePanel.SaveRequested += slot =>
-        {
-            try { saveCatalog.Save(session, slot); savePanel.SetSlots(saveCatalog.List(), true); savePanel.SetMessage($"已保存到存档 {slot}。"); }
-            catch (Exception error) { savePanel.SetMessage($"保存失败：{error.Message}"); }
-        };
+        savePanel.SaveRequested += SaveSlot;
         savePanel.LoadRequested += LoadSlot;
-        savePanel.Closed += () => startScreen.SetContinue(saveCatalog.List().Any(slot => slot.CanLoad), session is not null);
+        savePanel.Closed += () => navigator.CloseSaves(saves.CanContinue(), hasSession);
         ApplyTheme();
     }
 
     private void StartGame(int period, string rulerId)
     {
         session = MainContentLoader.CreateSession(content, period, rulerId);
+        app.ReplaceSession(session);
+        hasSession = true;
         battlePanel.ResetSelection();
-        selectedCityId = session.GetView().Cities.First(city => city.Belong == rulerId).Id;
-        selectedPersonId = session.GetView().Persons.FirstOrDefault(person => person.CityId == selectedCityId && person.Belong == rulerId)?.Id ?? "";
-        startScreen.Hide();
-        gameRoot.Show();
+        strategic.Start();
+        selectedCityId = strategic.SelectedCityId;
+        selectedPersonId = strategic.SelectedPersonId;
+        navigator.ShowGame();
         Refresh();
     }
 
-    private void ShowTitle()
-    {
-        gameRoot.Hide();
-        battlePanel.Hide();
-        startScreen.SetContinue(saveCatalog.List().Any(slot => slot.CanLoad), session is not null);
-        startScreen.Show();
-    }
+    private void ShowTitle() => navigator.ShowTitle(saves.CanContinue(), hasSession);
 
     private void ShowSaves()
     {
-        savePanel.SetSlots(saveCatalog.List(), session is not null);
-        savePanel.Show();
+        savePanel.SetSlots(saves.Slots(), hasSession);
+        navigator.ShowSaves();
     }
 
     private void ContinueGame()
     {
-        var slot = saveCatalog.List().Where(slot => slot.CanLoad).OrderByDescending(slot => slot.LastWriteUtc).FirstOrDefault();
-        if (slot is not null) LoadSlot(slot);
+        if (saves.LatestSlot() is { } slot) LoadSlot(slot);
         else ShowSaves();
     }
 
-    private void LoadSlot(MainSaveSlot slot)
+    private void SaveSlot(int slot)
     {
-        try
-        {
-            var restored = saveCatalog.Load(slot);
-            session = restored;
-            startScreen.Hide();
-            savePanel.Hide();
-            battlePanel.ResetSelection();
-            Refresh();
-            feedback.Text = "读档成功。";
-        }
-        catch (Exception error)
+        var result = saves.Save(slot);
+        savePanel.SetSlots(saves.Slots(), hasSession);
+        savePanel.SetMessage(result.Message);
+    }
+
+    private void LoadSlot(int slot)
+    {
+        var result = saves.Load(slot);
+        if (!result.Success)
         {
             ShowSaves();
-            savePanel.SetMessage($"读档失败：{error.Message}");
+            savePanel.SetMessage(result.Message);
+            return;
         }
+        session = app.Session;
+        hasSession = true;
+        battlePanel.ResetSelection();
+        navigator.ShowGame();
+        Refresh();
+        feedback.Text = result.Message;
     }
 
     private void ApplyTheme()
@@ -238,104 +246,72 @@ public partial class Main : Control
     {
         selectedCityId = cityId;
         selectedPersonId = "";
+        strategic.SelectCity(cityId);
+        Refresh();
+    }
+
+    private void SelectPerson(string personId)
+    {
+        selectedPersonId = personId;
+        strategic.SelectPerson(personId);
         Refresh();
     }
 
     private void Refresh()
     {
-        if (session.World.ActiveBattle is not null)
+        if (!hasSession) return;
+        if (strategic.HasActiveBattle())
         {
-            gameRoot.Hide();
-            battlePanel.SetView(session.GetBattleView());
-            battlePanel.Show();
+            navigator.ShowBattle();
+            battlePanel.SetView(battle.Refresh());
             return;
         }
-        battlePanel.Hide();
-        gameRoot.Show();
-        currentView = session.GetView();
+        navigator.ShowGame();
+        strategic.SetSelection(selectedCityId, selectedPersonId);
+        var refreshed = strategic.Refresh(CreateCommandInput());
+        currentView = refreshed.View;
+        selectedCityId = strategic.SelectedCityId;
+        selectedPersonId = strategic.SelectedPersonId;
         var view = currentView;
-        selectedCityId = view.Cities.FirstOrDefault(city => city.Id == selectedCityId)?.Id ?? "city-005";
-        var city = view.Cities.Single(city => city.Id == selectedCityId);
         title.Text = "三国霸业 · 战略地图";
-        summary.Text = $"{PersonName(view.PlayerRulerId)}  |  {view.Year} 年 {view.Month} 月  |  38 城 · {MainFactionRules.Name(session.World.Outcome)}";
-        endMonthButton.Disabled = session.World.Outcome != MainGameOutcome.InProgress;
-        cityListPanel.SetView(view, city.Id);
-        map.SetView(view, city.Id);
-        var persons = CityPersons();
-        if (persons.Count > 0 && persons.All(person => person.Id != selectedPersonId)) selectedPersonId = persons[0].Id;
-        var discoveredTools = city.DiscoveredToolIds.Select(id => (id, session.GetToolName(id))).ToList();
-        var travelTargets = view.Cities.Where(item => item.Id != city.Id && item.Belong == city.Belong)
-            .Select(item => (item.Id, item.Name, Route: session.GetTravelRoute(city.Id, item.Id)))
-            .Where(item => item.Route is not null).Select(item => (item.Id, item.Name, item.Route!.Distance)).ToList();
-        var targetPersonIds = session.GetCommandTargetPersonIds(detailPanel.SelectedCommandId, city.Id);
-        detailPanel.SetView(view, city, selectedPersonId, city.Belong == view.PlayerRulerId ? "我方" : PersonName(city.Belong), discoveredTools, travelTargets, targetPersonIds);
-        RefreshPerson();
+        summary.Text = $"{refreshed.RulerName}  |  {view.Year} 年 {view.Month} 月  |  38 城 · {MainStrategicPresenter.OutcomeName(view)}";
+        endMonthButton.Disabled = view.Outcome != MainGameOutcome.InProgress;
+        cityListPanel.SetView(view, refreshed.City.Id);
+        map.SetView(view, refreshed.City.Id);
+        detailPanel.SetView(view, refreshed.City, selectedPersonId, refreshed.OwnerName,
+            refreshed.DiscoveredTools, refreshed.TravelTargets, refreshed.TargetPersonIds);
+        detailPanel.SetPerson(refreshed.Person, refreshed.Preview, refreshed.ToolName, refreshed.SearchHint);
         orderReportPanel.SetView(view);
     }
 
-    private void RefreshPerson()
-    {
-        var person = currentView.Persons.FirstOrDefault(item => item.Id == selectedPersonId);
-        var preview = session.PreviewCommand(CreateCommandRequest(person?.Id ?? ""));
-        var hint = detailPanel.SelectedCommandId == MainCommandCatalog.SearchOrderId && person is not null
-            ? session.GetSearchDiagnostics(selectedCityId, person.Id).Message
-            : null;
-        detailPanel.SetPerson(person, preview, person is null ? "" : session.GetToolName(person.Tool1Id), hint);
-    }
+    private void RefreshPerson() => Refresh();
 
     private void OnCommand()
     {
-        var result = session.IssueCommand(CreateCommandRequest(selectedPersonId));
-        if (result.Accepted && detailPanel.SelectedCommandId == MainCommandCatalog.BattleOrderId && result.OrderId is not null)
-            session.EnterBattle(result.OrderId);
+        var result = strategic.Confirm(CreateCommandInput());
         Refresh();
         feedback.Text = result.Message;
     }
 
     private void OnBattleCommand(MainBattleUiAction action, string? personId, string? targetId, string? skillId, int x, int y)
     {
-        var message = "";
-        switch (action)
-        {
-            case MainBattleUiAction.Move when personId is not null:
-                message = MainBattleService.Move(session.World, content, personId, x, y) ? "移动完成。" : "目标格不可到达。";
-                break;
-            case MainBattleUiAction.Attack when personId is not null && targetId is not null:
-                message = MainBattleService.Attack(session.World, content, personId, targetId) ? "攻击完成。" : "目标不可攻击。";
-                break;
-            case MainBattleUiAction.Skill when personId is not null && targetId is not null && skillId is not null:
-                message = MainBattleService.UseSkill(session.World, content, personId, skillId, targetId) ? "技能完成。" : "技能目标或技力不符合条件。";
-                break;
-            case MainBattleUiAction.Wait when personId is not null:
-                message = MainBattleService.Wait(session.World, personId) ? "已待机。" : "该武将不能待机。";
-                break;
-            case MainBattleUiAction.EndTurn:
-                MainBattleService.EndTurn(session.World, content);
-                message = "敌方行动完成，进入新的一天。";
-                break;
-            case MainBattleUiAction.Retreat:
-                MainBattleService.Retreat(session.World);
-                message = "已全军撤退。";
-                break;
-            case MainBattleUiAction.Resolve:
-                message = session.ResolveBattle();
-                break;
-        }
+        var result = battle.Handle(action, personId, targetId, skillId, x, y);
         Refresh();
-        if (session.World.ActiveBattle is not null) battlePanel.SetMessage(message);
-        else feedback.Text = message;
+        if (strategic.HasActiveBattle()) battlePanel.SetMessage(result.Message);
+        else feedback.Text = result.Message;
     }
 
-    private MainCommandRequest CreateCommandRequest(string personId) => new(
-        detailPanel.SelectedCommandId, selectedCityId, personId,
-        detailPanel.SelectedTargetCityId, detailPanel.SelectedToolId, detailPanel.TradeDirection,
+    private MainCommandInput CreateCommandInput() => new(
+        detailPanel.SelectedCommandId, detailPanel.SelectedTargetCityId, detailPanel.SelectedToolId, detailPanel.TradeDirection,
         detailPanel.Quantity, detailPanel.TransportFood, detailPanel.TransportMoney, detailPanel.Arms,
-        detailPanel.SelectedTargetPersonId, ParticipantIds: detailPanel.SelectedParticipantIds);
+        detailPanel.SelectedTargetPersonId, detailPanel.SelectedParticipantIds);
+
+    private MainCommandRequest CreateCommandRequest(string personId) => CreateCommandInput().ToRequest(selectedCityId, personId);
 
     private void OnEndMonth(bool runAi = true)
     {
         endMonthButton.Disabled = true;
-        try { session.EndMonth(runAi); }
+        try { strategic.EndMonth(runAi); }
         finally { endMonthButton.Disabled = false; }
         Refresh();
         feedback.Text = "月度结算完成。";
@@ -349,7 +325,7 @@ public partial class Main : Control
 
     private void OnLoad()
     {
-        try { session = MainSaveService.Load(SavePath, content); Refresh(); feedback.Text = "读档成功，地图与命令已恢复。"; }
+        try { session = MainSaveService.Load(SavePath, content); app.ReplaceSession(session); hasSession = true; Refresh(); feedback.Text = "读档成功，地图与命令已恢复。"; }
         catch (Exception error) { feedback.Text = $"读档失败：{error.Message}"; }
     }
 
@@ -619,7 +595,7 @@ public partial class Main : Control
         var hash = session.GetStateHash();
         ShowSaves();
         saveCatalog.Save(session, 1);
-        savePanel.SetSlots(saveCatalog.List(), true);
+        savePanel.SetSlots(saves.Slots(), true);
         savePanel.Hide();
         ShowTitle();
         ContinueGame();
@@ -696,7 +672,7 @@ public partial class Main : Control
             session.World.RandomState = 7;
             Refresh();
             OnCommand();
-            session.ExecuteOrders();
+            session.EndMonth(false);
             if (commandId == 15 && target.Devotion != 0 || commandId == 16 && (target.Belong != "person-013" || target.CityId != "city-005") ||
                 commandId == 17 && target.Belong != targetId)
                 throw new InvalidOperationException($"对敌命令 {commandId} 的 UI 冒烟失败。");
@@ -707,7 +683,7 @@ public partial class Main : Control
         detailPanel.SelectCommand(20);
         Refresh();
         OnCommand();
-        session.ExecuteOrders();
+        session.EndMonth(false);
         Refresh();
         if (!currentView.Reports.Any(report => report.Message.Contains("未产生效果")))
             throw new InvalidOperationException("原版劝降边界缺失。");
@@ -718,7 +694,7 @@ public partial class Main : Control
         Refresh();
         OnCommand();
         if (!currentView.Reports.Any(report => report.Message.Contains("侦察西凉"))) throw new InvalidOperationException("侦察即时报告失败。");
-        session.ExecuteOrders();
+        session.EndMonth(false);
         if (session.World.Persons[89].CityId != "city-005") throw new InvalidOperationException("侦察归队失败。");
         GD.Print("MAIN_M2D_A_SMOKE_OK alienate canvass counterespionage induce-boundary reconnoitre");
     }

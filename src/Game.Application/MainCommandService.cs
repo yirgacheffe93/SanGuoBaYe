@@ -28,6 +28,7 @@ public static class MainCommandService
         var person = world.Persons.FirstOrDefault(item => item.Id == request.PersonId);
         if (city is null || person is null) return Preview(false, "not_found", "城市或武将不存在。");
         if (world.Outcome != MainGameOutcome.InProgress) return Preview(false, "game_over", "战局已经结束。");
+        if (world.TurnPhase != MainTurnPhase.Player) return Preview(false, "invalid_phase", "当前阶段不能接受战略命令。");
         if (commandId == MainCommandCatalog.ExecuteOrderId && person.Status != MainPersonStatus.Captive)
             return Preview(false, "invalid_target", "处斩目标必须是本城俘虏。");
         if (commandId == MainCommandCatalog.ExileOrderId && person.Status == MainPersonStatus.Executed)
@@ -55,8 +56,12 @@ public static class MainCommandService
             if (target is null || target.Id == city.Id || target.Belong == city.Belong)
                 return Preview(false, "invalid_city", "侦察目标必须是不同的非己方城市。");
         }
+        var cityReferences = world.Cities.Count(item => item.PersonIds.Contains(person.Id, StringComparer.Ordinal));
+        if (city.Belong != actingRulerId || person.CityId != city.Id || cityReferences != 1 ||
+            !city.PersonIds.Contains(person.Id, StringComparer.Ordinal))
+            return Preview(false, "invalid_target", "目标必须位于操作方城市且位置引用一致。");
         if (commandId != MainCommandCatalog.ExecuteOrderId && commandId != MainCommandCatalog.ExileOrderId &&
-            (city.Belong != actingRulerId || person.Belong != actingRulerId || person.CityId != city.Id))
+            person.Belong != actingRulerId)
             return Preview(false, "invalid_target", "只能选择我方城中的己方武将。");
         if (person.OrderId is not null) return Preview(false, "person_busy", $"{person.Name} 已有命令。");
         if (person.Thew < thewCost) return Preview(false, "thew_low", $"体力不足，需要 {thewCost}。");
@@ -111,7 +116,9 @@ public static class MainCommandService
             if (request.Food <= 0 || request.Food > city.Food) return Preview(false, "food_low", "出征粮草必须大于零且不超过库存。");
             if (participants.Count is < 1 or > 10 || participants.Distinct(StringComparer.Ordinal).Count() != participants.Count ||
                 participants.Any(id => world.Persons.FirstOrDefault(item => item.Id == id) is not { } member ||
-                    member.Belong != actingRulerId || member.CityId != city.Id || member.Status != MainPersonStatus.Active || member.OrderId is not null))
+                    member.Belong != actingRulerId || member.CityId != city.Id || member.Status != MainPersonStatus.Active || member.OrderId is not null ||
+                    !city.PersonIds.Contains(id, StringComparer.Ordinal) ||
+                    world.Cities.Count(item => item.PersonIds.Contains(id, StringComparer.Ordinal)) != 1))
                 return Preview(false, "invalid_fighters", "编队必须为 1–10 名本城空闲在职武将。");
         }
         if (commandId == MainCommandCatalog.ConscriptOrderId)
@@ -144,10 +151,10 @@ public static class MainCommandService
         return IssueInternal(world, content, request);
     }
 
-    public static MainCommandResult IssueInternal(MainWorld world, int commandId, string cityId, string personId) =>
+    private static MainCommandResult IssueInternal(MainWorld world, int commandId, string cityId, string personId) =>
         IssueInternal(world, new MainContent(), new MainCommandRequest(commandId, cityId, personId));
 
-    public static MainCommandResult IssueInternal(MainWorld world, MainContent content, MainCommandRequest request)
+    private static MainCommandResult IssueInternal(MainWorld world, MainContent content, MainCommandRequest request)
     {
         var city = world.Cities.Single(item => item.Id == request.CityId);
         var person = world.Persons.Single(item => item.Id == request.PersonId);
@@ -250,8 +257,7 @@ public static class MainCommandService
         city.Money -= moneyCost;
         person.Thew -= thewCost;
         person.OrderId = order.Id;
-        person.CityId = "";
-        city.PersonIds.Remove(person.Id);
+        MainPersonLocationRules.LeaveCity(city, person);
         world.Orders.Add(order);
         return new MainCommandResult(true, "accepted", $"{person.Name}：{effect}", order.Id);
     }

@@ -26,7 +26,7 @@ public static class MainBattleService
         var way = Math.Max(0, target.DirectionalConnectionIds.IndexOf(source.Id));
         var state = new MainBattleState
         {
-            SourceCityId = source.Id, TargetCityId = target.Id, AttackerRulerId = source.Belong,
+            OrderId = order.Id, SourceCityId = source.Id, TargetCityId = target.Id, AttackerRulerId = source.Belong,
             DefenderRulerId = target.Belong, AttackerFood = order.Food, DefenderFood = target.Food,
             PlayerIsAttacker = source.Belong == world.PlayerRulerId
         };
@@ -64,7 +64,7 @@ public static class MainBattleService
             .OrderByDescending(person => person.Arms).ThenBy(person => person.SourceIndex).Take(10).ToList();
         var state = new MainBattleState
         {
-            SourceCityId = source.Id, TargetCityId = target.Id, AttackerRulerId = source.Belong,
+            OrderId = order.Id, SourceCityId = source.Id, TargetCityId = target.Id, AttackerRulerId = source.Belong,
             DefenderRulerId = target.Belong, AttackerFood = order.Food, DefenderFood = target.Food,
             PlayerIsAttacker = source.Belong == world.PlayerRulerId
         };

@@ -24,6 +24,7 @@
     <ProjectReference Include="..\..\src\Game.Application\Game.Application.csproj" />
     <ProjectReference Include="..\..\src\Game.Infrastructure\Game.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\Game.Domain\Game.Domain.csproj" />
+    <ProjectReference Include="..\..\Game.Godot.csproj" />
   </ItemGroup>
 
 </Project>

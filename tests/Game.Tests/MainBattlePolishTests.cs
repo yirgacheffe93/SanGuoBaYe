@@ -169,11 +169,14 @@ public sealed class MainBattlePolishTests
         }
         session.World.ActiveBattle = new MainBattleState
         {
-            SourceCityId = "city-000", TargetCityId = "city-005", AttackerRulerId = "person-005", DefenderRulerId = "person-013",
+            OrderId = "removed-expedition", SourceCityId = "city-000", TargetCityId = "city-005",
+            AttackerRulerId = "person-005", DefenderRulerId = "person-013",
             PlayerIsAttacker = false, AttackerFood = 5000, DefenderFood = 5000,
             Units = [new MainBattleUnit { PersonId = "person-056", IsAttacker = true, X = 1, Y = 3, Move = 4, BaseMove = 4 },
                      new MainBattleUnit { PersonId = "person-013", IsAttacker = false, X = 7, Y = 3, Move = 4, BaseMove = 4 }]
         };
+        session.World.TurnPhase = MainTurnPhase.AwaitBattle;
+        session.World.BattleReturnPhase = MainTurnPhase.Orders;
         return session;
     }
 }

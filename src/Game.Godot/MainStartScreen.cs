@@ -1,11 +1,11 @@
-using Game.Domain;
+using Game.Application;
 using Godot;
 
 namespace Game.Godot;
 
 public partial class MainStartScreen : PanelContainer
 {
-    private IReadOnlyList<MainPeriod> periods = [];
+    private IReadOnlyList<MainPeriodOption> periods = [];
     private OptionButton periodOptions = null!;
     private OptionButton rulerOptions = null!;
     private Button startButton = null!;
@@ -60,11 +60,11 @@ public partial class MainStartScreen : PanelContainer
         });
     }
 
-    public void Configure(IReadOnlyList<MainPeriod> definitions)
+    public void Configure(IReadOnlyList<MainPeriodOption> definitions)
     {
         periods = definitions;
         periodOptions.Clear();
-        foreach (var period in periods) periodOptions.AddItem($"{period.Year} 年 · {period.RulerIds.Count} 位君主", period.Period);
+        foreach (var period in periods) periodOptions.AddItem($"{period.Year} 年 · {period.Rulers.Count} 位君主", period.Period);
         periodOptions.Select(0);
         PopulateRulers();
     }
@@ -79,13 +79,12 @@ public partial class MainStartScreen : PanelContainer
     {
         rulerOptions.Clear();
         var period = periods[periodOptions.Selected];
-        foreach (var rulerId in period.RulerIds)
+        foreach (var ruler in period.Rulers)
         {
-            var ruler = period.Persons.Single(person => person.Id == rulerId);
             rulerOptions.AddItem(ruler.Name, ruler.SourceIndex);
             rulerOptions.SetItemMetadata(rulerOptions.ItemCount - 1, ruler.Id);
         }
-        var liuBei = period.RulerIds.ToList().FindIndex(id => id == "person-013");
+        var liuBei = period.Rulers.ToList().FindIndex(ruler => ruler.Id == "person-013");
         rulerOptions.Select(liuBei >= 0 ? liuBei : 0);
         startButton.Text = $"进入 {period.Year} 年 {period.Month} 月";
     }

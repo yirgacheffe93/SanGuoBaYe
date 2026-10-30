@@ -140,10 +140,11 @@ public sealed class MainOrder
 }
 
 public enum MainGameOutcome { InProgress, Won, Lost }
+public enum MainTurnPhase { Player, Ai, Orders, AwaitBattle, MonthUpdate }
 
 public sealed class MainWorld
 {
-    public int SchemaVersion { get; set; } = 6;
+    public int SchemaVersion { get; set; } = 7;
     public string ContentVersion { get; set; } = "main-sgby-1";
     public string ContentHash { get; set; } = "";
     public string RngAlgorithmVersion { get; set; } = "main-compatible-1";
@@ -153,6 +154,8 @@ public sealed class MainWorld
     public string PlayerRulerId { get; set; } = "";
     public ulong RandomState { get; set; }
     public MainGameOutcome Outcome { get; set; } = MainGameOutcome.InProgress;
+    public MainTurnPhase TurnPhase { get; set; } = MainTurnPhase.Player;
+    public MainTurnPhase BattleReturnPhase { get; set; } = MainTurnPhase.Player;
     public long NextSequence { get; set; } = 1;
     public List<MainCity> Cities { get; set; } = [];
     public List<MainPerson> Persons { get; set; } = [];

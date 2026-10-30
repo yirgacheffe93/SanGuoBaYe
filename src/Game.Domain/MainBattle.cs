@@ -29,6 +29,7 @@ public enum MainBattleResult { Ongoing, AttackerWon, DefenderWon }
 
 public sealed class MainBattleState
 {
+    public string OrderId { get; set; } = "";
     public string SourceCityId { get; set; } = "";
     public string TargetCityId { get; set; } = "";
     public string AttackerRulerId { get; set; } = "";

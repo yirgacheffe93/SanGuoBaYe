@@ -26,8 +26,7 @@ public static class MainDispositionRules
     {
         AddEquipment(city, content, target.Tool1Id);
         AddEquipment(city, content, target.Tool2Id);
-        city.PersonIds.Remove(target.Id);
-        target.CityId = "";
+        MainPersonLocationRules.LeaveCity(city, target);
         target.Status = MainPersonStatus.Executed;
         MainRandom.Next(world, 3);
         return $"{target.Name}已被处斩，装备已入城。";
@@ -35,12 +34,11 @@ public static class MainDispositionRules
 
     public static string Exile(MainWorld world, MainCity city, MainPerson target)
     {
-        city.PersonIds.Remove(target.Id);
+        MainPersonLocationRules.LeaveCity(city, target);
         target.Status = MainPersonStatus.Free;
         target.Belong = "";
         var destination = world.Cities[MainRandom.Next(world, world.Cities.Count)];
-        destination.PersonIds.Insert(0, target.Id);
-        target.CityId = destination.Id;
+        MainPersonLocationRules.EnterCity(destination, target);
         return $"{target.Name}已流放至{destination.Name}。";
     }
 

@@ -130,6 +130,7 @@ public sealed class MainBattleTests
         var participants = session.World.Persons.Where(person => person.Name.Length > 0).Take(10).ToList();
         foreach (var person in participants)
         {
+            foreach (var city in session.World.Cities) city.PersonIds.Remove(person.Id);
             person.Belong = "person-013";
             person.Status = MainPersonStatus.Active;
             person.CityId = source.Id;
@@ -139,6 +140,7 @@ public sealed class MainBattleTests
         var target = session.World.Cities[6];
         foreach (var extra in new[] { session.World.Persons[10], session.World.Persons[149] })
         {
+            foreach (var city in session.World.Cities) city.PersonIds.Remove(extra.Id);
             extra.Belong = target.Belong;
             extra.Status = MainPersonStatus.Active;
             extra.CityId = target.Id;
@@ -151,6 +153,20 @@ public sealed class MainBattleTests
         Assert.True(battle.Units.Count == 20, string.Join(",", battle.Units.Select(unit => unit.PersonId)));
         Assert.Equal(10, battle.Units.Count(unit => unit.IsAttacker));
         Assert.Equal(10, battle.Units.Count(unit => !unit.IsAttacker));
+    }
+
+    [Fact]
+    public void Expedition_rejects_participant_with_conflicting_city_reference()
+    {
+        var session = CreateSession();
+        session.World.Cities.Single(city => city.Id == "city-004").PersonIds.Add("person-089");
+        var before = session.GetStateHash();
+        var result = session.IssueCommand(new MainCommandRequest(
+            MainCommandCatalog.BattleOrderId, "city-005", "person-013", TargetCityId: "city-004", Food: 100,
+            ParticipantIds: ["person-013", "person-089"]));
+        Assert.False(result.Accepted);
+        Assert.Equal("invalid_fighters", result.Code);
+        Assert.Equal(before, session.GetStateHash());
     }
 
     private static MainGameSession CreateBattle()

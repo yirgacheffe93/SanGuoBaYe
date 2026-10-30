@@ -30,12 +30,12 @@ public static class MainBattleViewFactory
         var city = world.Cities.Single(city => city.Id == battle.TargetCityId);
         var map = content.Battle.Maps.Single(map => map.CityId == city.Id);
         return new MainBattleView(city.Name, battle.AttackerFood, battle.DefenderFood, battle.Weather, battle.Day,
-            battle.MaxDays, battle.Result, battle.PlayerIsAttacker, map.Width, map.Height, map.Terrains,
+            battle.MaxDays, battle.Result, battle.PlayerIsAttacker, map.Width, map.Height, map.Terrains.ToList(),
             battle.Units.Select(unit =>
             {
                 var person = world.Persons.Single(person => person.Id == unit.PersonId);
                 return new MainBattleUnitView(person.Id, person.Name, unit.IsAttacker, unit.X, unit.Y, unit.Hp, unit.Mp,
                     unit.Move, unit.HasActed, unit.State, person.Arms, person.ArmsType, unit.HasMoved);
-            }).ToList(), battle.Logs, map.TerrainKinds, map.CityX, map.CityY);
+            }).ToList(), battle.Logs.ToList(), map.TerrainKinds.ToList(), map.CityX, map.CityY);
     }
 }

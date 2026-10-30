@@ -9,11 +9,14 @@ public static class MainViewFactory
         world.Year,
         world.Month,
         world.PlayerRulerId,
+        world.Outcome,
+        world.TurnPhase,
+        world.ActiveBattle is not null,
         world.Cities.OrderBy(city => city.SourceIndex).Select(city => new MainCityView(
             city.Id, city.Name, city.Belong, city.X, city.Y, city.Farming, city.FarmingLimit,
             city.Commerce, city.CommerceLimit, city.PeopleDevotion, city.State, city.AvoidCalamity,
             city.Population, city.PopulationLimit, city.Money, city.Food, city.MothballArms,
-            city.ToolEntries.Where(entry => entry.Discovered).Select(entry => entry.ToolId).ToList(), city.Connections)).ToList(),
+            city.ToolEntries.Where(entry => entry.Discovered).Select(entry => entry.ToolId).ToList(), city.Connections.ToList())).ToList(),
         world.Persons.Where(person => person.Name.Length > 0).OrderBy(person => person.SourceIndex).Select(person => new MainPersonView(
             person.Id, person.Name, person.CityId, person.Belong, person.Status, person.Level, person.Force, person.Iq, person.Devotion,
             person.Thew, person.Arms, person.Tool1Id, person.Tool2Id, person.OrderId is not null)).ToList(),

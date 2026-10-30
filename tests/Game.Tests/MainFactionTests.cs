@@ -1,7 +1,3 @@
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Nodes;
 using Game.Application;
 using Game.Domain;
 using Game.Infrastructure;
@@ -44,29 +40,18 @@ public sealed class MainFactionTests
     }
 
     [Theory]
-    [InlineData(4)]
-    [InlineData(5)]
-    public void Previous_save_schemas_migrate_after_checksum_validation(int schema)
+    [InlineData("62f4b7b")]
+    [InlineData("9e0053e")]
+    public void Previous_save_schemas_migrate_after_checksum_validation(string sourceCommit)
     {
         var session = CreateSession();
-        var path = Path.Combine(Path.GetTempPath(), $"main-schema{schema}-{Guid.NewGuid()}.json");
-        try
-        {
-            MainSaveService.Save(session, path);
-            var envelope = JsonNode.Parse(File.ReadAllText(path))!.AsObject();
-            envelope["SchemaVersion"] = schema;
-            var world = envelope["World"]!.AsObject();
-            world["SchemaVersion"] = schema;
-            if (schema == 4) world.Remove("Outcome");
-            var worldJson = JsonSerializer.Serialize(world.Deserialize<MainWorld>());
-            envelope["Checksum"] = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(worldJson))).ToLowerInvariant();
-            File.WriteAllText(path, envelope.ToJsonString());
-            var restored = MainSaveService.Load(path, session.Content);
-            Assert.Equal(6, restored.World.SchemaVersion);
-            Assert.Equal(MainGameOutcome.InProgress, restored.World.Outcome);
-            Assert.Equal(session.World.RandomState, restored.World.RandomState);
-        }
-        finally { if (File.Exists(path)) File.Delete(path); }
+        var path = Path.Combine(Root, $"tests/Game.Tests/Fixtures/Saves/schema-{sourceCommit}.json");
+        var restored = MainSaveService.Load(path, session.Content);
+        Assert.Equal(7, restored.World.SchemaVersion);
+        Assert.Equal(MainGameOutcome.InProgress, restored.World.Outcome);
+        Assert.Equal(session.World.RandomState, restored.World.RandomState);
+        Assert.Equal("刘\n\"备\"\\测试", restored.World.Persons[0].Name);
+        Assert.Equal("中文\n\"引号\"\\反斜杠", Assert.Single(restored.World.Reports).Message);
     }
 
     private static MainGameSession CreateSession() => MainContentLoader.CreateSession(MainContentLoader.Load(

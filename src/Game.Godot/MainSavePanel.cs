@@ -1,4 +1,4 @@
-using Game.Infrastructure;
+using Game.Application;
 using Godot;
 
 namespace Game.Godot;
@@ -10,7 +10,7 @@ public partial class MainSavePanel : PanelContainer
     private ConfirmationDialog overwrite = null!;
     private int pendingSlot;
     public event Action<int>? SaveRequested;
-    public event Action<MainSaveSlot>? LoadRequested;
+    public event Action<int>? LoadRequested;
     public event Action? Closed;
 
     public override void _Ready()
@@ -36,21 +36,23 @@ public partial class MainSavePanel : PanelContainer
         AddChild(overwrite);
     }
 
-    public void SetSlots(IReadOnlyList<MainSaveSlot> slots, bool canSave)
+    public void SetSlots(IReadOnlyList<MainSaveSlotInfo> slots, bool canSave)
     {
         foreach (var child in rows.GetChildren()) { rows.RemoveChild(child); child.QueueFree(); }
         foreach (var slot in slots)
         {
             var row = new HBoxContainer();
             rows.AddChild(row);
+            var title = slot.Index == 0 ? "旧版快速存档" : $"存档 {slot.Index}";
+            var summary = Summarize(slot);
             row.AddChild(new Label
             {
-                Text = $"{slot.Title}  ·  {slot.Summary}" + (slot.CanLoad ? $"\n保存于 {slot.LastWriteUtc.ToLocalTime():yyyy-MM-dd HH:mm}" : ""),
+                Text = $"{title}  ·  {summary}" + (slot.CanLoad ? $"\n保存于 {slot.LastWriteUtc.ToLocalTime():yyyy-MM-dd HH:mm}" : ""),
                 CustomMinimumSize = new Vector2(630, 42), SizeFlagsHorizontal = SizeFlags.ExpandFill,
                 AutowrapMode = TextServer.AutowrapMode.WordSmart
             });
-            var load = new Button { Text = "读取", Disabled = !slot.CanLoad, TooltipText = slot.Summary };
-            load.Pressed += () => LoadRequested?.Invoke(slot);
+            var load = new Button { Text = "读取", Disabled = !slot.CanLoad, TooltipText = summary };
+            load.Pressed += () => LoadRequested?.Invoke(slot.Index);
             row.AddChild(load);
             if (slot.Index > 0)
             {
@@ -64,6 +66,20 @@ public partial class MainSavePanel : PanelContainer
             }
         }
         feedback.Text = canSave ? "读取存档会替换当前进度。保存可保留当前战略或战斗局面。" : "请选择要继续的存档，也可以返回开始新游戏。";
+    }
+
+    private static string Summarize(MainSaveSlotInfo slot)
+    {
+        if (slot.Error is not null) return $"无法读取：{slot.Error}";
+        if (slot.Summary is not { } summary) return slot.Exists ? "无法读取" : "空存档";
+        var location = summary.InBattle ? $"{summary.LocationName}战场" : summary.LocationName;
+        var outcome = summary.Outcome switch
+        {
+            Game.Domain.MainGameOutcome.Won => "胜利",
+            Game.Domain.MainGameOutcome.Lost => "失败",
+            _ => "进行中"
+        };
+        return $"{summary.Year} 年 {summary.Month} 月 · {summary.RulerName} · {location} · {outcome} · {summary.TurnPhase}";
     }
 
     public void SetMessage(string message) => feedback.Text = message;

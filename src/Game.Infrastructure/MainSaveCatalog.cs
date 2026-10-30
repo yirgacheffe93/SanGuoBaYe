@@ -3,7 +3,7 @@ using Game.Application;
 namespace Game.Infrastructure;
 
 public sealed record MainSaveSlot(int Index, string Title, string Path, bool Exists, bool CanLoad,
-    DateTime LastWriteUtc, string Summary);
+    DateTime LastWriteUtc, MainSaveSummary? Summary, string? Error);
 
 public sealed class MainSaveCatalog(string directory, Game.Domain.MainContent content)
 {
@@ -25,19 +25,19 @@ public sealed class MainSaveCatalog(string directory, Game.Domain.MainContent co
 
     private MainSaveSlot Describe(int index, string title, string path)
     {
-        if (!File.Exists(path)) return new(index, title, path, false, false, DateTime.MinValue, "空存档");
+        if (!File.Exists(path)) return new(index, title, path, false, false, DateTime.MinValue, null, null);
         try
         {
             var session = MainSaveService.Load(path, content);
             var world = session.World;
             var ruler = world.Persons.Single(person => person.Id == world.PlayerRulerId).Name;
-            var location = world.ActiveBattle is null ? "战略地图" : $"{world.Cities.Single(city => city.Id == world.ActiveBattle.TargetCityId).Name}战场";
-            return new(index, title, path, true, true, File.GetLastWriteTimeUtc(path),
-                $"{world.Year} 年 {world.Month} 月 · {ruler} · {location} · {MainFactionRules.Name(world.Outcome)}");
+            var location = world.ActiveBattle is null ? "战略地图" : world.Cities.Single(city => city.Id == world.ActiveBattle.TargetCityId).Name;
+            var summary = new MainSaveSummary(world.Year, world.Month, ruler, world.ActiveBattle is not null, location, world.Outcome, world.TurnPhase);
+            return new(index, title, path, true, true, File.GetLastWriteTimeUtc(path), summary, null);
         }
         catch (Exception error) when (error is IOException or UnauthorizedAccessException or MainSaveException or InvalidOperationException)
         {
-            return new(index, title, path, true, false, DateTime.MinValue, $"无法读取：{error.Message}");
+            return new(index, title, path, true, false, DateTime.MinValue, null, error.Message);
         }
     }
 }

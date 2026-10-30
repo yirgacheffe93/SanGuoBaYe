@@ -28,7 +28,7 @@ public sealed class MainSaveCatalogTests
             Assert.False(slots.Single(slot => slot.Index == 4).Exists);
             Assert.Equal(first.GetStateHash(), catalog.Load(slots[0]).GetStateHash());
             Assert.Equal(second.GetStateHash(), catalog.Load(slots[1]).GetStateHash());
-            Assert.Contains("190 年", slots[0].Summary);
+            Assert.Equal(190, slots[0].Summary!.Year);
             Assert.Throws<ArgumentOutOfRangeException>(() => catalog.GetPath(0));
             Assert.Throws<ArgumentOutOfRangeException>(() => catalog.GetPath(6));
         }
@@ -50,7 +50,7 @@ public sealed class MainSaveCatalogTests
             var catalog = new MainSaveCatalog(directory, content);
             catalog.Save(session, 1);
             var slot = catalog.List()[0];
-            Assert.Contains("战场", slot.Summary);
+            Assert.True(slot.Summary!.InBattle);
             var restored = catalog.Load(slot);
             Assert.True(restored.World.ActiveBattle!.Units[0].HasMoved);
             MainBattleService.EndTurn(session.World, content);

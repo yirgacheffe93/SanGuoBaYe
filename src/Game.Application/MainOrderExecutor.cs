@@ -84,8 +84,7 @@ public static class MainOrderExecutor
     {
         var city = world.Cities.Single(item => item.Id == cityId);
         var person = world.Persons.Single(item => item.Id == order.PersonId);
-        person.CityId = cityId;
         person.OrderId = null;
-        if (!city.PersonIds.Contains(person.Id, StringComparer.Ordinal)) city.PersonIds.Insert(0, person.Id);
+        MainPersonLocationRules.EnterCity(city, person);
     }
 }
